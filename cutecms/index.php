@@ -19,11 +19,6 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
-
-if (PHP_SAPI == 'cli') {
-    $_SERVER['REQUEST_URI'] = $argv[1];
-}
-
 require 'App/PreBoot.php';
 
 App_PreBoot::processMagicQuotesGPC();
@@ -34,7 +29,7 @@ defined('APPLICATION_ENV')
 
 // Define application base
 defined('APPLICATION_BASE')
-    || define('APPLICATION_BASE', App_PreBoot::getApplicationBase(NULL, (PHP_SAPI=='cli'?$_SERVER['argv'][1]:NULL)));
+    || define('APPLICATION_BASE', App_PreBoot::getApplicationBase(NULL, NULL));
 
 /** Zend_Application */
 require 'Zend/Application.php';
