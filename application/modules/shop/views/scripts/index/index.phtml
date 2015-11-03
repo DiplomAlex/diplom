@@ -1,0 +1,236 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".banner .jcarousel-skin").jcarousel({
+            scroll: 1,
+            animation: 1200,
+            auto: 0,
+            wrap: 'circular',
+        });
+        $(".banners .jcarousel-skin").jcarousel({
+            scroll: 1,
+            animation: 1200,
+            auto: 5,
+            visible: 1,
+            wrap: 'circular',
+        });
+        
+        <?if (count($this->slider_items)) { ?>
+        $(".related .jcarousel-skin").jcarousel({
+            scroll: 4,
+            animation: 1200,
+            auto: 7
+            <?= ( count($this->slider_items) > 5 ) ? ',wrap: "circular"' : '' ?>,
+        });
+        <?}?>
+        $(".related").addClass('count' + $('.related .jcarousel-item').length);
+    });
+</script>
+<div class="breadcrumbs home"></div>
+<div class="banners" style='background: url("<?=App_Resource::getUploadsUrl($this->main_banner->image_id_filename)?>") no-repeat scroll center 0 transparent;'>
+    <div class="main_text">
+        <!--span class="logo"></span-->
+        <?=$this->main_banner->html?>
+    </div>
+    <!--div class="banner-shadow"></div-->
+</div>
+<div class="banner">
+    <ul class="jcarousel-skin">
+        <?foreach($this->slider as $slide){?>
+            <li>
+                    <a href="<?=$slide->link?>"><img class="big" src="<?=App_Resource::getUploadsUrl($slide->image_id_filename)?>" alt="" style="max-width: 313px; max-height: 156px;" /></a>
+                    <span class="border"></span>
+                    <h3>
+                        <!--a href="<?=$this->stdUrl().$slide->link?>"-->
+                        <a href="<?=$slide->link?>">
+                        <?= $slide->name?>
+                        </a>
+                    </h3>                    
+                    <?= $slide->html?>
+            </li>
+        <?}?>
+    </ul>
+</div>
+<div class="cleaner"></div>
+<div class="content home center">
+    <div class="hidden"><h1>Магазин Ювелирного дома SA&amp;GA. Каталог ювелирных украшений с ценами</h1></div>
+    <div class="bonus-program">
+    <h2><span style="font-size: 24px;">Ювелирный дом SA&amp;GA</span><br /><br />Лидер рынка Украины в сфере дизайна, производства и реализации ювелирных украшений. <br />SA&amp;GA – это ведущий ювелирный бренд, изделия которого давно завоевали признание и любовь ценителей ювелирных украшений высочайшего качества. Предприятие было удостоено множества наград высокого уровня, что подтверждает его лидерство на рынке ювелирных изделий.<br /><br />
+        Украшения лучше выглядят на женщине, чем без неё! Как только она надевает кольцо или ожерелье, они сразу становятся её гармоничным продолжением, неотъемлемой и прекрасной частью своей владелицы. Каждое украшение – это маленький шедевр, который достоин того, чтобы его передавали по наследству.<br /><br />
+        <span style="font-size: 24px;">Ты сможешь покорять этот мир каждый день!</span><br />
+    </h2>
+    <!--h2><span style="font-size: 28px;color: #926B00;">Скидки 30% на украшения с драгоценными камнями</span><br /><br />
+        <span style="font-size: 20px;">Акция действует в период с 23 февраля по 10 марта 2015г.</span><br /><br />
+        В честь праздника весны 8 Марта можно позволить себе сделать особенный подарок своей жене, маме и дочке. 
+        Драгоценное ювелирное украшение всегда было, есть и будет объектом желания женщины любого возраста и статуса. 
+        Именно драгоценные камни способны подчеркнуть женскую красоту и сделать образ элегантным. Конечно же, им будет 
+        очень приятно получить в подарок серьги, колечко или подвеску. <br /><br />
+        Ювелирный дом SA&amp;GA предлагает Вам идеи идеальных подарков, которые по достоинству оценит представительница 
+        прекрасного пола. И мы постарались, чтобы эти особенные подарки<br />были более доступны для Вас.<br /><br />
+        <a href="/catalog-ukrashenija-30" class="takeGift">ВЫБРАТЬ УКРАШЕНИЕ</a><br /><br />
+        <span style="font-size: 24px;">Ювелирные украшения SA&amp;GA – красота, которая всегда с Вами!</span><br />
+    </h2-->
+    <!--НАШИ КОЛЛЕКЦИИ<br />Все ювелирные украшения сертифицированы Восточной геммологической<br />лабораторией экспертизы и сертификации-->        
+        <p></p>
+    </div>
+    <?php 
+        $collections = array(
+            //0 => "'catalog-valenso'", 
+            1 => "'catalog-klassicheskie-ukrashenija-s-izumrudami'",
+            2 => "'catalog-brillianty'",
+            3 => "'catalog-shiny-collection'");
+        $id_coll = rand(1,3);?>
+    <a href=<?=$collections[$id_coll]?>><img src="<?=$this->skin()->url()?>img/pic/banner_coll<?=$id_coll?>.jpg" alt="" /></a>
+    <div class="title">        
+        <?= $this->our_collections->html?>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.show_info').mouseenter(function(){
+                $(this).parent().find('.info').show();
+            })
+            $('.item .info').mouseleave(function(){
+                $('.item .info').hide();
+            })
+        });
+    </script>
+	<div class="items">
+        <? $counter = 0; ?>
+		<? foreach ($this->our_collection_items as $key => $item) { ?>
+			<? $counter++; ?>
+			<?= ( $counter == 1  ) ? '<div class="block left">' : ''?>
+			<?= ( $counter == 6  ) ? '<div class="cleaner"></div><div class="block line">' : ''?>
+			<?= ( $counter == 11  ) ? '<div class="block right">' : ''?>
+				<div class="item <?= ( in_array($counter, array(2,3,8,12,13)) ) ? 'wide' : ''?><?= in_array($counter, array(5,10)) ? 'large' : ''?>" >
+					<? if (in_array($counter, array(5,10)))
+							$preview = 'rc_id_preview4';
+						elseif (in_array($counter, array(2,3,8,12,13)))
+							$preview = 'rc_id_preview3';
+						else $preview = 'rc_id_preview2';
+					?>
+					<a class="show_info" href="javascript:void(0);">
+                        <table class="items_align"><tr><td class="item_align">
+    					<a class="items_align" href="<?=$this->url(array('category' => $item->category_seo_id, 'seo_id' => $item->seo_id), ( $item->category_seo_id == 'exclusive' ) ? 'shop-exclusive' : 'shop-item')?>">
+    						<?if (isset($this->galleries[$item->id][0])){?>
+                                <span><img src="<?=App_Resource::getUploadsUrl($this->galleries[$item->id][0][$preview])?>" alt="" /></span>
+                            <?}?>
+    					</a>
+    					</td></tr></table>
+					</a>
+                    <a href="<?=$this->url(array('category' => $item->category_seo_id, 'seo_id' => $item->seo_id), ( $item->category_seo_id == 'exclusive' ) ? 'shop-exclusive' : 'shop-item')?>">
+                    <?php /*$this->url(array('seo_id' => $item->seo_id), 'shop-catalog')*/?>
+					<div class="info">
+						<div class="short">
+                            <?= $item->brief?>
+							<!--?if( $item->price != 0 ){?>
+								<div class="price">ЦЕНА<span><?=$item->price?> грн.</span></div-->
+							<!--?}?-->
+							<div>ПОДРОБНЕЕ</div>
+						</div >
+					</div>
+                    </a>
+				</div>
+			<?= ( in_array($counter, array(4,9,14)) || $key+1 == count($this->our_collection_items) && !in_array($counter, array(5, 10))) ? '</div>' : ''?>
+			<?if ($counter == 14){ $counter = 0; }?>
+		<? } ?>
+	</div>
+    <div class="cleaner"></div>
+    <div class="title">        
+        <div class="title-collection" style="margin-top: 30px;">
+            <!--h2>Collections of SA&amp;GA</h2>
+            <p>SA&amp;GA – Ваша персональная легенда, созданная и запечатленная навечно в уникальном коллекционном украшении.</p>
+            <p>Это неповторимая история семьи, династии, рода. Живая история, которая, дополняясь с течением времени деталями, вечно хранит всю палитру Вашей эпохи в сакральной семейной реликвии.</p-->
+        </div> 
+    </div>
+
+    <div class="related">
+        <ul class="jcarousel-skin">
+			<? foreach ($this->slider_items as $item) { ?>
+				<li>
+                    <table class="items_align"><tr><td class="item_align">
+					<a class="item_align" href="<?=$this->url(array('category' => $item->category_seo_id, 'seo_id' => $item->seo_id), 'shop-item')?>">
+						<?if (isset($this->galleries[$item->id][0])){?>
+                            <img class="big" src="<?=App_Resource::getUploadsUrl($this->galleries[$item->id][0]['rc_id_preview6'])?>" alt="" />
+                        <?}?>
+                    </a>
+                    </td></tr></table>
+					<h3><?= $item->name ?></h3>
+					<p><?= $item->material?><br/></p>
+				</li>
+			<? } ?>
+        </ul>
+    </div>
+</div>
+<div class="history">
+    <div class="center">
+        <div class="text">
+            <!--h2>ЮВЕЛИРНЫЙ ДОМ САГА - ИСТОРИЯ ДЛИНОЮ В ЖИЗНЬ</h2-->
+            Украшения «SA&amp;GA» производятся под фирменным торговым знаком, зарегистрированным 
+                в Государственном Департаменте интеллектуальной собственности. Все ювелирные украшения 
+                сертифицированы Восточной геммологической лабораторией экспертизы и сертификации 
+                (Eastern Gemmological Laboratory of Expertise &amp;Certification).
+            <div class="contacts">
+                <br />Телефон(факс): +38 062 647 1228<br />
+                Отдел сбыта: +38 062 648 6767<br />
+                Эл.почта: <a href="mailto:sales@saga.diamonds">sales@saga.diamonds</a>
+                <span class="signature"></span>
+            </div>
+        </div>
+        
+        <div class="video">
+            <video class="video-js vjs-default-skin" controls="controls" preload="none" width="452" height="254"
+                poster="/uploads/ckfinder/images/cennosti.jpg"
+                data-setup="{}">
+                <source src="/uploads/ckfinder/images/cennosti.mp4" type='video/mp4' />
+                <!--source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /-->
+                <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+            </video>
+        </div>
+        
+        <!--div class="video">
+            <img  class="play" src="<?=$this->skin()->url()?>img/pic/video.jpg" alt="" />
+            <span class="play"></span>
+            <img src="<?=$this->skin()->url()?>img/pic/unknown-03.jpg" alt="" />
+        </div-->
+
+        
+        <div class="cleaner"></div>
+        <div class="video small" style="margin-left: 56px;">
+            <video class="video-js vjs-default-skin" controls="controls" preload="none" width="452" height="254"
+                poster="/uploads/ckfinder/images/teddy_short.jpg"
+                data-setup="{}">
+                <source src="/uploads/ckfinder/images/Teddi.mp4" type='video/mp4' />
+                <!-- source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /-->
+                <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+            </video>
+        </div>
+        <div class="video small">
+            <video class="video-js vjs-default-skin" controls="controls" preload="none" width="452" height="254"
+                poster="/uploads/ckfinder/images/valenso.jpg"
+                data-setup="{}">
+                <source src="/uploads/ckfinder/images/Valenso_full.mp4" type='video/mp4' />
+                <!-- source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /-->
+                <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+            </video>
+        </div>
+        <!--img class="flower" src="<?=$this->skin()->url()?>img/pic/unknown-02.jpg" alt="" />
+        <img src="<?=$this->skin()->url()?>img/pic/unknown-01.jpg" alt="" />
+        <h3 class="quote">В наших ювелирных произведениях собрано целое 
+        соцветие драгоценных камней лучшего качества<span class="quotes"></span></h3-->
+        <!--img src="<?=$this->skin()->url()?>img/pic/banner_footer.jpg" alt="" /-->
+        <div class="cleaner"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider({effect:'fade', pauseTime: 5000, startSlide: 3});
+    });
+</script>

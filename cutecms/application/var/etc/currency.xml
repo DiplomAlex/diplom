@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+	<currency>
+		<rur id="2" code="RUB" rate="1"  is_default="1" active="1">
+			<name>
+				<en><![CDATA[Russian Ruble]]></en>
+				<ua><![CDATA[карбованець]]></ua>
+				<ru><![CDATA[рубль]]></ru>
+			</name>
+			<signPre>
+				<en></en>
+				<ua></ua>
+				<ru></ru>
+			</signPre>
+			<signPost>
+				<en><![CDATA[rub.]]></en>
+				<ua><![CDATA[р.]]></ua>
+				<ru><![CDATA[р.]]></ru>
+			</signPost>
+		</rur>
+        <eur id="3" code="EUR" rate="0.02599" rateNonCache="0.02599" active="0">
+    		<name>
+    			<en><![CDATA[EUR]]></en>
+    			<ua><![CDATA[EUR]]></ua>
+    			<ru><![CDATA[EUR]]></ru>
+    		</name>
+    		<signPre>
+    			<en><![CDATA[eur]]></en>
+    			<ua><![CDATA[eur]]></ua>
+    			<ru><![CDATA[eur]]></ru>
+    		</signPre>
+    		<signPost>
+    			<en></en>
+    			<ua></ua>
+    			<ru></ru>
+    		</signPost>
+    	</eur>
+    	<usd id="4" code="USD" rate="0.03422" rateNonCache="0.03422" active="1">
+    		<name>
+    			<en><![CDATA[USD]]></en>
+    			<ua><![CDATA[USD]]></ua>
+    			<ru><![CDATA[USD]]></ru>
+    		</name>
+    		<signPre>
+    			<en><![CDATA[$]]></en>
+    			<ua><![CDATA[$]]></ua>
+    			<ru><![CDATA[$]]></ru>
+    		</signPre>
+    		<signPost>
+    			<en></en>
+    			<ua></ua>
+    			<ru></ru>
+    		</signPost>
+    	</usd>
+	</currency>
+</config>

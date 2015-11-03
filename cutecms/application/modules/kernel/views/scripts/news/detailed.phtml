@@ -1,0 +1,12 @@
+<?$row = $this->news?>
+
+      <h2><?=$row['title']?></h2>
+      <div class="manager_info">
+        <?=$this->html_Img($row['rc_id_filename'], 'border="0" width="150"')?>
+        <h3><?=$this->formatDate($row['date_publish'])?></h3>
+        <p> <strong class="txt_green"><?=$row['announce']?></strong></p>
+      </div>
+      <div class="cleaner"></div>
+      <div class="manager_info">
+        <p><?=$row['full']?></p>
+      </div>

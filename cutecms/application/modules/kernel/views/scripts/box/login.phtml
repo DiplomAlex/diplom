@@ -1,0 +1,33 @@
+<? if ( ! $this->alreadyAuthorized) { ?>
+
+<h3 class="blue"><a href="<?=$this->stdUrl(array('reset'=>TRUE, 'action'=>'login'))?>"><?=$this->translate('Authorization')?></a></h3>
+<div class="box_auth">
+<div class="t">
+  <div class="b">
+    <form action="<?=$this->stdUrl(array('reset'=>TRUE), 'login', 'auth', 'kernel')?>" method="POST">
+        <label><?=$this->translate('login')?>
+        <input type="text" name="login" class="usr" />
+        </label>
+        <label><?=$this->translate('password')?>
+        <input name="password" type="password" class="passw" />
+        </label>
+        <div class="btn">
+            <input type="image" name="imageField" src="<?=$this->skin()->url()?>images/btn_enter.gif" />
+            <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'register', 'user', 'kernel')?>"><?=$this->translate('Registration')?></a>
+        </div>
+        <input type="hidden" name="redirect" value="<?=$this->redirectHref?>">
+    </form>
+    <div class="fp_txt"><?=$this->translate('Forgot password')?> -
+      <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'forgot-password', 'auth', 'kernel')?>" id="forgot_passw"><?=$this->translate('click here')?></a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<? } else { ?>
+
+    <?=$this->box_Account()?>
+
+<? } ?>

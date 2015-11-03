@@ -1,0 +1,19 @@
+<ul class="language-select-box">
+    <? foreach ($this->languages as $lang) { ?>
+        <li <?=(($lang->id==$this->currentLanguage->id)?'class="active"':'')?>>
+            <a href="<?=$this->url(array('lang'=>$lang->id), 'shop-user-change-language')?>" langId="<?=$lang->id?>"><?=$lang->code2?></a>
+        </li>
+    <? } ?>
+</ul>
+
+<? $this->headScript('SCRIPT', '
+    $(function(){
+        $(".language-select-box a").click(function(e){
+            e.preventDefault();
+            var $this = $(this);
+            $.post($this.attr("href"), {id:$this.attr("langId"), redirect:"'.$this->serverUrl(TRUE).'"}, function(resp){
+                window.location.reload(true);
+            });
+        });
+    });
+') ?>

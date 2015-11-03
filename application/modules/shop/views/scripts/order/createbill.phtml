@@ -1,0 +1,21 @@
+<?$result = $this->result;?>
+<?if ($result == 0 ) {?>
+			<div class="contentsTopics"> Счет успешно создан.</div>
+			Вы можете оплатить счет любым удобным для вас способом через cиcтему QIWI. 
+			Способы оплаты смотрите  <a href="http://qiwi.ru/private/how/" style="color:blue;"> здесь.</a>
+		<?} else if ($result == 241) {?>
+			<div class="contentsTopics"> Ошибка.</div>
+			Сумма слишком мала
+		<?} else if ($result == 13) {?>
+			<div class="contentsTopics"> Ошибка.</div>
+			Сервер занят, повторите запрос позже 
+		<?} else if ($result == 215) {?>
+			<div class="contentsTopics"> Ошибка.</div>
+			Счет с таким id уже существует 
+		<?} else if ($result == 242) {?>
+			<div class="contentsTopics"> Ошибка.</div>
+			Превышена максимальная сумма платежа – 15 000р. 
+		<?} else {?>
+			<div class="contentsTopics"> Ошибка.</div>
+			Неизвестный статус заказа
+		<?}?>

@@ -1,0 +1,18 @@
+<div class="conteiner">
+    <div class="content">
+        <span class="size22 colorred mypro"><?=$this->news->title?></span>
+    </div>
+    <div class="content">
+        <div class="conqiastions2"></div>
+        <div class="addnews">
+            <span class="size15 bolt colordark"><?=date('F j, Y', strtotime($this->news->date_publish))?></span><br><br>
+            <div class="image_div">
+                <img src="<?=App_Resource::getUploadsUrl($this->news->rc_id_preview2)?>" alt=""/>
+                <div class="transparent_div"></div>
+                <div class="transparent_div_text"><span class="title"><?=$this->news->title?></span><br /><span class="title2"><?=$this->news->title2?></span></div>
+            </div>
+            <?=$this->news->full?><br/><br/>
+        </div>
+    </div>
+</div>
+      

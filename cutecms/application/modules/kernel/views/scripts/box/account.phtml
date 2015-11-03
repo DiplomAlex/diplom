@@ -1,0 +1,27 @@
+<? if ($this->user) { ?>
+  <div class="role_tab">
+    <a href="<?=$this->url(array('login'=>$this->user['login']), 'user_profile')?>"><img src="<?=$this->skin()->url()?>images/role_tabs/<?=$this->roleViewAlias()?>.gif" alt="" width="26" height="91" border="0" /></a>
+  </div>
+<? } ?>
+
+<form action="<?=$this->stdUrl(array('reset'=>TRUE), 'change-authorized-user', 'auth', 'kernel')?>" method="POST">
+  <div id="head">
+    <div class="logo"><a href="<?=$this->stdUrl(array('reset'=>TRUE))?>"><img border="0" src="<?=$this->skin()->url()?>images/logo.jpg" alt="" width="227" height="84" /></a></div>
+<? if ($this->user) { ?>
+    <div class="tmenu">
+      <div class="menu">
+        <?=$this->translate('Добро пожаловать')?>,
+        <? if (count($this->bindedUsers) > 1) { ?>
+            <?=$this->formSelect('id', $this->user['id'], array('onChange' => 'this.form.submit()'), $this->bindedUsers)?>
+        <? } else { ?>
+            <a href="<?=$this->url(array('login'=>$this->user['login']), 'user_profile')?>"><strong><?=$this->user['name']?></strong></a>
+        <? } ?>
+        <span><a href="<?=$this->stdUrl(array('id'=>$this->user['id']), 'edit', 'admin-user', 'tickets')?>" class="users"><?=$this->translate('Меню пользователя')?></a></span>
+        <span><a href="<?=$this->stdUrl(NULL, 'index', 'help', 'kernel')?>" class="help"><?=$this->translate('Помощь')?></a></span>
+        <span><a href="<?=$this->url(array('seo_id'=>'contact'), 'page')?>" class="contacts"><?=$this->translate('Наши контакты')?></a></span>
+        <span><a href="<?=$this->stdUrl(array('reset'=>TRUE), 'logout', 'auth', 'kernel')?>" class="logout"><?=$this->translate('Выход')?></a></span>
+      </div>
+    </div>
+<? } ?>
+  </div>
+</form>

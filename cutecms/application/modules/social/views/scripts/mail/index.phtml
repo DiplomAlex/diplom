@@ -1,0 +1,99 @@
+<? if ($this->error === TRUE) { ?>
+    <h2>Для Вас менеджер еще не назначен</h2>
+    <p>Если у Вас возникли проблемы, пишите на email: <a href="mailto:<?=$this->emailSupport?>"><?=$this->emailSupport?></a></p>
+<? } else { ?>
+
+    <script type="text/javascript">
+        function initMailTopicRow(rowId)
+        {
+            $(".mail_subject_"+rowId).unbind("click");
+            $(".mail_subject_"+rowId).click(function(e){
+                e.preventDefault();
+                var visibles = $(".mail_row_"+rowId+":visible");
+                var hiddens = $(".mail_row_"+rowId+":hidden");
+                if (visibles.length > 0) {
+                    visibles.hide();
+                    $(this).children("img").attr("src", "<?=$this->skin()->url()?>images/arr_sect_down.gif");
+                }
+                else {
+                    hiddens.show();
+                    $(this).children("img").attr("src", "<?=$this->skin()->url()?>images/arr_sect_up.gif");
+                }
+            });
+            $(".mail_subject_"+rowId).click();
+        }
+
+        function toggleMessageBody(td)
+        {
+            var visibles = $("div:visible", td);
+            var hiddens = $("div:hidden", td);
+            visibles.hide();
+            hiddens.show();
+        }
+    </script>
+
+
+    <h2><?=$this->translate('История писем и ответов')?></h2>
+    <p><?=$this->translate('Переписка с пользователем')?> <a no_ajax_wj_replace="1" href="<?=$this->url(array('login'=>$this->recipient['login']), 'user_profile')?>"><?=$this->recipient['name']?> (<?=$this->translate($this->recipient['acl_role'])?>)</a></p>
+
+    <? if ($this->showNewButton) { ?>
+        <table width="100%"><tr>
+        <td align="right"><a class="btn3" href="<?=$this->url(array(), 'social_mail_new')?>"><?=$this->translate('Новое письмо')?></a></td>
+        </tr></table>
+    <? } ?>
+
+    <? $talking = NULL ?>
+    <? $cnt = 0 ?>
+    <? foreach ($this->mails as $row) { ?>
+        <? if ($talking != $row['talking']) { ?>
+            <? if ($cnt > 0) { ?>
+                  </table>
+                </div>
+            <? } ?>
+                <a href="#" no_ajax_wj_replace="1" class="mail_subject mail_subject_<?=$row['talking']?>">
+                    <?=$row['talking_subject']?>
+                    <img src="<?=$this->skin()->url()?>images/arr_sect_up.gif" alt="" width="8" height="8" border="0" />
+                </a>
+                <div class="mail_row mail_row_<?=$row['talking']?>">
+                  <table cellspacing="0" class="tbl" style="width: 100%; margin: 0px;">
+    <script type="text/javascript">
+            $(document).ready(function(){
+                initMailTopicRow("<?=$row['talking']?>");
+            });
+    </script>
+            <? $talking = $row['talking'] ?>
+        <? } ?>
+
+            <tr <?=$this->cycle(array('', 'class="alt_row"'))->next()?>>
+              <td width="2%">
+                <? if ($row['recipient_id'] != $this->recipient['id']) { ?>
+                    <? $img = 'arrow_down.png' ?>
+                <? } else {?>
+                    <? $img = 'arrow_up.png' ?>
+                <? } ?>
+                <img src="<?=$this->skin()->url()?>images/<?=$img?>">
+              </td>
+              <td width="15%" style="text-align: center; vertical-align: middle;"><?=$this->formatDate($row['date_sent'])?><br />
+                <span class="txt_green"><?=$this->formatTime($row['date_sent'])?></span></td>
+              <? $shorten = $this->mail_ShortenBody($row['body'])?>
+              <? $lenDiff = (bool) (strlen($row['body']) - strlen($shorten)) ?>
+              <td width="75%" <? if ($lenDiff){?>onclick="toggleMessageBody(this);" style="cursor: pointer;"<?}?>>
+                <div class="shorten-body"><?=$shorten?></div>
+                <? if ($lenDiff){?><div class="full-body" style="display: none;"><?=$row['body']?></div><?}?>
+              </td>
+              <td class="admin_content">
+                <? if ($row['recipient_id'] != $this->recipient['id']) { ?>
+                <a no_ajax_wj_replace="1" class="txt_green" href="<?=$this->url(array('parent_id'=>$row['id'], 'recipient_id'=>$row['sender_id']), 'social_mail_new')?>"><?=$this->translate('Ответить')?></a>
+                <? } ?>
+                <!-- br />
+                <a href="#" class="act_delete"><?=$this->translate('Удалить')?></a -->
+                &nbsp;
+              </td>
+            </tr>
+
+        <? ++ $cnt ?>
+    <? } ?>
+          </table>
+        </div>
+
+<? } ?>

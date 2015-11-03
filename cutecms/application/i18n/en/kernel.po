@@ -1,0 +1,233 @@
+# translation of kernel.po to
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kernel\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-06 14:38+0200\n"
+"PO-Revision-Date: 2009-11-06 16:47+0200\n"
+"Last-Translator: \n"
+"Language-Team:  <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+msgid "seo_id.This field should be uniq"
+msgstr "Такой Seo-URL уже есть в базе"
+
+msgid "Комментарии"
+msgstr "Comments"
+
+msgid "Дата"
+msgstr "Date"
+
+msgid "Рисунок"
+msgstr "Image"
+
+msgid "Автор"
+msgstr "Author"
+
+msgid "Комментарий"
+msgstr "Comment"
+
+msgid "Статьи"
+msgstr "Articles"
+
+msgid "Заголовок"
+msgstr "Title"
+
+msgid "Рубрика"
+msgstr "Topic"
+
+msgid "Сайты для привязки"
+msgstr "Sites for binding"
+
+msgid "Редактирование статьи"
+msgstr "Edit article"
+
+msgid "Новая статья"
+msgstr "New article"
+
+msgid "Галерея"
+msgstr "Gallery"
+
+msgid "Удаление статьи"
+msgstr "Delete article"
+
+msgid "Вы действительно хотите удалить эту статью:\"%1$s (%2$s)\""
+msgstr "Do you really want to delete this article:\"%1$s (%2$s)\""
+
+msgid "Темы статей"
+msgstr "Topics"
+
+msgid "Тема"
+msgstr "Topic"
+
+msgid "Ссылка"
+msgstr "Link"
+
+msgid "Родительская рубрика"
+msgstr "Parent topic"
+
+msgid "Всего подписчиков:%1$s"
+msgstr "Total subscribers:%1$s"
+
+msgid "Рассылать подписчикам"
+msgstr "Send to subscribers"
+
+msgid "выберите дату"
+msgstr "select date"
+
+msgid "Внутр. код"
+msgstr "Internal code"
+
+msgid "Внутренний код страницы"
+msgstr "Internal page code"
+
+msgid "Поиск"
+msgstr "Searching"
+
+msgid "Найти"
+msgstr "Find"
+
+msgid "Связанные (%1$s)"
+msgstr "Binded (%1$s)"
+
+msgid "Список \"белых\" IP"
+msgstr "White IP list"
+
+msgid "IP-адрес"
+msgstr "IP-address"
+
+msgid "Имя сети"
+msgstr "Network name"
+
+msgid "Добавить"
+msgstr "Add"
+
+msgid "Изменение ip-адреса"
+msgstr "Change IP-address"
+
+msgid "Добавление ip-адреса"
+msgstr "Add IP-address"
+
+msgid "Удаление ip-адреса"
+msgstr "Delete IP-address"
+
+msgid "Вы действительно хотите удалить этот адрес из списка:\"%1$s\""
+msgstr "Do you really want to delete this address from a list:\"%1$s\""
+
+msgid "Изображение"
+msgstr "Image"
+
+msgid "вкл."
+msgstr "On"
+
+msgid "выкл."
+msgstr "Off"
+
+msgid "Список Web-сайтов"
+msgstr "Web-sites list"
+
+msgid "Имя хоста"
+msgstr "Host name"
+
+msgid "Базовый каталог"
+msgstr "Base catalog"
+
+msgid "Название"
+msgstr "Name"
+
+msgid "Скин"
+msgstr "Skin"
+
+msgid "Язык по-умолчанию"
+msgstr "Default language"
+
+msgid "Привязан по-умолчанию"
+msgstr "Linked by default"
+
+msgid "По-умолчанию"
+msgstr "Default"
+
+msgid "2-символьный код"
+msgstr "Second symbolic code"
+
+msgid "3-символьный код"
+msgstr "Third symbolic code"
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Описание"
+msgstr "Description"
+
+msgid "Объект"
+msgstr "Object"
+
+msgid "Сохранить"
+msgstr "Save"
+
+msgid "Удалить"
+msgstr "Delete"
+
+msgid "Настроить"
+msgstr "Configure"
+
+msgid "Добро пожаловать"
+msgstr "Welcome"
+
+msgid "Выход"
+msgstr "Exit"
+
+msgid "Разработка"
+msgstr "Development"
+
+msgid "Сайт"
+msgstr "Site"
+
+msgid "Главная"
+msgstr "Main"
+
+msgid "Новый комментарий"
+msgstr "New comment"
+
+msgid "Добавлен"
+msgstr "Added"
+
+msgid "Картинка"
+msgstr "Image"
+
+msgid "Текст"
+msgstr "Text"
+
+msgid "Ответить"
+msgstr "Answer"
+
+msgid "Редактирование комментария"
+msgstr "Edit comment"
+
+msgid "Вы действительно хотите удалить этот комментарий:%1$s?"
+msgstr "Do you really want to delete this comment:%1$s?"
+
+msgid "Удаление комментария"
+msgstr "Delete comment"
+
+msgid "Логин"
+msgstr "Login"
+
+msgid "Пароль"
+msgstr "Password"
+
+msgid "Запомнить меня"
+msgstr "Remember me"
+
+msgid "Регистрация"
+msgstr "Registration"
+
+msgid "Забыл пароль"
+msgstr "Forgot password"

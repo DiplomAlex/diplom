@@ -1,0 +1,65 @@
+<? $this->headStyle('
+    .comment-disabled,.comment-disabled * {
+        text-decoration: line-through; font-style: italic;
+    }
+    
+    .comment-unapproved,.comment-unapproved * {
+        font-weight: bold; color: red; font-style: italic;
+    }
+')?>
+
+<h2><?=$this->translate('Комментарии')?></h2>
+
+<?=$this->adminMassForm('formStart')?>
+<?=$this->adminMassForm('actions')?>
+
+
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th><?=$this->adminMassForm('checkAll')?></th>
+        <th><?=$this->translate('Дата')?></th>
+        <th><?=$this->translate('Рисунок')?></th>
+        <th><?=$this->translate('Автор')?></th>
+        <th><?=$this->translate('Комментарий')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? foreach ($this->comments as $row) { ?>
+    <? if ($row['status'] == 0) { ?>
+        <? $tdAttr = 'class="comment-disabled"' ?>
+    <? } else if ($row['status'] == -1) { ?>
+        <? $tdAttr = 'class="comment-unapproved"'?>
+    <? } else { ?>
+        <? $tdAttr = '' ?>
+    <? } ?>
+
+      <tr >
+        <td> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+        <td <?=$tdAttr?>> <?=$this->formatDate($row['date_added'], TRUE)?> </td>
+        <td> <?=$this->html_Img($row['rc_id_preview'])?></td>
+        <td> <?=$this->comment_Author($row)?></td>        
+        <td <?=$tdAttr?>> <?=$this->comment_Text($row, TRUE, FALSE)?></td>        
+        <td class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit')?>"><?=$this->translate('Edit')?></a>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete')?>"><?=$this->translate('Delete')?></a>
+            <br/>
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id'], 'contentId'=>$row['content_id'], 'contentType'=>base64_encode($row['content_type']), 'reset'=>TRUE), 'index', 'admin-comment')?>"><?=$this->translate('Показать ветку')?></a>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+<? } ?>
+
+
+    </table>
+
+
+    <?=$this->adminMassForm('formEnd')?>
+
+    <?=$this->paginationControl($this->comments)?>
+
+

@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<zend-config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+  <total>
+    <rawTotalSumm>
+      <class>Checkout_Model_Service_Helper_Brule_Total_TotalSumm</class>
+      <active>0</active>
+      <title>
+        <en>Total</en>
+        <ru>&#x418;&#x442;&#x43E;&#x433;&#x43E;</ru>
+        <ua>&#x412;&#x441;&#x44C;&#x43E;&#x433;&#x43E;</ua>
+      </title>
+    </rawTotalSumm>
+    <discountBySumm>
+      <class>Checkout_Model_Service_Helper_Brule_Total_DiscountBySumm</class>
+      <active>0</active>
+      <title>
+        <en>Discount by summ</en>
+        <ru>&#x421;&#x43A;&#x438;&#x434;&#x43A;&#x430; &#x43E;&#x442; &#x441;&#x443;&#x43C;&#x43C;&#x44B;</ru>
+        <ua>&#x417;&#x43D;&#x438;&#x436;&#x43A;&#x430; &#x432;&#x456;&#x434; &#x441;&#x443;&#x43C;&#x438;</ua>
+      </title>
+    </discountBySumm>
+    <discountByQty>
+      <class>Checkout_Model_Service_Helper_Brule_Total_DiscountByQty</class>
+      <active>0</active>
+      <title>
+        <en>Discount by quantity</en>
+        <ru>&#x421;&#x43A;&#x438;&#x434;&#x43A;&#x430; &#x43E;&#x442; &#x43A;&#x43E;&#x43B;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x430;</ru>
+        <ua>&#x417;&#x43D;&#x438;&#x436;&#x43A;&#x430; &#x432;&#x456;&#x434; &#x43A;&#x456;&#x43B;&#x44C;&#x43A;&#x43E;&#x441;&#x442;&#x456;</ua>
+      </title>
+    </discountByQty>
+    <shipment>
+      <class>Checkout_Model_Service_Helper_Brule_Total_Shipment</class>
+      <active>1</active>
+      <title>
+        <en>Shipment value</en>
+        <ru>&#x421;&#x442;&#x43E;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x44C; &#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43A;&#x438;</ru>
+        <ua>&#x412;&#x430;&#x440;&#x442;&#x456;&#x441;&#x442;&#x44C; &#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43A;&#x438;</ua>
+      </title>
+    </shipment>
+    <totalSumm>
+      <class>Checkout_Model_Service_Helper_Brule_Total_TotalSumm</class>
+      <active>1</active>
+      <title>
+        <en>To payment</en>
+        <ru>&#x41A; &#x43E;&#x43F;&#x43B;&#x430;&#x442;&#x435;</ru>
+        <ua>&#x414;&#x43E; &#x441;&#x43F;&#x43B;&#x430;&#x442;&#x438;</ua>
+      </title>
+    </totalSumm>
+  </total>
+  <shipment>
+    <courier>
+      <active>1</active>
+      <classModel>Shop_Model_Service_Helper_Brule_Shipment_Courier</classModel>
+      <classController>Shop_Controller_Action_Helper_Shipment_Courier</classController>
+      <title>
+        <en>Courier</en>
+        <ru>&#x41A;&#x443;&#x440;&#x44C;&#x435;&#x440;&#x43E;&#x43C;</ru>
+        <ua>&#x41A;&#x443;&#x440;&#x2019;&#x454;&#x440;&#x43E;&#x43C;</ua>
+      </title>
+      <description>
+        <en></en>
+        <ru>&#x414;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43A;&#x430; &#x43A;&#x443;&#x440;&#x44C;&#x435;&#x440;&#x43E;&#x43C;</ru>
+        <ua></ua>
+      </description>
+      <seller_requisites>
+        <id></id>
+        <name></name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn></inn>
+        <kpp></kpp>
+        <phone></phone>
+      </seller_requisites>
+      <client_requisites>
+        <id></id>
+        <name></name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <phone></phone>
+      </client_requisites>
+      <params/>
+      <allowed_payments>
+        <c-o-d></c-o-d>
+      </allowed_payments>
+      <method>courier</method>
+      <status></status>
+      <date_added></date_added>
+      <date_changed></date_changed>
+      <adder_id></adder_id>
+      <changer_id></changer_id>
+      <client_name></client_name>
+      <client_address></client_address>
+      <client_id></client_id>
+      <client_login></client_login>
+      <client_email></client_email>
+      <seller_name></seller_name>
+      <seller_address></seller_address>
+      <seller_id></seller_id>
+      <seller_login></seller_login>
+      <seller_email></seller_email>
+      <summ></summ>
+    </courier>
+  </shipment>
+  <payment>
+    <c-o-d>
+      <active>1</active>
+      <classModel>Shop_Model_Service_Helper_Brule_Payment_COD</classModel>
+      <classController>Shop_Controller_Action_Helper_Payment_COD</classController>
+      <title>
+        <en>Cash on delivery</en>
+        <ru>&#x41D;&#x430;&#x43B;&#x438;&#x447;&#x43D;&#x44B;&#x43C;&#x438; &#x43F;&#x440;&#x438; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x435;&#x43D;&#x438;&#x438;</ru>
+        <ua>&#x413;&#x43E;&#x442;&#x456;&#x432;&#x43A;&#x43E;&#x44E; &#x43F;&#x440;&#x438; &#x43E;&#x442;&#x440;&#x438;&#x43C;&#x430;&#x43D;&#x43D;&#x456;</ua>
+      </title>
+      <description>
+        <en></en>
+        <ru>&#x41E;&#x43F;&#x43B;&#x430;&#x442;&#x430; &#x43D;&#x430;&#x43B;&#x438;&#x447;&#x43D;&#x44B;&#x43C;&#x438; &#x43F;&#x440;&#x438; &#x43F;&#x43E;&#x43B;&#x443;&#x447;&#x435;&#x43D;&#x438;&#x438; &#x442;&#x43E;&#x432;&#x430;&#x440;&#x430;</ru>
+        <ua></ua>
+      </description>
+      <seller_requisites>
+        <id></id>
+        <name></name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn></inn>
+        <kpp></kpp>
+        <rs></rs>
+        <ks></ks>
+        <bik></bik>
+        <bank></bank>
+        <phone></phone>
+      </seller_requisites>
+      <client_requisites>
+        <id></id>
+        <name></name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn></inn>
+        <kpp></kpp>
+        <bik></bik>
+        <rs></rs>
+        <ks></ks>
+        <bank></bank>
+        <phone></phone>
+      </client_requisites>
+      <params></params>
+      <allowed_shipments>
+        <courier></courier>
+      </allowed_shipments>
+      <method>c-o-d</method>
+      <status></status>
+      <is_prepaid></is_prepaid>
+      <is_online_paid></is_online_paid>
+      <date_added></date_added>
+      <date_changed></date_changed>
+      <adder_id></adder_id>
+      <changer_id></changer_id>
+      <client_name></client_name>
+      <client_address></client_address>
+      <client_id></client_id>
+      <client_login></client_login>
+      <client_email></client_email>
+      <seller_name></seller_name>
+      <seller_address></seller_address>
+      <seller_id></seller_id>
+      <seller_login></seller_login>
+      <seller_email></seller_email>
+      <summ></summ>
+    </c-o-d>
+  </payment>
+</zend-config>

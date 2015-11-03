@@ -1,0 +1,61 @@
+
+<div style="width: 100%">
+    <h2 style="float: left"><?=$this->translate('Темы статей')?></h2>
+    <div style="float: right"><?=$this->gotoHtml?></div>
+</div>
+<div class="cleaner">&nbsp;</div>
+
+<?=$this->adminMassForm('formStart')?>
+<?=$this->adminMassForm('actions')?>
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th width="50px"><?=$this->adminMassForm('checkAll')?></th>
+        <th width="100px"><?=$this->translate('Sorting')?></th>
+        <th width="50%"><?=$this->translate('Тема')?></th>
+        <th><?=$this->translate('Seo Id')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? if ($this->topics->count()) { ?>
+    <? foreach ($this->topics as $row) { ?>
+          <tr >
+            <td> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+            <td> <?=$this->adminListSorting(array('id'=>$row['id'], 'action'=>'sorting'))?></td>
+            <td>
+                <a href="<?=$this->stdUrl(array('page'=>NULL, 'parent'=>$row['id']), 'index', 'admin-article-topic')?>"><?=$row['name']?></a>
+                <? if ($row['children_count']) { ?>(<?=$row['children_count']?>)<? } ?>
+            </td>
+            <td> <?=$row['seo_id']?> </td>
+            <td class="actions2">
+                <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit', 'admin-article-topic')?>"><?=$this->translate('Edit')?></a>
+                 /
+                <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete', 'admin-article-topic')?>"><?=$this->translate('Delete')?></a>
+                <br/>
+                <a href="<?=$this->stdUrl(array('topic'=>$row['id']), 'index', 'admin-article')?>"><?=$this->translate('Статьи')?><? if ($row['article_count']) echo ' ('.$row['article_count'].')';?></a>
+            </td>
+          </tr>
+
+        <? ++$i ?>
+    <? } ?>
+
+<? } else { ?>
+      <tr>
+        <td colspan="6">
+            <?=$this->translate('В этой теме пока нет вложенных тем')?>
+        </td>
+      </tr>
+<? } ?>
+
+    </table>
+
+
+    <?=$this->adminMassForm('formEnd')?>
+
+    <?=$this->paginationControl($this->topics)?>
+
+
+  <a href="<?=$this->stdUrl(array('reset'=>TRUE, 'parent'=>$this->parent), 'edit', 'admin-article-topic')?>" class="btn2"><?=$this->translate('New')?></a>
+

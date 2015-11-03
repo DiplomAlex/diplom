@@ -1,0 +1,41 @@
+<h2><?=$this->translate('Подтвердите правильность введенных параметров для установки')?>:</h2>
+<table width="100%" class="edit">
+    <tr>
+        <td class="label"><?=$this->translate('Имя домена')?></td>
+        <td class="value"><?=$this->options['host']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Базовый каталог')?></td>
+        <td class="value"><?=$this->options['base_url']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Название сайта')?></td>
+        <td class="value"><?=$this->options['site_name']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Email службы поддержки сайта')?></td>
+        <td class="value"><?=$this->options['support_email']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Хост mysql')?></td>
+        <td class="value"><?=$this->options['db_host']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Имя базы данных')?></td>
+        <td class="value"><?=$this->options['db_name']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Пользователь БД')?></td>
+        <td class="value"><?=$this->options['db_user']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Пароль БД')?></td>
+        <td class="value"><?=$this->options['db_password']?></td>
+    </tr>
+    <tr>
+        <td class="label"><?=$this->translate('Импортировать базу')?></td>
+        <td class="value"><?=$this->translate($this->options['db_import_dump']?'да':'нет')?></td>
+    </tr>
+</table>
+
+<?=$this->renderForm($this->form)?>

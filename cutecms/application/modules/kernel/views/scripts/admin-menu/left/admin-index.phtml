@@ -1,0 +1,31 @@
+<h3><?=$this->translate($this->title)?></h3>
+<ul class="nav">
+
+    <li>
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'index', 'admin-user')?>"><?=$this->translate('Users')?></a>
+    </li>
+
+
+    <li>
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'index', 'admin-news')?>"><?=$this->translate('News')?></a>
+    </li>
+
+
+    <li>
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'index', 'admin-page')?>"><?=$this->translate('Pages')?></a>
+    </li>
+
+
+    <?/*?>
+    <li>
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'index', 'admin-help')?>"><?=$this->translate('Help')?></a>
+    </li>
+    <?*/?>
+
+    <li class="last">
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'logout', 'admin-auth')?>"><?=$this->translate('Exit')?> (<?=Zend_Auth::getInstance()->getIdentity()->login?>)</a>
+    </li>
+
+</ul>
+
+<a class="link" target="_blank" href="<?=$this->stdUrl(array('reset'=>TRUE, 'route'=>'frontend_index'))?>">Frontend</a>

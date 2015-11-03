@@ -1,0 +1,393 @@
+<div class="hidden" id="item-bottom-description"><?= $this->item->full?></div>
+<script type="text/javascript" src="<?=$this->skin()->url()?>js/jquery.tinycarousel.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    var textWrapperContainer = $('.remains-text-wrapper tr.hidden'),
+        itemBottomDescription = $('#item-bottom-description .opisanie');
+
+    $('div.buy-cheaper-hover-wrapper').bind('click', function (event) {
+        var cheaperBody = $('div.wrapper-buy-cheaper-body');
+        if ($(event.target).closest('div.wrapper-buy-cheaper-body').length == 0) {
+            cheaperBody.toggleClass('visible');
+            if (!cheaperBody.hasClass('visible')) resetHideTextOnRemains();
+        }
+    });
+
+    function resetHideTextOnRemains() {
+        textWrapperContainer.addClass('hidden');
+        $('.show-more').show();
+    }
+
+    function setBold(element) {
+        element.closest('.remains-table').find('span:not(.price-triangle, .remain-price)').css({fontWeight: '100'});
+        element.find('span:not(.price-triangle, .remain-price)').css({fontWeight: 'bold'});
+    }
+    /* Установим певый элемент в остатках - жирным */
+    setBold($('.wrapper-buy-cheaper-body .remains-table tbody tr:first-child td:first-child'));
+
+    $('.full-description-button').bind('click', function (event) {
+        if ($(event.target).closest('.full-description').length == 0) $('.full-description').toggle();
+    });
+
+    //Скрытие по клику в любом месте кроме блока
+    $(document).click(function (event) {
+        var buttonFull = $('.full-description-button'),
+            buttonCheaper = $('.buy-cheaper-hover-wrapper, .buy-cheaper-hover-wrapper .circle, .buy-cheaper-hover-wrapper .buy-cheaper');
+        if ($(event.target).closest('.full-description').length == 0 && !buttonFull.is(event.target)) $('.full-description').hide();
+        if ($(event.target).closest('div.wrapper-buy-cheaper-body').length == 0 && !buttonCheaper.is(event.target)) {
+            $('div.wrapper-buy-cheaper-body').removeClass('visible');
+            resetHideTextOnRemains();
+        }
+    });
+    $('.show-more').click(function () {
+        textWrapperContainer.removeClass('hidden');
+        $(this).hide();
+    });
+
+    $('#item_slider').tinycarousel({ pager: true , controls: false, animation: false});
+    $('#item_slider_pager').tinycarousel({ display: 4, axis: 'y' });
+
+    $(".related .jcarousel-skin").jcarousel({
+        scroll: 4,
+        animation: 1200
+        <?= ( count($this->other) > 5 ) ? ',wrap: "circular"' : '' ?>
+    });
+    
+    $(".related").addClass('count' + $('.jcarousel-item').length);
+
+    function merge(obj1, obj2) {
+        var obj3 = {};
+        for (var attrname in obj1) {
+            if (null != obj1[attrname] && obj1[attrname] != '')
+                obj3[attrname] = obj1[attrname];
+        }
+        for (var attrname in obj2) {
+            if (null != obj2[attrname] && obj2[attrname] != '')
+                obj3[attrname] = obj2[attrname];
+        }
+
+        return obj3;
+    }
+    
+    $(".to_cart").click(function() {
+        var $this = $(this),
+            dataObj = {},
+            description = ($(this).data('description') != undefined) ? JSON.parse($(this).attr('data-description')) : {};
+
+        dataObj.qty = 1;
+        dataObj.id = $this.attr('rel');
+
+        if (undefined != description) delete description.id;
+
+        $.post("<?=$this->url(array(), 'shop-cart-add')?>", merge(dataObj, description), function(resp){
+            $.post("<?=$this->url(array(), 'shop-cart-ajax-get-cart-box')?>", {}, function(data){
+                    $('.cart_parent').html(data.cart);
+                    $('.cart_items').html(data.pre_cart);
+                    $('.load_to_cart').hide();
+            }, 'json');
+        });
+    });
+
+    var opisanie = $('.opisanie');
+    if (itemBottomDescription.length) {
+        opisanie.html(itemBottomDescription.html());
+        opisanie.append('<div class ="gradient"><a class="arrow"><img src="/uploads/ckfinder/images/gradient-arrow.png" onclick="fullDescription();"></a></div>');
+    }
+
+    var priceNotify = $('.price .price-notify');
+    //выбор остатков
+    $('.remains-table td').click(function () {
+        var priceContainer = $('div.price > span.price-number'),
+            description = $(this).data('description'),
+            cartLink = $('a.to_cart'),
+            price = $('.price');
+
+        setBold($(this));
+        cartLink.attr('data-description', JSON.stringify(description));
+
+        if (description.in_stock != 1) {
+            price.find('div.remark').remove();
+            priceContainer.after($('div.hidden-remark').html());
+            price.find('.price-notify').remove();
+            priceContainer.hide();
+            cartLink.text('ЗАКАЗАТЬ');
+            price.css({width: '336px'});
+            price.prepend('<a href="mailto:site@saga.diamonds"><span class="price-notify" onmouseout="javascript:hideNotify()" onmouseover="javascript:showNotify()">УТОЧНИТЬ ЦЕНУ У МЕНЕДЖЕРА</span></a>');
+        } else {
+            priceContainer.show();
+            price.css({width: '310px'});
+            price.find('.price-notify').remove();
+            price.prepend(priceNotify);
+            cartLink.text('В КОРЗИНУ');
+            price.find('div.remark').remove();
+        }
+
+        priceContainer.text(numberFormat(description.price) + ' грн');
+
+        var htmlFull ='<ul>';
+        htmlFull += (description.material != null && description.material != '') ? '<li>' + '<strong>Материал изделия:</strong> ' + description.material + '</li>' : '';
+        htmlFull += (description.probe != null) ? '<li>' + '<strong>Проба:</strong> ' + description.probe + '</li>' : '';
+        htmlFull += (description.characteristics != null && description.characteristics != '') ? '<li>' + '<strong>Вставки:</strong> ' + description.characteristics + '</li>' : '';
+        htmlFull += (description.weight != 0 && description.weight != null) ? '<li>' + '<strong>Вес:</strong> ' + description.weight + ' г</li>' : '';
+        htmlFull += (description.size != 0 && description.size != null) ? '<li>' + '<strong>Размер изделия:</strong> ' + description.size + ' мм</li>' : '';
+        htmlFull += (description.in_stock == 1) ? '<li><strong>В торговой сети:</strong> Есть</li>' : '<li><strong>В торговой сети:</strong> Нет</li>';
+        htmlFull += '</ul>';
+
+        var html ='<ul>',
+            desc = description.characteristics.split(', ');
+
+        html += (description.material != null && description.material != '') ? '<li>' + '<strong>Материал изделия:</strong> ' + description.material + '</li>' : '';
+        html += (description.probe != null) ? '<li>' + '<strong>Проба:</strong> ' + description.probe + '</li>' : '';
+        html += (description.size != 0 && description.size != null) ? '<li>' + '<strong>Размер изделия:</strong> ' + description.size + ' мм</li>' : '';
+        html += (description.characteristics != null && description.characteristics != '') ? '<li>' + '<strong>Вставки:</strong> ' + desc[0] + '</li>' : '';
+        html += (description.weight != 0 && description.weight != null) ? '<li>' + '<strong>Вес изделия:</strong> ' + description.weight + ' г</li>' : '';
+        html += (description.in_stock == 1) ? '<li><strong>В торговой сети:</strong> Есть</li>' : '<li><strong>В торговой сети:</strong> Нет</li>';
+        html += '</ul>';
+
+        $('div.full-description .specifications').html(htmlFull);
+        var containerSpec = $('.info > .specifications');
+        containerSpec.find('ul').remove();
+        containerSpec.append(html);
+        $('.wrapper-buy-cheaper-body').removeClass('visible');
+        resetHideTextOnRemains();
+    });
+
+    function numberFormat (number) {
+        return parseFloat(number).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ');
+    }
+
+    /* add class active to selected image */
+    $('div.viewport td.item_align:first img').addClass('active');
+    $('a.item_align').click(function () {
+        $('div.viewport td.item_align img').removeClass('active');
+        $('div.viewport td.item_align img[rel=' + $(this).attr('rel') + ']').addClass('active');
+    });
+});
+    function showNotify() {
+        $('.price').find('div.remark').show();
+    }
+    function hideNotify() {
+        $('.price').find('div.remark').hide();
+    }
+    function fullDescription(){
+        var opisanie = $('.opisanie'),
+            gradient = $('.gradient');
+
+        gradient.hide();
+        opisanie.css('height', 'inherit');
+    }
+</script>
+<div class="breadcrumbs">
+    <div class="center">
+        <a href="<?= $this->url(array('reset' => true), 'shop-index') ?>">Главная<span></span></a>
+        <? if (isset($this->category)) { ?>
+            <a href="<?= $this->url(array('seo_id' => $this->category->seo_id), 'shop-catalog') ?>"><?= $this->category->name ?><span></span></a>
+        <? } ?>
+        <span class="current"><?= $this->item->name ?></span>
+    </div>
+</div>
+<div class="content collections">
+    <? if (isset($this->category)) { ?>
+        <div class="item_bg" style="background: url('<?= App_Resource::getUploadsUrl(
+             $this->category->rc_id_filename
+         ) ?>') no-repeat scroll 0 0 transparent; width: 1260px;">
+    <? } else { ?>
+        <div class="item_bg">
+    <? } ?>
+        <div class="item_card center">
+            <div id="item_slider">
+                <div class="viewport">
+                    <ul class="overview">
+                    <? foreach($this->gallery as $rel => $picture) { ?>
+                        <li>
+                            <table class="items_align">
+                                <tr>
+                                    <td class="item_align">
+                                        <img rel="<?= $rel?>" style="max-width: 361px;" src="<?= App_Resource::getUploadsUrl($picture['rc_id_preview4'])?>" alt="" />
+                                    </td>
+                                </tr>
+                            </table>
+                       </li>
+                    <? } ?>
+                    </ul>
+                </div>
+                <? if (count($this->gallery) > 1) { ?>
+                    <ul class="pager">
+                        <div id="item_slider_pager">
+                            <a class="buttons prev" href="#">left</a>
+                            <div class="viewport">
+                                <ul class="overview">
+                                <? foreach($this->gallery as $rel => $picture) { ?>
+                                    <li class="items_align"><a rel="<?= $rel?>" class="pagenum item_align" href="#"><img src="<?= App_Resource::getUploadsUrl($picture['rc_id_preview5'])?>" alt="" /></a></li>
+                                <? } ?>
+                                </ul>                                   
+                            </div>
+                            <a class="buttons next" href="#">right</a>
+                        </div>
+                    </ul>
+                <? } ?>
+            </div>
+            <div class="info">
+                <? if (isset($this->category)) { ?>
+                    <div class="collection"><?= $this->category->name ?>
+                        <span></span>
+                    </div>
+                <? } ?>
+                <!-- <a href="#" class="facebook"></a> -->
+                <div class="cleaner"></div>
+                <h1><?= $this->item->name?></h1>
+                <? if ($this->item->sku) { ?>
+                    <span class="sku">Артикул: <?= $this->item->sku?></span>
+                <? } ?>
+                <? if ($this->remains->count()) { ?>
+                    <div class="full-description-button">
+                        Полное описание
+                        <div class="full-description">
+                            <div class="triangle"></div>
+                            <div class="full-text">
+                                <div class="specifications">
+                                    <ul>
+                                        <?
+                                        $specifications = (trim($this->remains[0]->material)) ? '<li><strong>Материал изделия:</strong> ' . $this->remains[0]->material . '</li>' : '';
+                                        $specifications .= (trim($this->remains[0]->probe)) ? '<li><strong>Проба:</strong> ' . $this->remains[0]->probe . '</li>' : '';
+                                        $specifications .= (trim($this->remains[0]->characteristics)) ? '<li><strong>Вставки:</strong> ' . $this->remains[0]->characteristics . '</li>' : '';
+                                        $specifications .= (trim($this->remains[0]->weight)) ? '<li><strong>Вес изделия:</strong> ' . $this->remains[0]->weight . ' г</li>' : '';
+                                        $specifications .= (trim($this->remains[0]->size)) ? '<li><strong>Размер изделия:</strong> ' . $this->remains[0]->size . ' мм</li>' : '';
+                                        $specifications .= ($this->remains[0]->in_stock) ? '<li><strong>В торговой сети:</strong> Есть</li>' : '<li><strong>В торговой сети:</strong> Нет</li>';
+                                        ?>
+                                        <?= $specifications ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="specifications">
+                        <h3>Характеристики</h3>
+                        <ul>
+                            <?
+                            $specifications = (trim($this->remains[0]->material)) ? '<li><strong>Материал изделия:</strong> ' . $this->remains[0]->material . '</li>' : '';
+                            $specifications .= (trim($this->remains[0]->probe)) ? '<li><strong>Проба:</strong> ' . $this->remains[0]->probe . '</li>' : '';
+                            $specifications .= (trim($this->remains[0]->size)) ? '<li><strong>Размер изделия:</strong> ' . $this->remains[0]->size . ' мм</li>' : '';
+                            $specifications .= ($char = explode(', ', trim($this->remains[0]->characteristics)) and (null != $char[0])) ? '<li><strong>Вставки:</strong> ' . $char[0] . '</li>' : '';
+                            $specifications .= (trim($this->remains[0]->weight)) ? '<li><strong>Вес изделия:</strong> ' . $this->remains[0]->weight . ' г</li>' : '';
+                            $specifications .= ($this->remains[0]->in_stock) ? '<li><strong>В торговой сети:</strong> Есть</li>' : '<li><strong>В торговой сети:</strong> Нет</li>';
+                            ?>
+                            <?= $specifications ?>
+                        </ul>
+                    </div>
+                <? } ?>
+                <?
+                $remark = '<div class="remark">Цена на изделие является ориентировочной, она зависит от вида вставки, чистоты камня и веса изделия.
+                    Поэтому точную цену нужно узнавать у менеджера. Вы сами можете выбрать вид вставки, цвет металла, и изделие произведут Вам под заказ.</div>';
+                ?>
+                <div class="hidden-remark"><?= $remark?></div>
+                <? if ($this->remains->count()) { ?>
+                    <div class="price <?= ($this->remains[0]->in_stock == 0) ? 'width' : ''?>">
+                        <? if ($this->remains[0]->in_stock == 0) { ?>
+                            <a href="mailto:site@saga.diamonds"><span class="price-notify" onmouseout="javascript:hideNotify()" onmouseover="javascript:showNotify()">УТОЧНИТЬ ЦЕНУ У МЕНЕДЖЕРА</span></a>
+                            <span class="price-number"></span>
+                            <?= $remark?>
+                        <? } else { ?>
+                            <span class="price-notify" onmouseover="javascript:showNotify()">ЦЕНА</span>
+                            <div class="comment">*<div class="description">В связи с нестабильностью гривны, просим Вас цену уточнять у менеджера</div></div>
+                            <span class="price-number"><?= number_format($this->remains[0]->price, 2, '.', ' ')?> грн</span>
+                        <? } ?>
+                        <div class="buy-cheaper-hover-wrapper">
+                            <span class="circle"></span>
+                            <span class="buy-cheaper">Купить <br/>дешевле</span>
+                            <div class="wrapper-buy-cheaper-body">
+                                <div class="triangle"></div>
+                                <div class="remains-text-wrapper">
+                                    <table class="remains-table">
+                                        <? for ($i = 0; $i < $this->remains->count(); $i++) { ?>
+                                            <tr <?= ($i > 2) ? 'class="hidden"' : ''?>>
+                                                <td data-description='<?= Zend_Json::encode($this->remains[$i]->toArray())?>'>
+                                                    <span class="price-triangle"></span><span class="remain-price"><?= $this->remains[$i]->price ?> грн</span>
+                                                    <span class="material"><?= (trim($this->remains[$i]->material)) ? '<strong>Материал изделия: </strong>' . $this->remains[$i]->material : '' ?></span>
+                                                    <span class="probe"><?= ($this->remains[$i]->probe) ? '<strong>Проба:</strong> ' . $this->remains[$i]->probe : '' ?></span>
+                                                    <span class="weight"><?= (trim($this->remains[$i]->weight)) ?  '<strong>Вес изделия:</strong> ' . $this->remains[$i]->weight . ' гр' : '' ?></span>
+                                                    <span class="size"><?= (trim($this->remains[$i]->size)) ? '<strong>Размер изделия:</strong> ' . $this->remains[$i]->size . ' мм' : '' ?></span>
+                                                    <span class="characteristics">
+                                                        <?= ($char = explode(', ', trim($this->remains[$i]->characteristics)) and (null != $char[0])) ? '<strong>Вставки:</strong> ' . $char[0] : '' ?>
+                                                    </span>
+                                                   <span class="in_stock"><?= ((bool)$this->remains[$i]->in_stock) ? '<strong>В торговой сети:</strong> Есть' : '<strong>В торговой сети:</strong> Нет' ?></span>
+                                                </td>
+                                                <? if (isset($this->remains[++$i])) { ?>
+                                                    <td data-description='<?= Zend_Json::encode($this->remains[$i]->toArray())?>'>
+                                                        <span class="price-triangle"></span><span class="remain-price"><?= $this->remains[$i]->price ?> грн</span>
+                                                        <span class="material"><?= (trim($this->remains[$i]->material)) ? '<strong>Материал изделия: </strong>' . $this->remains[$i]->material : '' ?></span>
+                                                        <span class="probe"><?= ($this->remains[$i]->probe) ? '<strong>Проба:</strong> ' . $this->remains[$i]->probe : '' ?></span>
+                                                        <span class="weight"><?= (trim($this->remains[$i]->weight)) ?  '<strong>Вес изделия:</strong> ' . $this->remains[$i]->weight . ' гр' : '' ?></span>
+                                                        <span class="size"><?= (trim($this->remains[$i]->size)) ? '<strong>Размер изделия:</strong> ' . $this->remains[$i]->size . ' мм' : '' ?></span>
+                                                        <span class="characteristics">
+                                                            <?= ($char = explode(', ', trim($this->remains[$i]->characteristics)) and (null != $char[0])) ? '<strong>Вставки:</strong> ' . $char[0] : '' ?>
+                                                        </span>
+                                                        <span class="in_stock"><?= ((bool)$this->remains[$i]->in_stock) ? '<strong>В торговой сети:</strong> Есть' : '<strong>В торговой сети:</strong> Нет' ?></span>
+                                                    </td>
+                                                <? } else { ?>
+                                                    <td>&nbsp;</td>
+                                                <? } ?>
+                                            </tr>
+                                        <? } ?>
+                                    </table>
+                                </div>
+                                <? if ($this->remains->count() > 4) { ?>
+                                    <div class="show-more"></div>
+                                <? } ?>
+                            </div>
+                        </div>
+                    </div>
+                <div class="cleaner"></div>
+                <div class="add-to-cart">
+                    <a class="to_cart" rel="<?= $this->item->id?>" data-description='<?= Zend_Json::encode($this->remains[0]->toArray())?>' href="javascript:void(0)"><?= ($this->remains[0]->in_stock == 0) ? 'ЗАКАЗАТЬ' : 'В КОРЗИНУ'?></a>
+                    <span class="load_to_cart"></span>
+                </div>
+                    <div class="cleaner"></div>
+                    <div class="opisanie"></div>
+                <? } else { ?>
+                    <div class="price">
+                        <a href="mailto:site@saga.diamonds"><span class="price-notify" onmouseout="javascript:hideNotify()" onmouseover="javascript:showNotify()">УТОЧНИТЬ ЦЕНУ У МЕНЕДЖЕРА</span></a>
+                        <span class="price-number"></span>
+                        <?=$remark?>
+                    </div>
+                    <div class="cleaner"></div>
+                    <div class="add-to-cart">
+                        <a class="to_cart" rel="<?= $this->item->id?>" href="javascript:void(0)">ЗАКАЗАТЬ</a>
+                        <span class="load_to_cart"></span>
+                    </div>
+                    <div class="cleaner"></div>
+                    <div class="opisanie"></div>
+                <? } ?>
+            </div>
+            <div class="cleaner"></div>
+        </div>
+    </div>
+    <div class="title">
+        <!--h2>A SA&GA creation tells a Story, that of the Maison</h2-->
+    </div>
+    <?if ( count($this->other) > 0 ){?>
+        <div class="related">
+            <ul class="jcarousel-skin">
+                <? foreach($this->other as $item) {?>
+                    <? if ($item->id != $this->item->id) { ?>
+                        <li>
+                            <table class="items_align">
+                                <tr>
+                                    <td class="item_align">
+                                        <a class="item_align" href="<?=$this->url(array('category' => (isset($this->category)) ? $this->category->seo_id : '', 'seo_id' => $item->seo_id), 'shop-item')?>">
+                                            <? if (isset($this->galleries[$item->id][0])) { ?>
+                                                <img class="big" src="<?=App_Resource::getUploadsUrl($this->galleries[$item->id][0]['rc_id_preview6'])?>" alt="" />
+                                            <? } ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <h3><?= $item->name?></h3>
+                            <?= $item->material?>
+                        </li>
+                    <? } ?>
+                <? } ?>
+            </ul>
+        </div>
+     <? } ?>
+</div>

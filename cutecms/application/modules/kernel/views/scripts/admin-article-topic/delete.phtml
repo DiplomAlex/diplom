@@ -1,0 +1,5 @@
+<h2><?=$this->translate('Delete topic')?></h2>
+
+<?=$this->translate('Do you really want do delete this topic:"%1$s (%2$s)"', $this->topic->name, $this->topic->id)?>
+<br/>
+<?=$this->renderForm($this->form)?>

@@ -1,0 +1,5 @@
+    <h2><?=$this->translate('Delete site')?></h2>
+
+<?=$this->translate('Do you really want do delete this site:"%1$s"', $this->site->host, $this->site->base_url)?>
+<br/>
+<?=$this->renderForm($this->form)?>

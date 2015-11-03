@@ -1,0 +1,39 @@
+<div class="ofzakaz_info">
+	<p>
+    	<span>Поставщик:</span>
+        <br />
+        <?=$this->shipment->seller_requisites['name']?>, ИНН <?=$this->shipment->seller_requisites['inn']?>, КПП <?=$this->shipment->seller_requisites['kpp']?>,
+        <br />
+        <?=$this->shipment->seller_requisites['address']?>
+        <br />
+        Тел. <?=$this->shipment->seller_requisites['phone']?>
+    </p>
+    <p>
+    	<span>Покупатель:</span>
+        <br />
+        <?=$this->shipment->client_requisites['name']?>,
+        	<? if ( ! empty($this->shipment->client_requisites['inn'])) { ?>ИНН <?=$this->shipment->client_requisites['inn']?>,<? } ?>
+        	<? if ( ! empty($this->shipment->client_requisites['kpp'])) { ?>КПП <?=$this->shipment->client_requisites['kpp']?>,<? } ?>
+        <br />
+        <? if ( ! empty($this->shipment->client_requisites['address'])) { ?>
+            <?=$this->shipment->client_requisites['address']?>
+        	<br />
+        <? } ?>
+        <? if ( ! empty($this->shipment->client_requisites['phone'])) { ?>Тел.: <?=$this->shipment->client_requisites['phone']?><? } ?>
+    </p>
+</div>
+
+<div class="ofzakaz_company">
+	<p><span>Транспортная компания:</span> <?=$this->shipment->params['tr_company_name']?></p>
+	<p><span>в</span> <?=$this->shipment->params['tr_city']?></p>
+</div>
+<div class="ofzakaz_delivery_address">
+	<p>
+    	<span>Доставка: <?=$this->translate('shipment.transport.ship-to.'.$this->shipment->params['ship_to'])?></span>
+        <br />
+        <? if ($this->shipment->params['ship_to'] == Checkout_Form_Shipment_TransportPrepare::SHIPMENT_TO_CLIENT) { ?>
+        <br />
+        <span>Адрес доставки: </span><?=$this->shipment->params['ship_address']?>
+        <? } ?>
+	</p>
+</div>

@@ -1,0 +1,24 @@
+<a href="#" class="mail_subject mass_end_switcher"><?=$this->translate('List actions')?> <img src="<?=$this->skin()->url()?>images/arr_sect_up.gif" alt="" width="8" height="8" border="0" /></a>
+
+<table class="act_edit mass_end_table">
+    <tr>
+        <td align="left"><?=$this->{$this->massFormHelperName}('checkAll', array(/*'id'=>$row['id']*/))?></td>
+        <td align="left"><?=$this->{$this->massFormHelperName}('select')?></td>
+    </tr>
+</table>
+<br/>
+
+<?
+$this->headScript('SCRIPT', '
+    $(document).ready(function(){
+        $(".mass_end_switcher").click(function(e){
+            e.preventDefault();
+            var visibles = $(".mass_end_table:visible");
+            var hiddens = $(".mass_end_table:hidden");
+            visibles.hide();
+            hiddens.show();
+        });
+        $(".mass_end_switcher").click();
+    });
+');
+?>

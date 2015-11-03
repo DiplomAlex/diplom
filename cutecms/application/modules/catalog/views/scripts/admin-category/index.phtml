@@ -1,0 +1,84 @@
+<? $this->pageTitle($this->translate('Категории')); ?>
+
+    <?=$this->gotoHtml?>
+
+<?=$this->adminMassForm('formStart')?>
+<div class="widget-box collapsible">
+    <div class="widget-title">
+        <a href="#collapseThree" data-toggle="collapse">
+			<span class="icon"><i class="icon-pencil"></i></span>
+                <h5><?=$this->translate('Действия с категорией')?></h5>
+        </a>
+    </div>
+    <div class="collapse" id="collapseThree">
+        <div class="widget-content">
+                <?=$this->adminMassForm('actions', $this->massActionsConfig)?>
+        </div>
+    </div>
+</div>
+<div class="widget-box table">
+    <div class="widget-title"><h5><?=$this->translate('Список категории')?></h5>
+    <div class="buttons">
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE, 'parent'=>$this->parent), 'edit', 'admin-category', 'catalog')?>" class="btn btn-mini">
+        <i class="icon-file"></i>
+        <?=$this->translate('New')?>
+        </a>
+        
+    </div>
+    </div>
+    <div class="widget-content nopadding">  
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="table table-bordered table-striped table-hover table-no-external-border">
+      <tr>
+        <th width="50px"><?=$this->adminMassForm('checkAll')?></th>
+        <th width="10%"><?=$this->translate('Sorting')?></th>
+        <!--th><?=$this->translate('Image')?></th-->
+        <th><?=$this->translate('Название категории')?></th>
+        <th><?=$this->translate('Seo id')?></th>
+        <th class="actions2" width="18%"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? if ($this->categories->count()) { ?>
+    <? foreach ($this->categories as $row) { ?>
+          <tr >
+            <td> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+            <td> <?=$this->adminListSorting(array('id'=>$row['id'], 'action'=>'sorting'))?></td>
+            <!--td> <?=$this->html_Img($row['rc_id_preview'])?><br /></td-->
+            <td>
+                <? if ($this->asTree === TRUE) { ?>  
+                    <?=str_repeat(' - ', $row['tree_level'] - 1)?>
+                <? } ?>
+                <?if ($row['tree_level'] < 3){?>
+                    <a href="<?=$this->stdUrl(array('page'=>NULL, 'parent'=>$row['id']), 'index', 'admin-category', 'catalog')?>"><?=$row['name']?></a>
+                <?} else {?>
+                    <?=$row['name']?>
+                <?}?>
+                <? if ($row['children_count']) { ?>(<?=$row['children_count']?>)<? } ?>
+            </td>
+            <td><?=$row['seo_id']?></td>
+            <td class="actions2">
+                <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit', 'admin-category', 'catalog')?>"><?=$this->translate('Edit')?></a>
+                 /
+                <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete', 'admin-category', 'catalog')?>"><?=$this->translate('Delete')?></a>
+                 /
+                <a class="act_new" href="<?=$this->stdUrl(array('category'=>$row['id']), 'index', 'admin-item_index', 'catalog')?>"><?=$this->translate('Товары').($row['items_count']>0?'('.$row['items_count'].')':'')?></a>
+            </td>
+          </tr>
+
+        <? ++$i ?>
+    <? } ?>
+
+<? } else { ?>
+      <tr>
+        <td colspan="6">
+            <?=$this->translate('В этой категории пока ничего нет')?>
+        </td>
+      </tr>
+<? } ?>
+
+    </table>
+</div>
+    <?=$this->paginationControl($this->categories)?>
+    <?=$this->adminMassForm('formEnd')?>
+</div>

@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<zend-config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+  <total>
+    <rawTotalSumm>
+      <class>Checkout_Model_Service_Helper_Brule_Total_TotalSumm</class>
+      <active>1</active>
+      <title>
+        <en>Total</en>
+        <ru>&#x418;&#x442;&#x43E;&#x433;&#x43E;</ru>
+        <ua>&#x412;&#x441;&#x44C;&#x43E;&#x433;&#x43E;</ua>
+      </title>
+    </rawTotalSumm>
+    <discountBySumm>
+      <class>Checkout_Model_Service_Helper_Brule_Total_DiscountBySumm</class>
+      <active>0</active>
+      <title>
+        <en>Discount by summ</en>
+        <ru>&#x421;&#x43A;&#x438;&#x434;&#x43A;&#x430; &#x43E;&#x442; &#x441;&#x443;&#x43C;&#x43C;&#x44B;</ru>
+        <ua>&#x417;&#x43D;&#x438;&#x436;&#x43A;&#x430; &#x432;&#x456;&#x434; &#x441;&#x443;&#x43C;&#x438;</ua>
+      </title>
+    </discountBySumm>
+    <discountByQty>
+      <class>Checkout_Model_Service_Helper_Brule_Total_DiscountByQty</class>
+      <active>0</active>
+      <title>
+        <en>Discount by quantity</en>
+        <ru>&#x421;&#x43A;&#x438;&#x434;&#x43A;&#x430; &#x43E;&#x442; &#x43A;&#x43E;&#x43B;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x430;</ru>
+        <ua>&#x417;&#x43D;&#x438;&#x436;&#x43A;&#x430; &#x432;&#x456;&#x434; &#x43A;&#x456;&#x43B;&#x44C;&#x43A;&#x43E;&#x441;&#x442;&#x456;</ua>
+      </title>
+    </discountByQty>
+    <shipment>
+      <class>Checkout_Model_Service_Helper_Brule_Total_Shipment</class>
+      <active>0</active>
+      <title>
+        <en>Shipment value</en>
+        <ru>&#x421;&#x442;&#x43E;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x44C; &#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43A;&#x438;</ru>
+        <ua>&#x412;&#x430;&#x440;&#x442;&#x456;&#x441;&#x442;&#x44C; &#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43A;&#x438;</ua>
+      </title>
+    </shipment>
+    <totalSumm>
+      <class>Checkout_Model_Service_Helper_Brule_Total_TotalSumm</class>
+      <active>0</active>
+      <title>
+        <en>To payment</en>
+        <ru>&#x41A; &#x43E;&#x43F;&#x43B;&#x430;&#x442;&#x435;</ru>
+        <ua>&#x414;&#x43E; &#x441;&#x43F;&#x43B;&#x430;&#x442;&#x438;</ua>
+      </title>
+    </totalSumm>
+  </total>
+  <shipment>
+    <transport>
+      <active>1</active>
+      <classModel>Checkout_Model_Service_Helper_Brule_Shipment_Transport</classModel>
+      <classController>Checkout_Controller_Action_Helper_Shipment_Transport</classController>
+      <title>
+        <en>Transport company</en>
+        <ru>&#x422;&#x440;&#x430;&#x43D;&#x441;&#x43F;&#x43E;&#x440;&#x442;&#x43D;&#x430;&#x44F; &#x43A;&#x43E;&#x43C;&#x43F;&#x430;&#x43D;&#x438;&#x44F;</ru>
+        <ua>&#x422;&#x440;&#x430;&#x43D;&#x441;&#x43F;&#x43E;&#x440;&#x442;&#x43D;&#x430; &#x43A;&#x43E;&#x43C;&#x43F;&#x430;&#x43D;&#x456;&#x44F;</ua>
+      </title>
+      <description>
+        <en></en>
+        <ru>&#x414;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43A;&#x430; &#x442;&#x440;&#x430;&#x43D;&#x441;&#x43F;&#x43E;&#x440;&#x442;&#x43D;&#x43E;&#x439; &#x43A;&#x43E;&#x43C;&#x43F;&#x430;&#x43D;&#x438;&#x435;&#x439;</ru>
+        <ua></ua>
+      </description>
+      <seller_requisites>
+        <id></id>
+        <name>&#x41E;&#x41E;&#x41E; "&#x418;&#x43D;&#x442;&#x435;&#x440;&#x43F;&#x440;&#x430;&#x439;&#x441;"</name>
+        <address>127238, &#x41C;&#x43E;&#x441;&#x43A;&#x432;&#x430; &#x433;, &#x418;&#x43B;&#x44C;&#x43C;&#x435;&#x43D;&#x441;&#x43A;&#x438;&#x439; &#x43F;&#x440;&#x43E;&#x435;&#x437;&#x434;, &#x434;&#x43E;&#x43C; &#x2116; 5</address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn>7730556361</inn>
+        <kpp>774301001</kpp>
+        <phone>(495) 921-38-05 </phone>
+      </seller_requisites>
+      <client_requisites>
+        <id></id>
+        <name></name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn></inn>
+        <kpp></kpp>
+        <phone></phone>
+      </client_requisites>
+      <params/>
+      <allowed_payments>
+        <bank></bank>
+      </allowed_payments>
+      <method>transport</method>
+      <status></status>
+      <date_added></date_added>
+      <date_changed></date_changed>
+      <adder_id></adder_id>
+      <changer_id></changer_id>
+      <client_name></client_name>
+      <client_address></client_address>
+      <client_id></client_id>
+      <client_login></client_login>
+      <client_email></client_email>
+      <seller_name></seller_name>
+      <seller_address></seller_address>
+      <seller_id></seller_id>
+      <seller_login></seller_login>
+      <seller_email></seller_email>
+      <summ></summ>
+    </transport>
+  </shipment>
+  <payment>
+    <bank>
+      <active>1</active>
+      <classModel>Checkout_Model_Service_Helper_Brule_Payment_Bank</classModel>
+      <classController>Checkout_Controller_Action_Helper_Payment_Bank</classController>
+      <title>
+        <en>Bank</en>
+        <ru>&#x411;&#x430;&#x43D;&#x43A;</ru>
+        <ua>&#x411;&#x430;&#x43D;&#x43A;</ua>
+      </title>
+      <description>
+        <en></en>
+        <ru>&#x41F;&#x440;&#x435;&#x434;&#x43E;&#x43F;&#x43B;&#x430;&#x442;&#x430; &#x43A;&#x432;&#x438;&#x442;&#x430;&#x43D;&#x446;&#x438;&#x435;&#x439; &#x447;&#x435;&#x440;&#x435;&#x437; &#x431;&#x430;&#x43D;&#x43A;</ru>
+        <ua></ua>
+      </description>
+      <seller_requisites>
+        <id></id>
+        <name>&#x41E;&#x41E;&#x41E; "&#x418;&#x43D;&#x442;&#x435;&#x440;&#x43F;&#x440;&#x430;&#x439;&#x441;"</name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn>7730556361</inn>
+        <kpp>774301001</kpp>
+        <rs>30101810400000000603</rs>
+        <ks>40702810800001029083</ks>
+        <bik>044552603</bik>
+        <bank>&#x41C;&#x41E;&#x421;&#x41A;&#x41E;&#x412;&#x421;&#x41A;&#x418;&#x419; &#x424;&#x418;&#x41B;&#x418;&#x410;&#x41B; &#x417;&#x410;&#x41E; "&#x420;&#x410;&#x419;&#x424;&#x424;&#x410;&#x419;&#x417;&#x415;&#x41D;&#x411;&#x410;&#x41D;&#x41A;" &#x413;. &#x41C;&#x41E;&#x421;&#x41A;&#x412;&#x410;</bank>
+        <phone></phone>
+      </seller_requisites>
+      <client_requisites>
+        <id></id>
+        <name></name>
+        <address></address>
+        <city></city>
+        <region></region>
+        <country></country>
+        <zip></zip>
+        <inn></inn>
+        <kpp></kpp>
+        <bik></bik>
+        <rs></rs>
+        <ks></ks>
+        <bank></bank>
+        <phone></phone>
+      </client_requisites>
+      <params></params>
+      <allowed_shipments>
+        <transport></transport>
+      </allowed_shipments>
+      <method>bank</method>
+      <status></status>
+      <is_prepaid></is_prepaid>
+      <is_online_paid></is_online_paid>
+      <date_added></date_added>
+      <date_changed></date_changed>
+      <adder_id></adder_id>
+      <changer_id></changer_id>
+      <client_name></client_name>
+      <client_address></client_address>
+      <client_id></client_id>
+      <client_login></client_login>
+      <client_email></client_email>
+      <seller_name></seller_name>
+      <seller_address></seller_address>
+      <seller_id></seller_id>
+      <seller_login></seller_login>
+      <seller_email></seller_email>
+      <summ></summ>
+    </bank>
+  </payment>
+</zend-config>

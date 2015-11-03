@@ -1,0 +1,11 @@
+<? $this->pageTitle($this->translate('Delete user')); ?>
+<?if ($this->count_orders == 0){?>
+<div class="delete_question"><h5>
+<?=$this->translate('Do you really want do delete this user:"%1$s (%2$s)"', $this->user['name'], $this->user['login'])?>?
+</h5></div>
+<?=$this->renderForm($this->form)?>
+<?}else{?>
+<div class="delete_question"><h5>
+Невозможно удалить пользователя <?= $this->user['name']?>, т.к. у него есть заказы.
+</h5></div>
+<?}?>

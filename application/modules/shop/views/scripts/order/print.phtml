@@ -1,0 +1,90 @@
+<table>
+	<tr>
+		<td>
+		<?=$this->shipmentInfoHtml?>
+		<?=$this->paymentInfoHtml?>
+		</td>
+	</tr>
+</table>
+
+<table width="100%" border="0">
+  <tr> 
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>  
+		<?//print_r($this->shipment);exit;?>
+          <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif"> <br /><br /><?=$this->shipment->client_requisites['name']?> <br /><br /><?=$this->shipment->client_requisites['address']?>, <br /><br />
+            <br /><strong>Номер заказа:</strong> <?=$this->order->id?><br />
+            <strong>Дата:</strong><?=date("j.m.Y")?><br />
+            </font></td>
+          <td width="1"><img src="<?=$this->skin()->url()?>images/logo.png" width="108" alt="" /></td>
+        </tr>
+      </table>
+</td>
+  </tr>
+</table>
+
+
+
+
+<table style="border-bottom:1px solid;" width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong>Товары:</strong></font></td>
+  </tr>
+  <tr>
+    <td>
+	<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="f1f1f1">
+        <tr> 
+          <td colspan="2" style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="center"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">количество</font></strong></div></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Товары:</font></strong></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Код товара</font></strong></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Цена за единицу</font></strong></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;" width="150"><div align="right"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Стоимость</font></strong></div></td>
+        </tr>
+	
+    <? $i = 0 ?>
+    <? //print_r($this->order);exit;
+	foreach ($this->order->items as $item) { ?>
+	
+	    <tr> 
+          <td width="20" style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="center"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><?=$item['qty']?></font></div></td>
+          <td width="20" style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="center"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">x</font></div></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong><?=$item['name']?></strong><em></em></font></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><?=$item['sku']?><em></em></font></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"> <?=$this->order_Summ($item['price'], $this->order->currency)?></font></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;" width="150"><div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"> <?=$this->order_Summ( (float) $item['price'] * (float) $item['qty'], $this->order->currency)?></font></div></td>
+        </tr>
+		
+		<?$i = $i + ((float) $item['price'] * (float) $item['qty'])?>
+    <? } ?>
+         </table>
+	</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+	<table width="100%" border="0" cellpadding="3" cellspacing="0">
+    <tr> 
+    <td nowrap="nowrap" width="100%" style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="right"><font size="1" face="Arial, Helvetica, sans-serif"><b>Всего</b>: 
+              <b> <?=$i//=$this->order_Total($this->order, TRUE, TRUE, 'shop')?> Р</b></font></div></td>
+  </tr>
+   
+</table>
+</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+

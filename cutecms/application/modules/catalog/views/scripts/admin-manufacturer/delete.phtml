@@ -1,0 +1,5 @@
+<h2><?=$this->translate('Удаление производителя')?></h2>
+
+<?=$this->translate('Вы действительно хотите удалить этого производителя:"%1$s (%2$s)"', $this->manufacturer->name, $this->manufacturer->id)?>
+<br/>
+<?=$this->renderForm($this->form)?>

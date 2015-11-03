@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+		<kernel/>
+		<checkout/>
+    </modules>
+    <events>
+    
+        
+        <Catalog_AdminController__init>
+            <observers>
+                <kernelInit>
+                    <class>Observer_AdminController</class>
+                    <method>initAction</method>
+                </kernelInit>
+                <selfInit>
+                    <class>Catalog_Observer_AdminController</class>
+                    <method>initAction</method>
+                </selfInit>
+            </observers>
+        </Catalog_AdminController__init>
+        
+        <Catalog_Controller__init>
+            <observers>
+                <kernelInit>
+                    <class>Observer_Controller</class>
+                    <method>initAction</method>
+                </kernelInit>
+                <selfInit>
+                    <class>Catalog_Observer_Controller</class>
+                    <method>initAction</method>
+                </selfInit>
+            </observers>
+        </Catalog_Controller__init>
+        
+        
+        
+        
+        
+
+        <Catalog_AdminItem_IndexController__editAction__onLoad>
+            <observers>
+                <index>
+                    <class>Catalog_Observer_AdminItem_Index</class>
+                    <method>editOnLoad</method>
+                </index>
+                <attribute>
+                    <class>Catalog_Observer_AdminItem_Attribute</class>
+                    <method>editOnLoad</method>
+                </attribute>
+                <bundle>
+                    <class>Catalog_Observer_AdminItem_Bundle</class>
+                    <method>editOnLoad</method>
+                </bundle>
+                <xsell>
+                    <class>Catalog_Observer_AdminItem_Xsell</class>
+                    <method>editOnLoad</method>
+                </xsell>
+            </observers>
+        </Catalog_AdminItem_IndexController__editAction__onLoad>
+
+        <Catalog_AdminItem_IndexController__editAction__onSave>
+            <observers>
+                <index>
+                    <class>Catalog_Observer_AdminItem_Index</class>
+                    <method>editOnSave</method>
+                </index>
+                <attribute>
+                    <class>Catalog_Observer_AdminItem_Attribute</class>
+                    <method>editOnSave</method>
+                </attribute>
+                <bundle>
+                    <class>Catalog_Observer_AdminItem_Bundle</class>
+                    <method>editOnSave</method>
+                </bundle>
+                <xsell>
+                    <class>Catalog_Observer_AdminItem_Xsell</class>
+                    <method>editOnSave</method>
+                </xsell>
+            </observers>
+        </Catalog_AdminItem_IndexController__editAction__onSave>
+
+        <Catalog_AdminItem_IndexController__editAction__onAfterSuccessSave>
+            <observers>
+                <bundle>
+                    <class>Catalog_Observer_AdminItem_Bundle</class>
+                    <method>editOnAfterSave</method>
+                </bundle>
+                <xsell>
+                    <class>Catalog_Observer_AdminItem_Xsell</class>
+                    <method>editOnAfterSave</method>
+                </xsell>
+            </observers>
+        </Catalog_AdminItem_IndexController__editAction__onAfterSuccessSave>
+
+        
+        
+
+        <Catalog_Model_Object_Attribute__trigger__onBeforeSave>
+        	<observers>
+        		<debug>
+        			<class>Catalog_Model_Object_Observer_Debug</class>
+        			<method>onBeforeSaveAttribute</method>
+        		</debug>
+        	</observers>
+        </Catalog_Model_Object_Attribute__trigger__onBeforeSave>
+
+        <Catalog_Model_Object_Item__trigger__onBeforeDelete>
+            <observers>
+                <seoId>
+                    <class>Catalog_Model_Object_Observer_Item</class>
+                    <method>onBeforeDelete</method>
+                </seoId>
+            </observers>
+        </Catalog_Model_Object_Item__trigger__onBeforeDelete>
+
+        <Catalog_Model_Object_Item__trigger__onAfterSave>
+            <observers>
+                <seoId>
+                    <class>Catalog_Model_Object_Observer_Item</class>
+                    <method>onAfterSave</method>
+                </seoId>
+            </observers>
+        </Catalog_Model_Object_Item__trigger__onAfterSave>
+
+        <Catalog_Model_Object_Attribute__trigger__onAfterSave>
+            <observers>
+                <seoId>
+                    <class>Catalog_Model_Object_Observer_ItemSearch</class>
+                    <method>onAfterSave</method>
+                </seoId>
+            </observers>
+        </Catalog_Model_Object_Attribute__trigger__onAfterSave>
+
+        <Catalog_Model_Object_Attribute__trigger__onAfterDelete>
+            <observers>
+                <seoId>
+                    <class>Catalog_Model_Object_Observer_ItemSearch</class>
+                    <method>onAfterDelete</method>
+                </seoId>
+            </observers>
+        </Catalog_Model_Object_Attribute__trigger__onAfterDelete>
+
+        <Model_Collection_Interface__afterDeleteCollection>
+            <observers>
+                <seoId>
+                    <class>Catalog_Model_Object_Observer_ItemSearch</class>
+                    <method>afterDeleteCollection</method>
+                </seoId>
+            </observers>
+        </Model_Collection_Interface__afterDeleteCollection>
+
+        <!-- Catalog_Model_Object_Category__trigger__onBeforeSave>
+        	<observers>
+        		<seoId>
+        			<class>Catalog_Model_Object_Observer_SeoId</class>
+        			<method>onBeforeSave</method>
+        		</seoId>
+        	</observers>
+        </Catalog_Model_Object_Category__trigger__onBeforeSave>
+
+        <Catalog_Model_Object_Item__trigger__onBeforeSave>
+        	<observers>
+        		<seoId>
+        			<class>Catalog_Model_Object_Observer_SeoId</class>
+        			<method>onBeforeSave</method>
+        		</seoId>
+        	</observers>
+        </Catalog_Model_Object_Item__trigger__onBeforeSave -->
+
+
+<!--  checkout connection -->
+		<Catalog_Model_Service_Item__onAddToCart>
+        	<observers>
+        		<socket>
+        			<class>Catalog_Model_Service_Observer_Item</class>
+        			<method>onAddToCart</method>
+        		</socket>
+        	</observers>
+		</Catalog_Model_Service_Item__onAddToCart>
+
+        <Catalog_Model_Service_Item__onItemToArray>
+            <observers>
+                <socket>
+                    <class>Catalog_Model_Service_Observer_Item</class>
+                    <method>onItemToArray</method>
+                </socket>
+            </observers>
+        </Catalog_Model_Service_Item__onItemToArray>
+
+		<Checkout_Model_Service_Cart__onAddToCart>
+        	<observers>
+        		<socket>
+        			<module>checkout</module>
+        			<class>Checkout_Model_Service_Observer_Cart</class>
+        			<method>onAddToCart</method>
+        		</socket>
+        	</observers>
+		</Checkout_Model_Service_Cart__onAddToCart>
+
+    </events>
+</config>

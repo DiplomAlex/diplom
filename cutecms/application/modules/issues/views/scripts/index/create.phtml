@@ -1,0 +1,9 @@
+<h2><?=$this->translate('Добавление задачи')?></h2>
+
+<?=$this->renderForm($this->form)?>
+
+
+<? $this->jquery_Datepicker('date_due') ?>
+
+<? $this->jquery_Combobox('subject', $this->subjectsList) ?>
+

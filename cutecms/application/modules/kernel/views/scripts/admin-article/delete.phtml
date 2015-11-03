@@ -1,0 +1,5 @@
+<h2><?=$this->translate('Удаление статьи')?></h2>
+
+<?=$this->translate('Вы действительно хотите удалить эту статью: "%1$s (%2$s)"', $this->article->title, $this->article->id)?>
+<br/>
+<?=$this->renderForm($this->form)?>

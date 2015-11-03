@@ -1,0 +1,118 @@
+<script type="text/javascript">
+    // range picker
+    $(function() {
+        jQuery("#range-picker").slider({
+            min: <?= Shop_Form_Catalog_Filter::MIN_PRICE ?>,
+            max: <?= Shop_Form_Catalog_Filter::MAX_PRICE ?>,
+            values: [<?= (int) $this->filterForm->filter_price_min->getValue() ?>, <?= (int) $this->filterForm->filter_price_max->getValue() ?>],
+            range: true,
+            stop: function(event, ui) {
+                jQuery("input#minCost").val(jQuery("#range-picker").slider("values", 0));
+                jQuery("input#maxCost").val(jQuery("#range-picker").slider("values", 1));
+                $('#filter_price_change').val(1);
+            },
+            slide: function(event, ui) {
+                jQuery("input#minCost").val(jQuery("#range-picker").slider("values", 0));
+                jQuery("input#maxCost").val(jQuery("#range-picker").slider("values", 1));
+            }
+        });
+        // Проверка и выставление значений в полях воода цен
+        jQuery("input#minCost").change(function() {
+            var value1 = jQuery("input#minCost").val();
+            var value2 = jQuery("input#maxCost").val();
+            if (parseInt(value1) > parseInt(value2)) {
+                value1 = value2;
+                jQuery("input#minCost").val(value1);
+            }
+            jQuery("#range-picker").slider("values", 0, value1);
+        });
+        jQuery("input#maxCost").change(function() {
+            var value1 = jQuery("input#minCost").val();
+            var value2 = jQuery("input#maxCost").val();
+            if (value2 > <?= Shop_Form_Catalog_Filter::MAX_PRICE ?>) {
+                value2 = <?= Shop_Form_Catalog_Filter::MAX_PRICE ?>;
+                jQuery("input#maxCost").val(10000)
+            }
+            if (parseInt(value1) > parseInt(value2)) {
+                value2 = value1;
+                jQuery("input#maxCost").val(value2);
+            }
+            jQuery("#range-picker").slider("values", 1, value2);
+        });
+        // изменение количества в полях цены
+        jQuery('.filters input').keypress(function(event) {
+            var key, keyChar;
+            if (!event)
+                var event = window.event;
+
+            if (event.keyCode)
+                key = event.keyCode;
+            else if (event.which)
+                key = event.which;
+
+            if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
+                return true;
+            keyChar = String.fromCharCode(key);
+
+            if (!/\d/.test(keyChar))
+                return false;
+
+            $('#filter_price_change').val(1);
+        });
+    });
+</script>
+
+<div class="filter">
+    <div class="center">
+        <h1 class="title"><?= $this->category->name ?></h1>
+    </div>
+    <form class="filters"
+        <? foreach ($this->filterForm->getAttribs() as $name => $value) { ?>
+            <?= $name ?>="<?= $value ?>"
+        <? } ?>
+    >
+        <div class="filters_selects">
+            <? foreach ($this->filterForm->getElements() as $element) { ?>
+                <? if ($element instanceof Zend_Form_Element_Select) { ?>
+                    <div class="select_wrapper">
+                        <label for="<?= $element->getName() ?>"><?= $element->getLabel() ?></label>
+                        <select name="<?= $element->getName() ?>" id ="<?= $element->getName() ?>"
+                            <? foreach ($element->getAttribs() as $name => $value) { ?>
+                                <?= $name ?>="<?= $value ?>"
+                            <? } ?>
+                        >
+                            <option value="">Выберите свойство</option>
+                            <? foreach ($element->getMultiOptions() as $name => $value) { ?>
+                                <option value="<?= $value ?>" <?= ($value == $element->getValue()) ? 'selected' : '' ?>><?= $value ?></option>
+                            <? } ?>
+                        </select>
+                    </div>
+                <? } ?>
+            <? } ?>
+        </div>
+        <div class="range_wrapper">
+            <label for="amount">Средняя стоимость</label>
+            <?= $this->filterForm->filter_price_min ?>
+            <?= $this->filterForm->filter_price_max ?>
+            <div id="range-picker"></div>
+        </div>
+        <?= $this->filterForm->filter_active ?>
+        <?= $this->filterForm->filter_price_change ?>
+        <button class="filters_submit">ПОИСК</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.custom_select').selectbox();
+        $('.filters_submit').click(function(e){
+            e.preventDefault();
+
+            if ($('#filter_price_change').val() == 0) {
+                $("input#minCost").attr('disabled', true);
+                $("input#maxCost").attr('disabled', true);
+            }
+            $('form.filters').submit();
+        });
+    });
+</script>

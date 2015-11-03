@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>   
+
+    <?=$this->headMeta()?>
+    <?=$this->headTitle()?>
+
+    <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/jquery.js', 'PREPEND') ?>
+    <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/shared.js') ?>
+    <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/events.js') ?>
+    <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/cycle/jquery.cycle.all.min.js') ?>
+
+
+    <?=$this->headScript()?>
+
+    <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>css.css"/>
+
+    <!--[if (!IE)]>-->
+        <link href="<?=$this->skin()->url()?>shared.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/selects/stylish-select.css" />
+        <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/chekers/chekers.css" />
+    <!--<![endif]-->
+    <?/*?><script type="text/javascript" src="<?=$this->skin()->url()?>templates/jquery-1.3.2.min.js"></script><?*/?>
+    <script type="text/javascript" src="<?=$this->skin()->url()?>templates/chekers/custom.input.js"></script>
+    <!--Custom select-->
+    <script type="text/javascript" src="<?=$this->skin()->url()?>templates/selects/jquery.stylish-select.min.js"></script>
+    <!--[if IE 6]>
+    <link rel="stylesheet" href="<?=$this->skin()->url()?>ie6.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/selects/stylish-selectie6.css" />
+    <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/chekers/chekers-ie6.css" />
+    <script type="text/javascript" src="<?=$this->skin()->url()?>templates/png.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          DD_belatedPNG.fix('.top-bg, .right-bg, img, #top-menu .top-menu-center, #top-menu .top-menu-center a, #top-menu .top-menu-center a:hover, #top-menu .top-menu-center a.last-link:hover, .widjet, .widjet .kurs, a.kurs-submitt, .widjet .padd .left-link, .widjet .padd .right-link, .basket-submit, .basket-submit:hover, .login-box, .pass-box,.reg-submit, .reg-submit:hover, .inp-form-top, .in-basket, .price-new');
+        });
+    </script>
+    <![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="<?=$this->skin()->url()?>ie7.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/selects/stylish-selectie6.css" />
+        <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/chekers/chekers.css" />
+    <![endif]-->
+    <!--[if gte IE 8]><link rel="stylesheet" href="<?=$this->skin()->url()?>ie8.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/selects/stylish-select.css" />
+        <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/chekers/chekers.css" />
+    <![endif]-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('select').sSelect();
+            $(':input').customInput();
+        });
+    </script>
+
+    <?=$this->headLink()?>
+    
+    <?=$this->headStyle()?>
+
+</head>
+
+<body >
+<div class="top-bg">
+  <div class="right-bg">
+    <div class="body-bott-bg">
+      <center>
+        <div id="container" >
+          <div class="header" >
+            <?=$this->box_Logo()?>
+            <?=$this->box_Support()?>
+            <?=$this->box_Currency() ?>
+            <?/*=$this->box_Checkout_ShoppingCart()*/?>
+        </div>
+
+    <?=$this->menu('top')?>
+
+
+    <div class="coll-padd">
+          <div id="left-coll" >
+            <?=$this->box_Login()?>
+            <div><img src="<?=$this->skin()->url()?>images/left-coll/left-top-bg.gif" width="218" height="11" border="0" /></div>
+            <div class="left-menu-body">
+                <?=$this->menu('left')?>
+                <div ><img src="<?=$this->skin()->url()?>images/spacer.gif" width="218" height="15" border="0" /></div>
+                <?=$this->box_Catalog_Search()?>
+            </div>
+            <div><img src="<?=$this->skin()->url()?>images/left-coll/left-bott-bg.gif" width="218" height="11" border="0" /></div>
+            <div class="cleaner"></div>
+            <?=$this->box_NewsAnnounce()?>
+          </div>
+          <div id="right-coll" >
+          
+          	<?=$this->menu('breadcrumbs')?>
+          	<div><img src="<?=$this->skin()->url()?>images/body/white-box-top-bg.png" width="746" height="10" border="0" /></div>
+          	<div class="white-box-y vnutr">
+			<div class="padd">
+            	<?=$this->layout()->content?>
+            </div>
+            </div>
+            <div class="tag-bott-25"><img src="<?=$this->skin()->url()?>images/body/white-box-bott-bg.png" width="746" height="10" border="0" /></div>
+
+            <div class="cleaner"></div>
+            <div><img src="<?=$this->skin()->url()?>images/body/payment-box-top.gif" width="746" height="10" border="0" /></div>
+            <div class="payment-box-y">
+                <div class="padd">
+                    <?=$this->banner('payments')?>
+                    <?=$this->banner('counters')?>
+                </div>
+                <div class="cleaner"></div>
+            </div>
+            <div><img src="<?=$this->skin()->url()?>images/body/payment-box-bott.gif" width="746" height="10" border="0" /></div>
+            <div id="footer" >
+              <?=$this->banner('footer')?>
+              <?=$this->box_Copyright()?>
+              <?=$this->box_Contact()?>
+            <div class="cleaner"></div>
+            </div>
+          </div>
+          </div>
+        <div class="cleaner"></div>
+        </div>
+        </center>
+    </div>
+  </div>
+</div>
+</body>
+</html>

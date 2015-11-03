@@ -1,0 +1,53 @@
+<h2><?=$this->translate('Список Web-сайтов')?></h2>
+
+<?/*?>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+    <td align="right">
+      <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'edit', 'admin-site')?>" class="btn2"><?=$this->translate('New')?></a>
+    </td>
+</tr>
+</table>
+<?*/?>
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th><?=$this->translate('Имя хоста')?></th>
+        <th><?=$this->translate('Базовый каталог')?></th>
+        <th><?=$this->translate('Название')?></th>
+        <th><?=$this->translate('Скин')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? foreach ($this->sites as $row) { ?>
+      <? if ( ! (int) $row['status']) {?>
+          <? $tdAttr = 'style="text-decoration:line-through;"'?>
+      <? } else { ?>
+          <? $tdAttr = ''?>
+      <? } ?>
+      <tr >
+        <td <?=$tdAttr?>> <?=$row['host']?> </td>
+        <td <?=$tdAttr?>> <?=$row['base_url']?> </td>
+        <td <?=$tdAttr?>> <?=$row['title']?> </td>
+        <td <?=$tdAttr?>> <?=$row['skin']?> </td>
+        <td class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit')?>"><?=$this->translate('Edit')?></a>
+            <?/*?>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete')?>"><?=$this->translate('Delete')?></a>
+            <?*/?>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+<? } ?>
+
+
+    </table>
+
+
+    <?=$this->paginationControl($this->sites)?>
+
+

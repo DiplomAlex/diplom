@@ -1,0 +1,30 @@
+<?=$this->renderForm($this->form)?>
+
+<? $this->headScript('SCRIPT', '
+        function reloadAttributeValueFields()
+        {
+            var fieldType = $("form#attribute_edit select#type");
+            var fieldCurVal = $("form#attribute_edit #current_value");
+            var curVal = fieldCurVal.val();
+            $.getJSON("'.$this->stdUrl(array('reset'=>TRUE), 'ajax-get-value-fields', 'admin-item_attribute', 'catalog').'", 
+                {type: fieldType.val(), current_value: curVal},  
+                function(resp) {
+                    fieldCurVal.replaceWith(resp.fieldCurrentValue);
+                    var tr = $("label[for=variants]").parent().parent();
+                    if (fieldType.val()=="variant") {
+                        tr.show();                     
+                    }
+                    else {
+                        tr.hide();
+                    }
+                }
+            );
+        }     
+
+        $(function(){
+            $("form#attribute_edit select#type").change(reloadAttributeValueFields);
+        });
+        
+        var contentDialogEdit_attributes_created = false;
+');
+?>

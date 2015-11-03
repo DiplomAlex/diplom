@@ -1,0 +1,333 @@
+html, body {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #505050;
+	margin: 0px;
+	padding: 0px;
+}
+p, td, div, span {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #505050;
+}
+form {
+	margin: 0px;
+	padding: 0px;
+}
+input {
+	font-size: 12px;
+}
+a {
+	color: #4ea3e6;	
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+ul {
+	padding: 0px 0px 0px 16px;
+	margin: 0px;
+	color: #000000;
+}
+li {
+	padding: 0px 0px 12px 2px;
+	margin: 0px;
+	list-style: none;
+	color: #000000;
+}
+li a {
+	color: #000000;
+}
+h1, h2, h3, h4, h5 {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	margin: 0px;	
+	font-weight: normal;
+}
+h1 {
+	color: #56626c;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px 0px 16px 8px;
+	margin-left: -8px;
+	line-height: 14px;
+	background: url(images/h1_bg.gif) left top no-repeat;
+}
+h2 {
+	font-size: 18px;
+	color: #56626c;
+	padding: 4px 0px 10px 0px;
+}
+h1 a, h2 a {
+	color: #56626c;
+}
+h3 {
+	font-size: 12px;
+	color: #505050;
+	padding: 4px 0px 10px 16px;
+}
+h4 {
+	font-size: 17px;
+	color: #505050;
+	padding: 4px 0px 4px 0px;
+}
+h3 a, h4 a {
+	color: #505050;
+}
+h5 {
+	font-size: 12px;
+	color: #505050;
+	padding: 0px 0px 0px 0px;
+	font-weight: bold;
+}
+h5 a {
+	color: #505050;
+}
+p {
+	padding: 8px 0px 6px 0px;
+	margin: 0px;
+}
+hr {
+	height: 1px;
+	border-top: none;
+	border-bottom: #B5BCC5 1px  solid;
+	margin: 0px;
+	padding: 0px;
+}
+.body {
+/*	background: #f8f5e6 url(images/login/head_bg.jpg) left top repeat-x;*/
+    background: #f5f5f5;
+}
+#container {
+	margin: 0px auto;
+	padding: 224px 0px 0px 0px;
+	/*background: url(images/login/logo.jpg) center top no-repeat;*/
+}
+.cleaner {
+	height: 1px;
+	line-height: 1px;
+	clear: both;
+}
+#footer {
+	margin-top: 8px;
+	padding: 0px 0px 0px 14px;
+	clear: both;
+}
+#footer .copy {
+	/*color: #9ba7aa;**/
+	font-size: 11px;
+	width: 192px;
+	line-height: 16px;
+	margin: 0px auto;
+	padding: 8px 0px;
+	text-align: center;
+	display: block;
+	background: #fff;
+    border: solid #c4cacd;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 5px 5px 5px 5px;
+    /*border: solid #c4cacd; border-width: 0 1px 1px; border-radius: 0 0 5px 5px; background: #fff;*/
+}
+#footer .copy a {
+	color: #9ba7aa;
+	text-decoration: none;
+}
+#footer .copy a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+.frm_line {
+/*	background: url(images/login/frm_line.gif) left top repeat-x;*/
+}
+.frm {
+	width: 435px;
+	height: 301px;
+	margin: 0px auto 90px auto;
+	/*background: url(images/login/frm_bg.gif) left top no-repeat;*/
+}
+.frm_body{
+    border: solid #c4cacd; border-width: 0 1px 1px; border-radius: 0 0 5px 5px; padding: 16px 0 10px; background: #fff; height: 155px;
+}
+.frm .btn_enter {
+    float: right;
+}
+.frm .remember {
+	color: #505050;
+    float:left;
+}
+.frm .remember label {
+	color: #505050;
+	font-size: 13px;
+	line-height: 18px;
+}
+.frm .remember input {
+	margin: 0px 6px 0px 0px;
+}
+.frm .links {
+	position: absolute;
+	margin: 274px 0px 0px 0px;
+}
+.frm .links .register {
+	color: #119dff;
+	margin: 0px 0px 0px 200px;
+}
+.frm .links .register a {
+	color: #119dff;
+}
+.frm .links .fpassw {
+	color: #68be02;
+	margin: 0px 0px 0px 62px;
+}
+.frm .links .fpassw a {
+	color: #68be02;
+}
+.frm .login {
+	height: 48px;
+	padding: 10px 0px 0px 30px;
+}
+.frm .login .label {
+	color: #566472;
+	font-size: 18px;
+	text-align: right;
+	float: left;
+    margin-bottom: 25px;
+}
+.frm .login .value {
+	width: 320px;
+	padding: 0px 0px 0px 16px;
+	float: right;
+    margin-bottom: 25px;
+
+}
+.frm .value input {
+	font-size: 14px;
+	height: 20px;
+	width: 284px;
+    border: 1px solid #bbbec0;
+    border-radius: 3px;
+
+}
+.frm .passw {
+/*	padding: 10px 0px 0px 30px;*/
+}
+.frm .passw .label {
+	font-size: 18px;
+	text-align: right;
+	float: left;
+    margin-bottom: 25px;
+}
+.frm .passw .value {
+	width: 320px;
+	padding: 0px 0px 0px 16px;
+	float: right;
+    margin-bottom: 25px;
+
+}
+.frm .passw input {
+	height: 20px;
+	width: 284px;
+        border: 1px solid #bbbec0;
+    border-radius: 3px;
+}
+
+/**/
+#header-wrapper {
+    border: 1px solid #3d3d3d;
+    border-radius: 5px 5px 0 0;
+}
+#header {
+    border-radius: 3px 3px 0 0;
+    padding: 0 20px;
+    background: #3d3d3d 0 -316px repeat-x;
+}
+#header {
+    position: relative;
+    z-index: 20;
+    height: 53px;
+    font-size: 11px;
+}
+
+.btn{
+    border: 1px solid #a3afb7;
+    border-radius: 3px;
+    margin: 0 35px 0 0;
+    min-width: 90px;
+    white-space: nowrap;
+    text-align: center;
+    border-color: #a3afb7;
+    font-weight: 400;
+    color: #5d6973;
+    background: #DCE4E8;
+    background-clip: padding-box;
+    box-shadow: inset 0 0 1px #fff, 0 1px 2px #d6d6d6;
+}
+.btn {
+    display: inline-block;
+    float: right;
+}
+.btn:active {
+    border: 1px solid #a3afb7;
+    background-color: #e5ebed;
+    background-position: 0 -60px;
+    box-shadow: inset 0 1px 2px #bdc3c6;
+}
+.btn:hover{
+    border-color: #808287;
+    color: #555;
+    background-color: #ebf1f4;
+    background-position: 0 -30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3), inset 0 0 3px #fff;
+}
+.btn:focus{
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.btn input[type="submit"]:hover {
+color: #555;
+}
+.btn input[type="submit"] {
+    border: 0;
+    margin: 0;
+    padding: 0 8px;
+    background: none;
+    height: 28px;
+    min-width: 100%;
+    outline: 0;
+    vertical-align: top;
+    background: none;
+    font-weight: 400;
+    color: #5d6973;
+    text-shadow: 0 1px 0 #fff;
+        cursor: pointer;
+}
+input[type="submit"] {
+    -webkit-box-align: center;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    padding: 2px 6px 3px;
+    border: 2px outset buttonface;
+    border-image: initial;
+    background-color: buttonface;
+    box-sizing: border-box;
+}
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+    border-color: #95bed4;
+    box-shadow: 0 0 3px #95bed4;
+    outline: none;
+    -webkit-transition: border-color 0.3s linear, box-shadow 0.3s linear;
+    -moz-transition: border-color 0.3s linear, box-shadow 0.3s linear;
+    -o-transition: border-color 0.3s linear, box-shadow 0.3s linear;
+    transition: border-color 0.3s linear, box-shadow 0.3s linear;
+}
+
+p.logo{
+    color: #FFFFFF;
+    font-size: 20px;
+    margin: 0 auto;
+    width: 120px;
+}
+/**/
+
+
+
+
+

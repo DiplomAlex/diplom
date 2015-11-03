@@ -1,0 +1,61 @@
+
+<div style="width: 100%">
+    <h2 style="float: left"><?=$this->translate('Аттрибуты')?></h2>
+    <div style="float: right"><?=$this->gotoHtml?></div>
+</div>
+<div class="cleaner">&nbsp;</div>
+
+<?=$this->adminMassForm('formStart')?>
+<?=$this->adminMassForm('actions')?>
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th width="50px"><?=$this->adminMassForm('checkAll')?></th>
+        <th><?=$this->translate('Sorting')?></th>
+        <th><?=$this->translate('Название')?></th>
+        <th><?=$this->translate('Код')?></th>
+        <th><?=$this->translate('Тип')?></th>
+        <th><?=$this->translate('Значение по-умолчанию')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? if ($this->attributes->count()) { ?>
+    <? foreach ($this->attributes as $row) { ?>
+          <tr >
+            <td> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+            <td> <?=$this->adminListSorting(array('id'=>$row['id'], 'action'=>'sorting'))?></td>
+            <td><?=$row['name']?></td>
+            <td><?=$row['code']?></td>
+            <td><?=$this->attribute_Type($row['type'])?></td>
+            <td><?=$row['default_value']?></td>
+            <td class="actions2">
+                <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit', 'admin-attribute-j-g', 'catalog')?>"><?=$this->translate('Edit')?></a>
+                 /
+                <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete', 'admin-attribute-j-g', 'catalog')?>"><?=$this->translate('Delete')?></a>
+            </td>
+          </tr>
+
+        <? ++$i ?>
+    <? } ?>
+
+<? } else { ?>
+      <tr>
+        <td colspan="6">
+            <?=$this->translate('В этом наборе пока нет аттрибутов')?>
+        </td>
+      </tr>
+<? } ?>
+
+    </table>
+
+
+    <?=$this->adminMassForm('formEnd')?>
+
+    <?=$this->paginationControl($this->attributes)?>
+
+
+  <a href="<?=$this->stdUrl(array('reset'=>TRUE, 'group'=>$this->groupId), 'edit', 'admin-attribute-j-g', 'catalog')?>" class="btn2"><?=$this->translate('New')?></a>
+
+

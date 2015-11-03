@@ -1,0 +1,17 @@
+<p><?=$this->translate('Кому')?>: <?=$this->recipient->email?> (<?=$this->recipient->name?>)</p>
+<p><?=$this->translate('От')?>: <?=$this->sender->email?> (<?=$this->sender->firm_long?$this->sender->firm_long:$this->sender->name?>)</p>
+<h1><?='#'.$this->msg->id.' '.$this->msg->subject?></h1>
+<p><strong><?=$this->translate('Уведомление. Ваш клиент отправил письмо через веб сайт.')?></strong></p>
+<p>
+    <ul><strong><?=$this->translate('Клиент')?></strong>:
+        <li> <?=$this->sender->firm_long?$this->sender->firm_long:$this->sender->name?> </li>
+        <li> <?=$this->sender->email?> </li>
+        <li> <?=$this->sender->phone?> </li>
+    </ul>
+<br/>
+<p><?=$this->msg->body?></p>
+</br>
+<? $href = $this->host.$this->url(array('recipient_id'=>$this->sender->id, 'parent_id'=>$this->msg->id, 'authkey'=>$this->authKey), 'social_mail_new')?>
+<?=$this->translate('Для быстрого ответа, перейдите по этой ссылке')?>:
+<a href="<?=$href?>"><?=$href?></a>
+</p>

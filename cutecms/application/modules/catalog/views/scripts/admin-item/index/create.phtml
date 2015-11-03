@@ -1,0 +1,18 @@
+<h2><?=$this->translate('Выберите тип создаваемого товара')?></h2>
+
+<form  enctype="multipart/form-data"
+    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+        <?=$name?>="<?=$value?>"
+    <? } ?>
+>
+<?=$this->form->is_configurable ?>
+</form>
+
+<? $this->headScript('SCRIPT', '
+    $(function(){
+        $("*[name=is_configurable]").click(function(e){
+            this.form.submit();
+        });
+    });
+')?>
+

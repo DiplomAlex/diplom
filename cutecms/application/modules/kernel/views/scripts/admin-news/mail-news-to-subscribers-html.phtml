@@ -1,0 +1,25 @@
+
+<h1>
+<?=$this->news->title?>
+</h1>
+
+<p>
+<?=(empty($this->news->full)?$this->news->announce:$this->news->full)?>
+</p>
+
+<p>
+<? $link = 'http://'.Zend_Registry::get('config')->www->domain.$this->url(array('seo_id'=>$this->news->seo_id), 'news_detailed') ?>
+Ссылка на новость: <a href="<?=$link?>"><?=$link?></a>
+</p>
+
+------------<br/>
+
+<p>
+Вы получили это письмо, потому что подписались на рассылку новостей на сайте <?=$this->siteName?>.
+
+Если Вы не желаете больше получать письма из этой рубрики - пройдите, пожалуйста, в браузере по ссылке: <?=$this->unsubscribeLink?>
+</p>
+
+<p>
+С уважением, администрация сайта <?=$this->siteName?>
+</p>

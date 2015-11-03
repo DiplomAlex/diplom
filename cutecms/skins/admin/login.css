@@ -1,0 +1,227 @@
+html, body {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #505050;
+	margin: 0px;
+	padding: 0px;
+}
+p, td, div, span {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #505050;
+}
+form {
+	margin: 0px;
+	padding: 0px;
+}
+input {
+	font-size: 12px;
+}
+a {
+	color: #4ea3e6;	
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+ul {
+	padding: 0px 0px 0px 16px;
+	margin: 0px;
+	color: #000000;
+}
+li {
+	padding: 0px 0px 12px 2px;
+	margin: 0px;
+	list-style: none;
+	color: #000000;
+}
+li a {
+	color: #000000;
+}
+h1, h2, h3, h4, h5 {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	margin: 0px;	
+	font-weight: normal;
+}
+h1 {
+	color: #56626c;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px 0px 16px 8px;
+	margin-left: -8px;
+	line-height: 14px;
+	background: url(images/h1_bg.gif) left top no-repeat;
+}
+h2 {
+	font-size: 18px;
+	color: #56626c;
+	padding: 4px 0px 10px 0px;
+}
+h1 a, h2 a {
+	color: #56626c;
+}
+h3 {
+	font-size: 12px;
+	color: #505050;
+	padding: 4px 0px 10px 16px;
+}
+h4 {
+	font-size: 17px;
+	color: #505050;
+	padding: 4px 0px 4px 0px;
+}
+h3 a, h4 a {
+	color: #505050;
+}
+h5 {
+	font-size: 12px;
+	color: #505050;
+	padding: 0px 0px 0px 0px;
+	font-weight: bold;
+}
+h5 a {
+	color: #505050;
+}
+p {
+	padding: 8px 0px 6px 0px;
+	margin: 0px;
+}
+hr {
+	height: 1px;
+	border-top: none;
+	border-bottom: #B5BCC5 1px  solid;
+	margin: 0px;
+	padding: 0px;
+}
+.body {
+	background: #f8f5e6 url(images/login/head_bg.jpg) left top repeat-x;
+}
+#container {
+	margin: 0px auto;
+	padding: 224px 0px 0px 0px;
+	/*background: url(images/login/logo.jpg) center top no-repeat;*/
+}
+.cleaner {
+	height: 1px;
+	line-height: 1px;
+	clear: both;
+}
+#footer {
+	margin-top: 8px;
+	padding: 0px 0px 0px 14px;
+	clear: both;
+}
+#footer .copy {
+	color: #9ba7aa;
+	font-size: 11px;
+	width: 262px;
+	height: 51px;
+	line-height: 16px;
+	margin: 0px auto;
+	padding: 8px 0px;
+	text-align: center;
+	display: block;
+	background: url(images/login/copy_bg.gif) left top no-repeat;
+}
+#footer .copy a {
+	color: #9ba7aa;
+	text-decoration: none;
+}
+#footer .copy a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+.frm_line {
+	background: url(images/login/frm_line.gif) left top repeat-x;
+}
+.frm {
+	width: 620px;
+	height: 301px;
+	margin: 0px auto 90px auto;
+	background: url(images/login/frm_bg.gif) left top no-repeat;
+}
+.frm .btn_enter {
+	position: absolute;
+	margin: 122px auto auto 472px;
+}
+.frm .remember {
+	color: #FFFFFF;
+	position: absolute;
+	margin: 222px auto auto 248px;
+}
+.frm .remember label {
+	color: #FFFFFF;
+	font-size: 13px;
+	line-height: 18px;
+}
+.frm .remember input {
+	margin: 0px 6px 0px 0px;
+}
+.frm .links {
+	position: absolute;
+	margin: 274px 0px 0px 0px;
+}
+.frm .links .register {
+	color: #119dff;
+	margin: 0px 0px 0px 200px;
+}
+.frm .links .register a {
+	color: #119dff;
+}
+.frm .links .fpassw {
+	color: #68be02;
+	margin: 0px 0px 0px 62px;
+}
+.frm .links .fpassw a {
+	color: #68be02;
+}
+.frm .login {
+	height: 48px;
+	padding: 92px 0px 0px 0px;
+}
+.frm .login .label {
+	color: #566472;
+	font-size: 18px;
+	width: 128px;
+	text-align: right;
+	float: left;
+}
+.frm .login .value {
+	width: 320px;
+	padding: 0px 0px 0px 16px;
+	float: left;
+}
+.frm .value input {
+	color: #566472;
+	font-size: 14px;
+	height: 20px;
+	width: 284px;
+	background: transparent url(images/login/input_bg.gif) left top repeat-x;
+}
+.frm .passw {
+	padding: 10px 0px 0px 0px;
+}
+.frm .passw .label {
+	color: #566472;
+	font-size: 18px;
+	width: 128px;
+	text-align: right;
+	float: left;
+}
+.frm .passw .value {
+	width: 320px;
+	padding: 0px 0px 0px 16px;
+	float: left;
+}
+.frm .passw input {
+	height: 20px;
+	width: 284px;
+	background: transparent url(images/login/input_bg.gif) left top repeat-x;
+}
+
+
+
+
+
+
+

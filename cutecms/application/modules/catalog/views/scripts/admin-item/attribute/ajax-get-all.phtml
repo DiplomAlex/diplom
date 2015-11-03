@@ -1,0 +1,54 @@
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+<!--        <td align="left">
+            <a class="attribute-create btn3"
+               href="<?=$this->stdUrl(array('reset'=>TRUE), 'ajax-edit', 'admin-item_attribute', 'catalog')?>"
+               hrefGet="<?=$this->stdUrl(array('reset'=>TRUE), 'ajax-get', 'admin-item_attribute', 'catalog')?>"><?=$this->translate('Создать')?></a>
+        </td>-->
+        <td>
+        </td>
+        <td>
+            <?=$this->translate('Выбрать атрибуты из набора')?>: <?=$this->formSelect('add_from_group_id', NULL, array(
+                'class' => 'attribute-add-from-group',
+                'href' => $this->stdUrl(array('reset'=>TRUE), 'ajax-add-from-group', 'admin-item_attribute', 'catalog'),
+            ), $this->groupsList)?>
+        </td>
+    </tr>
+</table>   
+   
+<br/>
+
+<table class="attribute-list" cellspacing="0" width="100%">
+    <?/*?><tr>
+        <th width="10%"><?=$this->translate('№ п/п')?></th>
+        <th><?=$this->translate('Название')?></th>
+        <th><?=$this->translate('Значение')?></th>
+        <th><?=$this->translate('По-умолчанию')?></th>
+        <th width="15%"><?=$this->translate('Действия')?></th>
+    </tr><?*/?>    
+<? $i = 0 ?>
+<? foreach ($this->attributes as $attr) { ?>
+    <? if ( ! (int) $attr->status) { ?>
+        <? $addonAttr = 'style="font-style: italic"'?>
+    <? } else { ?>
+        <? $addonAttr = '' ?>
+    <? } ?>
+    <tr>        
+        <td width="20%" align="right" class="sorting"><?=$this->adminListSorting(array(
+            'class'=>'attribute-sorting', 
+            'hrefFirst' => $this->stdUrl(array('position'=>'first', 'hash'=>$attr->hash), 'ajax-change-sorting', 'admin-item_attribute', 'catalog'),
+            'hrefPrev'  => $this->stdUrl(array('position'=>'prev',  'hash'=>$attr->hash), 'ajax-change-sorting', 'admin-item_attribute', 'catalog'),
+            'hrefNext'  => $this->stdUrl(array('position'=>'next',  'hash'=>$attr->hash), 'ajax-change-sorting', 'admin-item_attribute', 'catalog'),
+            'hrefLast'  => $this->stdUrl(array('position'=>'last',  'hash'=>$attr->hash), 'ajax-change-sorting', 'admin-item_attribute', 'catalog'),
+        ))?></td>
+        <td width="10%" align="right" <?=$addonAttr?>> <?=$attr->name?>:</td>
+        <td width="10%" <?=$addonAttr?>><?=$this->attribute_Draw()->setDefaultInputHtmlAttribs(array('name'=>'attribute_value_'.$attr->code, 'class'=>'input'))->attribute_Draw($attr)?></td>
+        <td <?=$addonAttr?>>
+            <a class="act_delete attribute-delete" hash="<?=$attr->hash?>" 
+                href="<?=$this->stdUrl(array('hash'=>$attr->hash), 'ajax-delete', 'admin-item_attribute', 'catalog')?>"
+                hrefGet="<?=$this->stdUrl(array('hash'=>$attr->hash), 'ajax-get', 'admin-item_attribute', 'catalog')?>"><img src="<?=$this->skin()->url()?>images/del.png" border="0"/></a>
+        </td>
+    </tr>
+<? } ?>
+</table>
+

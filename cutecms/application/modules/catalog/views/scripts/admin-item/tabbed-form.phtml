@@ -1,0 +1,93 @@
+<? $this->headScript('FILE', $this->skin()->url().'js/jquery.tabs.min.js')?>
+
+<? $this->headLink(array('type'=>'text/css','rel'=>'stylesheet', 'media'=>'print, projection, screen', 'href'=>$this->stdUrl(array('reset'=>TRUE)).'js/jquery/theme/ui.tabs.css')) ?>
+<? $this->headLink(array('type'=>'text/css','rel'=>'stylesheet', 'media'=>'print, projection, screen', 'href'=>$this->skin()->url().'jquery.tabs.css')) ?>
+<? $this->headLink(array('conditionalStylesheet'=>'lte IE 7', 'type'=>'text/css','rel'=>'stylesheet', 'media'=>'print, projection, screen', 'href'=>$this->skin()->url().'jquery.tabs-ie.css')) ?>
+
+<? $this->headScript('SCRIPT', '
+    $(function() {
+        $("#tabsheet").tabs({ fxFade: true, fxSpeed: "fast" });
+    });
+')?>
+
+
+
+<? $errors = array_merge($this->form->getErrors(), $this->form->getErrorMessages()) ?>
+
+<? $hiddens = array() ?>
+
+<form  enctype="multipart/form-data"
+    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+        <?=$name?>="<?=$value?>"
+    <? } ?>
+>
+
+    <div id="tabsheet">
+    <ul>
+        <? foreach ($this->form->getDisplayGroups() as $grpName=>$grp) if ( ! $grp->getAttrib('isButtonsGroup')) { ?>
+            <li><a href="#<?=$grpName?>"><span><?=$grp->getAttrib('label')?></span></a></li>
+        <? } ?>
+    </ul>
+    <? foreach ($this->form->getDisplayGroups() as $grpName=>$grp) if ( ! $grp->getAttrib('isButtonsGroup')) { ?>
+        <div id="<?=$grpName?>">
+
+<table width="100%" cellpadding="0" cellspacing="0" class="tbl_edit">
+<? foreach ($grp->getElements() as $el) {?>
+    <? if ($el instanceof Zend_Form_Element_Hidden) { ?>
+        <? $hiddens[]=$el ?>
+    <? } else { ?>
+        <tr>
+            <? $label = $el->getLabel()?>
+            <td class="label" <? if ($attr = $el->getAttrib('labelAttrib')) { ?><?=$attr?><? } ?>>
+                <? if ( ! empty($label)) { ?>
+                    <label for="<?=$el->getName()?>"><?=$el->getLabel()?><? if ($el->isRequired()) {?> <?=$this->formMarkerRequired()?><? } ?> :</label>
+                <? } ?>
+            </td>
+            <td class="value">
+                <? if ($errors[$el->getName()]) { ?>
+                    <div class="red" style="color:red">
+                    <?=$this->form->getElementErrorsFormatted($el->getName(), $errors[$el->getName()])?>
+                    </div>
+                <? } ?>
+                <? if (in_array($el->getType(), array('Zend_Form_Element_Text', 'Zend_Form_Element_Password'))) { ?>
+                        <? $el->setAttrib('class', 'input') ?>
+                <? } else if ($el->getType() == 'Zend_Form_Element_Select') { ?>
+                        <? $el->setAttrib('class', 'select') ?>
+                <? } else if ($el->getType() == 'Zend_Form_Element_Textarea') { ?>
+                        <? $el->setAttrib('class', 'textarea') ?>
+                <? } ?>
+                <? $el->setDecorators(array('ViewHelper')) ?>
+                <?=$el->render()?>
+            </td>
+        </tr>
+    <? } ?>
+<? } ?>
+</table>
+
+        </div>
+    <? } ?>
+
+
+    </div>
+
+<div class="cleaner">&nbsp;</div>
+<div class="cleaner">&nbsp;</div>
+
+    <? foreach ($this->form->getDisplayGroups() as $grpName=>$grp) if ($grp->getAttrib('isButtonsGroup')) { ?>
+        <div style="text-align: center; width: 100%">
+            <table align="center"><tr>
+            <? foreach ($grp->getElements() as $btn) {?>
+                <td><?=$btn->render()?></td>
+            <? } ?>
+            </tr></table>
+        </div>
+    <? } ?>
+
+<? foreach ($hiddens as $el) { ?><?=$el->render()?><? } ?>
+
+
+</form>
+
+
+
+

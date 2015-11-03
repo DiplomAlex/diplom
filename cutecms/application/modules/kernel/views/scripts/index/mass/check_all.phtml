@@ -1,0 +1,11 @@
+<?=$this->translate('Check all')?><input type="checkbox" value="1" class="<?=$this->formId.'_check_all'?>"/>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.<?=$this->formId.'_check_all'?>').bind('click', function(){
+                $('input.mass-form-check').attr('checked', $(this).attr('checked'));
+            });
+        });
+    </script>
+
+

@@ -1,0 +1,46 @@
+<h2><?=$this->translate('Languages list')?></h2>
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th><?=$this->translate('Sorting')?></th>
+        <th><?=$this->translate('Language')?></th>
+        <th><?=$this->translate('Code2')?></th>
+        <th><?=$this->translate('Code3')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? foreach ($this->languages as $row) if ($row['status'] > 0) { ?>
+      <? if ( ! (int) $row['status']) { ?>
+        <? $tdAttr = 'style="text-decoration: line-through; font-style: italic;"' ?>
+      <? } else if ( (int) $row['is_default']) { ?>
+        <? $tdAttr = 'style="font-weight: bold; font-size: 14px;"' ?>
+      <? } else { ?>
+        <? $tdAttr = '' ?>
+      <? } ?>
+      <tr >
+        <td> <?=$this->adminListSorting(array('id'=>$row['id'], 'action'=>'sorting'))?></td>
+        <td <?=$tdAttr?>> <?=$row['title']?> </td>
+        <td <?=$tdAttr?>> <?=$row['code2']?></td>
+        <td <?=$tdAttr?>> <?=$row['code3']?></td>
+        <td class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit')?>"><?=$this->translate('Edit')?></a>
+            <?/*?>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete')?>"><?=$this->translate('Delete')?></a>
+            <?*/?>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+<? } ?>
+
+
+    </table>
+
+
+<?/*?>
+  <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'edit', 'admin-language')?>" class="btn2"><?=$this->translate('New')?></a>
+<?*/?>
+

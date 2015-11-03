@@ -1,0 +1,76 @@
+<?php if ($this->pageCount>1): ?>
+<div class="widget-box-pagination">
+<div class="pagination alternate">
+
+    <!-- Ссылка на первую страницу -->
+    <ul>
+    <?php if (isset($this->previous)): ?>
+    <li>
+      <a href="<?= $this->url(array('page'=>$this->first)) ?>">На первую</a> 
+    <?php else: ?>
+    <?php endif; ?>
+    </li>
+
+    <!-- Ссылка на предыдущую страницу -->
+    <?php if (isset($this->previous)): ?>
+    <li>
+      <a href="<?= $this->url(array('page'=>$this->previous)) ?>">На предыдущую</a>
+    </li> 
+    <?php else: ?>
+    <?php endif; ?>
+
+
+    <!-- Нумерованные ссылки на страницы -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+      <?php if ($page != $this->current): ?>
+      <li>
+        <a href="<?= $this->url(array('page'=>$page)) ?>"><?= $page; ?></a>
+      <?php else: ?>
+      <li class="active">
+      <a href="#"><?= $page; ?></a>
+      <?php endif; ?>
+    </li>
+    <?php endforeach; ?>
+
+
+    <!-- Ссылка на следующую страницу -->
+    <?php if (isset($this->next)): ?>
+    <li>
+      <a href="<?= $this->url(array('page'=>$this->next)) ?>">На следующую</a>
+    </li>
+    <?php else: ?>
+    <?php endif; ?>
+
+    <!-- Ссылка на последнюю страницу -->
+    <?php if (isset($this->next)): ?>
+    <li>
+      <a href="<?= $this->url(array('page'=>$this->last)) ?>">На последнюю</a>
+    </li>
+    <?php else: ?>
+
+    <?php endif; ?>
+
+    </ul>
+</div>
+<div class="cleaner"></div>
+<?php endif;?>
+<? $qtys = array(10, 20, 30, 50) ?>
+<div class="pagination alternate">
+    <span style="float: left; margin: 4px 10px 0 0;"><?=$this->translate('Rows per page')?> :</span>
+    <ul>
+    <? for ($i = 0; $i<count($qtys); $i++) { ?>
+        <? $qty = $qtys[$i] ?>
+        <? if ($this->itemCountPerPage == $qty) { ?>
+            <li class="active"><a href="#"><?=$qty?></a></li>
+        <? } else { ?>
+            <li><a href="<?= $this->url(array('page'=>$this->first, 'rows_per_page'=>$qty)) ?>"> <?=$qty?> </a></li>
+        <? } ?>
+    <? } ?>
+    <ul>
+</div>
+
+<div class="cleaner"></div>
+<br/>
+</div>
+
+

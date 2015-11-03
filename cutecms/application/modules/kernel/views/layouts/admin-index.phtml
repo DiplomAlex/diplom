@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <?=$this->headMeta()?>
+  <?=$this->headTitle()?>
+
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/jquery.js', 'PREPEND') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/jquery.cookie.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/controlState.js') ?>
+  <?/* $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/jquery.curvycorners.packed.js') */?>
+
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'css.css')) ?>
+
+  <?=$this->headLink()?>
+  <?=$this->headScript()?>
+</head>
+
+<body class="body">
+
+<div class="role_ln_<?=$this->roleViewAlias()?>">&nbsp;</div>
+
+<div id="container">
+  <?=$this->adminBox_Account()?>
+  <div id="mainarea" class="home">
+    <div class="wrapp-t">
+      <div class="wrapp-b">
+
+        <?/*=$this->box_Stats()*/?>
+        <?/*=$this->banner_BackendTop()*/?>
+
+        <?/*=$this->menu('top')*/?>
+        <?=$this->layout()->content?>
+
+        <div class="cleaner">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <?=$this->adminBox_Copyright()?>
+  </div>
+</div>
+
+</body>
+<?/*?>
+<script type="text/javascript">
+    $(function(){
+        settings = {
+              tl: { radius: 15 },
+              tr: { radius: 15 },
+              bl: { radius: 15 },
+              br: { radius: 15 },
+              antiAlias: true,
+              autoPad: true,
+              validTags: ["div"]
+        }
+    $('#mainarea').corner(settings);
+    });
+</script>
+<?*/?>
+</html>

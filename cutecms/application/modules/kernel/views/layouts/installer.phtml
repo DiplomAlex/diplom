@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <?$this->skin('installer')?>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <?=$this->headTitle()?>
+  <?=$this->headMeta()?>
+
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/jquery.js', 'PREPEND') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/controlState.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/shared.js') ?>
+
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'css.css')) ?>
+
+  <?=$this->headLink()?>
+  <?=$this->headScript()?>
+</head>
+
+<body class="body">
+
+<div id="container">
+  <div id="mainarea" class="home">
+    <div class="wrapp-t">
+      <div class="wrapp-b">
+
+        <?=$this->layout()->content?>
+
+        <div class="cleaner">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <?=$this->adminBox_Copyright()?>
+  </div>
+</div>
+
+</body>
+</html>

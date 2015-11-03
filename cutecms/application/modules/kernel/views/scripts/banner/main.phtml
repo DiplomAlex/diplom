@@ -1,0 +1,81 @@
+
+<table width="100%"  style="background-color:  #f9f9f3;">
+<tr>
+<td></td>
+<td width="1%" align="center">
+    <div id="banner_wrapper_<?=$this->banner->place?>" class="banner_wrapper">
+        <? if ($this->banner->image_id) { ?>
+            <? if (! empty($this->banner->link)) { ?><a href="<?=$this->banner->link?>"><? } ?>
+            <?=$this->html_Img($this->banner->image_id_filename, 'border="0"')?>
+            <? if (! empty($this->banner->link)) { ?></a><? } ?>
+        <? } else if ($this->banner->html) { ?>
+            <?=$this->banner->html?>
+        <? } else { ?>
+            <? if (! empty($this->banner->link)) { ?><a href="<?=$this->banner->link?>"><? } ?>
+            <?=$this->banner->text?>
+            <? if (! empty($this->banner->link)) { ?></a><? } ?>
+        <? } ?>
+    </div>
+    <div id="banner_closer_<?=$this->banner->place?>" class="banner_closer banner_switcher">
+        <img src="<?=$this->skin()->url()?>images/close.gif">
+        <a href="#" bannerPlace="<?=$this->banner->place?>"><?=$this->translate('скрыть баннер')?></a>
+    </div>
+    <div id="banner_opener_<?=$this->banner->place?>" class="banner_opener banner_switcher">
+        <a href="#" bannerPlace="<?=$this->banner->place?>"><?=$this->translate('показать баннер')?></a>
+    </div>
+
+
+
+<?  if ( ! $this->scriptPrepared) { ?>
+
+        <script type="text/javascript">
+
+            function bannerClose(place)
+            {
+                $("#banner_wrapper_"+place).hide();
+                $("#banner_closer_"+place).hide();
+                $("#banner_opener_"+place).show();
+            }
+
+            function bannerOpen(place)
+            {
+                $("#banner_wrapper_"+place).show();
+                $("#banner_closer_"+place).show();
+                $("#banner_opener_"+place).hide();
+            }
+
+            function bannerSaveStates(place)
+            {
+                saveState("banner_wrapper_"+place);
+                saveState("banner_closer_"+place);
+                saveState("banner_opener_"+place);
+            }
+
+            $(function(){
+                $(".banner_opener").hide();
+                restoreBothBySelector(".banner_wrapper");
+                restoreBothBySelector(".banner_closer");
+                restoreBothBySelector(".banner_opener");
+                $(".banner_closer a").unbind();
+                $(".banner_closer a").click(function(e){
+                    e.preventDefault();
+                    var place = $(this).attr("bannerPlace");
+                    bannerClose(place);
+                    bannerSaveStates(place);
+                });
+                $(".banner_opener a").unbind();
+                $(".banner_opener a").click(function(e){
+                    e.preventDefault();
+                    var place = $(this).attr("bannerPlace");
+                    bannerOpen(place);
+                    bannerSaveStates(place);
+                });
+            });
+
+        </script>
+
+<? } ?>
+</td>
+<td></td>
+</tr>
+</table>

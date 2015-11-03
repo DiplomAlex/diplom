@@ -1,0 +1,62 @@
+
+                <form name="order" action="<?=$this->url(array(), 'shop-order-confirm')?>" method="post">
+                <div id="predzakaz">
+                    <div class="predzakaz_print">
+                        <div class="print_h2"><h2><?=$this->translate('Подтверждение заказа')?></h2></div>
+                    </div>
+                    <br/><br/>
+                    <div class="korz_div_top">
+                        <div class="korz_div_body">
+                            <div class="korz_table">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr class="korz_tbl_header">
+                                        <td class="korz_col_1">#</td>
+                                        <td class="korz_col_2">Наименование товара</td>
+                                        <td class="korz_col_3">Цена</td>
+                                        <td class="korz_col_4">Кол-во</td>
+                                        <td class="korz_col_5">Сумма</td>
+                                    </tr>
+                                    <tr class="korz_separator">
+                                        <td colspan="5"></td>
+                                    </tr>
+                <? $i = 0 ?>
+                <? $totalQty = 0 ?>
+                <? foreach ($this->order->items as $item) { ?>
+
+                                    <tr <?=$this->cycle(array('', 'class="korz_dark"'))?>>
+                                        <td class="korz_col_1"><?=++$i?>.</td>
+                                        <td class="korz_col_2"><a href="<?=$this->url(array('seo_id'=>$item['seo_id']), 'shop-item')?>"><?=$item['name']?></a><br><?=$this->order_ItemSpec($item)?></td>
+                                        <td class="korz_col_3"><?=$this->order_Summ($item['price'])?></td>
+                                        <td class="korz_col_4"><?=$item['qty']?></td>
+                                        <td class="korz_col_5"><?=$this->order_Summ($item['price'] * $item['qty'])?></td>
+                                    </tr>
+                                    <? $totalQty += $item['qty'] ?>
+                <? } ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="korz_result">
+                        <div class="korz_result_bottom">
+                            <div class="korz_result_body">
+                                <? $totals = $this->order_Total($this->order, FALSE, FALSE, 'shop') ?>
+                                <p>Итого товаров <?=$totalQty?> единицы на сумму <b><?=$this->order_Summ($totals[0]['total'], FALSE)?></b> руб.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="predzakaz_info">
+                    <p>
+                        <span>Как нас найти</span>
+                        <br />
+                        Офис: г.Москва, Ильменский проезд, 5
+                        <br />
+                        Склад: г.Москва, Нарвская, 1Б, стр.1
+                    </p>
+                    <p>
+                        <a href="#" class="basket-submit" onclick="document.order.submit();return false;"><img alt="Оформить заказ" src="<?=$this->skin()->url()?>images/predzakaz/make_order.jpg" /></a>
+                        &nbsp;
+                       <a href="<?=$this->url(array(), 'shop-cart-index')?>"> <img alt="Вернуться в корзину" src="<?=$this->skin()->url()?>images/predzakaz/back_to_cart.jpg" /></a>
+                    </p>
+                </div>
+                </form>

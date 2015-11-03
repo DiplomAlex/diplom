@@ -1,0 +1,20 @@
+function bundleSortingClick(link)
+{
+    var $link = $(link);
+    var grid = $("#bundles");
+    $.post($link.attr("href"), function(resp){
+        grid.trigger("reloadGrid");
+    });
+    return false;
+}
+
+function subitemSortingClick(link)
+{
+    var $link = $(link);
+    var bundleHash = $link.attr("bundle");
+    var subgrid = $("#bundles_"+bundleHash);
+    $.post($link.attr("href"), function(resp){
+        subgrid.trigger("reloadGrid");
+    });
+    return false;
+}

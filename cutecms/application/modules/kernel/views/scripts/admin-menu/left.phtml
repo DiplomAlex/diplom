@@ -1,0 +1,34 @@
+<div id="sidebar">
+    <ul style="display: block;">
+        <? $count_menu = 1?>
+        <? foreach ($this->menu as $level1) if ($level1->getLabel() != '-') {?>
+        
+                <? $chiCount = 0; 
+                foreach ($level1->get('pages') as $page){
+                    $rel = $page->getRel();
+                    if (!isset($rel['hide']))
+                        $chiCount++;
+                }
+                if ($chiCount) { ?>
+                    <?if ($level1->get('hideTop') != TRUE) {$chiCount++;} ?>
+                        <li class="submenu<?=$level1->isActive(true) ? ' active open' : ''?>">
+                            <a href="#"><i class="icon <?=$level1->get('icon')?>"></i><span class="submenu-li"><?=$level1->get('label')?></span><span class="label"><?=$chiCount?></span></a>
+                            <ul>
+                            <? if ($level1->get('hideTop') != TRUE) { ?>
+                                <li<?=$level1->isActive(true) ? ' class="active"' : ''?>><a href="<?=$level1->getHref()?>"><?=$level1->get('label')?></a></li>
+                            <? } ?>
+                           <? foreach ($level1->get('pages') as $sub){ ?>                                
+                                <?$rel = $sub->getRel()?>
+                                <li <?=$sub->isActive(true) ? ' class="active"' : ''?> <?= (isset($rel['hide'])) ? 'style="display: none;"' : ''?>><a href="<?=$sub->getHref()?>"><?=$sub->get('label')?></a></li>
+                           <? } ?>
+                           </ul>
+                        </li>
+                <? } else { ?>
+                    <li <?=$level1->isActive(true) ? 'class="active"' : ''?>>
+                        <a href="<?=$level1->getHref()?>"><i class="icon <?=$level1->get('icon')?>"></i><span><?=$level1->get('label')?></span></a>
+                    </li>
+                    
+                <?  } ?>
+        <? ++$count_menu; } ?>
+    </ul>
+</div>

@@ -1,0 +1,9 @@
+<div id="wrapper" class="padtop">
+	<h1 class="title">Sign in to site administration area.</h1>
+	<div id="login_form_admin" class="marg_top_log">
+        <? if ($this->submitted AND ! $this->success) { ?>
+            <?=$this->translate('Wrong password or username')?>
+        <? } ?>
+        <?=$this->renderForm($this->form)?>
+	</div>
+</div>

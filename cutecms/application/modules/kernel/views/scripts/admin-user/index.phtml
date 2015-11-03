@@ -1,0 +1,91 @@
+<? $this->pageTitle($this->translate('Пользователи')); ?>
+<div class="widget-box collapsible">
+    <div class="widget-title">
+        <a href="#collapseTwo" data-toggle="collapse">
+			<span class="icon"><i class="icon-search"></i></span>
+                <h5><?=$this->translate('Поиск')?></h5>
+        </a>
+    </div>
+    <div class="collapse" id="collapseTwo">
+        <div class="widget-content">
+                <?=$this->filter?>
+        </div>
+    </div>
+</div>
+
+<?=$this->adminMassForm('formStart')?>
+<div class="widget-box collapsible">
+    <div class="widget-title">
+        <a href="#collapseThree" data-toggle="collapse">
+			<span class="icon"><i class="icon-pencil"></i></span>
+                <h5><?=$this->translate('Действия с пользователем')?></h5>
+        </a>
+    </div>
+    <div class="collapse" id="collapseThree">
+        <div class="widget-content">
+                <?=$this->adminMassForm()->setMassActions(array('activate', 'deactivate', 'bind', 'unbind','delete', ))->adminMassForm('actions')?>
+        </div>
+    </div>
+</div>
+
+<div class="widget-box table">
+    <div class="widget-title"><h5><?=$this->translate('Список пользователей')?></h5>
+    <div class="buttons">
+        <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'edit', 'admin-user')?>" class="btn btn-mini">
+        <i class="icon-file"></i>
+        <?=$this->translate('New')?>
+        </a>        
+    </div>
+    </div>
+    <div class="widget-content nopadding"> 
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="table table-bordered table-striped table-hover table-no-external-border">
+      <tr>
+        <th width="50px"><?=$this->adminMassForm('checkAll')?></th>
+        <th><?=$this->translate('Image')?></th>
+        <th><?=$this->translate('Login')?></th>
+        <th><?=$this->translate('Name')?></th>
+        <th><?=$this->translate('Email')?></th>
+        <th><?=$this->translate('Role')?></th>
+        <th class="actions2" width="12%"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? foreach ($this->users as $row) { ?>
+      <tr >
+        <td> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+        <td>
+            <?if($row['rc_id_preview'] ){?>
+                <img src="<?=App_Resource::getUploadsUrl($row['rc_id_preview'])?>" alt=""/>
+            <?}?>
+        </td>
+        <td> <?=$row['login']?> </td>
+        <td><?=$row['name']?></td>
+        <td><?=$row['email']?></td>
+        <td><?=$row['role_name']?></td>
+        <td class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit')?>"><?=$this->translate('Edit')?></a>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete')?>"><?=$this->translate('Delete')?></a>
+            <? if ($row['binded_count'] > 1) { ?>
+                <br/>
+                <a href="<?=$this->stdUrl(array('binded_id'=>$row['id'], 'reset'=>TRUE), 'index', 'admin-user', 'kernel')?>"><?=$this->translate('Связанные (%1$s)', $row['binded_count']-1)?></a>
+            <? } ?>
+            /
+            <a href="<?=$this->stdUrl(array('id'=>$row['id']), 'history')?>">
+                <?=$this->translate('История изменений')?>
+            </a>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+<? } ?>
+
+
+    </table>
+
+</div>
+    <?=$this->paginationControl($this->users)?>
+    <?=$this->adminMassForm('formEnd')?>    
+</div>
+

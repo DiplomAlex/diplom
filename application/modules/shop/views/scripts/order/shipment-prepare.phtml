@@ -1,0 +1,68 @@
+<div id="ofzakaz">
+
+	<div class="ofzakaz_thanks">Пожалуйста, укажите данные, необходимые для оформления заказа</div>
+
+    <?=$this->paymentInfoHtml?>
+
+	<?=$this->shipmentFormHtml?>
+
+
+<?/*?>
+    <div class="ofzakaz_rakhunok">
+        <p>Счет № <?=$this->order->id?> от <?=$this->formatDate($this->order->date_added)?></p>
+    </div>
+    <div class="korz_div_top">
+        <div class="korz_div_body">
+            <div class="korz_table">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr class="korz_tbl_header">
+                        <td class="korz_col_1">#</td>
+                        <td class="korz_col_2">Наименование товара</td>
+                        <td class="korz_col_3">Цена</td>
+                        <td class="korz_col_4">Кол-во</td>
+                        <td class="korz_col_5">Сумма</td>
+                    </tr>
+                    <tr class="korz_separator">
+                        <td colspan="5"></td>
+                    </tr>
+                <? $i = 0 ?>
+                <? $totalQty = 0 ?>
+                <? foreach ($this->order->items as $item) { ?>
+                    <tr <?=$this->cycle(array('', 'class="korz_dark"'))?>>
+                        <td class="korz_col_1"><?=++$i?>.</td>
+                        <td class="korz_col_2"><a href="<?=$this->url(array('seo_id'=>$item['seo_id']), 'shop-item')?>"><?=$item['name']?></a><br><?=$this->order_ItemSpec($item)?></td>
+                        <td class="korz_col_3"><?=$this->order_Summ($item['price'])?></td>
+                        <td class="korz_col_4"><?=$item['qty']?></td>
+                        <td class="korz_col_5"><?=$this->order_Summ($item['price'] * $item['qty'])?></td>
+                    </tr>
+                    <? $totalQty += $item['qty'] ?>
+                <? } ?>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="korz_result">
+        <div class="korz_result_bottom">
+            <div class="korz_result_body">
+                <? $totals = $this->order_Total($this->order, FALSE, FALSE, 'shop') ?>
+                <p>Итого товаров <?=$totalQty?> единицы на сумму <b><?=$this->order_Summ($totals[0]['total'], FALSE)?></b> руб.</p>
+            </div>
+        </div>
+    </div>
+    <div class="ofzakaz_order_btn">
+        &nbsp; <a target="_blank" href="<?=$this->stdUrl(NULL, 'print', 'order', 'checkout')?>"><img alt="Распечатать" src="<?=$this->skin()->url()?>images/predzakaz/print.jpg" /></a>
+        &nbsp; <a href="<?=$this->url(array(), 'shop-cart-index')?>"><img alt="Изменить заказ" src="<?=$this->skin()->url()?>images/ofzakaz/change_order.jpg" /></a>
+        <!-- &nbsp; <a href=""><img alt="Оплатить с помощью Visa" src="<?=$this->skin()->url()?>images/ofzakaz/pay_with_visa.jpg" /></a-->
+    </div>
+<?*/?> 
+
+
+    <div class="predzakaz_attention">
+        <p><span>Уважаемый покупатель!</span><br /><br />Бесплатная доставка по Москве при заказе от 25.000 руб.<br />Отгрузка продукции произойдет не позднее трех дней после прихода денежных средств на расчетный счет продавца<br />Оплата: 100% предоплата</p>
+    </div>
+    <p class="predzakaz_att">При оплате счета Вы соглашаетесь с ценами поставщика и условиями доставки</p>
+</div>
+
+
+
+

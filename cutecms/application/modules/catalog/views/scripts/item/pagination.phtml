@@ -1,0 +1,31 @@
+
+<div id="pager-box-all">
+    <div id="pager-box" >
+
+<? if ($this->pageCount>1) { ?>
+        <div class="title"><?=$this->translate('Страницы')?>:</div>
+
+
+<!-- Нумерованные ссылки на страницы -->
+<? foreach ($this->pagesInRange as $page) { ?>
+  <? if ($page != $this->current) { ?>
+    <a class="page" href="<?= $this->url(array('page'=>$page)) ?>"><?=$page ?></a>
+  <? } else { ?>
+    <a class="page-act" href="<?= $this->url(array('page'=>$page)) ?>"><?=$page ?></a>
+  <? } ?>
+<? } ?>
+
+
+<!-- Ссылка на следующую страницу -->
+<? if (isset($this->next)) { ?>
+  <a class="page" href="<?= $this->url(array('page'=>$this->next)) ?>"> ... </a>
+<? } else { ?>
+  <?/*?><span class="disabled1"> &gt;</span> |<?*/?>
+<? } ?>
+
+<? } ?>
+
+    </div>
+</div>
+
+

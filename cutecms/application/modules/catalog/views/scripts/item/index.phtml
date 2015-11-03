@@ -1,0 +1,185 @@
+<? $uid = uniqid('form_item') ?>
+
+
+<? $this->headScript('SCRIPT', '
+
+    $(function(){
+        $("#'.$uid.' a.add-to-cart").click(function(e){
+            e.preventDefault();
+            $.post(this.href, $("#'.$uid.'").serialize(), function(data){
+                triggerGlobalEvent(EVENT_SHOPPING_CART_UPDATED);
+                alert("'.$this->translate('Товар добавлен в корзину').'");
+            });
+        });
+
+		function recalculateTotalSumm()
+		{
+			var qty = $("#qty", "#'.$uid.'").val();
+			var price = $("#price", "#'.$uid.'").val();
+			var summ = qty * price;
+			$("#result-summ", "#'.$uid.'").html("= '.$this->currency()->signPre.' "+summ.toFixed(2)+" '.$this->currency()->signPost.'");
+		}        
+        
+        $("#'.$uid.' a#qty-increase").click(function(e){
+        	e.preventDefault();
+        	var hid = $("#qty", "#'.$uid.'");
+        	var div = $("#qty-value", "#'.$uid.'");
+        	var val = hid.val();
+        	if (val < 100000) {
+        		val ++;
+        	}        
+        	hid.val(val);
+        	div.html(val);
+        	recalculateTotalSumm();
+        });
+
+        $("#'.$uid.' a#qty-decrease").click(function(e){
+        	e.preventDefault();
+        	var hid = $("#qty", "#'.$uid.'");
+        	var div = $("#qty-value", "#'.$uid.'");
+        	var val = hid.val();
+        	if (val > 1) {
+        		val --;
+        	}        
+        	hid.val(val);
+        	div.html(val);
+        	recalculateTotalSumm();
+        });
+        
+    });
+') ?>
+
+<?/*?>
+
+        <form id="<?=$uid?>">
+<div class="prod_page">
+  <h1><?=$this->item['name']?></h1>
+  <div class="content_wrapp">
+    <div class="info">
+      <div class="photo">
+        <?=$this->html_Img($this->item['rc_id_preview2'], 'width="180" height="141"')?>
+        <div class="zoom"><a href="<?=App_Resource::getUploadsUrl($this->item['rc_id_filename'])?>" target="_blank"><?=$this->translate('Увеличить')?></a></div>
+      </div>
+      <p class="price"><?=$this->item_Price($this->item)?></p>
+      <p class="in_stock"><?=$this->item_IsInStock($this->item)?></p>
+      <p><?=$this->translate('Краткие характеристики')?>:<br /><?=$this->item->brief?></p>
+      <p class="btn_buy">
+            <input type="hidden" name="qty" value="1">
+            <a  class="add-to-cart" href="<?=$this->stdUrl(array('id'=>$this->item->id), 'add-to-cart', 'item', 'catalog')?>"><img src="<?=$this->skin()->url()?>images/btn/buy.gif" alt="" width="92" height="32" border="0" /></a>
+    </p>
+    </div>
+    <div class="cleaner">&nbsp;</div>
+    <div>
+      <div id="tabsheet">
+        <ul>
+          <li><a href="#tabpage1"><span><?=$this->translate('Характеристики')?></span></a></li>
+          <li><a href="#tabpage2"><span><?=$this->translate('Описание')?></span></a></li>
+          <!--li><a href="#tabpage3"><span><?=$this->translate('Фотогалерея')?></span></a></li-->
+          <li><a href="#tabpage4"><span><?=$this->translate('Покупка/Доставка')?></span></a></li>
+        </ul>
+        <div id="tabpage1">
+          <h2><?=$this->item->name?></h2>
+          <ul>
+          <? foreach ($this->item->attributes as $attr) { ?>
+            <? if ($attr->status > 0) { ?>
+              <li><?=$this->attribute_Draw($attr)?></li>
+            <? } ?>
+          <? } ?>
+          </ul>
+        </div>
+        <div id="tabpage2">
+          <?=$this->item->full?>
+        </div>
+        <!--div id="tabpage3"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </div-->
+        <div id="tabpage4"> <?=$this->page_Content('delivery', TRUE)?> </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </form>
+********************************
+<?*/?>
+	        <div><img src="<?=$this->skin()->url()?>images/body/white-box-top-bg.png" width="746" height="10" border="0" /></div>
+<div class="inp-form-y">
+	<form  id="<?=$uid?>">
+	        <div class="white-box-y tovar">
+				<div class="padd">
+				  <h1><?=$this->item->name?></h1>
+					<!-- div class="hit tag-bott-25">хит продаж!</div -->
+					<div class="cleaner"></div>
+					<div id="images-coll">
+					<a href="<?=App_Resource::getUploadsUrl($this->item['rc_id_filename'])?>"><?=$this->html_Img($this->item['rc_id_preview2'], 'width="345" height="75"')?></a>
+					<div class="smalls">
+						<!--a href="#"><img src="<?=$this->skin()->url()?>images/examples/detail/preview-1.jpg" width="42" height="29" border="0" /></a><a href="#"><img src="images/examples/detail/preview-2.jpg" width="144" height="28" border="0" /></a><a href="#"><img src="images/examples/detail/preview-3.jpg" width="148" height="32" border="0" /></a-->
+						<div class="cleaner"></div>
+					</div>
+					<div id="zoom-box">
+					  <div id="box-int">
+					    <div class="link"><a href="<?=App_Resource::getUploadsUrl($this->item['rc_id_filename'])?>">Увеличить</a></div><div class="cleaner"></div>
+					    <!-- div class="button"><a href="#" >Добавить к сравнению</a></div -->
+				      </div>
+					</div>
+					<div class="cleaner"></div>
+				</div>
+				<div id="descript-coll" >
+					<p><?=$this->item->full?></p>
+
+                <? if ($this->item->attributes AND $this->item->attributes->count()) { ?>
+        
+    					<div class="props tag-bott-15">
+    						<ul >
+    					
+    		          <? foreach ($this->item->attributes as $attr) { ?>
+                		<? if (($attr->status > 0) AND ( ! $attr->isInputRequired())) { ?>
+                  			<li <?=$this->cycle(array('class="dark"', ''))->next()?>><?=$this->attribute_Draw($attr)?></li>
+                		<? } ?>
+              		  <? } ?>
+    					
+    						</ul>
+    					</div>
+    					
+    					<? foreach ($this->item->attributes as $attr) { ?>
+        	        		<? if (($attr->status > 0) AND $attr->isInputRequired()) { ?>
+        	        			<?=$this->attribute_Draw($attr)?>
+    	            		<? } ?>
+    					<? } ?>
+					
+				<? } ?>
+					
+					<div class="cleaner"></div>
+					
+				</div>
+			<div class="cleaner"></div>
+			<div class="row">
+					<div class="box-basket"><a href="<?=$this->stdUrl(array('id'=>$this->item->id), 'add-to-cart', 'item', 'catalog')?>" class="form-submit add-to-cart">В корзину </a></div>
+	                <div class="basket-link"><a href="<?=$this->stdUrl(array('id'=>$this->item->id), 'add-to-cart', 'item', 'catalog')?>" class="add-to-cart"><img src="<?=$this->skin()->url()?>images/body/icon-basket.gif" width="14" height="15" border="0" /></a></div>
+			<? $price = $this->item_Price($this->item, TRUE)?>	                
+					<div class="price" id="result-summ">= <?=$this->item_Price($price)?> </div>
+					<div class="count">
+					  <div class="inc-box">
+					  		<a href="#" class="left-link" id="qty-decrease">-</a>
+					  		<div class="text" id="qty-value">1</div>
+					  		<input type="hidden" name="qty" id="qty" value="1">
+					  		<a href="#" class="right-link" id="qty-increase">+</a><div class="cleaner"></div>
+					  </div>
+					</div>
+					<div class="price"><?=$this->item_Price($price)?></div>
+					<input type="hidden" id="price" value="<?=$price?>">
+					<? if ($this->item->old_price) { ?>
+				  		<div class="price-old"><?=$this->item_Price($this->item->old_price)?></div>
+				  	<? } ?>
+					
+					<div class="cleaner"></div>
+				</div>
+				</div>
+			<div class="cleaner"></div>
+			
+		    </div>
+
+	</form>
+</div>
+            <div class="tag-bott-25"><img src="<?=$this->skin()->url()?>images/body/white-box-bott-bg.png" width="746" height="10" border="0" /></div>
+            <?=$this->box_AlternateItems($this->item)?>
+	

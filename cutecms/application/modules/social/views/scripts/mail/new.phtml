@@ -1,0 +1,47 @@
+<p><?=$this->translate('Написать сообщение пользователю')?> <a href="<?=$this->url(array('login'=>$this->recipient->login), 'user_profile')?>"><?=$this->recipient->name?> (<?=$this->translate($this->recipient->acl_role)?>)</a></p>
+
+<? if ($this->success === TRUE) { ?>
+    <h2><?=$this->message?></h2>
+<? } else { ?>
+
+    <? if ($this->message) { ?>
+        <h2 style="color: red"><?=$this->message?></h2>
+    <? } ?>
+
+<? $errors = array_merge($this->form->getErrors(), $this->form->getErrorMessages()) ?>
+
+    <form id="form1" name="form1" method="post" action="<?=$this->form->getAction()?>">
+      <table cellspacing="0" class="tbl_edit">
+        <tr>
+          <td class="label" style="width: 96px;"><?=$this->translate('Тема сообщения')?></td>
+          <td class="value">
+            <? if ($errors['subject']) { ?>
+                <div class="red">
+                <?=$this->form->getElementErrorsFormatted('subject', $errors['subject'])?>
+                </div>
+            <? } ?>
+            <?=$this->form->subject?>
+          </td>
+        </tr>
+        <tr>
+          <td class="label" style="width: 96px;"><?=$this->translate('Текст сообщения')?></td>
+          <td class="value">
+            <? if ($errors['body']) { ?>
+                <div class="red">
+                <?=$this->form->getElementErrorsFormatted('body', $errors['body'])?>
+                </div>
+            <? } ?>
+            <?=$this->form->body?>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td class="value"><?=$this->form->send?></td>
+        </tr>
+      </table>
+      <?=$this->form->recipient_id?>
+      <?=$this->form->parent_id?>
+      <?=$this->form->talking?>
+    </form>
+
+<? } ?>

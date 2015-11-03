@@ -1,0 +1,24 @@
+<?=$this->translate('Кому')?>: <?=$this->recipient->email?> (<?=$this->recipient->firm_long?$this->recipient->firm_long:$this->recipient->name?>)
+
+<?=$this->translate('От')?>: <?=$this->sender->email?> (<?=$this->sender->name?>)
+
+<?='#'.$this->msg->id.' '.$this->msg->subject?>
+
+<?=$this->translate('Уведомление. Вам оставлено сообщение в разделе "Написать письмо".')?>
+
+<?=$this->translate('Менеджер')?>:
+    <?=$this->sender->name?>
+    <?=$this->sender->email?>
+    <?=$this->sender->phone?>
+
+<?=$this->msg->body?>
+
+<? $href = $this->host.$this->url(array('recipient_id'=>$this->sender->id, 'parent_id'=>$this->msg->id, 'authkey'=>$this->authKey), 'social_mail_new')?>
+
+<?=$this->translate('Для быстрого ответа, перейдите по этой ссылке')?>: <?=$href?>
+
+<?=$this->translate('Дополнительная информация')?>:
+<?=$this->translate('Если у Вас есть претензии по работе фирмы, плохому отношению менеджера, к отгрузке товара или другой проблеме, пишите в разделе "Претензия по отгрузкам".')?>
+
+<?=$this->translate('Спасибо')?>
+<?=$this->translate('Администрация веб сайта Bubblegum.ru')?>

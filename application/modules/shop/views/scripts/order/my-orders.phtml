@@ -1,0 +1,73 @@
+<div class="container">
+    <div id="content_left">
+		
+		<?=$this->box_Search()?>
+		<?=$this->menu(Shop_View_Helper_Menu::MENU_BREADCRUMBS)?>
+		
+        <div class="content_header">
+            <h1><?=$this->translate('Оформленные заказы')?>:</h1>
+        </div><!-- .content_header -->
+        <div class="cleaning">
+        </div><!-- .cleaning-->
+
+
+			<? if ($this->orders->count()) { ?>
+            <table id="ordering_table" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>№</td>
+                        <td>Дата</td>
+                        <td>Сумма</td>
+                        <td>Состояние</td>
+                        <td>Действия</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <? foreach ($this->orders as $order) { ?>    
+                    <tr>
+                        <td><?=$order->id?></td>
+                        <td class="title"><?=$this->formatDate($order->date_added, TRUE)?></td>
+                        <td class="price"><?=$this->order_Summ($order->total, $order->currency)?></td>
+                        <td><?=$this->order_Status($order)?></td>
+                        <td>
+    		                <a class="txt_blue" href="<?=$this->url(array('id'=>$order->id), 'shop-my_order')?>"><?=$this->translate('Просмотр')?></a>
+    		                <br/>
+    		                <a class="txt_blue" target="_blank" href="<?=$this->url(array('id'=>$order->id), 'shop-order-print')?>"><?=$this->translate('Печать')?></a>
+                    	</td>
+                    </tr>
+                    <? } ?>
+                </tbody>
+            </table>
+            
+            <? } else { ?>
+            
+            <table id="ordering_table" cellpadding="0" cellspacing="0" style="width: 960px">
+                <tfoot>
+                    <tr>
+                    	<td style="text-align: center"><?=$this->translate('У Вас нет оформленных заказов')?></td>
+                    </tr>
+                </tfoot>
+			</table>                
+            
+            <? } ?>                
+
+        
+        <div class="cleaning">
+        </div><!-- .cleaning-->
+        <? if ($this->orders->count()>1) { ?>
+            <?=$this->paginationControl($this->orders)?>            
+            <div class="cleaning">
+            </div><!-- .cleaning-->
+        <? } ?>
+
+    </div><!-- #content_left-->       
+
+</div><!-- .container-->
+
+<div class="sidebar_right">
+	<?=$this->box_News()?>
+	
+</div><!-- .sidebar_right -->
+
+

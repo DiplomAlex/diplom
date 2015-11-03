@@ -1,0 +1,33 @@
+<?=$this->translate('Check all')?><input type="checkbox" value="1" class="<?=$this->formId.'_check_all'?>"/>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.<?=$this->formId.'_check_all'?>').on('click', function(){
+                if ($(this).attr('checked') == 'checked'){
+                    $('input.mass-form-check').attr('checked', $(this).attr('checked'));
+                    $('input.mass-form-check').parent().addClass($(this).attr('checked'));
+                    
+                    $('.<?=$this->formId.'_check_all'?>').attr('checked', $(this).attr('checked'));
+                    $('.<?=$this->formId.'_check_all'?>').parent().addClass($(this).attr('checked'));
+                    
+                }else{
+                    $('input.mass-form-check').removeAttr('checked');
+                    $('input.mass-form-check').parent().removeClass('checked')
+                    
+                    $('.<?=$this->formId.'_check_all'?>').removeAttr('checked');
+                    $('.<?=$this->formId.'_check_all'?>').parent().removeClass('checked');
+                }
+            });
+            
+            $('.<?=$this->formId.'_check_all'?>').closest('tr').find('th').on('click', function(e){
+                e.stopPropagation();
+            });
+            
+            $('input.mass-form-check').on('click', function(){
+                 $('.<?=$this->formId.'_check_all'?>').removeAttr('checked');
+                 $('.<?=$this->formId.'_check_all'?>').parent().removeClass('checked')
+            })
+        });
+    </script>
+
+

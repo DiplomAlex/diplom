@@ -1,0 +1,97 @@
+                    <div class="white-box-top" >
+                        <div class="white-box-bottom">
+                          <div class="white-box-center">
+                            <div id="comments" >
+                              <div class="title-box" ><h2 ><?=$this->contentTitle?></h2>
+                                <!-- div class="input-box" ><input class="tracert-flag" name="" type="checkbox" value="" /></div>
+                                <div class="tracert-cheker" >Следить за этим товаром</div>
+                                <div class="cleaner"></div>
+                                <div id="tracert-form-box" >
+                                <form name="tracert_form" action="/" method="post">
+                                  <div class="tracert-y-back">
+                                    <div class="tracert-top-back">
+                                      <div class="tracert-bottom">
+                                        <div class="title" >Прислать письмо</div>
+                                        <div class="input-box"><input  name="new_request" type="checkbox" value="" /></div><div class="label" >когда появится новый отзыв</div>
+                                        <div class="cleaner"></div>
+                                        <div class="input-box"><input name="lower_price" type="checkbox" value="" /></div><div class="label">когда снизится цена</div>
+                                        <div class="cleaner"></div>
+                                        <div class="e_mail"><input name="" type="text" value="Эл. почта"/></div>
+                                        <div class="scarlet-link-right-19" >
+                                        <div class="scarlet-link-left-19"><a href="#" onclick="document.tracert_form.submit();">Ok</a></div>
+                                    </div>
+                                    <div class="cleaner"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+                                </div-->
+                                <div class="cleaner"></div>
+                              </div>
+                              <div class="left-box">
+                                    <div class="padd-box">
+                                    <form name="comments" action="<?=$this->postUrl?>" enctype="multipart/form-data" method="post">
+                                        <input type="hidden" name="goto" value="<?=$this->afterPostRedirectUrl?>">
+                                        <input type="hidden" name="contentType" value="<?=$this->contentType?>">
+                                        <input type="hidden" name="contentId" value="<?=$this->contentId?>">
+                                        <div class="request-box-form" >
+                                            <div class="title">Ваше имя</div>
+                                            <div class="input-text"><input name="name" type="text" /></div>
+                                            <div class="title">Ваше адрес эл. почты (только для нас)</div>
+                                            <div class="input-text"><input name="email" type="text" /></div>
+                                            <!--div class="title">Оценка товара</div>
+                                            <div class="stars"><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/red-star.gif" width="20" height="20" border="0" /></a><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/red-star.gif" width="20" height="20" border="0" /></a><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/red-star.gif" width="20" height="20" border="0" /></a><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/grey-star.gif" width="20" height="20" border="0" /></a><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/grey-star.gif" width="20" height="20" border="0" /></a></div-->
+                                            <div class="title">Отзыв</div>
+                                            <div class="area"><textarea name="text" cols="" rows=""></textarea></div>
+                                            <!--div class="title">Добавить фотографию</div>
+                                            <div class="file"><input type="file" /></div>
+                                            <div class="buttons"><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/add-button.gif" width="23" height="19" border="0" /></a><a href="#"><img src="<?=$this->skin()->url()?>images/request-form/comments-form/dec-button.gif" width="23" height="19" border="0" /></a></div-->
+                                            <div class="scarlet-link-right-19">
+                                                <div class="scarlet-link-left-19"><a href="#" onclick="document.comments.submit();return false;" >Отправить</a></div>
+                                            </div>
+                                            <div class="cleaner"></div>
+                                            <!--p>Если ваш вопрос не связан с характеристиками и свойствами этой модели торгового автомата, воспользуйтесь, пожалуйста, <a href="#">формой обратной связи.</a></p-->
+                                        </div>  
+                                        </form>
+                                    </div>
+                              </div>
+                              <div class="right-box" >
+                                <div class="padd-box">
+                                      <!-- div class="gray-link-right">
+                                        <div class="gray-link-left"><a href="#" >Описания</a></div>
+                                      </div>
+                                      <div class="scarlet-link-right-19">
+                                        <div class="scarlet-link-left-19"><a href="#">Отзывы и фотографии</a></div>
+                                      </div -->
+                                        <div class="cleaner"></div>
+                                    <br />
+                                    <br />
+                                    
+<? foreach ($this->comments as $comment) { ?>
+<div class="comm-item">
+    <div class="left-coll">
+        <h2 ><?=$comment->adder_name?></h2><span><?=$this->formatDate($comment->date_added, TRUE)?></span>
+    </div>
+    <div class="comm-table-y">
+        <div class="comm-table-top">
+            <div class="comm-table-bottom">
+                <? if ( ! empty($comment->subject)) { ?>
+                    <p><strong><?=$comment->subject?></strong></p>                    
+                <? } ?>
+                <p><?=$comment->text?></p>
+                <div class="cleaner"></div>
+            </div>
+        </div>
+    </div>
+    <div class="cleaner"></div>
+</div>
+<? } ?>
+
+                                </div>
+                                <div class="cleaner"></div>
+                              </div>
+                                <div class="cleaner"></div>
+                            </div>
+</div>
+                        </div>
+                    </div>

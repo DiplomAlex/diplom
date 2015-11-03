@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<brules>
+	<total>
+		<rawTotalSumm>
+			<class>Checkout_Model_Service_Helper_Brule_Total_TotalSumm</class>
+			<active>1</active>
+			<title>
+				<en><![CDATA[Total]]></en>
+				<ru><![CDATA[Итого]]></ru>
+				<ua><![CDATA[Всього]]></ua>
+			</title>
+		</rawTotalSumm>
+		<discountBySumm>
+			<class>Checkout_Model_Service_Helper_Brule_Total_DiscountBySumm</class>
+			<active>0</active>
+			<title>
+				<en><![CDATA[Discount by summ]]></en>
+				<ru><![CDATA[Скидка от суммы]]></ru>
+				<ua><![CDATA[Знижка від суми]]></ua>
+			</title>
+		</discountBySumm>
+		<discountByQty>
+			<class>Checkout_Model_Service_Helper_Brule_Total_DiscountByQty</class>
+			<active>0</active>
+			<title>
+				<en><![CDATA[Discount by quantity]]></en>
+				<ru><![CDATA[Скидка от количества]]></ru>
+				<ua><![CDATA[Знижка від кількості]]></ua>
+			</title>
+		</discountByQty>
+		<shipment>
+			<class>Checkout_Model_Service_Helper_Brule_Total_Shipment</class>
+			<active>0</active>
+			<title>
+				<en><![CDATA[Shipment value]]></en>
+				<ru><![CDATA[Стоимость доставки]]></ru>
+				<ua><![CDATA[Вартість доставки]]></ua>
+			</title>
+		</shipment>
+		<totalSumm>
+			<class>Checkout_Model_Service_Helper_Brule_Total_TotalSumm</class>
+			<active>0</active>
+			<title>
+				<en><![CDATA[To payment]]></en>
+				<ru><![CDATA[К оплате]]></ru>
+				<ua><![CDATA[До сплати]]></ua>
+			</title>
+		</totalSumm>
+	</total>
+
+	<shipment>
+		<transport>
+			<active>1</active>
+			<classModel>Checkout_Model_Service_Helper_Brule_Shipment_Transport</classModel>
+			<classController>Checkout_Controller_Action_Helper_Shipment_Transport</classController>
+			<title>
+				<en><![CDATA[Transport company]]></en>
+				<ru><![CDATA[Транспортная компания]]></ru>
+				<ua><![CDATA[Транспортна компанія]]></ua>
+			</title>
+			<description>
+				<en><![CDATA[]]></en>
+				<ru><![CDATA[]]></ru>
+				<ua><![CDATA[]]></ua>
+			</description>			
+			<seller_requisites>
+				<id></id>
+				<name></name>
+				<address></address>
+				<city></city>
+				<region></region>
+				<country></country>
+				<zip></zip>
+				<inn></inn>
+				<kpp></kpp>
+				<phone></phone>
+			</seller_requisites>
+			<client_requisites>
+				<id></id>
+				<name></name>
+				<address></address>
+				<city></city>
+				<region></region>
+				<country></country>
+				<zip></zip>
+				<inn></inn>
+				<kpp></kpp>
+				<phone></phone>
+			</client_requisites>
+			<params></params>
+			<allowed_payments>
+				<bank/>
+			</allowed_payments>
+		</transport>
+	</shipment>
+		
+	<payment>
+		<bank>
+			<active>1</active>
+			<classModel>Checkout_Model_Service_Helper_Brule_Payment_Bank</classModel>
+			<classController>Checkout_Controller_Action_Helper_Payment_Bank</classController>
+			<title>
+				<en><![CDATA[Bank]]></en>
+				<ru><![CDATA[Банк]]></ru>
+				<ua><![CDATA[Банк]]></ua>
+			</title>
+			<description>
+				<en><![CDATA[]]></en>
+				<ru><![CDATA[]]></ru>
+				<ua><![CDATA[]]></ua>
+			</description>			
+			<seller_requisites>
+				<id></id>
+				<name></name>
+				<address></address>
+				<city></city>
+				<region></region>
+				<country></country>
+				<zip></zip>
+				<inn></inn>
+				<kpp></kpp>
+				<rs></rs>
+				<ks></ks>
+				<bik></bik>
+				<bank></bank>
+				<phone></phone>
+			</seller_requisites>
+			<client_requisites>
+				<id></id>
+				<name></name>
+				<address></address>
+				<city></city>
+				<region></region>
+				<country></country>
+				<zip></zip>
+				<inn></inn>
+				<kpp></kpp>
+				<rs></rs>
+				<ks></ks>
+				<bank></bank>
+				<bik></bik>
+				<phone></phone>
+			</client_requisites>
+			<params></params>
+			<allowed_shipments>
+				<transport/>
+			</allowed_shipments>
+		</bank>
+	</payment>
+	
+</brules>

@@ -1,0 +1,8 @@
+
+<? foreach ($this->data as $row) { ?>
+    <div>
+    	<span><?=($row['title']?$row['title'].' :':'')?></span>
+    	<span><?=$this->order_Summ($row['summ'], $this->order->currency)?></span>
+    	<div class="cleaner"></div>
+    </div>
+<? } ?>

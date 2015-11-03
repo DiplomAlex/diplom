@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <?=$this->headTitle()?>
+  <?=$this->headMeta()?>
+
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'blank.css')) ?>
+
+  <?=$this->headLink()?>
+  <?=$this->headScript()?>
+</head>
+
+<body class="body">
+<div id="container">
+    <?=$this->layout()->content?>
+</div>
+</body>
+</html>

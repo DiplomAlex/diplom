@@ -1,0 +1,16 @@
+<div class="index_cart">
+	<div class="title_h3">
+		<h3>Cпасибо! Заказ успешно подтвержден. </h3>
+	</div>
+	<h2>Наши менеджеры свяжутся с вами для уточнения адресса и сроков доставки.</h2>
+	<div id="order_print">
+		<p>Для удобства, Вы можете распечатать Ваш заказ.</p>
+		<img src="<?=$this->skin()->url()?>images/button_print.jpg" style="cursor:hand" onclick="window.open('<?=$this->url(array(), 'shop-order-print')?>', 'popup', 'toolbar=0, width=840, height=600')" />
+	</div>
+	<form id="order" name="order" action="<?=$this->url(array(), 'shop-cart-index')?>" method="post">
+		<input type="image" src="<?=$this->skin()->url()?>/images/button_continue.jpg" alt="Продолжить" title=" Продолжить " class="button" />
+	</form>
+	
+	<?//=$this->box_QIWIForm();?>
+	<?=$this->box_ROBOKASSAForm();?>
+ </div>

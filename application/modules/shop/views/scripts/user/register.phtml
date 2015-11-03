@@ -1,0 +1,19 @@
+<div class="mcol">
+	<? if ($this->success === TRUE) { ?>
+		<div class="mcol">
+			<div class="title_h3">
+				<h3>Поздравляем!</h3>
+			</div>
+			<div class="mcol_h2">
+				<h2>Вы успешно зарегестрированы! Можете войти под своим Email!</h2>
+			</div>
+		</div>
+	<?}else{?>
+		<div class="title_h3">
+			<h3>Регистрация</h3>
+		</div>
+		<span class="inputRequirementTitle">поля, отмеченные *, обязательны для заполнения</span>
+		<?=$this->renderForm($this->form)?>
+	<?}?>
+</div>
+

@@ -1,0 +1,349 @@
+<?xml version="1.0"?>
+<routes>
+
+<!-- * shop module * -->
+
+            <shop-index>
+                <type>Zend_Controller_Router_Route</type>
+                <route></route>
+                <defaults module="shop" controller="index" action="index" page=""/>
+            </shop-index>
+            <shop-sitemap>
+                <type>Zend_Controller_Router_Route</type>
+                <route>sitemap</route>
+                <defaults module="shop" controller="index" action="sitemap" />
+                <reverse>sitemap</reverse>
+            </shop-sitemap>
+            <shop-ajax-add-subscribers>
+                <type>Zend_Controller_Router_Route</type>
+                <route>ajax-add-subscribers/*</route>
+                <defaults module="shop" controller="index" action="ajax-add-subscribers" />
+            </shop-ajax-add-subscribers>
+            
+            <shop-catalog>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>catalog-([a-zA-Z0-9\-\_]+)</route>
+                <defaults module="shop" controller="catalog" action="index" seo_id=""/>
+                <map seo_id="1" />
+                <reverse>catalog-%s</reverse>
+            </shop-catalog>
+            <shop-item>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>category/([a-zA-Z0-9\-\_]*)/item/([a-zA-Z0-9\-\_]+)</route>
+                <defaults module="shop" controller="catalog" action="item" category="" seo_id=""/>
+                <map category="1" seo_id="2" />
+                <reverse>category/%s/item/%s</reverse>
+            </shop-item>
+            <shop-exclusive>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>exclusive/([a-zA-Z0-9\-\_]+)</route>
+                <defaults module="shop" controller="catalog" action="exclusive" seo_id=""/>
+                <map seo_id="1" />
+                <reverse>exclusive/%s</reverse>
+            </shop-exclusive>
+            <shop-search>
+                <type>Zend_Controller_Router_Route</type>
+                <route>search/*</route>
+                <defaults module="shop" controller="search" action="index"/>
+            </shop-search>
+            <shop-ajax-get-next-items>
+                <type>Zend_Controller_Router_Route</type>
+                <route>shop-ajax-get-next-items/*</route>
+                <defaults module="shop" controller="catalog" action="ajax-get-next-items"/>
+            </shop-ajax-get-next-items>
+            
+            <shop-pressroom>
+                <type>Zend_Controller_Router_Route</type>
+                <route>pressroom</route>
+                <defaults module="shop" controller="news" action="pressroom" />
+                <reverse>pressroom</reverse>
+            </shop-pressroom>
+            
+            <ajax-pressroom-full>
+                <type>Zend_Controller_Router_Route</type>
+                <route>pressroom-full</route>
+                <defaults module="shop" controller="news" action="ajax-pressroom-full" />
+            </ajax-pressroom-full>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <shop-search-attr>
+                <type>Zend_Controller_Router_Route</type>
+                <route>search-attr/*</route>
+                <defaults module="shop" controller="catalog" action="search-attr"/>
+            </shop-search-attr>
+		    <shop-page>
+		        <type>App_Controller_Router_Route_Regex</type>
+		        <route>page/([a-zA-Z0-9\-\_]+)</route>
+		        <defaults module="shop" controller="page" action="detailed" seo_id=""/>
+		        <map seo_id="1" />
+		        <reverse>page/%s</reverse>
+		    </shop-page>
+
+            <shop-my_cabinet>
+	            <type>Zend_Controller_Router_Route</type>
+	            <route>my-cabinet</route>
+	            <defaults module="shop" controller="my-cabinet" action="index"/>
+            </shop-my_cabinet>
+			<shop-my_cabinet-persons>
+	            <type>Zend_Controller_Router_Route</type>
+	            <route>my-cabinet-change-info</route>
+	            <defaults module="shop" controller="my-cabinet" action="persons"/>
+            </shop-my_cabinet-persons>
+			<shop-my_cabinet-persons-save>
+	            <type>Zend_Controller_Router_Route</type>
+	            <route>my-cabinet-change-info-save</route>
+	            <defaults module="shop" controller="my-cabinet" action="personssave"/>
+            </shop-my_cabinet-persons-save>
+			<shop-my_cabinet-changepassword>
+	            <type>Zend_Controller_Router_Route</type>
+	            <route>my-cabinet-changepassword</route>
+	            <defaults module="shop" controller="my-cabinet" action="changepassword"/>
+            </shop-my_cabinet-changepassword>
+            <shop-item-detailed>
+	            <type>Zend_Controller_Router_Route</type>
+	            <route>item-detailed/:seo_id</route>
+	            <defaults module="shop" controller="catalog" action="detailed" seo_id="" />
+            </shop-item-detailed>            
+            <shop-category>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>c(\d*)\-([a-zA-Z0-9\-_\.]+)\-(\d*)</route>
+                <defaults module="shop" controller="catalog" action="list" page="" sort="" />
+                <map seo_id="2" page="1" sort="3"/>
+                <reverse>c%s-%s-%s</reverse>
+            </shop-category>
+            
+            <shop-actions>
+                <type>Zend_Controller_Router_Route</type>
+                <route>actions/:page</route>
+                <defaults module="shop" controller="catalog" action="actions" page=""/>
+            </shop-actions>
+            <shop-price_xls>
+                <type>Zend_Controller_Router_Route</type>
+                <route>price-list.xls</route>
+                <defaults module="shop" controller="catalog" action="price-list-xls" />
+            </shop-price_xls>
+            <shop-manufacturers>
+                <type>Zend_Controller_Router_Route</type>
+                <route>manufacturers.html</route>
+                <defaults module="shop" controller="catalog" action="manufacturer-all" page=""/>
+            </shop-manufacturers>            
+            <shop-manufacturer>
+                <type>Zend_Controller_Router_Route</type>
+                <route>manufacturer/:id</route>
+                <defaults module="shop" controller="catalog" action="manufacturer" />
+            </shop-manufacturer>            
+
+            <shop-articles>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>articles(/([a-zA-Z0-9\-_\.]+))?</route>
+                <defaults module="shop" controller="article" action="index" seo_id=""/>
+                <map seo_id="2" />
+                <reverse>articles/%s</reverse>
+            </shop-articles>
+            <shop-article>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>article/([a-zA-Z0-9\-_\.]+)</route>
+                <defaults module="shop" controller="article" action="detailed"/>
+                <map seo_id="1" />
+                <reverse>article/%s</reverse>
+            </shop-article>
+
+            <shop-auth>
+                <type>Zend_Controller_Router_Route</type>
+                <route>auth</route>
+                <defaults module="shop" controller="auth" />
+                <chains>
+                    <login>
+                        <type>Zend_Controller_Router_Route</type>
+                        <route>login/*</route>
+                        <defaults action="login"/>
+                    </login>
+                    <logout>
+                        <type>Zend_Controller_Router_Route</type>
+                        <route>logout</route>
+                        <defaults action="logout"/>
+                    </logout>
+                    <forgot_password>
+                        <type>Zend_Controller_Router_Route</type>
+                        <route>forgot</route>
+                        <defaults action="forgot-password"/>
+                    </forgot_password>
+                </chains>
+            </shop-auth>
+
+            <shop-user>
+                <type>Zend_Controller_Router_Route</type>
+                <route>user</route>
+                <defaults module="shop" controller="user" />
+                <chains>
+                    <register>
+                        <type>Zend_Controller_Router_Route</type>
+                        <route>register</route>
+                        <defaults action="register"/>
+                    </register>
+                    <change-language>
+                        <type>Zend_Controller_Router_Route</type>
+                        <route>change-language/*</route>
+                        <defaults action="change-language"/>
+                    </change-language>
+                </chains>
+            </shop-user>
+
+		    <shop-cart>
+		        <type>Zend_Controller_Router_Route</type>
+		        <route>cart</route>
+		        <defaults module="shop" controller="cart" />
+		        <chains>
+		            <index>
+		                <type>Zend_Controller_Router_Route</type>
+		                <route>index</route>
+		                <defaults action="index"/>
+		                <reverse>index</reverse>
+		            </index>
+	                <add>
+    	                 <type>Zend_Controller_Router_Route</type>
+	                     <route>add/*</route>
+	                     <defaults action="add-to-cart" />
+		            </add>
+		            <ajax-get-cart-box>
+    	                 <type>Zend_Controller_Router_Route</type>
+	                     <route>ajax-get-cart-box/*</route>
+	                     <defaults action="ajax-get-cart-box" />
+		            </ajax-get-cart-box>
+		            <clean>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>clean</route>
+                         <defaults action="clean" />
+		            </clean>
+                    <delete>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>delete/*</route>
+                         <defaults action="delete" />
+                    </delete>
+                    <recalculate>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>recalculate</route>
+                         <defaults action="recalculate" />
+                    </recalculate>
+		        </chains>
+		    </shop-cart>
+
+            <shop-order>
+                <type>Zend_Controller_Router_Route</type>
+                <route>order</route>
+                <defaults module="shop" controller="order" />
+                <chains>
+                    <preorder>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>preorder/*</route>
+                         <defaults action="preorder" />
+                    </preorder>
+                    <start>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>start</route>
+                         <defaults action="start" />
+                    </start>
+					<status>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>status</route>
+                         <defaults action="status" />
+                    </status>
+                    <cancel>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>cancel</route>
+                         <defaults action="cancel" />
+                    </cancel>
+                    <shipment>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>shipment</route>
+                         <defaults action="shipment" />
+                    </shipment>
+                    <shipment-prepare>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>shipment-prepare</route>
+                         <defaults action="shipment-prepare" />
+                    </shipment-prepare>
+                    <shipment-prepare-ajax>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>shipment-prepare-ajax/*</route>
+                         <defaults action="shipment-prepare-ajax" />
+                    </shipment-prepare-ajax>
+                    <payment>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>payment</route>
+                         <defaults action="payment" />
+                    </payment>
+                    <payment-prepare>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>payment-prepare</route>
+                         <defaults action="payment-prepare" />
+                    </payment-prepare>
+                    <payment-prepare-ajax>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>payment-prepare-ajax/*</route>
+                         <defaults action="payment-prepare-ajax" />
+                    </payment-prepare-ajax>
+                    <payment-process>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>payment-process</route>
+                         <defaults action="payment-process" />
+                    </payment-process>
+                    <quick>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>quick/*</route>
+                         <defaults action="quick" />
+                    </quick>
+                    <confirm>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>confirm</route>
+                         <defaults action="confirm" />
+                    </confirm>
+                    <finish>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>finish</route>
+                         <defaults action="finish" />
+                    </finish>
+                    <print>
+                         <type>Zend_Controller_Router_Route</type>
+                         <route>print/*</route>
+                         <defaults action="print" />
+                    </print>
+                </chains>
+            </shop-order>
+
+            <shop-my_orders>
+                <type>Zend_Controller_Router_Route</type>
+                <route>my-orders/*</route>
+                <defaults module="shop" controller="order" action="my-orders" />
+            </shop-my_orders>
+            <shop-my_order>
+                <type>Zend_Controller_Router_Route</type>
+                <route>my-order-view/*</route>
+                <defaults module="shop" controller="order" action="my-order-view" />
+            </shop-my_order>
+
+            <shop-news-full>
+                <type>Zend_Controller_Router_Route</type>
+                <route>news/:page</route>
+                <defaults module="shop" controller="news" action="news-full" />
+            </shop-news-full>
+
+         	<shop-news-topic>
+                <type>App_Controller_Router_Route_Regex</type>
+                <route>news-topic-(\d+)</route>
+                <defaults module="shop" controller="news" action="topic" />
+                <map topic_id="1" />
+                <reverse>news-topic-%s</reverse>
+         	</shop-news-topic>
+
+</routes>

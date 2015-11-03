@@ -1,0 +1,15 @@
+<div class="text_page">
+  <h2><?=$this->translate('Регистрация')?></h2>
+  <div class="content_wrapp">
+
+<? if ($this->success === TRUE) { ?>
+    <p>Регистрация успешно завершена. <br>
+    Вы вошли на сайт под именем <?=$this->user['name']?> (логин: <?=$this->user['login']?>).<br>
+    Используйте меню для навигации.</p>
+<? } else { ?>
+    <?=$this->renderForm($this->form, 'front_form.phtml')?>
+    <? $this->jquery_Datepicker('dob') ?>
+<? } ?>
+
+  </div>
+</div>

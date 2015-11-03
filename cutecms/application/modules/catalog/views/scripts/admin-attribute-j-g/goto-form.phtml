@@ -1,0 +1,7 @@
+<form action="<?=$this->stdUrl(array('id'=>NULL, 'page'=>NULL, 'group'=>NULL), 'index')?>" method="GET">
+    <select name="group" onchange="this.form.submit();">
+        <? foreach ($this->options as $key=>$val) { ?>
+            <option value="<?=$key?>" <?=($this->group==$key?'selected="TRUE"':'')?>><?=$val?></option>
+        <? } ?>
+    </select>
+</form>

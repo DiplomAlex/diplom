@@ -1,0 +1,39 @@
+<h2><?=$this->translate('Advert categories list')?></h2>
+
+<?=$this->adminMassForm('formStart')?>
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th><?=$this->translate('Sort')?></th>
+        <th><?=$this->translate('Title')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? foreach ($this->categories as $row) { ?>
+      <tr >
+        <td> <?=$this->adminListSorting(array('id'=>$row['id'], 'action'=>'sorting'))?></td>
+        <td> <?=$row['name']?> <?=$row['advert_count']?'('.$row['advert_count'].')':''?></td>
+        <td class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit')?>"><?=$this->translate('Edit')?></a>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete')?>"><?=$this->translate('Delete')?></a>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+<? } ?>
+
+
+    </table>
+
+
+    <?=$this->adminMassForm('formEnd')?>
+
+    <?=$this->paginationControl($this->categories)?>
+
+
+  <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'edit', 'admin-advert-category', 'social')?>" class="btn2"><?=$this->translate('New')?></a>
+
+

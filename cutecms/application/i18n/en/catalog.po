@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-20 00:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ru <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: controllers/AdminAttributeController.php:61
+#: controllers/AdminAttributeGroupController.php:94
+#: controllers/AdminCategoryController.php:97
+#: controllers/AdminItemController.php:50
+msgid "No rows were selected for mass action"
+msgstr "Не выбраны строки"
+
+msgid "Название"
+msgstr "Name"
+
+msgid "Новинка"
+msgstr "New"
+
+msgid "Сайты для привязки"
+msgstr "Sites for binding"
+
+msgid "Комментарии"
+msgstr "Comments"
+
+msgid "Товары"
+msgstr "Items"
+
+msgid "Краткий код"
+msgstr "Short code"
+
+msgid "Ед. изм."
+msgstr "Unit of measurement"
+
+msgid "Количество на складе"
+msgstr "Quantity in stock"
+
+msgid "Производитель"
+msgstr "Manufacturer"
+
+msgid "Бестселлер"
+msgstr "Best-seller"
+
+msgid "Дополнительно"
+msgstr "Additionally"
+
+msgid "Цена-Клиент"
+msgstr "Price-Client"
+
+msgid "Цена-Опт"
+msgstr "Price-Wholesale"
+
+msgid "Цена-Дилер"
+msgstr "Price-Dealer"
+
+msgid "Бизнес-правила"
+msgstr "Business Rules"
+
+msgid "Создать"
+msgstr "Create"
+
+msgid "Выбрать атрибуты из набора"
+msgstr "Select attributes from a set"
+
+msgid "Галерея"
+msgstr "Gallery"
+
+msgid "Категории"
+msgstr "Categories"
+
+msgid "Название категории"
+msgstr "Category name"
+
+msgid "Изображение"
+msgstr "Image"
+
+msgid "Тип"
+msgstr "Type"
+
+msgid "Значение по-умолчанию"
+msgstr "Default value"
+
+msgid "Атрибуты"
+msgstr "Attributes"
+
+msgid "Варианты значений"
+msgstr "Variants of values"
+
+msgid "Наборы атрибутов"
+msgstr "Attributes sets"
+
+msgid "Название набора"
+msgstr "Set name"
+
+msgid "Производители"
+msgstr "Manufacturers"
+
+msgid "Описание"
+msgstr "Description"
+
+msgid "Новый производитель"
+msgstr "New manufacturer"
+
+msgid "Удаление производителя"
+msgstr "Delete manufacturer"
+
+msgid "Вы действительно хотите удалить этого производителя:\"%1$s (%2$s)\""
+msgstr "Do you really want to delete this manufacturer:\"%1$s (%2$s)\""
+
+msgid "Значение"
+msgstr "Value"
+
+msgid "Параметр"
+msgstr "Parameter"
+
+msgid "Общие параметры"
+msgstr "General options"
+
+msgid "Описания"
+msgstr "Descriptions"
+
+msgid "Цены"
+msgstr "Prices"
+
+msgid "Аттрибуты"
+msgstr "Attributes"
+
+msgid "Правило"
+msgstr "Rule"
+
+msgid "Параметр 1"
+msgstr "Parameter 1"
+
+msgid "Параметр 2"
+msgstr "Parameter 2"
+
+msgid "Параметр 3"
+msgstr "Parameter 3"
+
+msgid "Результаты поиска \"%2$s\":"
+msgstr "Search results \"%2$s\":"
+
+msgid "Старая цена"
+msgstr "Old price"
+
+msgid "Дизайн"
+msgstr "Design"
+
+msgid "Родительская категория"
+msgstr "Parent category"
+
+msgid "Логотип"
+msgstr "Logo"
+
+msgid "Белый"
+msgstr "White"
+
+msgid "Черный"
+msgstr "Black"
+
+msgid "да"
+msgstr "yes"
+
+msgid "В этой категории пока ничего нет"
+msgstr "There are nothing in the category"

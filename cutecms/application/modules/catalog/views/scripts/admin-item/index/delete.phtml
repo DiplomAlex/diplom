@@ -1,0 +1,5 @@
+<? $this->pageTitle($this->translate('Delete item')); ?>
+<div class="delete_question"><h5>
+<?=$this->translate('Do you really want do delete this item:"%1$s"', $this->item->name)?>?
+</h5></div>
+<?=$this->renderForm($this->form)?>

@@ -1,0 +1,75 @@
+<? $this->pageTitle($this->translate('Наборы атрибутов')); ?>
+
+<?= $this->gotoHtml ?>
+<?= $this->adminMassForm('formStart') ?>
+
+<div class="widget-box collapsible">
+    <div class="widget-title">
+        <a href="#collapseThree" data-toggle="collapse">
+            <span class="icon"><i class="icon-pencil"></i></span>
+            <h5><?= $this->translate('Действия с наборами атрибутов') ?></h5>
+        </a>
+    </div>
+    <div class="collapse" id="collapseThree">
+        <div class="widget-content">
+            <?= $this->adminMassForm('actions', $this->massActionsConfig) ?>
+        </div>
+    </div>
+</div>
+
+<div class="widget-box table">
+    <div class="widget-title"><h5><?= $this->translate('Список наборов') ?></h5>
+        <div class="buttons">
+            <a href="<?= $this->stdUrl(array('reset' => true, 'parent' => $this->parent), 'edit', 'admin-attribute-group', 'catalog') ?>" class="btn btn-mini">
+                <i class="icon-file"></i>
+                <?= $this->translate('New') ?>
+            </a>
+        </div>
+    </div>
+    <div class="widget-content nopadding">  
+        <table cellspacing="0" class="table table-bordered table-striped table-hover table-no-external-border">
+            <tr>
+                <th width="50px"><?= $this->adminMassForm('checkAll') ?></th>
+                <th><?= $this->translate('Sorting') ?></th>
+                <th><?= $this->translate('Название набора') ?></th>
+                <th><?= $this->translate('Image') ?></th>
+                <th class="actions2"><?= $this->translate('Actions') ?></th>
+            </tr>
+            <? if ($this->groups->count()) { ?>
+                <? $i = 0 ?>
+                <? foreach ($this->groups as $row) { ?>
+                    <tr >
+                        <td><?= $this->adminMassForm('check', array('id' => $row['id'])) ?> </td>
+                        <td><?= $this->adminListSorting(array('id' => $row['id'], 'action' => 'sorting')) ?></td>
+                        <td>
+                            <a href="<?= $this->stdUrl(array('page' => null, 'parent' => $row['id']), 'index', 'admin-attribute-group', 'catalog') ?>">
+                                <?= $row['name'] ?>
+                            </a>
+                            <? if ($row['children_count']) { ?>
+                                (<?= $row['children_count'] ?>)
+                            <? } ?>
+                        </td>
+                        <td> <?= $this->html_Img($row['rc_id_preview']) ?><br /></td>
+                        <td class="actions2">
+                            <a class="act_edit" href="<?= $this->stdUrl(array('id' => $row['id']), 'edit', 'admin-attribute-group', 'catalog') ?>"><?= $this->translate('Edit') ?></a>
+                            /
+                            <a class="act_delete" href="<?= $this->stdUrl(array('id' => $row['id']), 'delete', 'admin-attribute-group', 'catalog') ?>"><?= $this->translate('Delete') ?></a>
+                            <br/>
+                            <a href="<?= $this->stdUrl(array('group' => $row['id']), 'index', 'admin-attribute') ?>"><?= $this->translate('Атрибуты') ?><? if ($row['attribute_count']) echo ' (' . $row['attribute_count'] . ')'; ?></a>
+                        </td>
+                    </tr>
+                    <? ++$i ?>
+                <? } ?>
+            <? } else { ?>
+                <tr>
+                    <td colspan="6">
+                        <?= $this->translate('В этом наборе пока ничего нет') ?>
+                    </td>
+                </tr>
+            <? } ?>
+        </table>
+    </div>
+
+    <?= $this->adminMassForm('formEnd') ?>
+    <?= $this->paginationControl($this->groups) ?>
+</div>

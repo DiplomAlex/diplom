@@ -1,0 +1,18 @@
+function(id){
+    var rowData = jQuery(gridSelector).getRowData(id);
+    var subgrid = jQuery("#"+jQuery("#items_for_sub_wrap").data("subgridId"));
+    var subgrid_row = jQuery("#items_for_sub_wrap").data("subrowId");
+    var grid_row = jQuery("#items_for_sub_wrap").data("rowId");
+    
+        
+    subgrid.setCell(subgrid_row, "item_id", id);
+    subgrid.setCell(subgrid_row, "sku", rowData.sku);
+    subgrid.setCell(subgrid_row, "spec_as_html", rowData.spec_as_html);
+    subgrid.setCell(subgrid_row, "price", rowData.price);
+    
+    
+    subgrid.saveRow(subgrid_row, null, null, {row_id: grid_row, id: subgrid_row, item_id: id, sku: rowData.sku, spec_as_html: rowData.spec_as_html, price: rowData.price});
+    jQuery("#items_for_sub_wrap").hide();
+    jQuery("#bundles").collapseSubGridRow(grid_row);
+    jQuery("#bundles").expandSubGridRow(grid_row);
+}

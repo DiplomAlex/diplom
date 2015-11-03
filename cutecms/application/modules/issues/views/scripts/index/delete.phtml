@@ -1,0 +1,5 @@
+<h2><?=$this->translate('Удаление задачи')?></h2>
+
+<?=$this->translate('Вы действительно хотите удалить эту задачу:"%1$s (%2$s)"', $this->issue->subject, $this->issue->id)?>
+<br/>
+<?=$this->renderForm($this->form)?>

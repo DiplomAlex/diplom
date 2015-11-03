@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  <?=$this->headMeta()?>
+  <?=$this->headTitle()?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'jquery-ui.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'bootstrap.min.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'bootstrap-responsive.min.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'admin.main.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'admin.grey.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->stdUrl(array('reset'=>TRUE)) . 'js/kendoui/styles/kendo.bootstrap.min.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->stdUrl(array('reset'=>TRUE)) . 'js/kendoui/styles/kendo.common.min.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'unicorn.beta.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'select2.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'uniform.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'jquery.gritter.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'css/datepicker.css')) ?>
+  <? $this->headLink(array('type' => 'text/css','rel' => 'stylesheet','href' => $this->skin()->url() . 'unicorn.main.css')) ?>
+  <?=$this->headLink()?>
+	
+  <?=$this->headStyle()?>
+    <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery.min.js', 'PREPEND') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/excanvas.js') ?>
+  
+
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/bootstrap.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery.peity.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery-ui-1.10.2.custom.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/jquery.cookie.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/controlState.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/shared.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery.uniform.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/unicorn.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/select2.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/unicorn.form_common.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery.dataTables.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery.gritter.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/unicorn.tables.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/bootstrap-datepicker.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/admin/jquery.validate.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/kendoui/js/kendo.web.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/kendoui/js/cultures/kendo.culture.ru-RU.min.js') ?>
+  <? $this->headScript(Zend_View_Helper_HeadScript::FILE, $this->stdUrl(array('reset'=>TRUE)).'js/jquery/loading/jquery.loading.min.js') ?>
+  
+  <?=$this->headScript()?>
+</head>
+<!--div id="loader"><div id="loader-in"><div id="spinner" style="font-size: 30px;">Загрузка...</div></div></div-->
+<body class="body">
+    <div id="main">
+        <div id="header">
+            <a href="<?=$this->stdUrl(array('reset'=>true), 'index', 'admin')?>"></a>	
+        </div>
+        <!--div id="search">
+            <input type="text" placeholder="<?=$this->translate('Поиск...')?>"/><button type="submit" id="search-button" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
+        </div-->
+        <?=$this->adminBox_Account()?>
+        <?=$this->adminMenu('left')?>	
+        <div id="content">
+            <div id="content-header">
+                <?=$this->pageTitle;?> 
+            </div>
+            
+            <div id="breadcrumb">   
+                <?=$this->adminMenu('top')?>
+            </div>
+            <div class="container-fluid">
+                <?=$this->layout()->content?>
+            </div>       	  
+        </div>
+        <div class="row-fluid footer">
+            <div class="span12">
+               <?=$this->adminBox_Copyright()?>
+            </div>
+        </div> 
+    </div>
+	<?=$this->inlineScript()?>
+</body>
+</html>

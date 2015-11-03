@@ -1,0 +1,57 @@
+<script type="text/javascript" src="/js/jquery/jquery.numberMask.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#items_number').numberMask({beforePoint:3});
+		})
+	</script>
+<div class="index_cart">
+	<div class="title_h3">
+		<h3>В корзине:</h3>
+	</div>
+	<?if (count($this->items)){?>
+		<table>
+			<tr>
+				<td width="13%"><strong>Количество</strong></td>
+				<td><strong>Товар</strong></td>
+				<td><strong>Цена за единицу</strong></td>
+				<td><strong>Всего</strong></td>
+				<td width="10%"><strong>Удалить</strong></td>
+			</tr>
+			<form id="shopping_cart" name="shopping_cart" method="POST" action="<?=$this->stdUrl(array('reset'=>TRUE), 'recalculate', 'cart', 'shop')?>">
+				<? foreach ($this->items as $item) {?>
+					<tr> 
+						<td>
+							<input id="items_number" type="text" name="newQty[<?=$item['hash']?>]" hash="<?=$item['hash']?>" value="<?=$item['qty']?>" size="2" />
+							<input type="hidden" name="hash[<?=$item['hash']?>]" value="<?=$item['hash']?>" />
+						</td>
+						<td>
+							<strong><a href="<?=$this->url(array('seo_id'=>$item['seo_id']), 'shop-item-detailed')?>"><?=$item['name']?></a></strong>
+						</td>
+						<td>
+							<?=$item['price']?> Р 
+							
+						</td>
+						<td> 
+							<?=round(($this->item_Price($item['price'], TRUE, FALSE) * $item['qty']), 2)?> Р
+						</td>
+						<td>
+							<input type="checkbox" name="del[]" hash="<?=$item['hash']?>" value="<?=$item['hash']?>" />
+						</td>
+					</tr>
+				<?}?>
+				<tr> 	
+					<td colspan="5" align="right"><?=$this->cart_Total($this->items)?></td>
+				</tr>
+			</form>
+		</table>
+		<form class="cart_button" method="POST">
+			<input type="image" src="<?=$this->skin()->url()?>images/button_update_cart.jpg" alt="Пересчитать" title=" Пересчитать " onclick="document.shopping_cart.submit();return false;"/>
+			<input type="image" src="<?=$this->skin()->url()?>images/button_checkout.jpg" alt="Оформить" title=" Оформить" onclick="window.location.href='<?=$this->url(array(), 'shop-order-start')?>';return false;"/>
+		</form>
+	<?} else {?>
+		<p>Корзина пуста.</p>
+		<a href="<?=$this->url(array(), 'shop-index')?>">
+			<img src="<?=$this->skin()->url()?>images/button_continue.jpg" alt="Продолжить" title=" Продолжить "/>
+		</a>
+	<?}?>
+</div>

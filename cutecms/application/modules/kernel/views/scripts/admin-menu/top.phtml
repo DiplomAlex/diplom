@@ -1,0 +1,19 @@
+<div class="top_nav">
+    <? $i = 0 ?>
+    <? $count = count($this->pages)-1;?>
+    <? foreach ($this->pages as $page) { ?>
+    <? $nextPage = $this->pages[$i+1];?>
+    <?if(isset($nextPage)) { if($nextPage->getHref() == $page->getHref()){$i++; continue;}}?>
+        <a href="<?=$page->getHref()?>" 
+        <?  
+        if($i == 0){
+                echo 'class="tip-bottom" data-original-title="На главную"';
+        }
+         if($i == $count){
+                echo 'class="current"';
+        }       
+        ?>>
+            <i class="<?=$page->get('icon')?>"></i><?=$page->getLabel()?></a>
+        <?$i++;?>
+    <? } ?>
+</div>

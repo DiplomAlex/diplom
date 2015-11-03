@@ -1,0 +1,52 @@
+function(id){
+    var $this = jQuery(this);                      
+    if(id){
+        $this.saveRow($this.data("lastsel2"));
+        $this.collapseSubGridRow(id);
+        $this.editRow(id, true, null, null, null, function(){
+            $this.data("lastsel2", null);
+            $this.trigger("reloadGrid");
+        });
+        $this.data("lastsel2", id);
+    }
+    
+    
+    jQuery("input[type=button][name=upload]").each(function(index, el){
+        var $id = el.id.replace("_"+el.name, "");
+        
+        new AjaxUpload(el, {
+            name: "resource_rc_id",
+            onSubmit: function(file, extension) {
+                $this.loading({
+                    align: "middle-center",
+                    mask: true,
+                    img:"<?=$this->stdUrl(array('reset'=>TRUE)).'js/jquery/loading/ajax-loader.gif'?>"                        
+                });
+                $this.loading(true);
+            },
+            onChange: function(file, extension) {
+                var $id = this._button.id.replace("_"+el.name, "");
+                var $status = jQuery("#"+$id+"_status").val();
+                var $name = jQuery("#"+$id+"_name").val();
+                var $description = jQuery("#"+$id+"_description").val();
+                this.setData({
+                    id: $id,
+                    status: $status,
+                    name: $name,
+                    description: $description
+                });
+            },
+            onComplete: function(file, extension) {
+                $this.loading(false);
+                $this.data("lastsel2", null);
+                $this.trigger("reloadGrid");
+            },
+            data: {
+                id: $id
+            },
+            action: "<?=$this->stdUrl(array('reset'=>TRUE), 'ajax-upload', 'admin-gallery')?>"
+        });
+    });
+    
+    
+}

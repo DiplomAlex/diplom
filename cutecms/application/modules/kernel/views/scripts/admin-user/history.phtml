@@ -1,0 +1,50 @@
+<? $this->pageTitle($this->translate('Пользователи')); ?>
+
+<div class="widget-box table">
+    <div class="widget-title">
+        <h5><?= $this->translate('Изменения пользователя') ?></h5>
+    </div>
+    <div class="widget-content nopadding user-history">
+        <? if (empty($this->history)) { ?>
+            <h4 class="title"><?= $this->translate('Изменений нет') ?></h4>
+        <? } else { ?>
+            <table cellspacing="0" class="table table-bordered table-striped table-hover table-no-external-border">
+                <tr>
+                    <th width="10%"><?= $this->translate('Дата') ?></th>
+                    <th width="12%"><?= $this->translate('Редактор') ?></th>
+                    <th><?= $this->translate('Изменено') ?></th>
+                </tr>
+                <? foreach ($this->history as $row) { ?>
+                    <tr>
+                        <td class="date_changed"><?= $row['date_changed'] ?></td>
+                        <td class="changer">
+                            <? if ($row['changer_id'] == 0) { ?>
+                                <?= '1C' ?>
+                            <? } else { ?>
+                                <a href="<?= $this->stdUrl(
+                                    array('id' => $row['changer_id'], 'reset' => true), 'edit', 'admin-user', 'kernel'
+                                ) ?>">
+                                    <?= $row['changer'] ?>
+                                </a>
+                            <? } ?>
+                        </td>
+                        <td>
+                            <? foreach ($row['changed'] as $key => $value) { ?>
+                                <?= $this->translate($key) ?>:
+                                <span class="from" style="text-decoration: line-through;">
+                                    <?= $value['from'] != '' ? $value['from'] : 'NULL' ?>
+                                </span>
+                                =>
+                                <span class="to" style="font-weight: bold;">
+                                    <?= $value['to'] != '' ? $value['to'] : 'NULL' ?>
+                                </span>
+                                <br/>
+                            <? } ?>
+                        </td>
+                    </tr>
+                <? } ?>
+            </table>
+        <? } ?>
+    </div>
+</div>
+

@@ -1,0 +1,12 @@
+<div class="top_nav">
+    <? $i = 0 ?>
+    <? $count = count($this->menuPages)?>
+    <? foreach ($this->menuPages as $page) { ?>
+        <a href="<?=$page->getHref()?>" <?=($i==0)?'class="home"':''?>><?=$page->getLabel()?></a>
+        <? if ($i++ < $count-1) { ?>
+            <span class="sep">&nbsp;</span>
+        <? } ?>
+    <? } ?>
+    <span>&nbsp;</span>
+</div>
+<div class="cleaner">&nbsp;</div>

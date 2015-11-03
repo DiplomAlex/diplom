@@ -1,0 +1,140 @@
+/**
+ * Unicorn Admin Template
+ * Diablo9983 -> diablo9983@gmail.com
+**/
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+   	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #505050;
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	background-color: #444444;
+	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#555555), to(#111111));
+	background-image: -webkit-linear-gradient(top, #555555 0%, #111111 100%);
+    background-image: -moz-linear-gradient(top, #555555 0%, #111111 100%);
+    background-image: -ms-linear-gradient(top, #555555 0%, #111111 100%);
+    background-image: -o-linear-gradient(top, #555555 0%, #111111 100%);
+    background-image: linear-gradient(top, #555555 0%, #111111 100%);
+    padding: 0;
+    margin: 0;
+}
+
+#logo, #loginbox {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+#logo {
+    padding: 20px 0 20px 5px;
+}
+#logo img {
+    width: 215px;
+    margin: 0 auto;
+    display: block;
+}
+#loginbox {
+    height: 216px;
+	background: #ffffff;
+    box-shadow: 0 0 4px #000000;
+    border-radius: 7px;
+    overflow: hidden !important;
+    text-align: center;
+    position: relative;
+    margin: 224px auto 90px auto;   
+}
+
+#loginbox form{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#loginbox p {
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+#loginbox .form-actions {
+	padding: 14px 20px 15px;
+}
+#loginbox .form-actions .pull-left {
+	margin-top: 2px;
+}
+
+#loginbox form#loginform {
+	z-index: 200;
+}
+
+#loginbox form#recoverform {
+	z-index: 100;
+	opacity: 0;
+    display:none;
+}
+
+#loginbox form#recoverform .form-actions {
+    margin-top: 27px;
+}
+
+#loginbox form#recoverform .control-group {
+	margin: 23px 0;
+}
+
+.form-vertical, .form-actions {
+    margin-bottom: 0;
+}
+#footer {
+	margin-top: 8px;
+	padding: 0px 0px 0px 14px;
+	clear: both;
+}
+#footer .copy {
+	/*color: #9ba7aa;**/
+	font-size: 11px;
+	width: 192px;
+	line-height: 16px;
+	margin: 0px auto;
+	padding: 8px 0px;
+	text-align: center;
+	display: block;
+	background: #fff;
+    border: solid #c4cacd;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 5px 5px 5px 5px;
+    /*border: solid #c4cacd; border-width: 0 1px 1px; border-radius: 0 0 5px 5px; background: #fff;*/
+}
+#footer .copy a {
+	text-decoration: none;
+}
+
+.cleaner {
+	height: 1px;
+	line-height: 1px;
+	clear: both;
+}
+p.logo{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.form-actions label {
+	color: #505050;
+	font-size: 13px;
+	line-height: 18px;
+}
+.form-actions input {
+	margin: 0px 6px 0px 0px;
+}
+
+
+@media (max-width: 480px){
+    #logo, #loginbox {
+        width: 80%; 
+    }    
+}

@@ -1,0 +1,100 @@
+
+		  <h1><?=$this->translate('Оформленные заказы')?></h1>
+	        <div><img src="<?=$this->skin()->url()?>images/body/white-box-top-bg.png" width="746" height="10" border="0" /></div>
+	        <div class="white-box-y vnutr basket">
+				<div class="padd">
+				  <div id="header-bs" >
+				  	<div class="count">&nbsp;</div>
+				  	<div class="count"><?=$this->translate('Состояние')?>:</div>
+					<div class="price"><?=$this->translate('Сумма')?>:</div>
+					<div class="title"><?=$this->translate('Дата')?>:</div>
+					<div class="number"><?=$this->translate('Номер')?>:</div>
+					<div class="cleaner"></div>
+				  </div>
+		    <? $i = 0 ?>
+		<? if ($this->orders->count()) { ?>
+		    <? foreach ($this->orders as $row) { ?>
+				<div class="row">
+					<div class="count">
+		                <a class="txt_blue" href="<?=$this->stdUrl(array('id'=>$row['id']), 'my-order-view', 'order', 'checkout')?>"><?=$this->translate('Просмотр')?></a>
+		                <br/>
+		                <a class="txt_blue" target="_blank" href="<?=$this->stdUrl(array('id'=>$row['id']), 'print', 'order', 'checkout')?>"><?=$this->translate('Печать')?></a>
+					</div>
+				  	<div class="count"><?=$this->order_Status($row)?></div>
+					<div class="price"><?=$this->order_Summ($row['total'], $row->currency)?></div>
+					<div class="title"><?=$this->formatDate($row['date_added'], TRUE)?></div>
+					<div class="number"><?=$row['id']?></div>
+					<div class="cleaner"></div>
+				</div>
+			<? } ?>
+		<? } else { ?>
+				<div class="row">
+		        	<div class="title"><?=$this->translate('Пока нет заказов')?></div>
+		      	</div>
+		<? } ?>
+					
+				  
+			</div>
+				<div class="cleaner"></div>
+		    </div>
+
+<?=$this->paginationControl($this->orders)?>
+
+            <div class="tag-bott-25"><img src="<?=$this->skin()->url()?>images/body/white-box-bott-bg.png" width="746" height="10" border="0" /></div>
+
+
+
+<br/><br/><br/><br/>
+
+
+
+
+
+		  <h1><?=$this->translate('Предварительные заказы')?></h1>
+	        <div><img src="<?=$this->skin()->url()?>images/body/white-box-top-bg.png" width="746" height="10" border="0" /></div>
+	        <div class="white-box-y vnutr basket">
+				<div class="padd">
+				  <div id="header-bs" >
+				  	<div class="count">&nbsp;</div>
+				  	<div class="count"><?=$this->translate('Состояние')?>:</div>
+					<div class="price"><?=$this->translate('Сумма')?>:</div>
+					<div class="title"><?=$this->translate('Дата')?>:</div>
+					<div class="number"><?=$this->translate('Номер')?>:</div>
+					<div class="cleaner"></div>
+				  </div>
+		    <? $i = 0 ?>
+		<? if ($this->preorders->count()) { ?>
+		    <? foreach ($this->preorders as $row) { ?>
+				<div class="row">
+					<div class="count">
+		                <a class="txt_blue" href="<?=$this->stdUrl(array('id'=>$row['id']), 'my-order-view', 'order', 'checkout')?>"><?=$this->translate('Просмотр')?></a>
+		                <br/>
+		                <a class="txt_blue" target="_blank" href="<?=$this->stdUrl(array('id'=>$row['id']), 'print', 'order', 'checkout')?>"><?=$this->translate('Печать')?></a>
+					</div>
+				  	<div class="count"><?=$this->order_Status($row)?></div>
+					<div class="price"><?=$this->order_Summ($row['total'], $row->currency)?></div>
+					<div class="title"><?=$this->formatDate($row['date_added'], TRUE)?></div>
+					<div class="number"><?=$row['id']?></div>
+					<div class="cleaner"></div>
+				</div>
+			<? } ?>
+		<? } else { ?>
+				<div class="row">
+		        	<div class="title"><?=$this->translate('Пока нет заказов')?></div>
+		      	</div>
+		<? } ?>
+					
+				  
+			</div>
+				<div class="cleaner"></div>
+		    </div>
+
+<?=$this->paginationControl($this->preorders)?>
+
+            <div class="tag-bott-25"><img src="<?=$this->skin()->url()?>images/body/white-box-bott-bg.png" width="746" height="10" border="0" /></div>
+
+
+
+
+
+

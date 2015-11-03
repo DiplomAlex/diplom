@@ -1,0 +1,1 @@
+ALTER TABLE `attribute` ADD `attr_default_value` VARCHAR( 1000 ) NULL AFTER `attr_price` 

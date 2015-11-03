@@ -1,0 +1,96 @@
+<a href="#" class="mail_subject filter_switcher"><?=$this->translate('Поиск')?> <img src="<?=$this->skin()->url()?>images/arr_sect_up.gif" alt="" width="8" height="8" border="0" /></a>
+
+<form class="filter_form"
+    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+        <?=$name?>="<?=$value?>"
+    <? } ?>
+>
+
+<table cellspacing="0" class="tbl_edit">
+
+<? $buttons = array() ?>
+<? foreach ($this->form->getElements() as $el) {?>
+    <? if (($el instanceof Zend_Form_Element_Submit) OR ($el instanceof Zend_Form_Element_Button)) { ?>
+        <? $buttons[]=$el ?>
+    <? } else { ?>
+        <?
+            if ($el instanceof Zend_Form_Element_Text) {
+                $el->setAttrib('class', 'input');
+                if ($el->getAttrib('jquery')=='datepicker') {
+                    $el->setAttrib('style', 'width: 120px;');
+                }
+            }
+            else if ($el instanceof Zend_Form_Element_Select) {
+                $el->setAttrib('class', 'select');
+            }
+        ?>
+
+        <? if ($el->getAttrib('customRender') !== TRUE) { ?>
+            <tr>
+            <td class="label">
+                <label for="<?=$el->getName()?>"><?=$el->getLabel()?><? if ($el->isRequired()) {?> <?=$this->formMarkerRequired()?><? } ?> :</label>
+            </td>
+            <td class="value">
+                <? if (isset($errors[$el->getName()])) { ?>
+                    <div class="red">
+                    <?=$this->form->getElementErrorsFormatted($el->getName(), $errors[$el->getName()])?>
+                    </div>
+                <? } ?>
+                <?=$el->render()?>
+            </td>
+        </tr>
+        <? } ?>
+    <? } ?>
+<? } ?>
+
+</table>
+
+
+<table cellspacing="0" class="tbl_edit">
+  <tr>
+    <td class="value" style="width: 160px;">&nbsp;</td>
+    <td style="width: 150px">
+        <span class="value"><a href="#" class="btn2 filter_submit"><?=$this->translate('Найти')?></a></span>
+    </td>
+    <td style="width: 10px;">&nbsp;</td>
+    <td style="width: 150px"><span class="label"><a href="#" class="filter_reset"><?=$this->translate('Сбросить все фильтры')?></a></span></td>
+  </tr>
+</table>
+
+<input type="hidden" name="filter-on" value="true">
+
+</form>
+
+<p>&nbsp;</p>
+
+<?
+$this->headScript('SCRIPT', '
+  $(document).ready(function(){
+        $(".filter_switcher").click(function(e){
+            e.preventDefault();
+            var visibles = $(".filter_form>*:visible");
+            var hiddens = $(".filter_form>*:hidden");
+            visibles.hide();
+            hiddens.show();
+        });
+
+        $(".filter_submit").click(function(e){
+            e.preventDefault();
+            $(this).parents("form").get(0).submit();
+        });
+
+        $(".filter_reset").click(function(e){
+            e.preventDefault();
+            $(".filter_form *:input").val("");
+        });
+
+        '.
+            ( ! $this->filterOn?'$(".filter_switcher").click();':'')
+         .'
+
+    });
+
+');
+
+?>
+

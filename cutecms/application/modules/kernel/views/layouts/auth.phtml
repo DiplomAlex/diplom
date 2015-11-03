@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><?=$this->translate('Administration panel')?></title>
+<link href="<?=$this->skin()->url()?>login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="body" onload="document.loginform.login.focus();">
+<div id="container">
+  <div class="frm_line">
+    <div class="frm">
+      <div>
+        <form id="loginform" name="loginform" method="post" action="<?=$this->stdUrl(NULL, 'login', 'auth')?>">
+          <div class="btn_enter">
+            <input type="image" name="imageField" src="<?=$this->skin()->url()?>images/login/btn_enter.gif" alt="Авторизация" />
+          </div>
+          <div class="remember">
+            <label><input type="checkbox" name="checkbox" value="checkbox" />Запомнить меня</label>
+          </div>
+          <div class="links">
+            <span class="register"><a href="<?=$this->stdUrl(NULL, 'register', 'user', 'tickets')?>">Регистрация</a></span>
+            <span class="fpassw"><a href="<?=$this->stdUrl(NULL, 'forgot-password', 'auth')?>">Забыл пароль?</a></span>
+          </div>
+          <? if (!empty($this->error)) { ?>
+            <div class="alert"><?=$this->error?></div>
+            <div class="cleaner">&nbsp;</div>
+          <? } ?>
+          <div class="login">
+            <div class="label"><?=$this->translate('Login')?>:</div>
+            <div class="value">
+              <input type="text" name="login" />
+            </div>
+          </div>
+          <div class="cleaner">&nbsp;</div>
+          <div class="passw">
+            <div class="label"><?=$this->translate('Пароль')?>:</div>
+            <div class="value">
+              <input type="password" name="password" />
+            </div>
+          </div>
+          <div class="cleaner">&nbsp;</div>
+        </form>
+      </div>
+      <?/*=$this->layout()->content*/?>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="copy">Copyright © 2006-2010 <strong><a href="#">Solvegen.ru</a></strong><br />
+    Разработка <strong><a href="#">Solvegen.ru</a></strong> | Дизайн <strong><a href="#">Orbi.ru</a></strong></div>
+  </div>
+</div>
+</body>
+</html>
+

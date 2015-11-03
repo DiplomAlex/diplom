@@ -1,0 +1,50 @@
+
+<div class="content_col2">
+
+      <div class="prod_details">
+        <table cellspacing="0" class="prod_info info_detailed">
+          <tr>
+            <td colspan="2" style="padding-bottom: 14px;">
+      <div class="catalog_h">
+        <div class="catalog_h_r">
+          <h2>
+          		<?=$this->user['name']?> (<?=$this->user['login']?>)
+
+          </h2>
+        </div>
+      </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="photos">
+                <div class="photo">
+                    <img src="<?=App_Resource::getUploadsUrl($this->user['rc_id_filename'])?>" alt="" width="270" height="270" />
+                </div>
+            </td>
+            <td><div class="box3">
+              <div class="box3-l">
+                <div class="box3-tl">
+                  <div class="box3-tr">
+                    <div class="box3-bl">
+                      <div class="box3-br">
+                        <div class="options">
+                          <strong> <?=$this->translate('Date of birth')?>:</strong> <?=$this->formatDate($this->user['dob'])?><br/>
+                        </div>
+                        <div class="descriptions">
+                          <p>
+
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div></td>
+          </tr>
+        </table>
+    </div>
+    <div class="cleaner">&nbsp;</div>
+  </div>
+
+

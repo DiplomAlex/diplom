@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+    </modules>
+    <events>
+        <Attribute_AdminController__init>
+            <observers>
+                <kernelInit>
+                    <class>Observer_AdminController</class>
+                    <method>initAction</method>
+                </kernelInit>
+            </observers>
+        </Attribute_AdminController__init>
+    </events>
+</config> 

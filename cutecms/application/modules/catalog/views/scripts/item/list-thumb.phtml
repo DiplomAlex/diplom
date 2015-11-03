@@ -1,0 +1,6 @@
+<div class="item">
+  <div class="image"><a href="<?=$this->url(array('seo_id'=>$this->item->seo_id), 'item')?>"><?=$this->item_Preview($this->item)?></a></div>
+  <div class="link"><a href="<?=$this->url(array('seo_id'=>$this->item->seo_id), 'item')?>"><?=$this->item->name?></a></div>
+  <div class="price"><a href="<?=$this->url(array('seo_id'=>$this->item->seo_id), 'item')?>"><img src="<?=$this->skin()->url()?>images/body/icon-basket.gif" width="14" height="15" border="0" /></a>  <div class="text"><?=$this->item_Price($this->item)?></div>
+  </div>
+</div>

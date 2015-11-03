@@ -1,0 +1,122 @@
+<?/* $this->headStyle('
+        tr#new_row input[type=button] {
+            display: none;
+            visibility: hidden;
+        }
+') */?>
+
+<? $this->headScript('FILE', $this->stdUrl(array('reset'=>TRUE)).'js/ajax-upload/ajaxupload.js' )?>
+
+
+    gridNav
+    .navButtonAdd(pagerSelector, {
+        caption: "",
+        title: "<?=$this->translate('Добавить')?>",
+        buttonicon: "ui-icon-document",
+        onClickButton: function(){
+            var grd = jQuery(gridSelector);
+            var id="new_row";
+            if (grd.data("lastsel2")!=null) {
+                alert("<?=$this->translate('Сначала сохраните текущую строку')?>");
+                return false;
+            }                            
+            var addResult = grd.addRowData(id, {}, "last");
+            grd.data("lastsel2", id);
+            grd.editRow(
+                id, true, null, null, null,
+                null,
+                function(row_id, data){
+                    grd.data("lastsel2", null);
+                    grd.trigger("reloadGrid");
+                }
+            );
+            
+            
+            jQuery("input[type=button][name=upload]").each(function(index, el){
+                var $id = el.id.replace("_"+el.name, "");
+                
+                new AjaxUpload(el, {
+                    name: "resource_rc_id",
+                    onSubmit: function(file, extension) {
+                        grd.loading({
+                            align: "middle-center",
+                            mask: true,
+                            img:"<?=$this->stdUrl(array('reset'=>TRUE)).'js/jquery/loading/ajax-loader.gif'?>"                        
+                        });
+                        grd.loading(true);
+                    },
+                    onChange: function(file, extension) {
+                        var $id = this._button.id.replace("_"+el.name, "");
+                        var $status = jQuery("#"+$id+"_status").val();
+                        var $name = jQuery("#"+$id+"_name").val();
+                        var $description = jQuery("#"+$id+"_description").val();
+                        this.setData({
+                            id: $id,
+                            status: $status,
+                            name: $name,
+                            description: $description
+                        });
+                    },
+                    onComplete: function(file, extension) {
+                        grd.loading(false);
+                        grd.data("lastsel2", null);
+                        grd.trigger("reloadGrid");
+                    },
+                    data: {
+                        id: $id
+                    },
+                    action: "<?=$this->stdUrl(array('reset'=>TRUE), 'ajax-upload', 'admin-gallery')?>"
+                });
+            });
+            
+            
+            
+        }
+    })
+    .navButtonAdd(pagerSelector, {
+        caption: "",
+        title: "<?=$this->translate('Сохранить')?>",
+        buttonicon: "ui-icon-disk",
+        onClickButton: function(){
+            var grd = jQuery(gridSelector);
+            grd.saveRow(grd.data("lastsel2"), null, null, null,
+                function(id, data){
+                    grd.data("lastsel2", null);
+                    grd.trigger("reloadGrid");
+                }
+            );
+        }
+    })
+    .navButtonAdd(pagerSelector, {
+        caption: "",
+        title: "<?=$this->translate('Удалить')?>",
+        buttonicon: "ui-icon-trash",
+        onClickButton: function(){
+            if ( ! confirm("<?=$this->translate('Удалить отмеченные строки?')?>")) {
+                return false;
+            }
+            jQuery(gridSelector).data("lastsel2", null);
+            var sels = jQuery(gridSelector).getGridParam("selarrrow");
+            var postData = "";
+            var row, i = 0;
+            for (row in sels) {
+                postData += "&rows["+i+"]="+sels[row];
+                i++;
+            }
+            jQuery.post("<?=$this->params['deleteurl']?>?"+postData, function(data){
+                jQuery(gridSelector).trigger("reloadGrid");
+            });
+        }
+    })
+    .navSeparatorAdd(pagerSelector)
+    .navButtonAdd(pagerSelector, {
+        caption: "",
+        title: "<?=$this->translate('Настроить')?>",
+        buttonicon: "ui-icon-wrench",
+        onClickButton: function(){
+            jQuery(gridSelector).setColumns({width: 250, colnameview: false});
+            return false;
+        }
+    })
+    ;
+

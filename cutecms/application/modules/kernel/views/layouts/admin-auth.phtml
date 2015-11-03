@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><?=$this->translate('Administration panel')?></title>
+<link rel="stylesheet" href="<?=$this->skin('admin')->url()?>css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="<?=$this->skin('admin')->url()?>css/bootstrap-responsive.min.css" type="text/css">
+<link rel="stylesheet" href="<?=$this->skin('admin')->url()?>css/login.css" type="text/css">
+</head>
+
+<body class="body" onload="document.loginform.login.focus();">
+<? if ($this->error) { ?>
+    <div class="admin_login_error alert">Неверный логин и (или) пароль</div>
+<? } ?>  
+<div id="loginbox">
+        
+    <form id="loginform" name="loginform" method="post" action="<?=$this->stdUrl(NULL, 'login', 'admin-auth')?>">
+        <p class="logo">Авторизация</p>
+        <div class="control-group">
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i style="background-image: url('<?=$this->skin()->url()?>images/glyphicons-halflings.png')" class="icon-user"></i></span><input type="text" placeholder="Username" name="login"/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on"><i style="background-image: url('<?=$this->skin()->url()?>images/glyphicons-halflings.png')" class="icon-lock"></i></span><input type="password" placeholder="Password" name="password"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-left"><label><input type="checkbox" name="checkbox" value="checkbox" />Запомнить меня</label></span>
+            <span class="pull-right"><input type="submit" class="btn btn-inverse" name="imageField" alt="Авторизация" value="Войти" /></span>
+        </div>
+    </form>
+</div>
+<div id="footer">
+    <div class="copy">Copyright © 2000-<?= date('Y') ?> <br />
+    Разработка <strong><a href="#">Solvegen.ru</a></strong></div>
+</div>
+</div>
+</body>
+</html>

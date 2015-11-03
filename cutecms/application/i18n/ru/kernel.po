@@ -1,0 +1,1066 @@
+# translation of kernel.po to
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kernel\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-06 14:38+0200\n"
+"PO-Revision-Date: 2015-02-26 14:15+0200\n"
+"Last-Translator: \n"
+"Language-Team:  <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"Language: ru\n"
+
+#: controllers/AdminBannerController.php:32
+#: controllers/AdminNewsController.php:32
+#: controllers/AdminNewsTopicController.php:32
+#: controllers/AdminPageController.php:32
+#: controllers/AdminRoleController.php:32
+#: controllers/AdminUserController.php:92
+msgid "No rows were selected for mass action"
+msgstr "Строки не выбраны"
+
+#: controllers/AdminBannerController.php:45
+#: controllers/AdminNewsController.php:45
+#: controllers/AdminNewsTopicController.php:45
+#: controllers/AdminPageController.php:45
+#: controllers/AdminRoleController.php:45
+#: controllers/AdminUserController.php:105
+msgid "Rows were activated"
+msgstr "Записи активированы"
+
+#: controllers/AdminBannerController.php:48
+#: controllers/AdminNewsController.php:48
+#: controllers/AdminNewsTopicController.php:48
+#: controllers/AdminPageController.php:48
+#: controllers/AdminRoleController.php:48
+#: controllers/AdminUserController.php:108
+msgid "Some rows were not activated"
+msgstr "Не все записи активированы"
+
+#: controllers/AdminBannerController.php:56
+#: controllers/AdminNewsController.php:56
+#: controllers/AdminNewsTopicController.php:56
+#: controllers/AdminPageController.php:56
+#: controllers/AdminRoleController.php:56
+#: controllers/AdminUserController.php:116
+msgid "Rows were deactivated"
+msgstr "Записи деактивированы"
+
+#: controllers/AdminBannerController.php:59
+#: controllers/AdminNewsController.php:59
+#: controllers/AdminNewsTopicController.php:59
+#: controllers/AdminPageController.php:59
+#: controllers/AdminRoleController.php:59
+#: controllers/AdminUserController.php:119
+msgid "Some rows were not deactivated"
+msgstr "Не все записи деактивированы"
+
+#: controllers/AdminBannerController.php:67
+#: controllers/AdminNewsController.php:67
+#: controllers/AdminNewsTopicController.php:67
+#: controllers/AdminPageController.php:67
+#: controllers/AdminRoleController.php:67
+#: controllers/AdminUserController.php:127
+msgid "Rows were deleted"
+msgstr "Записи удалены"
+
+#: controllers/AdminBannerController.php:70
+#: controllers/AdminNewsController.php:70
+#: controllers/AdminNewsTopicController.php:70
+#: controllers/AdminPageController.php:70
+#: controllers/AdminRoleController.php:70
+#: controllers/AdminUserController.php:130
+msgid "Some rows were not deleted"
+msgstr "Не все записи удалены"
+
+#: controllers/AdminBannerController.php:95
+msgid "Banner edition cancelled"
+msgstr "Редактирование баннера отменено"
+
+#: controllers/AdminBannerController.php:123
+#: controllers/AdminNewsController.php:124
+#: controllers/AdminNewsTopicController.php:124
+#: controllers/AdminPageController.php:123
+#: controllers/AdminRoleController.php:123
+#: controllers/AdminUserController.php:183
+msgid "Form validation failed"
+msgstr "Ошибка при сохранении формы"
+
+#: controllers/AdminBannerController.php:129
+msgid "Banner saved"
+msgstr "Баннер сохранен"
+
+#: controllers/AdminBannerController.php:150
+#, php-format
+msgid "Banner \"%1$s\" deleted"
+msgstr "Баннер \"%1$s\" удален"
+
+#: controllers/AdminBannerController.php:153
+#, php-format
+msgid "Unable to delete banner \"%1$s\""
+msgstr "Невозможно удалить баннер \"%1$s\""
+
+#: controllers/AdminNewsController.php:95
+msgid "News edition cancelled"
+msgstr "Редактирование новости отменено"
+
+#: controllers/AdminNewsController.php:130
+msgid "News saved"
+msgstr "Новость сохранена"
+
+#: controllers/AdminNewsController.php:151
+#, php-format
+msgid "News \"%1$s\" deleted"
+msgstr "Новость \"%1$s\" удалена"
+
+#: controllers/AdminNewsController.php:154
+#: controllers/AdminPageController.php:153
+#, php-format
+msgid "Unable to delete page \"%1$s\" (%2$s)"
+msgstr "Нельзя удалить страницу \"%1$s\" (%2$s)"
+
+#: controllers/AdminNewsTopicController.php:95
+msgid "News topic edition cancelled"
+msgstr "Редактирование рубрики отменено"
+
+#: controllers/AdminNewsTopicController.php:130
+msgid "News topic saved"
+msgstr "Рубрика сохранена"
+
+#: controllers/AdminNewsTopicController.php:151
+#, php-format
+msgid "News topic \"%1$s\" deleted"
+msgstr "Рубрика \"%1$s\" удалена"
+
+#: controllers/AdminNewsTopicController.php:154
+#, php-format
+msgid "Unable to delete topic \"%1$s\" (%2$s)"
+msgstr "Не удаляется рубрика \"%1$s\" (%2$s)"
+
+#: controllers/AdminPageController.php:95
+msgid "Page edition cancelled"
+msgstr "Редактирование страницы отменено"
+
+#: controllers/AdminPageController.php:129
+msgid "Page saved"
+msgstr "Страница сохранена"
+
+#: controllers/AdminPageController.php:150
+#, php-format
+msgid "Page \"%1$s\" deleted"
+msgstr "Страница \"%1$s\" удалена"
+
+#: controllers/AdminRoleController.php:95
+msgid "Role edition cancelled"
+msgstr "Редактирование группы отменено"
+
+#: controllers/AdminRoleController.php:129
+msgid "Role saved"
+msgstr "Группа сохранена"
+
+#: controllers/AdminRoleController.php:150
+#, php-format
+msgid "Role \"%1$s\" deleted"
+msgstr "Группа \"%1$s\" удалена"
+
+#: controllers/AdminRoleController.php:153
+#, php-format
+msgid "Unable to delete role \"%1$s\" (%2$s)"
+msgstr "Невозможно удалитьгруппу \"%1$s\" (%2$s)"
+
+#: controllers/AdminUserController.php:155
+msgid "User edition cancelled"
+msgstr "Редактирование пользователя отменено"
+
+#: controllers/AdminUserController.php:189
+msgid "User saved"
+msgstr "Пользователь сохранен"
+
+#: controllers/AdminUserController.php:210
+#, php-format
+msgid "User \"%1$s\" deleted"
+msgstr "Пользователь \"%1$s\" удален"
+
+#: controllers/AdminUserController.php:213
+#, php-format
+msgid "Unable to delete user \"%1$s\" (%2$s)"
+msgstr "Нельзя удалить пользователя \"%1$s\" (%2$s)"
+
+#: views/layouts/admin-auth.phtml:4
+msgid "Adminstration Login"
+msgstr "Вход"
+
+#: views/layouts/auth.phtml:5 views/scripts/admin-auth/login.phtml:6
+msgid "Administration panel"
+msgstr "Панель администратора"
+
+#: views/scripts/admin-auth/login.phtml:9 views/scripts/auth/login.phtml:2
+msgid "Wrong password or username"
+msgstr "Неверный логин или пароль"
+
+#: views/scripts/admin-auth/login.phtml:13
+msgid "Username"
+msgstr "Логин"
+
+#: views/scripts/admin-auth/login.phtml:17
+msgid "Password"
+msgstr "Пароль"
+
+#: views/scripts/admin-auth/login.phtml:22
+#: views/scripts/admin-user/index.phtml:14
+msgid "Login"
+msgstr "Логин"
+
+#: views/scripts/admin-auth/logout.phtml:1
+msgid "Good bye"
+msgstr "До свидания"
+
+#: views/scripts/admin-banner/delete.phtml:1
+msgid "Delete banner"
+msgstr "Удаление баннера"
+
+#: views/scripts/admin-banner/delete.phtml:3
+#, php-format
+msgid "Do you really want do delete this banner:\"%1$s\""
+msgstr "Вы действительно хотите удалить этот баннер:\"%1$s\""
+
+#: views/scripts/admin-banner/edit.phtml:2
+msgid "Edit banner"
+msgstr "Редактирование баннера"
+
+#: views/scripts/admin-banner/index.phtml:1
+msgid "Banners list"
+msgstr "Список баннеров"
+
+#: views/scripts/admin-banner/index.phtml:10
+#: views/scripts/admin-page/index.phtml:12
+#: views/scripts/admin-role/index.phtml:12
+#: views/scripts/admin-user/index.phtml:12
+msgid "Sorting"
+msgstr "Сортировка"
+
+#: views/scripts/admin-banner/index.phtml:11
+msgid "Place"
+msgstr "Расположение"
+
+#: views/scripts/admin-banner/index.phtml:12
+msgid "Comment"
+msgstr "Примечание"
+
+#: views/scripts/admin-banner/index.phtml:13
+#: views/scripts/admin-news/index.phtml:15
+#: views/scripts/admin-news-topic/index.phtml:12
+#: views/scripts/admin-page/index.phtml:15
+#: views/scripts/admin-role/index.phtml:16
+#: views/scripts/admin-user/index.phtml:18
+msgid "Actions"
+msgstr "Действия"
+
+#: views/scripts/admin-banner/index.phtml:24
+#: views/scripts/admin-news/index.phtml:27
+#: views/scripts/admin-news-topic/index.phtml:21
+#: views/scripts/admin-page/index.phtml:25
+#: views/scripts/admin-role/index.phtml:31
+#: views/scripts/admin-user/index.phtml:31
+msgid "Edit"
+msgstr "Править"
+
+#: views/scripts/admin-banner/index.phtml:26
+#: views/scripts/admin-news/index.phtml:29
+#: views/scripts/admin-news-topic/index.phtml:23
+#: views/scripts/admin-page/index.phtml:27
+#: views/scripts/admin-role/index.phtml:33
+#: views/scripts/admin-user/index.phtml:33
+msgid "Delete"
+msgstr "Удалить"
+
+#: views/scripts/admin-banner/index.phtml:42
+#: views/scripts/admin-news/index.phtml:45
+#: views/scripts/admin-news-topic/index.phtml:39
+#: views/scripts/admin-page/index.phtml:43
+#: views/scripts/admin-role/index.phtml:49
+#: views/scripts/admin-user/index.phtml:49
+msgid "New"
+msgstr "Создать"
+
+#: views/scripts/admin-index/error-acl.phtml:1
+msgid "Access permitted for you"
+msgstr "Для Вас доступ закрыт"
+
+#: views/scripts/admin-index/index.phtml:2
+msgid "Main"
+msgstr "Главная"
+
+#: views/scripts/admin-index/index.phtml:12
+#: views/scripts/admin-menu/left/admin-index.phtml:15
+#: views/scripts/admin-menu/top.phtml:22
+msgid "Pages"
+msgstr "Страницы"
+
+#: views/scripts/admin-index/index.phtml:18
+#: views/scripts/admin-menu/left/admin-index.phtml:10
+#: views/scripts/admin-menu/top.phtml:17
+msgid "News"
+msgstr "Новости"
+
+#: views/scripts/admin-index/index.phtml:24
+#: views/scripts/admin-menu/top.phtml:27
+msgid "Banners"
+msgstr "Баннеры"
+
+#: views/scripts/admin-index/index.phtml:33
+#: views/scripts/admin-menu/left/admin-index.phtml:5
+#: views/scripts/admin-menu/left/admin-role.phtml:1
+#: views/scripts/admin-menu/left/admin-user.phtml:1
+#: views/scripts/admin-menu/top.phtml:12
+msgid "Users"
+msgstr "Пользователи"
+
+#: views/scripts/admin-index/index.phtml:39
+#: views/scripts/admin-menu/left/admin-role.phtml:6
+#: views/scripts/admin-menu/left/admin-user.phtml:6
+msgid "Roles"
+msgstr "Группы"
+
+#: views/scripts/admin-index/index.phtml:45
+#: views/scripts/admin-menu/left/admin-index.phtml:26
+#: views/scripts/admin-menu/top.phtml:31
+msgid "Exit"
+msgstr "Выход"
+
+#: views/scripts/admin-index/index.phtml:56
+#: views/scripts/admin-menu/top.phtml:8
+msgid "Catalog"
+msgstr "Каталог"
+
+#: views/scripts/admin-index/index.phtml:67
+msgid "Categories"
+msgstr "Категории"
+
+#: views/scripts/admin-index/index.phtml:73
+msgid "New Items"
+msgstr "Новые товары"
+
+#: views/scripts/admin-index/index.phtml:79
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: views/scripts/admin-index/index.phtml:91
+msgid "Shop"
+msgstr "Магазин"
+
+#: views/scripts/admin-index/index.phtml:103
+msgid "Orders"
+msgstr "Заказы"
+
+#: views/scripts/admin-index/index.phtml:109
+msgid "Discounts"
+msgstr "Скидки"
+
+#: views/scripts/admin-index/index.phtml:115
+#: views/scripts/admin-index/index.phtml:145
+msgid "Stats"
+msgstr "Статистика"
+
+#: views/scripts/admin-index/index.phtml:128
+msgid "Tickets"
+msgstr "Билеты"
+
+#: views/scripts/admin-index/index.phtml:139
+msgid "Documents"
+msgstr "Документы"
+
+#: views/scripts/admin-index/index.phtml:151
+#: views/scripts/admin-index/index.phtml:207
+msgid "Settings"
+msgstr "Настройки"
+
+#: views/scripts/admin-index/index.phtml:164
+msgid "Social engine"
+msgstr ""
+
+#: views/scripts/admin-index/index.phtml:175
+msgid "Comments"
+msgstr "Комментарии"
+
+#: views/scripts/admin-index/index.phtml:181
+msgid "Favourites"
+msgstr "Любимые"
+
+#: views/scripts/admin-index/index.phtml:187
+msgid "Friends"
+msgstr "Друзья"
+
+#: views/scripts/admin-index/index.phtml:195
+msgid "Mail"
+msgstr "Почта"
+
+#: views/scripts/admin-index/index.phtml:201
+msgid "Abuses"
+msgstr "Злоупотребления"
+
+#: views/scripts/admin-index/mass/check_all.phtml:1
+#: views/scripts/index/mass/check_all.phtml:1
+msgid "Check all"
+msgstr "Все"
+
+#: views/scripts/admin-index/mass/select.phtml:11
+#: views/scripts/index/mass/select.phtml:11
+msgid "Do you confirm this action for all selected items"
+msgstr ""
+"Вы действительно хотите выполнить это действие для всех выбранных строк"
+
+#: views/scripts/admin-index/mass/select.phtml:19
+#: views/scripts/index/mass/select.phtml:19
+msgid "Nothing selected"
+msgstr "Ничего не выбрано"
+
+#: views/scripts/admin-menu/left/admin-role.phtml:3
+#: views/scripts/admin-menu/left/admin-role.phtml:8
+#: views/scripts/admin-menu/left/admin-user.phtml:3
+#: views/scripts/admin-menu/left/admin-user.phtml:8
+#: views/scripts/admin-menu/left/default.phtml:3
+msgid "List all"
+msgstr "Список всех"
+
+#: views/scripts/admin-menu/left/admin-role.phtml:4
+#: views/scripts/admin-menu/left/admin-role.phtml:9
+#: views/scripts/admin-menu/left/admin-user.phtml:4
+#: views/scripts/admin-menu/left/admin-user.phtml:9
+#: views/scripts/admin-menu/left/default.phtml:4
+msgid "Create new"
+msgstr "Создать"
+
+#: views/scripts/admin-menu/top.phtml:3
+msgid "Start"
+msgstr "Начало"
+
+#: views/scripts/admin-news/delete.phtml:2
+msgid "Delete news"
+msgstr "Удалить новость"
+
+#: views/scripts/admin-news/delete.phtml:4
+#, php-format
+msgid "Do you really want do delete this news:\"%1$s / %2$s (%3$s)\""
+msgstr "Вы действительно хотите удалить эту новость:\"%1$s / %2$s (%3$s)\""
+
+#: views/scripts/admin-news/edit.phtml:2
+msgid "Edit news"
+msgstr "Редактирование новости"
+
+#: views/scripts/admin-news/index.phtml:1
+msgid "News list"
+msgstr "Список новостей"
+
+#: views/scripts/admin-news/index.phtml:10
+msgid "Date"
+msgstr "Дата"
+
+#: views/scripts/admin-news/index.phtml:11
+#: views/scripts/admin-role/index.phtml:13
+msgid "Image"
+msgstr "Фото"
+
+#: views/scripts/admin-news/index.phtml:12
+msgid "News title"
+msgstr "Заголовок"
+
+#: views/scripts/admin-news/index.phtml:13
+#: views/scripts/admin-page/index.phtml:14
+msgid "Seo id"
+msgstr "Seo id"
+
+#: views/scripts/admin-news/index.phtml:14
+msgid "Topic"
+msgstr "Рубрика"
+
+#: views/scripts/admin-news-topic/delete.phtml:2
+msgid "Delete news topic"
+msgstr "Удаление рубрики"
+
+#: views/scripts/admin-news-topic/delete.phtml:4
+#, php-format
+msgid "Do you really want do delete this topic:\"%1$s\""
+msgstr "Вы действительно хотите удалить эту рубрику:\"%1$s\""
+
+#: views/scripts/admin-news-topic/edit.phtml:2
+msgid "Edit topic"
+msgstr "Редактирование рубрики"
+
+#: views/scripts/admin-news-topic/index.phtml:1
+msgid "News topics list"
+msgstr "Список рубрик"
+
+#: views/scripts/admin-news-topic/index.phtml:11
+msgid "Title"
+msgstr "Заголовок"
+
+#: views/scripts/admin-page/delete.phtml:1
+msgid "Delete page"
+msgstr "Удаление страницы"
+
+#: views/scripts/admin-page/delete.phtml:3
+#, php-format
+msgid "Do you really want do delete this page:\"%1$s (%2$s)\""
+msgstr "Вы действительно хотите удалить эту страницу:\"%1$s (%2$s)\""
+
+#: views/scripts/admin-page/edit.phtml:2
+msgid "Edit page"
+msgstr "Редактирование страницы"
+
+#: views/scripts/admin-page/index.phtml:1
+msgid "Pages list"
+msgstr "Список страниц"
+
+#: views/scripts/admin-page/index.phtml:13
+msgid "Page title"
+msgstr "Заголовок страницы"
+
+#: views/scripts/admin-role/delete.phtml:1
+msgid "Delete role"
+msgstr "Удаление группы"
+
+#: views/scripts/admin-role/delete.phtml:3
+#, php-format
+msgid "Do you really want do delete this role:\"%1$s\""
+msgstr "Вы действительно хотите удалить эту группу:\"%1$s\""
+
+#: views/scripts/admin-role/edit.phtml:1
+msgid "Edit role"
+msgstr "Редактирование группы"
+
+#: views/scripts/admin-role/index.phtml:1
+msgid "Roles list"
+msgstr "Список групп"
+
+#: views/scripts/admin-role/index.phtml:14
+msgid "Role name"
+msgstr "Имя группы"
+
+#: views/scripts/admin-role/index.phtml:15
+msgid "Acl role"
+msgstr "Роль"
+
+#: views/scripts/admin-user/delete.phtml:1
+msgid "Delete user"
+msgstr "Удаление пользователя"
+
+#: views/scripts/admin-user/delete.phtml:3
+#, php-format
+msgid "Do you really want do delete this user:\"%1$s (%2$s)\""
+msgstr "Вы действительно хотите удалить этого пользователя:\"%1$s (%2$s)\""
+
+#: views/scripts/admin-user/edit.phtml:1
+msgid "Edit user"
+msgstr "Редактирование пользователя"
+
+#: views/scripts/admin-user/index.phtml:1
+msgid "Users list"
+msgstr "Список пользователей"
+
+#: views/scripts/admin-user/index.phtml:13
+msgid "Avatar"
+msgstr "Аватар"
+
+#: views/scripts/admin-user/index.phtml:15
+msgid "Name"
+msgstr "Имя"
+
+#: views/scripts/admin-user/index.phtml:16
+msgid "Email"
+msgstr "Email"
+
+#: views/scripts/admin-user/index.phtml:17
+msgid "Role"
+msgstr "Группа"
+
+#: views/scripts/auth/forgot-password.phtml:9
+msgid "Password recovery"
+msgstr "Восстановление пароля"
+
+#: views/scripts/auth/forgot-password.phtml:25
+msgid "Thank you, you new password was emailed to you."
+msgstr "Спасибо, новый пароль отправлен на Ваш e-mail."
+
+#: views/scripts/box/login.phtml:3
+msgid "Authorization"
+msgstr "Авторизация"
+
+#: views/scripts/box/login.phtml:8
+msgid "login"
+msgstr "логин"
+
+#: views/scripts/box/login.phtml:11
+msgid "password"
+msgstr "пароль"
+
+#: views/scripts/box/login.phtml:16
+msgid "Registration"
+msgstr "Регистрация"
+
+#: views/scripts/box/login.phtml:20
+msgid "Forgot password"
+msgstr "Забыли пароль"
+
+#: views/scripts/box/login.phtml:21
+msgid "click here"
+msgstr "нажмите здесь"
+
+#: views/scripts/box/news-announce.phtml:1
+msgid "Last News"
+msgstr "Последние новости"
+
+#: views/scripts/user/profile.phtml:31
+msgid "Date of birth"
+msgstr "Дата рождения"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "enabled"
+msgstr "активно"
+
+msgid "disabled"
+msgstr "отключено"
+
+msgid "Change_date"
+msgstr "Изменить дату"
+
+msgid "News topic"
+msgstr "Рубрика"
+
+msgid "Announce"
+msgstr "Анонс"
+
+msgid "Html title"
+msgstr "Заголовок HTML"
+
+msgid "Date Publish"
+msgstr "Дата"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Create page"
+msgstr "Создание страницы"
+
+msgid "Brief"
+msgstr "Кратко"
+
+msgid "Full"
+msgstr "Текст"
+
+msgid "Full top"
+msgstr "Текст вверху"
+
+msgid "Full middle"
+msgstr "Текст посередине"
+
+msgid "Full bottom"
+msgstr "Текст внизу"
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Deactivate"
+msgstr "Деактивировать"
+
+msgid "Select action"
+msgstr "Выберите действие"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Select user"
+msgstr "Выберите пользователя"
+
+msgid "Captcha"
+msgstr "Код"
+
+msgid "Reload"
+msgstr "Обновить"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Sunday"
+msgstr "воскресенье"
+
+msgid "Monday"
+msgstr "понедельник"
+
+msgid "Tuesday"
+msgstr "вторник"
+
+msgid "Wednesday"
+msgstr "среда"
+
+msgid "Thursday"
+msgstr "четверг"
+
+msgid "Friday"
+msgstr "пятница"
+
+msgid "Saturday"
+msgstr "суббота"
+
+msgid "Create news"
+msgstr "Создание новости"
+
+msgid "of January"
+msgstr "января"
+
+msgid "of February"
+msgstr "февраля"
+
+msgid "of March"
+msgstr "марта"
+
+msgid "of April"
+msgstr "апреля"
+
+msgid "of May"
+msgstr "мая"
+
+msgid "of June"
+msgstr "июня"
+
+msgid "of July"
+msgstr "июля"
+
+msgid "of August"
+msgstr "августа"
+
+msgid "of September"
+msgstr "сентября"
+
+msgid "of October"
+msgstr "октября"
+
+msgid "of November"
+msgstr "ноября"
+
+msgid "of December"
+msgstr "декабря"
+
+msgid "January"
+msgstr "январь"
+
+msgid "February"
+msgstr "февраль"
+
+msgid "March"
+msgstr "март"
+
+msgid "April"
+msgstr "апрель"
+
+msgid "May"
+msgstr "май"
+
+msgid "June"
+msgstr "июнь"
+
+msgid "July"
+msgstr "июль"
+
+msgid "August"
+msgstr "август"
+
+msgid "September"
+msgstr "сентябрь"
+
+msgid "October"
+msgstr "октябрь"
+
+msgid "November"
+msgstr "ноябрь"
+
+msgid "December"
+msgstr "декабрь"
+
+msgid "captcha.isEmpty"
+msgstr "Введите код"
+
+msgid "captcha.isWrong"
+msgstr "Неверный код"
+
+msgid "email.emailAddressInvalid"
+msgstr "Неправильный формат адреса"
+
+msgid "email.notInArray"
+msgstr "Адреса нет в базе"
+
+msgid "List actions"
+msgstr "Действия со списком"
+
+msgid "Seo Id"
+msgstr "SEO-URL страницы"
+
+msgid "Select topic"
+msgstr "Выберите рубрику"
+
+msgid "Grab from url"
+msgstr "Скачать с адреса"
+
+msgid "Driver"
+msgstr "Тип страницы"
+
+msgid "Select driver"
+msgstr "Не указан"
+
+msgid "Rows per page"
+msgstr "Строк на стр."
+
+msgid "Binded roles"
+msgstr "Доп. роли"
+
+msgid "Bind"
+msgstr "Связать"
+
+msgid "Unbind"
+msgstr "Отвязать"
+
+msgid "ntopic_id.isEmpty"
+msgstr "Выберите рубрику"
+
+msgid "recource_rc_id.fileUploadErrorIniSize"
+msgstr "Размер загружаемого файла превышает максимально допустимый"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "client"
+msgstr "Клиент"
+
+msgid "manager"
+msgstr "Менеджер"
+
+msgid "stockman"
+msgstr "Кладовщик"
+
+msgid "keeper"
+msgstr "Кладовщик"
+
+msgid "editor"
+msgstr "Редактор"
+
+msgid "director"
+msgstr "Директор"
+
+msgid "dealer"
+msgstr "Дилер"
+
+msgid "destination.isEmpty"
+msgstr "Не указан раздел сайта"
+
+msgid "role.isEmpty"
+msgstr "Не указана роль"
+
+msgid "description_language_2_title.isEmpty"
+msgstr "Не указан заголовок"
+
+msgid "DeleteForever"
+msgstr "Удалить"
+
+msgid "unapproved"
+msgstr "не проверено"
+
+msgid "Gallery"
+msgstr "Галерея"
+
+msgid "seo_id.This field should be uniq"
+msgstr "Такой Seo-URL уже есть в базе"
+
+msgid "LinkToSite"
+msgstr "Привязать к сайту"
+
+msgid "UnlinkFromSite"
+msgstr "Отвязать от сайта"
+
+msgid "Web-sites"
+msgstr "Web-сайты"
+
+msgid "visible"
+msgstr "видимый"
+
+msgid "invisible"
+msgstr "невидимый"
+
+msgid "Languages list"
+msgstr "Языки"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Languages"
+msgstr "Языки"
+
+msgid "Edit language"
+msgstr "Редактирование языка"
+
+msgid "Delete language"
+msgstr "Удаление языка"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Do you really want do delete this language:\"%1$s\" ?"
+msgstr "Вы действительно хотите удалить этот язык: \"%1$s\" ?"
+
+msgid "Create banner"
+msgstr "Создание баннера"
+
+msgid "Root"
+msgstr "Корень"
+
+msgid "Items"
+msgstr "Товары"
+
+msgid "Add attribute"
+msgstr "Добавить аттрибут"
+
+msgid "Manufacturers"
+msgstr "Производители"
+
+msgid "New manufacturer"
+msgstr "Новый производитель"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Add banner"
+msgstr "Добавить баннер"
+
+msgid "Add user"
+msgstr "Добавить пользователя"
+
+msgid "Add page"
+msgstr "Добавить страницу"
+
+msgid "Change profile"
+msgstr "Изменить профиль"
+
+msgid "White IP"
+msgstr "Белые IP"
+
+msgid "Attributes control"
+msgstr "Управление атрибутами"
+
+msgid "Sets"
+msgstr "Наборы"
+
+msgid "Categories/Items"
+msgstr "Категории/Товары"
+
+msgid "Articles"
+msgstr "Статьи"
+
+msgid "Topics"
+msgstr "Темы"
+
+msgid "News and mailings"
+msgstr "Новости и рассылки"
+
+msgid "Repeat password"
+msgstr "Повторите пароль"
+
+msgid "Acl Role"
+msgstr "Роль"
+
+msgid "guest"
+msgstr "гость"
+
+msgid "user"
+msgstr "пользователь"
+
+msgid "hyring"
+msgstr "наниматель"
+
+msgid "siteEditor"
+msgstr "редактор сайта"
+
+msgid "supervisor"
+msgstr "супервайзер"
+
+msgid "admin"
+msgstr "администратор"
+
+msgid "FAQs list"
+msgstr "Список FAQs"
+
+msgid "Question"
+msgstr "Вопрос"
+
+msgid "Add FAQ"
+msgstr "Добавить FAQ"
+
+msgid "Short answer"
+msgstr "Короткий ответ"
+
+msgid "Full answer"
+msgstr "Полный ответ"
+
+msgid "Create topic"
+msgstr "Создание темы"
+
+msgid "Delete topic"
+msgstr "Удаление темы"
+
+msgid "Do you really want to delete this topic:\"%1$s (%2$s)\""
+msgstr "Вы действительно хотите удалить эту тему:\"%1$s (%2$s)\""
+
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+msgid "Delivery/Payment"
+msgstr "Оплаты/Доставки"
+
+msgid "Delivery"
+msgstr "Доставки"
+
+msgid "Payment"
+msgstr "Оплаты"
+
+msgid "password.Password confirmation does not match"
+msgstr "Пароли не совпадают"
+
+msgid "name.isEmpty"
+msgstr "Введите имя"
+
+msgid "address.isEmpty"
+msgstr "Введите адрес"
+
+msgid "tel.isEmpty"
+msgstr "Введите телефон"
+
+msgid "name.stringLengthTooShort"
+msgstr "Имя слишком короткое"
+
+msgid "tel.notDigits"
+msgstr "Введите корректный телефон"
+
+msgid "Video from YouTube"
+msgstr "Видео с YouTube"
+
+msgid "Banner"
+msgstr "Баннер"
+
+msgid "sku.Not in array"
+msgstr "Такой артикул уже присутствует"
+
+msgid "description_language_2_name.isEmpty"
+msgstr "Введине название  товара"

@@ -1,0 +1,95 @@
+				
+				<div class="form-box">
+
+				<? $errors = array_merge($this->form->getErrors(), $this->form->getErrorMessages()) ?>
+
+
+              <!-- h3>Элементы формы</h3-->
+              
+              
+              <div><img src="<?=$this->skin()->url()?>images/input-form/inp-form-top-bg.png" width="705" height="10" border="0" /></div>
+              <div class="inp-form-y">
+              	
+				<form  enctype="multipart/form-data"
+				    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+				        <?=$name?>="<?=$value?>"
+				    <? } ?>
+				>
+
+
+
+	<div class="padd">
+	
+	
+
+
+
+
+
+<? $buttons = array() ?>
+<? $hiddens = array() ?>
+<? foreach ($this->form->getElements() as $el) {?>
+    <? if (($el instanceof Zend_Form_Element_Submit) OR ($el instanceof Zend_Form_Element_Button)) { ?>
+        <? $buttons[]=$el ?>
+    <? } else if ($el instanceof Zend_Form_Element_Hidden) { ?>
+        <? $hiddens[]=$el ?>
+    <? } else { ?>
+        <div class="row">
+            <div class="title">
+            	<?=$el->getLabel()?><? if ($el->isRequired()) {?> <?=$this->formMarkerRequired()?><? } ?> :
+            </div>
+                <? $el->setDecorators(array('ViewHelper')) ?>
+                <? if (in_array($el->getType(), array('Zend_Form_Element_Text', 'Zend_Form_Element_Password'))) { ?>
+                        <? $boxClass = 'input-box' ?>
+                <? } else if ($el->getType() == 'Zend_Form_Element_Select') { ?>
+                        <? $boxClass = 'select-box' ?>
+                <? } else if ($el->getType() == 'Zend_Form_Element_Textarea') { ?>
+                        <? $boxClass = 'textarea-box' ?>
+                <? } else if (in_array($el->getType(), array('Zend_From_Element_Checkbox', 'Zend_Form_Element_Radio'))) { ?>
+                		<? $boxClass = NULL ?>
+                		<? $el->addDecorator('CheckerDecoratorBox') ?>
+                <? } else { ?>
+                		<? $boxClass = NULL ?>                	
+                <? } ?>
+                
+                <? if ( ! empty($boxClass)) { ?>
+                	<div class="<?=$boxClass?>">
+                <? } ?>
+			                <?=$el->render()?>
+		                <? if ($errors[$el->getName()]) { ?>
+		                    <div class="red" style="color:red">
+		                    <?=$this->form->getElementErrorsFormatted($el->getName(), $errors[$el->getName()])?>
+		                    </div>
+		                <? } ?>
+                <? if ( ! empty($boxClass)) { ?>
+	                </div>
+                <? } ?>
+        	<div class="cleaner"></div>
+        </div>
+    <? } ?>
+<? } ?>
+
+                  <div><img src="<?=$this->skin()->url()?>images/spacer.gif" width="705" height="20" border="0" /></div>
+                  <div class="button-box">
+				    <? foreach ($buttons as $btn) { ?>
+				        <?=$btn->setAttrib('class', 'form-submit')->render()?>
+				    <? } ?>
+                  </div>
+                  <div class="cleaner"></div>
+
+
+<? foreach ($hiddens as $el) { ?><?=$el->render()?><? } ?>
+
+<?/*?><p><?=$this->translate('Поля со звездочкой обязательны к заполнению.')?></p><?*/?>
+
+	</div>
+
+</form>
+
+			      </div>
+              <div><img src="<?=$this->skin()->url()?>images/input-form/inp-form-bt-bg.png" width="705" height="10" border="0" /></div>
+              
+              
+              
+            </div> <!-- class="form_box" -->
+

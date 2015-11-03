@@ -1,0 +1,49 @@
+<select id="<?=$this->formId?>_select" name="mass_action" style="width: 250px">
+    <? foreach ($this->params['options'] as $value=>$text) { ?>
+        <option value="<?=$value?>"><?=$text?></option>
+    <? } ?>
+</select>
+
+
+
+<? $this->headScript('SCRIPT', '
+    $(document).ready(function(){
+        $("#'.$this->formId.'_select").bind("change", function(){
+            if ($("input.mass-form-check:checked").length > 0) {
+                var $this = $(this);
+                if ($this.val() == "linkToSite") {
+                    if ($("input.mass-site-ids:checked").length > 0) {
+                        if (confirm("'.$this->translate('Привязать выбранные товары к указанным сайтам').'?")) {
+                            $(this).form.submit();
+                        }
+                        else {
+                            $(this).val("");
+                        }                
+                    }
+                    else {
+                        alert("'.$this->translate('Выберите сайты для привязки').'");
+                        $(this).val("");
+                    }
+                }
+                else if ($this.val() == "unlinkFromSite") {
+                    if ($("input.mass-site-ids:checked").length > 0) {
+                        if (confirm("'.$this->translate('Отвязать выбранные товары от указанных сайтов').'?")) {
+                            this.form.submit();
+                        }
+                        else {
+                            $(this).val("");
+                        }                
+                    }
+                    else {
+                        alert("'.$this->translate('Выберите сайты для отмены привязки').'");
+                        $(this).val("");
+                    }                
+                }                    
+            }
+            else {
+                alert("'.$this->translate('Nothing selected').'");
+                $(this).val("");
+            }
+        });
+    });
+')?>

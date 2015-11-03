@@ -1,0 +1,95 @@
+
+<? $i = 0 ?>
+<? foreach ($this->menu as $level1) if ($level1->getLabel() != '-') { ?>
+		<div class="lm <?=(++$i == 1?'first':'')?>" <?/*id="menu_left_<?=$i?>"*/?>>
+			<? $chiCount = count($level1->get('pages')); if ($chiCount) { ?>
+			<img src="<?=$this->skin()->url()?>images/lmenu/arr_down.gif" alt="" width="8" height="8" class="arr" />
+			<span class="lm-wrap" id="menu_left_<?=$i?>"><img src="<?=$this->skin()->url()?>images/ico18x18/<?=$level1->get('icon')?>.gif" alt="" width="18" height="18" border="0" class="ico" /><?=$level1->get('label')?></span>
+			<? } else { ?>
+			<a href="<?=$level1->getHref()?>"><img src="<?=$this->skin()->url()?>images/ico18x18/<?=$level1->get('icon')?>.gif" alt="" width="18" height="18" border="0" class="ico" /><?=$level1->get('label')?></a>
+			<? } ?>
+		</div>
+		<? if ($chiCount) { ?>
+		<div class="submenu" id="submenu_left_<?=$i?>">
+            <? if ($level1->get('hideTop') != TRUE) { ?>
+ 			 <a href="<?=$level1->getHref()?>"><?=$level1->get('label')?></a>
+            <? } ?>
+			<? foreach ($level1->get('pages') as $sub) { ?>
+				<a href="<?=$sub->getHref()?>"><?=$sub->get('label')?></a>
+			<? } ?>
+			<div>
+				<img src="<?=$this->skin()->url()?>images/lmenu/arr_up.gif" alt="" width="8" height="8" class="arr_up" />
+			</div>
+		</div>
+    <? } ?>
+<? } ?>
+
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("div.submenu").hide();
+    	    $("span.lm-wrap").unbind("click");
+            $("span.lm-wrap").click(
+                    function(){
+                        saveStateInverted("sub"+$(this).attr("id"));
+                        $("#sub"+$(this).attr("id")).slideToggle(100);
+                    }
+            );
+            restoreByPrefixEx("submenu");
+        });
+</script>
+
+<? if (count($this->addMenu)) { ?>
+    <? foreach ($this->addMenu as $role=>$menu) { ?>
+        <br/>
+        <a class="mail_subject over_menu" style="color: #fff;" id="<?=$role?>"><?=$this->translate('Меню')?>: <?=$this->translate($this->roleViewAlias($role))?></a>
+        <div id="over_menu_<?=$role?>" class="over_menu">
+
+        <? $j = 0 ?>
+        <? foreach ($menu as $level1) if ($level1->getLabel() != '-') { ?>
+                <div class="lm <?=(++$j == 1?'first':'')?>" <?/*id="menu_left_<?=$i?>"*/?>>
+                    <? $chiCount = count($level1->get('pages')); if ($chiCount) { ?>
+                    <img src="<?=$this->skin()->url()?>images/lmenu/arr_down.gif" alt="" width="8" height="8" class="arr" />
+                    <span class="lm-wrap" id="menu_left_<?=$i+$j?>"><img src="<?=$this->skin()->url()?>images/ico18x18/<?=$level1->get('icon')?>.gif" alt="" width="18" height="18" border="0" class="ico" /><?=$level1->get('label')?></span>
+                    <? } else { ?>
+                    <a href="<?=$level1->getHref()?>"><img src="<?=$this->skin()->url()?>images/ico18x18/<?=$level1->get('icon')?>.gif" alt="" width="18" height="18" border="0" class="ico" /><?=$level1->get('label')?></a>
+                    <? } ?>
+                </div>
+                <? if ($chiCount) { ?>
+                <div class="submenu" id="submenu_left_<?=$i+$j?>">
+                    <? if ($level1->get('hideTop') != TRUE) { ?>
+                      <a href="<?=$level1->getHref()?>"><?=$level1->get('label')?></a>
+                    <? } ?>
+                    <? foreach ($level1->get('pages') as $sub) { ?>
+                        <a href="<?=$sub->getHref()?>"><?=$sub->get('label')?></a>
+                    <? } ?>
+                    <div>
+                        <img src="<?=$this->skin()->url()?>images/lmenu/arr_up.gif" alt="" width="8" height="8" class="arr_up" />
+                    </div>
+                </div>
+            <? } ?>
+        <? } ?>
+
+        </div>
+    <? } ?>
+<? } ?>
+
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("div.over_menu").hide();
+            $("a.over_menu").unbind("click");
+            $("a.over_menu").click(
+                    function(){
+                        saveStateInverted("over_menu_"+this.id);
+                        $("#over_menu_"+this.id).slideToggle(100);
+                    }
+            );
+            restoreByPrefixEx("over_menu");
+        });
+</script>
+
+
+
+
+

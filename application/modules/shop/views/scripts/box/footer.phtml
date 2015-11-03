@@ -1,0 +1,130 @@
+<div class="footer">
+    <div class="center">
+        <?= $this->menu->html?>        
+        <div class="line"></div>
+        <span class="copyright">© SA&amp;GA. 2013</span>
+        <a class="site_map" href="<?=$this->url(array('reset'=>true), 'shop-sitemap')?>">КАРТА САЙТА</a>
+        <form id="newsletter">
+            <span class="error"></span>
+            <span class="success"><span>вы успешно подписаны на новости</span></span>
+            <label>подпишитесь на наши новости</label>
+            <input type="text" />
+            <a class="submit" href="javascript:void(0)">ОК</a>
+        </form>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                if($("#newsletter input").val()!==""){
+                    $("#newsletter input").val("");
+                }
+                $("#newsletter label").click(function(){
+                    $(this).hide();
+                    $(this).next("#newsletter input").focus();
+                });
+                $("#newsletter input").focus(function(){//ie8
+                    $(this).prev("#newsletter label").hide();
+                });
+                $("#newsletter input").blur(function(){
+                    if($(this).val()==""){
+                        $(this).prev("#newsletter label").show();
+                    }
+                });
+                
+                $('#newsletter .submit').click(function(){
+                    $('#newsletter .error').hide();
+                    $('#newsletter input').removeClass('active');
+                    $.ajax({
+                        url: "<?=$this->url(array(), 'shop-ajax-add-subscribers')?>",
+                        type: "POST",
+                        data: {email: $('#newsletter input').val()},
+                        dataType: "json",
+                        success: function(msg){
+                            if (msg.success) {
+                                $('#newsletter .success').show();
+                                setTimeout(function() { $("#newsletter .success").hide()}, 3000)
+                            } else {
+                                if ( msg.email_error )
+                                    $('#newsletter .error').html('<span>неправильный адрес</span>').show();                                    
+                                if ( msg.email_is_subscribed )
+                                    $('#newsletter .error').html('<span>вы в подписчиках</span>').show();                                    
+                                $('#newsletter input').addClass('active');
+                            }
+                        }
+                    });
+                })
+                
+                $('#newsletter input').keypress(function(e) {
+                    if(e.which == 13) {
+                        $('#newsletter .submit').click();
+                        return false;
+                    }
+                })
+            });
+        </script>
+        <a class="facebook" target="_blank" href="https://www.facebook.com/SAGA.Brand"></a>
+        <a class="facebook vk" target="_blank" href="https://vk.com/SAGA.Brand"></a>
+        <a class="facebook ok" target="_blank" href="http://ok.ru/sagadiamonds"></a>
+        <a class="facebook gplus" target="_blank" href="https://plus.google.com/u/0/+SagaDiamonds/posts"></a>
+        <a class="facebook ytube" target="_blank" href="https://www.youtube.com/channel/UCP7uwGu6rgoZ4dRsxPCCz_Q"></a>
+ <!-- Yandex.Metrika informer -->
+<a href="https://metrika.yandex.ru/stat/?id=26832003&amp;from=informer"
+target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/26832003/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+style="width:88px; height:31px; border:0; display: none;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:26832003,lang:'ru'});return false}catch(e){}"/></a>
+<!-- /Yandex.Metrika informer -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter26832003 = new Ya.Metrika({id:26832003,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/26832003" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Google analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57275939-1', 'auto');
+  ga('send', 'pageview');
+
+</script>       
+<!-- /Google analytics -->
+<!-- RedHelper -->
+<script id="rhlpscrtg" type="text/javascript" charset="utf-8" async="async" 
+	src="https://web.redhelper.ru/service/main.js?c=svetamark">
+</script> 
+<!--/Redhelper -->
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t50.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='1' height='1'><\/a>")
+//--></script><!--/LiveInternet-->
+<div class="cleaner"></div>
+    </div>        
+</div>

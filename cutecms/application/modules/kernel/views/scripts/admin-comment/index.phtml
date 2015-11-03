@@ -1,0 +1,131 @@
+<? $this->headStyle('
+    .comment-disabled,.comment-disabled * {
+        text-decoration: line-through; font-style: italic;
+    }
+    
+    .comment-unapproved,.comment-unapproved * {
+        font-weight: bold; color: red; font-style: italic;
+    }
+')?>
+
+<h2><?=$this->translate('Комментарии')?></h2>
+
+<?=$this->adminMassForm('formStart')?>
+<?=$this->adminMassForm('actions')?>
+
+
+<? $imgFolded = '<img src="'.$this->skin()->url().'images/plus.gif" />' ?>
+<? $imgUnfolded = '<img src="'.$this->skin()->url().'images/minus.gif" />' ?>
+<? $levelImg='<img src="'.$this->skin()->url().'images/icons/bullet_blue.png" />' ?>
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th width="20px"><?=$this->adminMassForm('checkAll')?></th>
+        <th width="80px">&nbsp;</th>
+        <th width="100px"><?=$this->translate('Дата')?></th>
+        <th width="75px"><?=$this->translate('Рисунок')?></th>
+        <th width="100px"><?=$this->translate('Автор')?></th>
+        <th><?=$this->translate('Комментарий')?></th>
+        <th width="150px" class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+    </table>
+<? $prevLevel = 0 ?>
+<? foreach ($this->comments as $row) { ?>    
+    <? if (($row['tree_level']>1) AND ( ! in_array($row['tree_id'], $this->expanded)) AND ( ! in_array($row['parent_id'], $this->expanded))) { ?>
+        <? $tableAttr = 'display:none;'?>
+    <? } else if ($row['id'] == $this->currentId) { ?>
+        <? $tableAttr = 'border: 2px solid green;' ?>
+    <? } else { ?>
+        <? $tableAttr = '' ?>
+    <? } ?>
+    
+    <? $tableAttr = 'style="'.$tableAttr.'"';?>
+    
+    <? if ($row['status'] == 0) { ?>
+        <? $tdAttr = 'class="comment-disabled"' ?>
+    <? } else if ($row['status'] == -1) { ?>
+        <? $tdAttr = 'class="comment-unapproved"'?>
+    <? } else { ?>
+        <? $tdAttr = '' ?>
+    <? } ?>
+
+    <? if ($row['tree_level'] > $prevLevel) { ?>
+        <?=str_repeat('<div treeId="'.$row['parent_id'].'">', ($row['tree_level'] - $prevLevel))?>
+        <?/*?><div treeId="<?=$row['parent_id']?>"><?*/?>
+    <? } else if ($row['tree_level'] < $prevLevel) { ?>
+        <?=str_repeat('</div>', ($prevLevel - $row['tree_level']))?>
+    <? } ?>
+    
+    <table <?=$tableAttr?> cellspacing="0" class="tbl" treeLevel="<?=$row['tree_level']?>" treeId="<?=$row['tree_id']?>" parentTreeId="<?=$row['parent_id']?>">
+      <tr>
+        <td width="20px"> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+        <td width="<?=20*$row['tree_level'] + 60?>px">             
+            <?=str_repeat($levelImg, $row['tree_level'])?>
+            <? if ($row['children_count'] > 0) { ?>
+                <? if (in_array($row['tree_id'], $this->expanded)) { ?>
+                    <? $attr = 'folded="0"' ?>
+                    <? $img = $imgUnfolded ?>
+                <? } else { ?>
+                    <? $attr = 'folded="1"' ?>
+                    <? $img = $imgFolded ?>
+                <? } ?>
+                <a href="#" class="comment_fold_toggle" treeLevel="<?=$row['tree_level']?>" parentTreeId="<?=$row['parent_id']?>" treeId="<?=$row['tree_id']?>" <?=$attr?>><?=$img?></a>
+                (
+                    <?=$row['children_count']?>
+                    <? if ($row['children_count'] != $row['all_children_count']) { ?>
+                        / <?=$row['all_children_count']?>
+                    <? } ?>
+                )
+            <? } ?> 
+        </td>
+        <td width="100px" <?=$tdAttr?>> <?=$this->formatDate($row['date_added'], TRUE)?> </td>
+        <td width="75px"> <?=$this->html_Img($row['rc_id_preview'])?></td>
+        <td width="100px"> <?=$this->comment_Author($row)?></td>        
+        <td <?=$tdAttr?>> <?=$this->comment_Text($row, TRUE, FALSE)?></td>        
+        <td  width="150px" class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit', 'admin-comment')?>"><?=$this->translate('Edit')?></a>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete', 'admin-comment')?>"><?=$this->translate('Delete')?></a>
+            <br/>
+            <a class="act_edit" href="<?=$this->stdUrl(array('parentId'=>$row['id'], 'contentId'=>$this->contentId, 'contentType'=>base64_encode($this->contentType), 'reset'=>TRUE), 'edit', 'admin-comment')?>"><?=$this->translate('Ответить')?></a>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+    </table>
+    
+    
+    
+    <? $prevLevel = $row['tree_level'] ?>
+<? } ?>
+    <? if ($prevLevel > 0) { ?>
+        <?=str_repeat('</div>', ($prevLevel-1))?>
+    <? } ?>
+
+    <?=$this->adminMassForm('formEnd')?>
+   
+      
+  <a href="<?=$this->stdUrl(array('reset'=>TRUE, 'contentId'=>$this->contentId, 'contentType'=>base64_encode($this->contentType)), 'edit', 'admin-comment')?>" class="btn2"><?=$this->translate('New')?></a>
+   
+
+<? $this->headScript('SCRIPT', '
+    $(function(){
+        $("a.comment_fold_toggle").click(function(e){
+            e.preventDefault();
+            var $this = $(this);
+            if ($this.attr("folded") > 0) {
+                $this.attr("folded", "0");
+                $this.html("'.addslashes($imgUnfolded).'");
+                $("div[treeId="+$this.attr("treeId")+"]").show();
+                $("div[treeId="+$this.attr("treeId")+"]>table").show();
+            }
+            else {
+                $this.attr("folded", "1");
+                $this.html("'.addslashes($imgFolded).'");
+                $("div[treeId="+$this.attr("treeId")+"]").hide();
+            }
+        });
+    });
+') ?>

@@ -1,0 +1,68 @@
+<h2><?=$this->translate('Подсказки')?></h2>
+
+<?=$this->adminMassForm('formStart')?>
+<?=$this->adminMassForm()->setMassActions(array('delete'))->adminMassForm('actions')?>
+
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+    <td align="right">
+      <a href="<?=$this->stdUrl(array('reset'=>TRUE), 'edit', 'admin-tip')?>" class="btn2"><?=$this->translate('New')?></a>
+    </td>
+</tr>
+</table>
+
+
+<? $i = 0 ?>
+
+    <table cellspacing="0" class="tbl">
+      <tr>
+        <th><?=$this->adminMassForm('checkAll')?></th>
+        <th><?=$this->translate('Раздел сайта')?></th>
+        <th><?=$this->translate('Роль')?></th>
+        <th><?=$this->translate('Подсказка')?></th>
+        <th class="actions2"><?=$this->translate('Actions')?></th>
+      </tr>
+
+<? foreach ($this->tips as $row) { ?>
+      <tr >
+        <td> <?=$this->adminMassForm('check', array('id'=>$row['id']))?> </td>
+        <td> <?=$this->tip_Destination($row)?></td>
+        <td> <?=$this->translate($row['role'])?> </td>
+        <td width="40%">
+            <a class="tip-title" href="#" tipId="<?=$row['id']?>"><?=$row['title']?></a>
+            <div class="tip-text" style="display:none;" tipId="<?=$row['id']?>"><?=$row['text']?></div>
+        </td>
+        <td class="actions2">
+            <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id']), 'edit')?>"><?=$this->translate('Edit')?></a>
+             /
+            <a class="act_delete" href="<?=$this->stdUrl(array('id'=>$row['id']), 'delete')?>"><?=$this->translate('Delete')?></a>
+        </td>
+      </tr>
+
+    <? ++$i ?>
+<? } ?>
+
+
+    </table>
+
+
+    <?=$this->adminMassForm('formEnd')?>
+
+    <?=$this->paginationControl($this->tips)?>
+
+
+<? $this->headScript('SCRIPT', '
+    $(function(){
+        $("a.tip-title").unbind("click");
+        $("a.tip-title").click(function(e){
+            e.preventDefault();
+            var $this = $(this);
+            var vis = $("div.tip-text[tipId="+$this.attr("tipId")+"]:visible");
+            var hid = $("div.tip-text[tipId="+$this.attr("tipId")+"]:hidden");
+            vis.hide();
+            hid.show();
+        });
+    });
+')?>

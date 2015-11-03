@@ -1,0 +1,64 @@
+<?=$this->doctype(Zend_View_Helper_Doctype::XHTML1_TRANSITIONAL)?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<?=$this->headMeta()?>
+		<?=$this->headTitle()?>
+		<?=$this->headLink()?>
+		<link type="text/css" rel="stylesheet" href="<?=$this->skin()->url()?>css/style.css" />
+        <script type="text/javascript" src="<?=$this->skin()->url()?>js/jquery-1.6.4.min.js"></script>
+        <script type="text/javascript" src="<?=$this->skin()->url()?>js/jquery.jcarousel.min.js"></script>
+	</head>
+	
+    <body>
+        <div class="header">
+            <?=$this->box_Header()?>
+        </div>
+		
+		<div class="breadcrumbs">
+			<div class="center">
+				<a href="<?=$this->url(array('reset'=>true), 'shop-index')?>">Главная<span></span></a>
+				<span class="current">Страница 404</span>
+			</div>
+		</div>
+		<div class="content page">
+			<div class="center">
+				<h2>Страница 404</h2>
+				<p>Страница, которую вы запросили, не существует. 
+				Пожалуйста, перейдите на главную страницу или воспользуйтесь поиском.</p>
+		  <?php
+		  if (('development' == APPLICATION_ENV) OR (PHP_SAPI == 'cli')) { ?>
+
+			<h3>Exception information:</h3>
+			<p>
+				<b>Message:</b> <?php echo $this->exception->getMessage() ?>
+			</p>
+
+			<h3>Stack trace:</h3>
+			<pre><?php echo $this->exception->getTraceAsString() ?>
+			</pre>
+
+				<h3>Request Parameters:</h3>
+			<pre><?php echo var_export($this->request->getParams(), true) ?>
+			</pre>
+			<?php } ?>
+		  
+			<? App_Debug::dumpToFirebug($this->exception->getMessage())?>
+			<? App_Debug::dumpToFirebug($this->exception->getTraceAsString())?>
+			</div>
+			<div class="cleaner"></div>
+		</div>
+
+        <?=$this->box_Footer()?>
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-27164144-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script> 
+    </body>
+</html>

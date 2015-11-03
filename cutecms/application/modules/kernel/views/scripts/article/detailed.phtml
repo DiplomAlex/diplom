@@ -1,0 +1,63 @@
+                    <div class="white-box-top" >
+                        <div class="white-box-bottom">
+                          <div class="white-box-center">
+<!--                            <div class="cleaner"></div>-->
+                            <div id="center-box">
+                                <div class="text-box">
+                                    <div class="article_navigate">
+                                        <a href="">Главная</a><span>&rarr;</span><a href="">Каталог</a><span>&rarr;</span><a href=""><b>Механические автоматы</b></a>
+                                    </div>
+                                </div>
+                                <div class="text-box-border"><img alt="" src="<?=$this->skin()->url()?>images/spacer.gif" width="1000" height="2" border="0" /></div>
+                            </div>
+                            <div id="article">
+                                <h2>Статьи</h2>
+                                <div class="article_content">
+                                    <div class="article_content_inner">
+                                        <div class="article_text">
+                                            <div class="article_text_more">
+                                                <div class="article_header">
+                                                  <span><?=$this->article->title?></span>
+                                                  <br />
+                                                  Автор: <?=$this->article->author?>
+                                                  <br />
+                                                  Дата: <?=$this->formatDate($this->article->date_added)?>
+                                                </div>
+                                                <p>
+                                                    <?=$this->article->text?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <? if ($this->others) { ?>
+                                        <div class="article_text">
+                                            <div class="article_text_bottom">
+                                                <div class="art_bottom_lnks">
+                                                    <span>Другие статьи</span>
+                                                    <? foreach ($this->others as $row) { ?>
+                                                        <p><a href="<?=$this->url(array('seo_id'=>$row->seo_id), 'infosite-article-detailed')?>"><?=$row->title?></a></p>
+                                                    <? } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <? } ?>
+                                        <div class="article_content_bottom"></div>
+                                    </div>                                    
+                                </div>
+                                <? if ($this->gallery) { ?>
+                                <div class="art_banners">
+                                    <? foreach ($this->gallery as $image) { ?>
+                                        <div style="<?/*?>background-repeat: no-repeat; width: 150px;<?*/?> background-image: url(<?=App_Resource::getUploadsUrl($image->rc_id_preview4)/*=$this->html_Img($image->rc_id_preview, 'border="0" width="150" height="80"', $image->rc_id_filename)*/?>);"></div>
+                                    <? } ?>
+                                </div>
+                                <? } ?>
+                            </div>
+                            <div class="cleaner"></div>
+                            </div>
+                        </div>
+                    </div>
+
+<div class="cleaner"></div>
+<div class="cleaner"></div>
+<div class="cleaner"></div>
+
+<?=$this->box_Comments('article', $this->article->id, $this->article->title, $this->url(array('seo_id'=>$this->article->seo_id)))?>

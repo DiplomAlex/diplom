@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-20 00:55+0200\n"
+"PO-Revision-Date: 2013-05-04 13:29+0200\n"
+"Last-Translator: mr <0x00ten@gmail.com>\n"
+"Language-Team: ru <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.3\n"
+"Project-Id-Version: \n"
+
+msgid "name.isEmpty"
+msgstr "Укажите Имя"
+
+msgid "email.isEmpty"
+msgstr "Укажите адрес e-mail"
+
+msgid "tel.isEmpty"
+msgstr "Укажите телефон"
+
+msgid "phone.isEmpty"
+msgstr "Укажите телефон"
+
+msgid "address.isEmpty"
+msgstr "Укажите почтовый адрес"
+
+msgid "text.isEmpty"
+msgstr "Напишите текст сообщения"
+
+msgid "client_requisites__name.isEmpty"
+msgstr "Введите ваше имя"
+
+msgid "client_requisites__phone.isEmpty"
+msgstr "Укажите Ваш контактный телефон"
+
+msgid "client_requisites__email.isEmpty"
+msgstr "Укажите email для связи"
+
+msgid "client_requisites__address.isEmpty"
+msgstr "Введите адрес"
+
+msgid "orderStatus.cancelled"
+msgstr "отменен"
+
+msgid "orderStatus.created"
+msgstr "оформлен"
+
+msgid "orderStatus.processing"
+msgstr "обрабатывается"
+
+msgid "orderStatus.delivering"
+msgstr "в доставке"
+
+msgid "orderStatus.complete"
+msgstr "выполнен"
+
+msgid "login.isEmpty"
+msgstr "Введите логин"
+
+msgid "password.isEmpty"
+msgstr "Введите пароль"
+
+msgid "password2.isEmpty"
+msgstr "Повторите пароль"
+
+msgid "login.Not in array"
+msgstr "Этот логин уже занят"
+
+msgid "email_address.Not in array"
+msgstr "Такой адрес уже зарегистрирован"
+
+msgid "firstname.isEmpty"
+msgstr "Укажите Имя"
+
+msgid "lastname.isEmpty"
+msgstr "Укажите Фамилию"
+
+msgid "email_address.isEmpty"
+msgstr "Укажите Email"
+
+msgid "city.isEmpty"
+msgstr "Укажите город"
+
+msgid "telephone.isEmpty"
+msgstr "Укажите телефон"
+
+msgid "confirmation.isEmpty"
+msgstr "Повторите пароль"
+
+msgid "email_address.emailAddressInvalid"
+msgstr "Введите корректный Email"
+
+msgid "telephone.notDigits"
+msgstr "Введите корректный номер"
+
+msgid "password.Password confirmation does not match"
+msgstr "Пароли не совпадают"
+
+msgid "password_current.isEmpty"
+msgstr "Введите старый пароль"
+
+msgid "password_new.isEmpty"
+msgstr "Введите новый пароль"
+
+msgid "password_confirmation.isEmpty"
+msgstr "Повторите пароль"
+
+msgid "password_new.Password confirmation does not match"
+msgstr "Пароли не совпадают"
+
+msgid "password_current.stringLengthTooShort"
+msgstr "Пароль слишком короткий"
+
+msgid "items.isEmpty"
+msgstr "Пожалуйста добавьте товар"
+
+msgid "city.stringLengthTooLong"
+msgstr "Максимальная длина значения - 200 символов"
+
+msgid "telephone.stringLengthTooLong"
+msgstr "Максимальная длина значения - 200 символов"
+
+msgid "name.stringLengthTooLong"
+msgstr "Максимальная длина значения - 200 символов"
+
+msgid "email.stringLengthTooLong"
+msgstr "Максимальная длина значения - 200 символов"
+
+msgid "message.stringLengthTooLong"
+msgstr "Максимальная длина значения - 1000 символов"

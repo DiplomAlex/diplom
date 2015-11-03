@@ -1,0 +1,97 @@
+<? $errors = array_merge($this->form->getErrors(), $this->form->getErrorMessages()) ?>
+
+<form  enctype="multipart/form-data" class="form-horizontal" 
+    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+        <?=$name?>="<?=$value?>"
+    <? } ?>
+>
+
+<? if ($this->form->getText() !== NULL) { ?>
+    <tr>
+        <td colspan="2">
+            <?=$this->form->getText()?>
+        </td>
+    </tr>
+<? } ?>
+
+<? foreach ($errors as $error_key=>$error_text) { ?>
+   <? if (is_numeric($error_key)) { ?>
+        <tr>
+            <td colspan="2"  class="red">
+                <?=$error_text?>
+            </td>
+        </tr>
+   <? } ?>
+<? } ?>
+
+<? $buttons = array() ?>
+<? $hiddens = array() ?>
+<? $inputs = array() ?>
+<? $subForms = $this->form->getSubForms() ?>
+
+<? foreach ($this->form->getElements() as $el) {?>
+    <? if (($el instanceof Zend_Form_Element_Submit) OR ($el instanceof Zend_Form_Element_Button)) { ?>
+        <? $buttons[]=$el ?>
+    <? } else if ($el instanceof Zend_Form_Element_Hidden) { ?>
+        <? $hiddens[]=$el ?>
+    <? } else { ?>
+        <? $inputs[]=$el ?>
+    <? } ?>
+<? } ?>
+
+<? foreach ($inputs as $el) {?>
+    <div class="control-group <?= ( count($errors[$el->getName()]) ) ? (( $errors[$el->getName()] ) ? 'error' : 'success') : ''?>">
+        <? $label = $el->getLabel() ?>
+        <? if ( ! empty($label)) { ?><label class="control-label" for="<?=$el->getName()?>"><?=$label?><? if ($el->isRequired()) {?> <?=$this->formMarkerRequired()?><? } ?> :</label><? } ?>
+        <div class="controls">
+            
+            <? if (in_array($el->getType(), array('Zend_Form_Element_Text', 'Zend_Form_Element_Password'))) { ?>
+                    <? $el->setAttrib('class', 'input '.$el->getAttrib('class')) ?>
+            <? } else if ($el->getType() == 'Zend_Form_Element_Select') { ?>
+                    <? $el->setAttrib('class', 'select '.$el->getAttrib('class')) ?>
+            <? } else if ($el->getType() == 'Zend_Form_Element_Textarea') { ?>
+                    <? $el->setAttrib('class', 'textarea '.$el->getAttrib('class')) ?>
+            <? } ?>
+            <? $el->setDecorators(array('ViewHelper')) ?>
+            <?=$el->render()?>
+            <? if ($errors[$el->getName()]) { ?>
+                <div class="cleaner"></div>
+                <span class="help-inline"  for="<?=$el->getName()?>" generated="true">
+                <?= $this->translate($this->form->getElementErrorsFormatted($el->getName(), $errors[$el->getName()]))?>
+                </span>
+            <? } ?>
+			<? if($hint = $el->getAttrib('hint')) { ?><div class="hint"><?=$hint?></div><? } ?>
+        </div>
+    </div>
+<?} $i=0;?>
+<? foreach ($subForms as $sform) {?>
+        
+	<?foreach($sform as $el2) { $el = $el2->getElement('good_id'); ?>
+		<div class="control-group">
+			<label class="control-label"><?=$el->getLabel();?></label>
+			<div class="controls">
+			    <input type="text" name="docRows[<?=$i?>][good_id]" value="<?=$el->getValue()?>" <?= $el->getAttrib('readonly') == 1 ? 'readonly="readonly"' : '' ?> >
+				<? if($hint = $el->getAttrib('hint')) { ?><div class="hint"><?=$hint?></div><? } ?>				
+			</div>
+        </div>
+		<?$el = $el2->getElement('plan_qnt'); ?>
+		<div class="control-group">
+			<label class="control-label"><?=$el->getLabel()?></label>
+			<div class="controls">
+				<input type="text" name="docRows[<?=$i?>][plan_qnt]" value="<?=$el->getValue()?>" <?= $el->getAttrib('readonly') == 1 ? 'readonly="readonly"' : '' ?> <?=$el->getAttrib('class') ? 'class="'.$el->getAttrib("class").'"' : '' ?>>
+				<? if($hint = $el->getAttrib('hint')) { ?><div class="hint"><?=$hint?></div><? } ?>
+			</div>
+    </div>
+	<? $i++;}  ?>
+<? } ?>
+<table style="margin: 20px auto;">
+    <tr>
+    <? foreach ($buttons as $btn) { ?>
+        <td><?=$btn->render()?></td>
+    <? } ?>
+    </tr>
+</table>
+
+<? foreach ($hiddens as $el) { ?><?= $el->render()?><? } ?>
+
+</form>

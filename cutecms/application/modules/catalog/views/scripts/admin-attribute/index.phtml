@@ -1,0 +1,69 @@
+<? $this->pageTitle($this->translate('Атрибуты')); ?>
+
+<?= $this->adminMassForm('formStart') ?>
+
+<div class="widget-box collapsible">
+    <div class="widget-title">
+        <a href="#collapseThree" data-toggle="collapse">
+            <span class="icon"><i class="icon-pencil"></i></span>
+            <h5><?= $this->translate('Действия с атрибутами') ?></h5>
+        </a>
+    </div>
+    <div class="collapse" id="collapseThree">
+        <div class="widget-content">
+            <?= $this->adminMassForm('actions', $this->massActionsConfig) ?>
+        </div>
+    </div>
+</div>
+
+<div class="widget-box table">
+    <div class="widget-title"><h5><?= $this->translate('Список атрибутов') ?></h5>
+        <div class="buttons">
+            <a href="<?= $this->stdUrl(array('reset' => true, 'group' => $this->groupId), 'edit', 'admin-attribute', 'catalog') ?>" class="btn btn-mini">
+                <i class="icon-file"></i>
+                <?= $this->translate('New') ?>
+            </a>
+        </div>
+    </div>
+    <div class="widget-content nopadding">  
+        <table cellspacing="0" class="table table-bordered table-striped table-hover table-no-external-border">
+            <tr>
+                <th width="50px"><?= $this->adminMassForm('checkAll') ?></th>
+                <th><?= $this->translate('Sorting') ?></th>
+                <th><?= $this->translate('Название') ?></th>
+                <th><?= $this->translate('Тип') ?></th>
+                <th><?= $this->translate('Значение по-умолчанию') ?></th>
+                <th><?= $this->translate('Статус') ?></th>
+                <th class="actions2"><?= $this->translate('Actions') ?></th>
+            </tr>
+            <? if ($this->attributes->count()) { ?>
+                <? $i = 0 ?>
+                <? foreach ($this->attributes as $row) { ?>
+                    <tr>
+                        <td><?= $this->adminMassForm('check', array('id' => $row['id'])) ?></td>
+                        <td><?= $this->adminListSorting(array('id' => $row['id'], 'action' => 'sorting')) ?></td>
+                        <td><?= $row['name'] ?></td>
+                        <td><?= $this->attribute_Type($row['type']) ?></td>
+                        <td><?= $row['default_value'] ?></td>
+                        <td><?= $row['status'] ? 'видимый' : 'невидимый' ?></td>
+                        <td class="actions2">
+                            <a class="act_edit" href="<?= $this->stdUrl(array('id' => $row['id']), 'edit', 'admin-attribute', 'catalog') ?>"><?= $this->translate('Edit') ?></a>
+                            /
+                            <a class="act_delete" href="<?= $this->stdUrl(array('id' => $row['id']), 'delete', 'admin-attribute', 'catalog') ?>"><?= $this->translate('Delete') ?></a>
+                        </td>
+                    </tr>
+                    <? ++$i ?>
+                <? } ?>
+            <? } else { ?>
+                <tr>
+                    <td colspan="6">
+                        <?= $this->translate('В этом наборе пока нет аттрибутов') ?>
+                    </td>
+                </tr>
+            <? } ?>
+        </table>
+    </div>
+
+    <?= $this->adminMassForm('formEnd') ?>
+    <?= $this->paginationControl($this->attributes) ?>
+</div>

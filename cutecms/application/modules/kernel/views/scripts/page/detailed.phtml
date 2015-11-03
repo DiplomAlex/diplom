@@ -1,0 +1,17 @@
+<div class="mcol">
+	<div class="title_h3">
+		<h3><?=$this->page['title']?></h3>
+	</div>
+	<?if($this->ContactUs_Success == TRUE){?>
+		<div class="success">
+			<h2>Ваше сообщение успешно отправлено!</h2>
+		</div>
+	<?}else{?>
+		<?=$this->page['full']?>
+		<div class="pager"></div>
+		<?=$this->driverHtml?>
+	<?}?>
+</div>
+
+
+

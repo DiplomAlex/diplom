@@ -1,0 +1,15 @@
+<? if ($this->success) { ?>
+    <h2><?=$this->translate('Установка успешно завершена')?>!</h2>
+    <?=$this->translate('Для начала работы с сайтом пройдите по ссылке')?>:
+    <? $link = 'http://'.$this->options['host'].$this->options['base_url']?>
+    <a href="<?=$link?>"><?=$link?></a>
+    <br/>
+    <?=$this->translate('Вход в раздел администратора')?>:
+    <? $link = trim($link, '/')?>
+    <? $linkAdmin = $link .'/admin'?>
+    <a href="<?=$linkAdmin?>"><?=$linkAdmin?></a>
+    <?=$this->translate('(логин: %1$s пароль: %2$s)', 'admin', '123456')?>
+    <h1><?=$this->translate('Обязательно смените пароль администратора!')?></h1>
+<? } else { ?>
+    <h2><?=$this->translate('Установка не выполнена')?></h2>
+<? } ?>

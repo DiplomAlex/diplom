@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<zf-config>
+
+	<Catalog_Form_AdminItem_Edit>
+        <addonTabs>
+            <tab>Catalog_Form_AdminItem_Attribute_Tab</tab>
+            <!--<tab>Catalog_Form_AdminItem_Bundle_Tab</tab>-->
+            <!--tab>Catalog_Form_AdminItem_Site_Tab</tab-->
+            <!-- tab>Catalog_Form_AdminItem_Xsell_Tab</tab -->
+        </addonTabs>
+		<brules>
+			<colNames>Правило</colNames>
+			<colNames>Параметр 1</colNames>
+			<colNames>Параметр 2</colNames>
+			<colNames>Параметр 3</colNames>
+			<colModel index="code" name="code" width="250" sortable="TRUE" align="left" editable="TRUE" edittype="select" />
+			<colModel index="param1" name="param1" width="100" sortable="TRUE" align="right" editable="TRUE" />
+			<colModel index="param2" name="param2" width="100" sortable="TRUE" align="right" editable="TRUE" />
+			<colModel index="param3" name="param3" width="100" sortable="TRUE" align="right" editable="TRUE" />
+		</brules>
+	</Catalog_Form_AdminItem_Edit>
+
+    <Catalog_Form_AdminItem_Attribute_Tab>
+        <attributes>
+            <colNames>Код</colNames>
+            <colNames>Видимость</colNames>
+            <colNames>Тип</colNames>
+            <colNames>Название</colNames>
+            <colNames>Значение</colNames>
+            <colNames>Варианты</colNames>
+            <colNames>Цена</colNames><!-- param1 -->
+            <colNames>Параметр</colNames><!-- param2 -->
+        <!-- attributes model moved to .js.phtml due to complexity
+            <colModel index="code" name="code" width="50" sortable="TRUE" align="left" editable="0" />
+            <colModel index="name" name="name" width="150" sortable="TRUE" align="left" editable="TRUE" />
+            <colModel>
+                <index>current_value</index>
+                <name>current_value</name>
+                <width>50</width>
+                <sortable>TRUE</sortable>
+                <align>left</align>
+                <editable>TRUE</editable>
+                <edittype>custom</edittype>
+                <editoptions>
+                    <custom_element>attributesInitCurrentValue</custom_element>
+                    <custom_value>attributesGetCurrentValue</custom_value>
+                </editoptions>
+            </colModel>
+            <colModel index="variants_text" name="variants_text" hidden="TRUE" width="150" align="left" editable="TRUE" edittype="textarea"/>
+            <colModel index="param1" name="param1" width="50" sortable="TRUE" align="right" editable="TRUE" />
+        -->
+        </attributes>
+        <variants>
+            <colNames>Значение</colNames>
+            <colNames>Цена</colNames>
+            <colNames>Параметр</colNames>
+            <colModel index="value"  name="value"  width="250" align="left"  editable="TRUE" sortable="FALSE"/>
+            <colModel index="param1" name="param1" width="75" align="right" editable="TRUE" sortable="FALSE"/>
+            <colModel index="param2" name="param2" width="75" align="right" editable="TRUE" sortable="FALSE"/>
+        </variants>
+    </Catalog_Form_AdminItem_Attribute_Tab>
+
+
+    <Catalog_Form_AdminItem_Bundle_Tab>
+        <bundles>
+            <colNames>Сортировка</colNames>
+            <colNames>Код</colNames>
+            <colNames>Видимость</colNames>
+            <colNames>Название опции</colNames>
+            <colNames>Обязательно</colNames>
+            <colModel index="sort" name="sort" width="40" align="left" editable="FALSE"/>
+            <colModel index="code" name="code" width="100" sortable="TRUE" align="left" editable="TRUE" hidden="TRUE" />
+            <colModel index="status" name="status" width="75" sortable="TRUE" align="left" editable="TRUE" edittype="select" />
+            <colModel index="name" name="name" width="250" sortable="TRUE" align="left" editable="TRUE" />
+            <colModel index="is_required" name="is_required"  width="50" align="left" editable="TRUE" edittype="select"  />
+        </bundles>
+        <subitems>
+            <colNames>Сортировка</colNames>
+            <colNames>ID Товара</colNames>
+            <colNames>SKU</colNames>
+            <colNames>Товар</colNames>
+            <colNames>Псевдоним</colNames>
+            <colNames>Цена</colNames>
+            <colNames>Параметр</colNames>
+            <colNames>Мин. к-во</colNames>
+            <colNames>Макс. к-во</colNames>
+            <colModel index="sort" name="sort" width="80" align="left" editable="FALSE"/>
+            <colModel index="item_id"  name="item_id"  hidden="TRUE" width="250" align="left"  editable="TRUE" sortable="FALSE"/>
+            <colModel index="sku"  name="sku"  width="50" align="left"  editable="FALSE" sortable="FALSE"/>
+            <colModel index="spec_as_html"  name="spec_as_html"  width="200" align="left"  editable="TRUE" sortable="FALSE"/>
+            <colModel index="alias" name="alias" width="150" align="left" editable="TRUE" sortable="FALSE"/>
+            <colModel index="price" name="price" width="50" align="right" editable="TRUE" sortable="FALSE"/>
+            <colModel index="param1" name="param1" width="50" align="right" editable="TRUE" sortable="FALSE"/>
+            <colModel index="min_qty" name="min_qty" width="50" align="right" editable="TRUE" sortable="FALSE"/>
+            <colModel index="max_qty" name="max_qty" width="50" align="right" editable="TRUE" sortable="FALSE"/>
+        </subitems>
+        <items>
+            <colNames>ID Товара</colNames>
+            <colNames>SKU</colNames>
+            <colNames>Наименование</colNames>
+            <colNames>Цена</colNames>
+            <colModel index="item_id"  name="item_id"  hidden="TRUE" search="FALSE" />
+            <colModel index="sku"  name="sku"  width="100" align="left"  editable="FALSE" sortable="TRUE"/>
+            <colModel index="spec_as_html"  name="spec_as_html"  width="250" align="left"  editable="FALSE" sortable="TRUE"/>
+            <colModel index="price" name="price" width="100" align="right" search="FALSE" editable="FALSE" sortable="TRUE"/>
+        </items>
+    </Catalog_Form_AdminItem_Bundle_Tab>
+
+
+
+	<Catalog_Form_AdminAttributeEdit>
+		<variants>
+			<colNames>Текст</colNames>
+			<colNames>Значение</colNames>
+			<colNames>Параметр</colNames>
+			<colModel hidden="TRUE" index="text"  name="text"  width="150" align="left"  editable="TRUE" sortable="FALSE"/>
+			<colModel index="value"  name="value"  width="150" align="left"  editable="TRUE" sortable="FALSE"/>
+			<colModel index="param1"  name="param1"  width="150" align="left"  editable="TRUE" sortable="FALSE"/>
+		</variants>
+	</Catalog_Form_AdminAttributeEdit>
+
+    <Catalog_Form_AdminItem_Attribute_Edit>
+        <variants>
+            <colNames>Текст</colNames>
+            <colNames>Значение</colNames>
+            <colNames>Параметр</colNames>
+            <colModel hidden="TRUE" index="text"  name="text"  width="150" align="left"  editable="TRUE" sortable="FALSE"/>
+            <colModel index="value"  name="value"  width="150" align="left"  editable="TRUE" sortable="FALSE"/>
+            <colModel index="param1"  name="param1"  width="150" align="left"  editable="TRUE" sortable="FALSE"/>
+        </variants>
+    </Catalog_Form_AdminItem_Attribute_Edit>
+
+
+
+</zf-config>

@@ -1,0 +1,5 @@
+<? $this->pageTitle($this->translate('Delete news')); ?>
+<div class="delete_question"><h5>
+<?=$this->translate('Do you really want do delete this news:"%1$s / %2$s (%3$s)"', $this->news['title'], $this->formatDate($this->news['date_publish']), $this->news['seo_id'])?>?
+</h5></div>
+<?=$this->renderForm($this->form)?>

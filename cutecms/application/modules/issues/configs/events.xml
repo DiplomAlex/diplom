@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+		<kernel/>
+		<issues/>
+    </modules>
+
+    <events>
+    
+        <Issues_AdminController__init>
+            <observers>
+                <kernelInit>
+                    <class>Observer_AdminController</class>
+                    <method>initAction</method>
+                </kernelInit>
+                <selfInit>
+                    <class>Issues_Observer_AdminController</class>
+                    <method>initAction</method>
+                </selfInit>
+            </observers>
+        </Issues_AdminController__init>
+        
+        <Issues_Controller__init>
+            <observers>
+                <kernelInit>
+                    <class>Observer_Controller</class>
+                    <method>initAction</method>
+                </kernelInit>
+                <selfInit>
+                    <class>Issues_Observer_Controller</class>
+                    <method>initAction</method>
+                </selfInit>
+            </observers>
+        </Issues_Controller__init>
+        
+    
+    
+        <Issues_Model_Object_Issue__trigger__onBeforeSave>
+            <observers>
+                <acl>
+                	<module>kernel</module>
+                    <class>Model_Object_Observer_Acl</class>
+                    <method>onBeforeSave</method>
+                </acl>
+                <params>
+                	<module>issues</module>
+                    <class>Issues_Model_Object_Observer_Issue</class>
+                    <method>onBeforeSave</method>
+                </params>
+                <notifier>
+                    <module>issues</module>
+                    <class>Issues_Observer_Notifier</class>
+                    <method>onBeforeSaveIssue</method>
+                </notifier>
+            </observers>
+        </Issues_Model_Object_Issue__trigger__onBeforeSave>
+
+
+        <Issues_Model_Object_Issue__trigger__onAfterSaveComplex>
+            <observers>
+                <notifier>
+                    <module>issues</module>
+                    <class>Issues_Observer_Notifier</class>
+                    <method>onAfterSaveIssue</method>
+                </notifier>
+            </observers>
+        </Issues_Model_Object_Issue__trigger__onAfterSaveComplex>
+
+
+        <Issues_Model_Object_Issue__trigger__onBeforeDelete>
+            <observers>
+                <acl>
+                	<module>kernel</module>
+                    <class>Model_Object_Observer_Acl</class>
+                    <method>onDelete</method>
+                </acl>
+            </observers>
+        </Issues_Model_Object_Issue__trigger__onBeforeDelete>
+
+
+        <Issues_Model_Object_Comment__trigger__onBeforeSave>
+            <observers>
+                <acl>
+                	<module>kernel</module>
+                    <class>Model_Object_Observer_Acl</class>
+                    <method>onBeforeSave</method>
+                </acl>
+            </observers>
+        </Issues_Model_Object_Comment__trigger__onBeforeSave>
+
+        <Issues_Model_Object_Comment__trigger__onBeforeDelete>
+            <observers>
+                <acl>
+                	<module>kernel</module>
+                    <class>Model_Object_Observer_Acl</class>
+                    <method>onDelete</method>
+                </acl>
+            </observers>
+        </Issues_Model_Object_Comment__trigger__onBeforeDelete>
+
+    </events>
+
+</config>
+

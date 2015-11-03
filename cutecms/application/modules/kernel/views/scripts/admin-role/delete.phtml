@@ -1,0 +1,5 @@
+<? $this->pageTitle($this->translate('Delete role')); ?>
+<div class="delete_question"><h5>
+<?=$this->translate('Do you really want do delete this role:"%1$s"', $this->role['name'])?>?
+</h5></div>
+<?=$this->renderForm($this->form)?>

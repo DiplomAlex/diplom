@@ -1,0 +1,4 @@
+<? if ($this->submitted AND ! $this->success) { ?>
+    <?=$this->translate('Wrong password or username')?>
+<? } ?>
+<?=$this->renderForm($this->form)?>

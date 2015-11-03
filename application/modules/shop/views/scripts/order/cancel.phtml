@@ -1,0 +1,17 @@
+
+<div class="article_header">
+    <p class="column_header"><?=$this->translate('Отмена заказа')?></p>    
+</div>
+<div class="tovar_inner">
+    <div class="tovar_descr">
+        <? if ($this->cancelled !== TRUE) { ?>
+            <h3><?=$this->translate('Вы действительно хотите отменить заказ')?> ?</h3>
+            <?=$this->renderForm($this->form, 'front_form.phtml')?>         
+        <? } else { ?>
+            <h3><?=$this->translate('Заказ отменен')?></h3>
+        <? } ?>
+    </div>
+</div>
+
+    
+    

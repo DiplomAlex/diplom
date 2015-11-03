@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<brules>
+	<item>
+		<percentDiscount>
+			<class>Catalog_Model_Service_Helper_Brule_Item_PercentDiscount</class>
+		</percentDiscount>
+		<userPersonalDiscount>
+			<class>Catalog_Model_Service_Helper_Brule_Item_UserPersonalDiscount</class>
+		</userPersonalDiscount>
+		<configurable>
+		    <class>Catalog_Model_Service_Helper_Brule_Item_Configurable</class>
+		</configurable>
+	</item>
+</brules>

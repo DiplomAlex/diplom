@@ -1,0 +1,156 @@
+<? $ucfId = ucfirst($this->id)?>
+<? $this->headScript('SCRIPT', '
+
+    function flexigrid'.$ucfId.'New(command, grid)
+    {
+        $("#dialog'.$ucfId.'New :input").val("");
+        $("#dialog'.$ucfId.'New").data("grid", grid);
+        $.get("'.$this->urlNew.'", {"init": 1}, function(rowData){
+            $("#dialog'.$ucfId.'New div.bDiv>table").flexReload();
+            $("#dialog'.$ucfId.'New").dialog("open");
+        });
+    }
+
+    function flexigrid'.$ucfId.'Edit(command, grid)
+    {
+        if ($(".trSelected", grid).length<1) {
+            alert("'.$this->translate('Не выбрана строка для редактирования').'");
+            return;
+        }
+        var rowId = $(".trSelected", grid).eq(0).attr("id");
+        $("#dialog'.$ucfId.'Edit").data("rowId", rowId);
+        $("#dialog'.$ucfId.'Edit").data("grid", grid);
+        $.getJSON("'.$this->urlGet.'", {"rowId": rowId}, function(rowData){
+            var el;
+            for (el in rowData) {
+                $("#dialog'.$ucfId.'Edit #"+el).val(rowData[el]);
+            }
+            $("#dialog'.$ucfId.'Edit div.bDiv>table").flexReload();
+            $("#dialog'.$ucfId.'Edit").dialog("open");
+        });
+    }
+
+    function flexigrid'.$ucfId.'Delete(command, grid)
+    {
+        if ($(".trSelected", grid).length<1) {
+            alert("'.$this->translate('Не выбраны строки для удаления').'");
+            return;
+        }
+
+
+        if (confirm("'.$this->translate('Вы действительно хотите удалить выбранные строки').'?")) {
+            var postData = "";
+            $(".trSelected", grid).each(function(i){
+                postData += "&rows["+i+"]="+$(this).attr("id");
+            });
+            $.post("'.$this->urlDelete.'", postData, function(res){
+                $("div.bDiv>table", grid).flexReload();
+            });
+        }
+
+
+        './*
+            $("#dialog'.$ucfId.'Delete").data("grid", grid);
+            $("#dialog'.$ucfId.'Delete").dialog("open");
+           */'
+    }
+
+
+    $(function(){
+        $("body").append('.Zend_Json::encode('<div id="dialog'.$ucfId.'New">'.$this->renderForm($this->formNew).'</div>').');
+        $("body").append('.Zend_Json::encode('<div id="dialog'.$ucfId.'Edit">'.$this->renderForm($this->formEdit).'</div>').');
+
+        './*
+        $("body").append('.Zend_Json::encode('<div id="dialog'.$ucfId.'Delete">'.$this->renderForm($this->formDelete).'</div>').');
+        */'
+
+
+
+        $("#dialog'.$ucfId.'New").dialog({
+            autoOpen: false,
+            closeOnEscape: true,
+            width: 700,
+            buttons: {
+                "'.$this->translate('Ok').'":
+                        function(){
+                            var $this = $(this);
+                            var grid = $this.data("grid");
+                            var data = $(":input", this).serializeArray();
+                            var postData = {};
+                            for (el in data) {
+                                postData[data[el].name] = data[el].value;
+                            }
+                            $.post("'.$this->urlNew.'", postData, function(res){
+                                if (res=="ok") {
+                                    $this.dialog("close");
+                                    $("div.bDiv>table", grid).flexReload();
+                                }
+                                else {
+                                    alert("'.$this->translate('Ошибка').': "+res);
+                                }
+                            });
+                        },
+                "'.$this->translate('Cancel').'":
+                        function(){
+                            $(this).dialog("close");
+                        }
+            }
+        });
+
+        $("#dialog'.$ucfId.'Edit").dialog({
+            autoOpen: false,
+            closeOnEscape: true,
+            width: 700,
+            buttons: {
+                "'.$this->translate('Ok').'":
+                        function(){
+                            var $this = $(this);
+                            var grid = $this.data("grid");
+                            var data = $(":input", this).serializeArray();
+                            var postData = {};
+                            for (el in data) {
+                                postData[data[el].name] = data[el].value;
+                            }
+                            postData.rowId = $this.data("rowId");
+                            $.post("'.$this->urlEdit.'", postData, function(res){
+                                $this.dialog("close");
+                                $("div.bDiv>table").flexReload(); /* not $("div.bDiv>table", grid) !!! */
+                            });
+                        },
+                "'.$this->translate('Cancel').'":
+                        function(){
+                            $(this).dialog("close");
+                        }
+            }
+        });
+
+
+        './*'
+        $("#dialog'.$ucfId.'Delete").dialog({
+            autoOpen: false,
+            closeOnEscape: true,
+            buttons: {
+                "'.$this->translate('Ok').'":
+                        function(){
+                            var grid = $(this).data("grid");
+                            var postData = "";
+                            $(".trSelected", grid).each(function(i){
+                                postData += "&rows["+i+"]="+$(this).attr("id");
+                            });
+                            $.post("'.$this->urlDelete.'", postData, function(res){
+                                $(this).dialog("close");
+                                $(grid).flexReload();
+                            });
+                        },
+                "'.$this->translate('Cancel').'":
+                        function(){
+                            $(this).dialog("close");
+                        }
+            }
+        });
+        '*/'
+
+
+    });
+
+') ?>

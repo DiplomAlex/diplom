@@ -1,0 +1,51 @@
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="30%"><strong>Поставщик</strong>:</td>
+					<td><?=empty($this->shipment->seller_requisites['name'])?(Zend_Registry::get('config')->www->siteName):$this->shipment->seller_requisites['name']?></td>
+				</tr>
+				<? if ( ! empty($this->shipment->seller_requisites['address'])) { ?>
+					<tr>
+						<td colspan="2"><?=$this->shipment->seller_requisites['address']?></td>
+					</tr>
+				<? } ?>
+				<? if ( ! empty($this->shipment->seller_requisites['phone'])) { ?>
+					<tr>
+						<td><strong>Тел.</strong>:</td>
+						<td><?=$this->shipment->seller_requisites['phone']?></td>
+					</tr>
+				<? } ?>
+			</table>
+		</td>
+		<td>
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="30%"><strong>Покупатель</strong>:</td>
+					<td><?=$this->shipment->client_requisites['name']?></td>
+				</tr>
+				<tr>
+					<td><strong>Адрес доставки</strong>:</td>
+					<td><?=$this->shipment->client_requisites['address']?></td>
+				</tr>
+				<tr>
+					<td><strong>Тел.</strong>:</td>
+					<td><?=$this->shipment->client_requisites['phone']?></td>
+				</tr>
+
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><strong>Доставка курьером</strong></td>
+		<td><strong>Оплата наличными при получении</strong></td>
+	</tr>
+	
+</table>
+
+<br/><br/>

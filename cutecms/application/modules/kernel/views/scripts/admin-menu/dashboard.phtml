@@ -1,0 +1,108 @@
+<? $colsPerRow = 3 ?>
+<? $total = count($this->menu->getPages())?>
+<? $lastEmpties = $colsPerRow - ($total % $colsPerRow)?>
+<? if ($lastEmpties == $colsPerRow) {$lastEmpties = 0;} ?>
+
+<? $i = 0 ?>
+
+<table cellspacing="0" class="sections">
+<? $row = 0 ?>
+<? foreach ($this->menu->getPages() as $menu) { ?>
+    <? $cell = $i % $colsPerRow ?>
+    <? if ($cell == 0) { ?>
+        <tr>
+        <? $subs = array() ?>
+    <? } ?>
+
+    <td>
+        <? if ($menu->getLabel()=='-') { ?>
+            &nbsp;
+        <? } else { ?>
+            <? if (count($menu->getPages())) { ?>
+                <? $subs[$cell] = $menu->getPages() ?>
+            <? } ?>
+            <a class="main <?=count($menu->getPages())?'clickable':''?>" id="menu_row<?=$row?>_cell<?=$cell?>" href="<?=$menu->getHref()?>"><img src="<?=$this->skin()->url()?>images/dashboard/<?=$menu->get('icon')?>.gif" alt="" width="48" height="48" border="0" class="icon" /><? if (isset($subs[$cell])) { ?><img src="<?=$this->skin()->url()?>images/dashboard/arr_down.gif" alt="" width="12" height="12" class="arr_down" /><? } ?><?=$menu->getLabel()?></a>
+            <? $container[$row][$cell] = $menu?>
+        <? } ?>
+    </td>
+
+
+    <? if ($i == ($total - 1)) { ?>
+        <? for ($j = 0; $j < $lastEmpties; $j++) { ?>
+            <td>&nbsp;</td>
+            <? ++ $cell ?>
+        <? } ?>
+        </tr>
+    <? } ?>
+
+
+    <? if ($cell == ($colsPerRow - 1)) { ?>
+        </tr>
+        <? $subsTotal = count($subs) ?>
+        <? if ($subsTotal) { ?>
+            <? foreach ($subs as $subCounter=>$sub) { ?>
+                <?
+                    switch ($subCounter) {
+                        case 0:
+                            $align="left";
+                            break;
+                        case 1:
+                            $align="center";
+                            break;
+                        default:
+                            $align="right";
+                    }
+                ?>
+                <tr menutype="submenu" id="submenu_row<?=$row?>_cell<?=$subCounter?>" align="<?=$align?>">
+                    <td colspan="3" class="submenu">
+
+                    <? if ($container[$row][$subCounter]->get('hideTop') !== TRUE) { ?>
+                        <a href="<?=$container[$row][$subCounter]->getHref()?>"><?=$container[$row][$subCounter]->getLabel()?></a>
+                    <? } ?>
+                    <? $pageCounter = 0 ?>
+
+                    <? foreach ($sub as $page) { ?>
+                        <? if ($pageCounter == 0) { ?>
+                            <img src="<?=$this->skin()->url()?>images/dashboard/arr_up.gif" alt="" width="12" height="12" class="arr_up" />
+                        <? } else { ?>
+                            <span class="sep">&nbsp;</span>
+                        <? } ?>
+                        <a href="<?=$page->getHref()?>"><?=$page->getLabel()?></a>
+                        <? ++ $pageCounter ?>
+                    <? } ?>
+                    </td>
+                </tr>
+            <? } ?>
+        <? } ?>
+
+        <? ++ $row ?>
+
+    <? } ?>
+
+    <? ++ $i ?>
+
+<? } ?>
+
+</table>
+
+
+
+
+<?=$this->kosherInlineScript('
+    $(document).ready(function(){
+        $("[menutype=submenu]").hide();
+        $("a.clickable").unbind("click");
+        $("a.clickable").click(function(e){
+            e.preventDefault();
+            var sub = $("#sub"+$(this).attr("id"));
+            if (sub.is(":hidden")) {
+                sub.show();
+            }
+            else {
+                sub.hide();
+            }
+        });
+    });
+')?>
+
+

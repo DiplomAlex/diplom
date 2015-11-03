@@ -1,0 +1,33 @@
+<? $this->cart_JsAddItemFromList(TRUE) ?>
+
+<?=$this->menu('breadcrumbs')?>
+
+    
+    
+    
+    <div class="maket_header">
+        <div class="mh_l">
+            <p class="column_header"><?=$this->manufacturer->name?></p>
+        </div>
+    </div>
+        
+    <div class="novelties">
+        <div class="novelties_inner">
+    
+    <? foreach ($this->items as $item) { ?>
+            <div class="novelties_item">
+                <a href="<?=$this->url(array('seo_id'=>$item->seo_id), 'shop-item')?>"><?=$this->html_Img($item->rc_id_preview4, 'border="0"')?></a>
+                <a href="<?=$this->url(array('seo_id'=>$item->seo_id), 'shop-item')?>"><?=$item->name?></a>
+                <div class="novelties_cost_and_cart">
+                    <div class="novelties_cost"><?=$this->item_Price($item)?></div>
+                    <div class="novelties_cart">
+                        <a class="add-to-cart" itemId="<?=$item->id?>" href="<?=$this->url(array('seo_id'=>$item->seo_id), 'shop-item')?>"><img alt="cart" src="<?=$this->skin()->url()?>imgs/maket/cart.jpg" /></a>&nbsp;
+                    </div>
+                </div>
+            </div>
+    <? } ?>
+        </div>
+    </div>
+    
+
+    <?=$this->paginationControl($this->items, NULL, 'catalog/pagination.phtml')?>

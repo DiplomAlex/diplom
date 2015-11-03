@@ -1,0 +1,63 @@
+<script type="text/javascript">
+//<![CDATA[
+    $(document).ready(function(){
+        $(function () {
+            $('.cart.filled').click(function (e) {
+                var $div = $('.cart_detail');                    
+                if ($div.css('display') != 'block') {
+                    $div.show();                 
+                    var yourClick = true;
+                    $(document).bind('click.myEvent', function (e) {
+                        if (!yourClick && $(e.target).closest('.cart_detail').length == 0) {
+                            $div.hide();
+                            $(document).unbind('click.myEvent');
+                        }
+                        yourClick = false;
+                    });
+                  }             
+              e.preventDefault();
+            });
+        });  
+        
+        $(".cart_detail .delete").click(function(){
+            $.post("<?=$this->url(array(), 'shop-cart-delete')?>", {hash: $(this).attr('rel')}, function(resp){
+                $.post("<?=$this->url(array(), 'shop-cart-ajax-get-cart-box')?>", {}, function(data){
+                        $('.cart_parent').html(data.cart);
+                        $('.cart_items').html(data.pre_cart);
+                        $('div[rel="'+$(this).attr('rel')+'"]').remove();
+                }, 'json');
+            });
+        });
+
+    });
+//]]>
+</script>
+
+<?if ( $this->totalQty > 0 ){?>
+    <a class="cart filled" href="javascript:void(0)"><span></span><?=$this->totalQty?> изделий</a>
+        
+    <div class="cart_detail">
+        <span class="cart filled"><span></span><?=$this->totalQty?> изделий</a></span>
+        <div class="cleaner"></div>
+        <?foreach ($this->items as $item){?>
+        
+        <div class="item">
+            <div class="items_align">
+                <div class="item_align">
+                    <img src="<?=App_Resource::getUploadsUrl($this->galleries[$item->seo_id][0]['rc_id_preview2'])?>" alt="" />
+                </div>
+            </div>
+            <p>
+                <?= $item->name ?><br/>
+                <?= ($item->remain_price) ? $item->remain_price . ' грн<br/>' : '' ?>
+                Количество <?= $item->qty ?>
+            </p>
+            <span class="delete" rel="<?=$item['hash']?>"></span>
+        </div>
+        <div class="cleaner"></div>
+        <?}?>
+        <a class="checkout" href="javascript:void(0);">Просмотреть корзину</a>
+    </div>
+<?} else {?>
+    <a class="cart empty" href="javascript:void(0)"><span></span>0 изделий</a>
+<?}?>

@@ -1,0 +1,11 @@
+<div id="path" >
+    <? $i = 0 ?>
+    <? $count = count($this->menuPages)?>
+    <? foreach ($this->menuPages as $page) { ?>
+        <? if ($i++ < $count-1) { ?>
+            <a href="<?=$page->getHref()?>" <?=($i==1?'class="first"':'')?>><?=$page->getLabel()?></a> 
+        <? } else { ?>
+            <?=$page->getLabel()?>
+        <? } ?>
+    <? } ?>
+</div>

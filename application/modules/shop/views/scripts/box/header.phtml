@@ -1,0 +1,127 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+                
+        $('ul.menu > li > a').mouseenter(function(){
+            var ul = $(this).parent().find('ul');
+            if (ul.length) {
+                $(this).addClass('hover');
+            }
+        })
+        $('ul.menu li').mouseleave(function(){
+            $(this).parent().find('a').removeClass('hover');
+        })
+        $('li.category').mouseenter(function(){
+            $('li.category > div').css({'display':'none'});
+            $('> div', this).css({'display':'block'});
+            /*$(this).addClass('hover');*/
+        });
+        centerImage();
+    });
+	$(window).resize(function(){
+        centerImage();
+	});
+    function centerImage() {
+		dwidth = $(document).width();
+		image = $('#imgmap');
+		imgwidth = image.width();
+		otstup = (dwidth - imgwidth)/2;
+		image.css('left', otstup);
+	}
+    
+    $(function() {
+		var obj = $('ul.menu > li > a[href="<?= $_SERVER['REQUEST_URI']; ?>"]');
+        var obj_sub = $('ul.menu li ul li a[href="<?= $_SERVER['REQUEST_URI']; ?>"]');
+		obj.addClass('active');
+        obj_sub.parent().parent().parent().find(' > a').addClass('active');
+	});
+</script>
+<?=$this->box_PreOrder();?>
+<?php
+    $categories = array();
+    $category_sort = array();
+    foreach($this->categories as $categoty){
+        if( $categoty->seo_id != 'kamni' && $categoty->seo_id != 'collections'){
+            if($categoty->parent_id == 1){
+                $categories[$categoty->tree_id] = array('name'=>$categoty->name, 'seo_id'=>$categoty->seo_id, 'id'=>$categoty->id, 'left'=>$categoty->tree_left, 'child'=>array());
+                $category_sort[$categoty->tree_id] = $categoty->tree_left;
+            }else{
+                $categories[$categoty->parent_id]['child'][$categoty->tree_id] = array('name'=>$categoty->name, 'seo_id'=>$categoty->seo_id, 'id'=>$categoty->id);
+                //$category_sort[$categoty->tree_id] = $categoty->tree_left;
+            }
+        }
+    }
+    asort($category_sort);
+    //print_r($categories);
+?>
+<div class="center">
+    <div class="line"></div>
+    <a class="logo" href="<?=$this->url(array('reset'=>true), 'shop-index')?>"></a>
+    <div class="cart_parent">
+        <?=$this->box_ShoppingCart();?>
+    </div>
+    <a class="social_network facebook" target="_blank" href="https://www.facebook.com/SAGA.Brand"></a>
+    <a class="social_network facebook vk" target="_blank" href="https://vk.com/SAGA.Brand"></a>
+    <!--a class="social_network zakaz" href="#" title="Быстрый заказ"></a-->
+    <div class="phone"><a href="tel:+380626471228">Консультант:</a>
+        <br /><a href="tel:+380504709741">+38 (050) 470-97-41</a>
+        <br /><a href="mailto:site@saga.diamonds">site@saga.diamonds</a>
+    </div>
+    <div class="cleaner"></div>
+    <ul class="menu">
+        <li>
+            <a href="javascript:void(0)">ЮВЕЛИРНЫЕ ИЗДЕЛИЯ</a>
+            <ul>
+                <?foreach($category_sort as $tree_id=>$categoty){//foreach($this->categories as $categoty){?>
+                    <?if($categoty['id']>0){//$categoty->seo_id != 'kamni' && $categoty->seo_id != 'collections' && $categoty->parent_id == 1){?>
+                        <li class="category">
+                            <a href="<?=$this->url(array('seo_id' => $categories[$tree_id]['seo_id']), 'shop-catalog')?>"><?= $categories[$tree_id]['name']?></a>
+                            <?if(count($categories[$tree_id]['child'])>0){?>
+                                <div class="podcategory" id="category_<?=$categories[$tree_id]['seo_id']?>" style="display: none;">
+                                    <ul>
+                                        <?php 
+                                           // foreach($category_sort as $treeid=>$tree_left){
+                                            //    if($categories[$treeid])
+                                            //}
+                                        ?>
+                                        <?foreach($categories[$tree_id]['child'] as $podcategory){?>
+                                        <li><a href="<?=$this->url(array('seo_id' => $podcategory['seo_id']), 'shop-catalog')?>"> <?=$podcategory['name'];?></a></li>
+                                        <?}?>
+                                    </ul>
+                                </div>
+                            <?}?>
+                        </li>
+                    <?}?>
+                <?}?>
+            </ul>
+        </li>
+        <li><a href="<?=$this->url(array('seo_id' => 'akcii'), 'shop-page')?>">АКЦИИ</a></li>
+        <li>
+            <a href="javascript:void(0)">КОЛЛЕКЦИИ</a>
+            <ul>
+                <?foreach($this->collection_categories as $categoty){?>
+                    <li><a href="<?=$this->url(array('seo_id' => $categoty->seo_id), 'shop-catalog')?>"><?= $categoty->name?></a></li>
+                <?}?>
+            </ul>
+        </li>
+        <!--li><a href="javascript:void(0)">КАМНИ</a>
+            <ul>
+                <?foreach($this->kamni as $categoty){?>
+                    <li><a href="<?=$this->url(array('seo_id' => $categoty->seo_id), 'shop-catalog')?>"><?= $categoty->name?></a></li>
+                <?}?>
+            </ul>
+        </li-->
+        <!-- li><a href="<?=$this->url(array('seo_id' => 'magaziny'), 'shop-page')?>">МАГАЗИНЫ</a></li -->
+        <li>
+            <a href="<?=$this->url(array(), 'shop-pressroom')?>">БЛОГ</a>
+            <!--ul>
+                <li><a href="<?=$this->url(array('seo_id' => 'o-kompanii'), 'shop-page')?>">О компании</a></li>
+                <li><a href="<?=$this->url(array(), 'shop-pressroom')?>">Советы консультанта</a></li>
+            </ul-->
+        </li>
+        <li><a href="<?=$this->url(array('seo_id' => 'oplata-dostavka'), 'shop-page')?>">ОПЛАТА И ДОСТАВКА</a></li>
+        <li><a href="#" onclick="getBonus();">ПОЛУЧИТЬ БОНУС</a></li>
+        <li><a href="<?=$this->url(array('seo_id' => 'contacts'), 'shop-page')?>">КОНТАКТЫ</a></li>
+    </ul>
+    <?= $this->box_Search();?>
+</div>
+<div class="cleaner"></div>

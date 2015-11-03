@@ -1,0 +1,16 @@
+
+    <h2><?=$this->translate(isset($this->values['id'])?'Редактирование подсказки':'Создание подсказки')?></h2>
+
+<?=$this->renderForm($this->form)?>
+
+<? $this->headScript('SCRIPT', '
+    $(function(){
+        $("select#role").change(function(e){
+            var dest = $("select#destination");
+                $.get("'.$this->stdUrl(NULL, 'ajax-get-destinations', 'admin-tip').'",
+                      {role: $(this).val()},
+                      function(data){dest.replaceWith(data);}
+                );
+        });
+    });
+')?>

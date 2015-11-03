@@ -1,0 +1,20 @@
+RewriteEngine On
+Options +FollowSymLinks
+
+AddDefaultCharset UTF-8
+
+# php_value magic_quotes_gpc 0
+# php_value short_open_tag 1
+# php_value session.auto-start off
+
+RewriteCond %{REQUEST_URI} !/js/
+RewriteCond %{REQUEST_URI} !/sxd/
+RewriteCond %{REQUEST_URI} !/file/
+RewriteCond %{REQUEST_URI} !/uploads/
+RewriteCond %{REQUEST_URI} !/uploads/files/
+RewriteCond %{REQUEST_URI} !/original_images/
+RewriteCond %{REQUEST_URI} !/phpmyadmin/
+RewriteCond %{REQUEST_URI} !/wp_css/images/
+RewriteCond %{REQUEST_URI} !/wp_css/css/
+RewriteRule !.(css|js|ico|gif|jpg|jpeg|png|pdf|xls|doc|ppt|odt|ods|odp|xml|zip|rar|gz|bz2|tar|torrent|swf|txt|swf|woff|ttf|eot|svg|htc)$ index.php
+

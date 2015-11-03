@@ -1,0 +1,67 @@
+<a href="#" class="mail_subject filter_switcher">Поиск <img src="<?=$this->skin()->url()?>images/arr_sect_up.gif" alt="" width="8" height="8" border="0" /></a>
+
+<form class="filter_form"
+    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+        <?=$name?>="<?=$value?>"
+    <? } ?>
+>
+
+<table cellspacing="0" class="tbl_edit">
+  <tr>
+    <td class="label">
+        <?=$this->form->filter_number->getLabel()?>:
+    </td>
+    <td style="width: 150px">
+        <?=$this->form->filter_number?>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">
+        <?=$this->form->filter_client->getLabel()?>:
+    </td>
+    <td style="width: 150px">
+        <span class="value"><?=$this->form->filter_client?></span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    &nbsp;
+    </td>
+    <td align="right">
+        <a href="#" class="btn2 filter_submit">Найти</a>
+    </td>
+  </tr>
+</table>
+
+<input type="hidden" name="filter-on" value="true">
+
+</form>
+
+<p>&nbsp;</p>
+
+<?
+$this->headScript('SCRIPT', '
+  $(document).ready(function(){
+        $(".filter_switcher").click(function(e){
+            e.preventDefault();
+            var visibles = $(".filter_form>*:visible");
+            var hiddens = $(".filter_form>*:hidden");
+            visibles.hide();
+            hiddens.show();
+        });
+
+        $(".filter_submit").click(function(e){
+            e.preventDefault();
+            $(this).parents("form").get(0).submit();
+        });
+
+        '.
+            ( ! $this->filterOn?'$(".filter_switcher").click();':'')
+         .'
+
+  });
+');
+
+?>
+

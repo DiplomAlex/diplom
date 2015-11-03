@@ -1,0 +1,70 @@
+<form class="filter_form form-horizontal"
+    <? foreach ($this->form->getAttribs() as $name=>$value) { ?>
+        <?=$name?>="<?=$value?>"
+    <? } ?>
+>
+
+<div class="control-group">
+	<label class="control-label"><?=$this->form->filter_name->getLabel()?> :</label>
+	<div class="controls">
+       <?=$this->form->filter_name?>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label"><?=$this->form->filter_seo_id->getLabel()?> :</label>
+	<div class="controls">
+        <span class="value"><?=$this->form->filter_seo_id?></span>
+	</div>
+</div>
+
+<div class="control-group">
+	<div class="controls">
+        <a href="#" class="btn filter_submit">Найти</a>
+	</div>
+</div>
+
+
+<input type="hidden" name="filter-on" value="true">
+
+</form>
+
+<p>&nbsp;</p>
+
+<?
+$this->headScript('SCRIPT', '
+  $(document).ready(function(){
+        $(".filter_switcher").click(function(e){
+            e.preventDefault();
+            var visibles = $(".filter_form>*:visible");
+            var hiddens = $(".filter_form>*:hidden");
+            visibles.hide();
+            hiddens.show();
+        });
+
+        $(".filter_submit").click(function(e){
+            e.preventDefault();
+            $(this).parents("form").get(0).submit();
+        });
+
+        '.
+            ( ! $this->filterOn?'$(".filter_switcher").click();':'')
+         .'
+
+  });
+');
+
+?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.filter_form').keypress(function(e){
+            if(e.which == 13) {
+                $(this).submit();
+            }
+        });
+    });
+</script>	
+
+
+

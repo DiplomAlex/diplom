@@ -1,0 +1,82 @@
+  <h1><?=$this->translate('Ваш заказ #%1$s', $this->order->id)?></h1>
+        <div><img src="<?=$this->skin()->url()?>images/body/white-box-top-bg.png" width="746" height="10" border="0" /></div>
+    <div class="white-box-y vnutr basket">
+	<div class="padd">
+	  <div id="header-bs" >
+		<div class="price-all"><?=$this->translate('Стоимость')?>:</div>
+	  	<div class="count"><?=$this->translate('Количество')?>:</div>
+		<div class="price"><?=$this->translate('Цена')?>:</div>
+		<div class="number">#</div>
+		<div class="title left "><?=$this->translate('Наименование')?>:</div>
+		<div class="cleaner"></div>
+	  </div>
+    <? $i = 0 ?>
+    <? foreach ($this->order->items as $item) { ?>
+		<div class="row">
+			<div class="price-all"><?=$this->order_Summ($item['qty'] * $item['price'], $this->order->currency)?></div>
+		  	<div class="count"><?=$item['qty']?></div>
+			<div class="price"><?=$this->order_Summ($item['price'], $this->order->currency)?></div>
+			<div class="number"><?= ( ++ $i)?></div>
+			<div class="title left"><a href="<?=$this->url(array('seo_id'=>$item['seo_id']), 'item')?>"><?=$item['name']?></a><br><?=$item['attributes_html']?></a></div>
+			<div class="cleaner"></div>
+		</div>
+	<? } ?>
+		<div class="footer">
+			<?=$this->order_Total($this->order)?>
+		</div>
+	</div>
+	<div class="cleaner"></div>
+    </div>
+            <div class="tag-bott-25"><img src="<?=$this->skin()->url()?>images/body/white-box-bott-bg.png" width="746" height="10" border="0" /></div>
+
+
+
+
+<?/*?>
+
+
+
+*******************
+<h1><?=$this->translate('Ваш заказ #%1$s', $this->order->id)?></h1>
+
+	    <div><img src="<?=$this->skin()->url()?>images/body/white-box-top-bg.png" width="746" height="10" border="0" /></div>
+        <div class="white-box-y vnutr basket">
+			<div class="padd">
+
+<table width="100%" cellpadding="0" cellspacing="0" class="basket">
+    <tr id="header-bs">
+        <th><?=$this->translate('#')?></th>
+        <th><?=$this->translate('Товар')?></th>
+        <th style="text-align: right" class="count"><?=$this->translate('Кол-во')?></th>
+        <th style="text-align: right"><?=$this->translate('Цена за ед.')?></th>
+        <th style="text-align: right"><?=$this->translate('Стоимость')?></th>
+    </tr>
+    <? $i = 0 ?>
+    <? foreach ($this->order->items as $item) { ?>
+        <tr>
+            <td>
+                <?=( ++ $i)?>
+            </td>
+            <td>
+                <h4><?=$item['name']?></h4>
+                <?=$item['attributes_html']?>
+            </td>
+            <td align="right">
+                <?=$item['qty']?>
+            </td>
+            <td align="right"><?=$this->order_Summ($item['price'])?></td>
+            <td align="right"><?=$this->order_Summ( (float) $item['price'] * (float) $item['qty'])?></td>
+        </tr>
+    <? } ?>
+        <tr>
+            <td colspan="5">
+                <?=$this->order_Total($this->order)?>
+            </td>
+        </tr>
+</table>
+			</div>
+		</div>
+		
+	<div class="tag-bott-25"><img src="<?=$this->skin()->url()?>images/body/white-box-bott-bg.png" width="746" height="10" border="0" /></div>
+
+<?*/?>

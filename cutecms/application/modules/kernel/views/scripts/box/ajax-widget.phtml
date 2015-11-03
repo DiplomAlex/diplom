@@ -1,0 +1,11 @@
+<div id="<?=$this->wjID?>" href="<?=$this->href?>">
+</div>
+
+<?
+    $this->headScript('FILE', $this->stdUrl(array('reset'=>TRUE)).'js/ajax-widget.js');
+    $this->headScript('SCRIPT', '
+        $(document).ready(function(){
+            renderAjaxWidget("'.$this->wjID.'");
+        });
+    ');
+?>
