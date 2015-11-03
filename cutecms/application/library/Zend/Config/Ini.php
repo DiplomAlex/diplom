@@ -174,7 +174,7 @@ class Zend_Config_Ini extends Zend_Config
 
         // Check if there was a error while loading file
         if ($this->_loadFileErrorStr !== null) {
-die;
+
             /**
              * @see Zend_Config_Exception
              */
