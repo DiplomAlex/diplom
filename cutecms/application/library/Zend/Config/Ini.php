@@ -169,17 +169,12 @@ class Zend_Config_Ini extends Zend_Config
     protected function _parseIniFile($filename)
     {
         set_error_handler(array($this, '_loadFileErrorHandler'));
-
-        if ($filename == 'Z:\home\localhost\www\saga\cutecms\application/modules/Z:\home\localhost\www\saga\application/configs/modules') {
-//            print_r(debug_print_backtrace()); die;
-        }
         $iniArray = parse_ini_file($filename, true); // Warnings and errors are suppressed
         restore_error_handler();
-//        var_dump($filename);
+
         // Check if there was a error while loading file
         if ($this->_loadFileErrorStr !== null) {
-            var_dump($filename);
-            die;
+
             /**
              * @see Zend_Config_Exception
              */

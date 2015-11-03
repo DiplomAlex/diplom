@@ -18,7 +18,6 @@ class Model_Service_Config extends Model_Service_Abstract
         }
         else {
             $arr = explode('/', $configName);
-            var_dump($arr);
             if ($arr[0]=='var') {
                 $result = FRONT_APPLICATION_PATH . '/var/etc/'.$arr[1];
                 if ( ! file_exists($result)) {
