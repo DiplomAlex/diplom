@@ -14,20 +14,33 @@ class Model_Service_Config extends Model_Service_Abstract
         }
 
         $arr = explode('/', $configName);
-
-        if (count($arr)==1) {
-            $module = 'kernel';
-            $config = $arr[0];
-        } elseif (count($arr)==2) {
-            $module = $arr[0];
-            $config = $arr[1];
-        } else {
-            $module = $arr[2];
-            $config = $arr[4];
+        if (substr($configName, 0, 1) == '/') {
+            $result = $configName;
         }
-        $result = FRONT_APPLICATION_PATH . '/modules/'.$module.'/configs/'.$config;
-        if ( ! file_exists($result)) {
-            $result = APPLICATION_PATH . '/modules/'.$module.'/configs/'.$config;
+        else {
+            $arr = explode('/', $configName);
+            if ($arr[0]=='var') {
+                $result = FRONT_APPLICATION_PATH . '/var/etc/'.$arr[1];
+                if ( ! file_exists($result)) {
+                    $result = APPLICATION_PATH . '/var/etc/'.$arr[1];
+                }
+            }
+            else {
+                if (count($arr) == 1) {
+                    $module = 'kernel';
+                    $config = $arr[0];
+                } elseif (count($arr) == 2) {
+                    $module = $arr[0];
+                    $config = $arr[1];
+                } else {
+                    $module = $arr[2];
+                    $config = $arr[4];
+                }
+                $result = FRONT_APPLICATION_PATH . '/modules/' . $module . '/configs/' . $config;
+                if (!file_exists($result)) {
+                    $result = APPLICATION_PATH . '/modules/' . $module . '/configs/' . $config;
+                }
+            }
         }
 
         return $result;
