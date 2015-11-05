@@ -1,9 +1,0 @@
-<? $this->pageTitle($this->translate(isset($this->values['id']) ? 'Edit item' : 'Create item')); ?>
-<?= $this->renderForm($this->form) ?>
-
-<? if ($grid = $this->form->getElement('items_for_sub')) { ?>
-    <div style="position: fixed; width: 720px; height: 430px; left: 350px; top: 150px; display: none; padding: 15px 15px 15px 15px; border: 1px solid black; background-color: white;" id="items_for_sub_wrap">
-        <div id="items_for_sub_search" style="padding-left: 50px"></div>
-        <?= $grid ?>
-    </div>
-<? } ?>
