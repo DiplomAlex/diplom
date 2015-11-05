@@ -126,18 +126,6 @@
         <reverse>cart</reverse>
     </shopping_cart-->
 
-<!-- social module -->
-    <social_mail_index>
-        <type>Zend_Controller_Router_Route</type>
-        <route>social/message/index/*</route>
-        <defaults module="social" controller="mail" action="index" />
-    </social_mail_index>
-
-    <social_mail_new>
-        <type>Zend_Controller_Router_Route</type>
-        <route>social/message/new/*</route>
-        <defaults module="social" controller="mail" action="new" />
-    </social_mail_new>
 
 
 

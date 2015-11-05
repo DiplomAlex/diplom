@@ -627,13 +627,6 @@ class Model_Service_Menu implements Model_Service_Interface
                 'action' => 'developing',
             ),
 
-            'mail' => array(
-                'code' => 'mail',
-                'label' => $this->getTranslator()->_('Написать письмо'),
-                'icon' => 'ico_write_message',
-                'route' => 'social_mail_index',
-            ),
-
             'discounts' => array(
                 'code' => 'discounts',
                 'label' => $this->getTranslator()->_('Скидки'),

@@ -1,6 +1,0 @@
-<?php
-
-
-class Social_Model_Service_Helper_AdvertCategoryFields_SellAutomate extends Social_Model_Service_Helper_Fields_Abstract
-{
-}

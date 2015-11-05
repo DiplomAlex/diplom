@@ -1,5 +1,0 @@
-<?php
-
-class Social_Model_Service_Helper_AdvertCategoryFields_BuyAutomate extends Social_Model_Service_Helper_Fields_Abstract
-{
-}
