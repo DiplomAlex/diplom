@@ -1,7 +1,7 @@
 <ul class="language-select-box">
     <? foreach ($this->languages as $lang) { ?>
         <li <?=(($lang->id==$this->currentLanguage->id)?'class="active"':'')?>>
-            <a href="<?=$this->url(array('lang'=>$lang->id), 'shop-user-change-language')?>" langId="<?=$lang->id?>"><?=$lang->code2?></a>
+            <a href="<?=$this->url(array('lang'=>$lang->id), 'lab-user-change-language')?>" langId="<?=$lang->id?>"><?=$lang->code2?></a>
         </li>
     <? } ?>
 </ul>

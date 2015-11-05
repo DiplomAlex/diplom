@@ -1,8 +1,3 @@
-# translation of kernel.po to
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: kernel\n"
@@ -17,138 +12,33 @@ msgstr ""
 "X-Generator: Poedit 1.6.10\n"
 "Language: ru\n"
 
-#: controllers/AdminBannerController.php:32
-#: controllers/AdminNewsController.php:32
-#: controllers/AdminNewsTopicController.php:32
-#: controllers/AdminPageController.php:32
-#: controllers/AdminRoleController.php:32
-#: controllers/AdminUserController.php:92
 msgid "No rows were selected for mass action"
 msgstr "Строки не выбраны"
 
-#: controllers/AdminBannerController.php:45
-#: controllers/AdminNewsController.php:45
-#: controllers/AdminNewsTopicController.php:45
-#: controllers/AdminPageController.php:45
-#: controllers/AdminRoleController.php:45
-#: controllers/AdminUserController.php:105
 msgid "Rows were activated"
 msgstr "Записи активированы"
 
-#: controllers/AdminBannerController.php:48
-#: controllers/AdminNewsController.php:48
-#: controllers/AdminNewsTopicController.php:48
-#: controllers/AdminPageController.php:48
-#: controllers/AdminRoleController.php:48
-#: controllers/AdminUserController.php:108
 msgid "Some rows were not activated"
 msgstr "Не все записи активированы"
 
-#: controllers/AdminBannerController.php:56
-#: controllers/AdminNewsController.php:56
-#: controllers/AdminNewsTopicController.php:56
-#: controllers/AdminPageController.php:56
-#: controllers/AdminRoleController.php:56
-#: controllers/AdminUserController.php:116
 msgid "Rows were deactivated"
 msgstr "Записи деактивированы"
 
-#: controllers/AdminBannerController.php:59
-#: controllers/AdminNewsController.php:59
-#: controllers/AdminNewsTopicController.php:59
-#: controllers/AdminPageController.php:59
-#: controllers/AdminRoleController.php:59
-#: controllers/AdminUserController.php:119
 msgid "Some rows were not deactivated"
 msgstr "Не все записи деактивированы"
 
-#: controllers/AdminBannerController.php:67
-#: controllers/AdminNewsController.php:67
-#: controllers/AdminNewsTopicController.php:67
-#: controllers/AdminPageController.php:67
-#: controllers/AdminRoleController.php:67
-#: controllers/AdminUserController.php:127
 msgid "Rows were deleted"
 msgstr "Записи удалены"
 
-#: controllers/AdminBannerController.php:70
-#: controllers/AdminNewsController.php:70
-#: controllers/AdminNewsTopicController.php:70
-#: controllers/AdminPageController.php:70
-#: controllers/AdminRoleController.php:70
-#: controllers/AdminUserController.php:130
 msgid "Some rows were not deleted"
 msgstr "Не все записи удалены"
 
-#: controllers/AdminBannerController.php:95
-msgid "Banner edition cancelled"
-msgstr "Редактирование баннера отменено"
-
-#: controllers/AdminBannerController.php:123
-#: controllers/AdminNewsController.php:124
-#: controllers/AdminNewsTopicController.php:124
-#: controllers/AdminPageController.php:123
-#: controllers/AdminRoleController.php:123
-#: controllers/AdminUserController.php:183
 msgid "Form validation failed"
 msgstr "Ошибка при сохранении формы"
 
-#: controllers/AdminBannerController.php:129
-msgid "Banner saved"
-msgstr "Баннер сохранен"
-
-#: controllers/AdminBannerController.php:150
-#, php-format
-msgid "Banner \"%1$s\" deleted"
-msgstr "Баннер \"%1$s\" удален"
-
-#: controllers/AdminBannerController.php:153
-#, php-format
-msgid "Unable to delete banner \"%1$s\""
-msgstr "Невозможно удалить баннер \"%1$s\""
-
-#: controllers/AdminNewsController.php:95
-msgid "News edition cancelled"
-msgstr "Редактирование новости отменено"
-
-#: controllers/AdminNewsController.php:130
-msgid "News saved"
-msgstr "Новость сохранена"
-
-#: controllers/AdminNewsController.php:151
-#, php-format
-msgid "News \"%1$s\" deleted"
-msgstr "Новость \"%1$s\" удалена"
-
-#: controllers/AdminNewsController.php:154
-#: controllers/AdminPageController.php:153
-#, php-format
-msgid "Unable to delete page \"%1$s\" (%2$s)"
-msgstr "Нельзя удалить страницу \"%1$s\" (%2$s)"
-
-#: controllers/AdminNewsTopicController.php:95
-msgid "News topic edition cancelled"
-msgstr "Редактирование рубрики отменено"
-
-#: controllers/AdminNewsTopicController.php:130
-msgid "News topic saved"
-msgstr "Рубрика сохранена"
-
-#: controllers/AdminNewsTopicController.php:151
-#, php-format
-msgid "News topic \"%1$s\" deleted"
-msgstr "Рубрика \"%1$s\" удалена"
-
-#: controllers/AdminNewsTopicController.php:154
-#, php-format
-msgid "Unable to delete topic \"%1$s\" (%2$s)"
-msgstr "Не удаляется рубрика \"%1$s\" (%2$s)"
-
-#: controllers/AdminPageController.php:95
 msgid "Page edition cancelled"
 msgstr "Редактирование страницы отменено"
 
-#: controllers/AdminPageController.php:129
 msgid "Page saved"
 msgstr "Страница сохранена"
 
@@ -235,58 +125,18 @@ msgstr "Вы действительно хотите удалить этот б�
 msgid "Edit banner"
 msgstr "Редактирование баннера"
 
-#: views/scripts/admin-banner/index.phtml:1
-msgid "Banners list"
-msgstr "Список баннеров"
-
-#: views/scripts/admin-banner/index.phtml:10
-#: views/scripts/admin-page/index.phtml:12
-#: views/scripts/admin-role/index.phtml:12
-#: views/scripts/admin-user/index.phtml:12
 msgid "Sorting"
 msgstr "Сортировка"
 
-#: views/scripts/admin-banner/index.phtml:11
-msgid "Place"
-msgstr "Расположение"
-
-#: views/scripts/admin-banner/index.phtml:12
-msgid "Comment"
-msgstr "Примечание"
-
-#: views/scripts/admin-banner/index.phtml:13
-#: views/scripts/admin-news/index.phtml:15
-#: views/scripts/admin-news-topic/index.phtml:12
-#: views/scripts/admin-page/index.phtml:15
-#: views/scripts/admin-role/index.phtml:16
-#: views/scripts/admin-user/index.phtml:18
 msgid "Actions"
 msgstr "Действия"
 
-#: views/scripts/admin-banner/index.phtml:24
-#: views/scripts/admin-news/index.phtml:27
-#: views/scripts/admin-news-topic/index.phtml:21
-#: views/scripts/admin-page/index.phtml:25
-#: views/scripts/admin-role/index.phtml:31
-#: views/scripts/admin-user/index.phtml:31
 msgid "Edit"
 msgstr "Править"
 
-#: views/scripts/admin-banner/index.phtml:26
-#: views/scripts/admin-news/index.phtml:29
-#: views/scripts/admin-news-topic/index.phtml:23
-#: views/scripts/admin-page/index.phtml:27
-#: views/scripts/admin-role/index.phtml:33
-#: views/scripts/admin-user/index.phtml:33
 msgid "Delete"
 msgstr "Удалить"
 
-#: views/scripts/admin-banner/index.phtml:42
-#: views/scripts/admin-news/index.phtml:45
-#: views/scripts/admin-news-topic/index.phtml:39
-#: views/scripts/admin-page/index.phtml:43
-#: views/scripts/admin-role/index.phtml:49
-#: views/scripts/admin-user/index.phtml:49
 msgid "New"
 msgstr "Создать"
 
@@ -298,28 +148,6 @@ msgstr "Для Вас доступ закрыт"
 msgid "Main"
 msgstr "Главная"
 
-#: views/scripts/admin-index/index.phtml:12
-#: views/scripts/admin-menu/left/admin-index.phtml:15
-#: views/scripts/admin-menu/top.phtml:22
-msgid "Pages"
-msgstr "Страницы"
-
-#: views/scripts/admin-index/index.phtml:18
-#: views/scripts/admin-menu/left/admin-index.phtml:10
-#: views/scripts/admin-menu/top.phtml:17
-msgid "News"
-msgstr "Новости"
-
-#: views/scripts/admin-index/index.phtml:24
-#: views/scripts/admin-menu/top.phtml:27
-msgid "Banners"
-msgstr "Баннеры"
-
-#: views/scripts/admin-index/index.phtml:33
-#: views/scripts/admin-menu/left/admin-index.phtml:5
-#: views/scripts/admin-menu/left/admin-role.phtml:1
-#: views/scripts/admin-menu/left/admin-user.phtml:1
-#: views/scripts/admin-menu/top.phtml:12
 msgid "Users"
 msgstr "Пользователи"
 
@@ -334,48 +162,6 @@ msgstr "Группы"
 #: views/scripts/admin-menu/top.phtml:31
 msgid "Exit"
 msgstr "Выход"
-
-#: views/scripts/admin-index/index.phtml:56
-#: views/scripts/admin-menu/top.phtml:8
-msgid "Catalog"
-msgstr "Каталог"
-
-#: views/scripts/admin-index/index.phtml:67
-msgid "Categories"
-msgstr "Категории"
-
-#: views/scripts/admin-index/index.phtml:73
-msgid "New Items"
-msgstr "Новые товары"
-
-#: views/scripts/admin-index/index.phtml:79
-msgid "Attributes"
-msgstr "Атрибуты"
-
-#: views/scripts/admin-index/index.phtml:91
-msgid "Shop"
-msgstr "Магазин"
-
-#: views/scripts/admin-index/index.phtml:103
-msgid "Orders"
-msgstr "Заказы"
-
-#: views/scripts/admin-index/index.phtml:109
-msgid "Discounts"
-msgstr "Скидки"
-
-#: views/scripts/admin-index/index.phtml:115
-#: views/scripts/admin-index/index.phtml:145
-msgid "Stats"
-msgstr "Статистика"
-
-#: views/scripts/admin-index/index.phtml:128
-msgid "Tickets"
-msgstr "Билеты"
-
-#: views/scripts/admin-index/index.phtml:139
-msgid "Documents"
-msgstr "Документы"
 
 #: views/scripts/admin-index/index.phtml:151
 #: views/scripts/admin-index/index.phtml:207

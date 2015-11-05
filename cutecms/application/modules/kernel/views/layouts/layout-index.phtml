@@ -19,7 +19,6 @@
         <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/selects/stylish-select.css" />
         <link rel="stylesheet" type="text/css" href="<?=$this->skin()->url()?>templates/chekers/chekers.css" />
     <!--<![endif]-->
-    <?/*?><script type="text/javascript" src="<?=$this->skin()->url()?>templates/jquery-1.3.2.min.js"></script><?*/?>
     <script type="text/javascript" src="<?=$this->skin()->url()?>templates/chekers/custom.input.js"></script>
     <!--Custom select-->
     <script type="text/javascript" src="<?=$this->skin()->url()?>templates/selects/jquery.stylish-select.min.js"></script>
@@ -63,9 +62,6 @@
         <div id="container" >
           <div class="header" >
             <?=$this->box_Logo()?>
-            <?=$this->box_Support()?>
-            <?=$this->box_Currency() ?>
-            <?/*=$this->box_Checkout_ShoppingCart()*/?>
         </div>
 
     <?=$this->menu('top')?>
@@ -92,16 +88,12 @@
             <div><img src="<?=$this->skin()->url()?>images/body/payment-box-top.gif" width="746" height="10" border="0" /></div>
             <div class="payment-box-y">
                 <div class="padd">
-                    <?=$this->banner('payments')?>
-                    <?=$this->banner('counters')?>
                 </div>
                 <div class="cleaner"></div>
             </div>
             <div><img src="<?=$this->skin()->url()?>images/body/payment-box-bott.gif" width="746" height="10" border="0" /></div>
             <div id="footer" >
-              <?=$this->banner('footer')?>
               <?=$this->box_Copyright()?>
-              <?=$this->box_Contact()?>
             <div class="cleaner"></div>
             </div>
           </div>

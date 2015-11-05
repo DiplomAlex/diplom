@@ -1,158 +1,158 @@
 <?xml version="1.0"?>
 <routes>
 
-<!-- * shop module * -->
+<!-- * lab module * -->
 
-            <shop-index>
+            <lab-index>
                 <type>Zend_Controller_Router_Route</type>
                 <route></route>
-                <defaults module="shop" controller="index" action="index" page=""/>
-            </shop-index>
-            <shop-sitemap>
+                <defaults module="lab" controller="index" action="index" page=""/>
+            </lab-index>
+            <lab-sitemap>
                 <type>Zend_Controller_Router_Route</type>
                 <route>sitemap</route>
-                <defaults module="shop" controller="index" action="sitemap" />
+                <defaults module="lab" controller="index" action="sitemap" />
                 <reverse>sitemap</reverse>
-            </shop-sitemap>
-            <shop-ajax-add-subscribers>
+            </lab-sitemap>
+            <lab-ajax-add-subscribers>
                 <type>Zend_Controller_Router_Route</type>
                 <route>ajax-add-subscribers/*</route>
-                <defaults module="shop" controller="index" action="ajax-add-subscribers" />
-            </shop-ajax-add-subscribers>
+                <defaults module="lab" controller="index" action="ajax-add-subscribers" />
+            </lab-ajax-add-subscribers>
             
-            <shop-catalog>
+            <lab-catalog>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>catalog-([a-zA-Z0-9\-\_]+)</route>
-                <defaults module="shop" controller="catalog" action="index" seo_id=""/>
+                <defaults module="lab" controller="catalog" action="index" seo_id=""/>
                 <map seo_id="1" />
                 <reverse>catalog-%s</reverse>
-            </shop-catalog>
-            <shop-item>
+            </lab-catalog>
+            <lab-item>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>category/([a-zA-Z0-9\-\_]*)/item/([a-zA-Z0-9\-\_]+)</route>
-                <defaults module="shop" controller="catalog" action="item" category="" seo_id=""/>
+                <defaults module="lab" controller="catalog" action="item" category="" seo_id=""/>
                 <map category="1" seo_id="2" />
                 <reverse>category/%s/item/%s</reverse>
-            </shop-item>
-            <shop-exclusive>
+            </lab-item>
+            <lab-exclusive>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>exclusive/([a-zA-Z0-9\-\_]+)</route>
-                <defaults module="shop" controller="catalog" action="exclusive" seo_id=""/>
+                <defaults module="lab" controller="catalog" action="exclusive" seo_id=""/>
                 <map seo_id="1" />
                 <reverse>exclusive/%s</reverse>
-            </shop-exclusive>
-            <shop-search>
+            </lab-exclusive>
+            <lab-search>
                 <type>Zend_Controller_Router_Route</type>
                 <route>search/*</route>
-                <defaults module="shop" controller="search" action="index"/>
-            </shop-search>
-            <shop-ajax-get-next-items>
+                <defaults module="lab" controller="search" action="index"/>
+            </lab-search>
+            <lab-ajax-get-next-items>
                 <type>Zend_Controller_Router_Route</type>
-                <route>shop-ajax-get-next-items/*</route>
-                <defaults module="shop" controller="catalog" action="ajax-get-next-items"/>
-            </shop-ajax-get-next-items>
+                <route>lab-ajax-get-next-items/*</route>
+                <defaults module="lab" controller="catalog" action="ajax-get-next-items"/>
+            </lab-ajax-get-next-items>
             
-            <shop-pressroom>
+            <lab-pressroom>
                 <type>Zend_Controller_Router_Route</type>
                 <route>pressroom</route>
-                <defaults module="shop" controller="news" action="pressroom" />
+                <defaults module="lab" controller="news" action="pressroom" />
                 <reverse>pressroom</reverse>
-            </shop-pressroom>
+            </lab-pressroom>
             
             <ajax-pressroom-full>
                 <type>Zend_Controller_Router_Route</type>
                 <route>pressroom-full</route>
-                <defaults module="shop" controller="news" action="ajax-pressroom-full" />
+                <defaults module="lab" controller="news" action="ajax-pressroom-full" />
             </ajax-pressroom-full>
             
             
             
-            <shop-search-attr>
+            <lab-search-attr>
                 <type>Zend_Controller_Router_Route</type>
                 <route>search-attr/*</route>
-                <defaults module="shop" controller="catalog" action="search-attr"/>
-            </shop-search-attr>
-		    <shop-page>
+                <defaults module="lab" controller="catalog" action="search-attr"/>
+            </lab-search-attr>
+		    <lab-page>
 		        <type>App_Controller_Router_Route_Regex</type>
 		        <route>page/([a-zA-Z0-9\-\_]+)</route>
-		        <defaults module="shop" controller="page" action="detailed" seo_id=""/>
+		        <defaults module="lab" controller="page" action="detailed" seo_id=""/>
 		        <map seo_id="1" />
 		        <reverse>page/%s</reverse>
-		    </shop-page>
+		    </lab-page>
 
-            <shop-my_cabinet>
+            <lab-my_cabinet>
 	            <type>Zend_Controller_Router_Route</type>
 	            <route>my-cabinet</route>
-	            <defaults module="shop" controller="my-cabinet" action="index"/>
-            </shop-my_cabinet>
-			<shop-my_cabinet-persons>
+	            <defaults module="lab" controller="my-cabinet" action="index"/>
+            </lab-my_cabinet>
+			<lab-my_cabinet-persons>
 	            <type>Zend_Controller_Router_Route</type>
 	            <route>my-cabinet-change-info</route>
-	            <defaults module="shop" controller="my-cabinet" action="persons"/>
-            </shop-my_cabinet-persons>
-			<shop-my_cabinet-persons-save>
+	            <defaults module="lab" controller="my-cabinet" action="persons"/>
+            </lab-my_cabinet-persons>
+			<lab-my_cabinet-persons-save>
 	            <type>Zend_Controller_Router_Route</type>
 	            <route>my-cabinet-change-info-save</route>
-	            <defaults module="shop" controller="my-cabinet" action="personssave"/>
-            </shop-my_cabinet-persons-save>
-			<shop-my_cabinet-changepassword>
+	            <defaults module="lab" controller="my-cabinet" action="personssave"/>
+            </lab-my_cabinet-persons-save>
+			<lab-my_cabinet-changepassword>
 	            <type>Zend_Controller_Router_Route</type>
 	            <route>my-cabinet-changepassword</route>
-	            <defaults module="shop" controller="my-cabinet" action="changepassword"/>
-            </shop-my_cabinet-changepassword>
-            <shop-item-detailed>
+	            <defaults module="lab" controller="my-cabinet" action="changepassword"/>
+            </lab-my_cabinet-changepassword>
+            <lab-item-detailed>
 	            <type>Zend_Controller_Router_Route</type>
 	            <route>item-detailed/:seo_id</route>
-	            <defaults module="shop" controller="catalog" action="detailed" seo_id="" />
-            </shop-item-detailed>            
-            <shop-category>
+	            <defaults module="lab" controller="catalog" action="detailed" seo_id="" />
+            </lab-item-detailed>            
+            <lab-category>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>c(\d*)\-([a-zA-Z0-9\-_\.]+)\-(\d*)</route>
-                <defaults module="shop" controller="catalog" action="list" page="" sort="" />
+                <defaults module="lab" controller="catalog" action="list" page="" sort="" />
                 <map seo_id="2" page="1" sort="3"/>
                 <reverse>c%s-%s-%s</reverse>
-            </shop-category>
+            </lab-category>
             
-            <shop-actions>
+            <lab-actions>
                 <type>Zend_Controller_Router_Route</type>
                 <route>actions/:page</route>
-                <defaults module="shop" controller="catalog" action="actions" page=""/>
-            </shop-actions>
-            <shop-price_xls>
+                <defaults module="lab" controller="catalog" action="actions" page=""/>
+            </lab-actions>
+            <lab-price_xls>
                 <type>Zend_Controller_Router_Route</type>
                 <route>price-list.xls</route>
-                <defaults module="shop" controller="catalog" action="price-list-xls" />
-            </shop-price_xls>
-            <shop-manufacturers>
+                <defaults module="lab" controller="catalog" action="price-list-xls" />
+            </lab-price_xls>
+            <lab-manufacturers>
                 <type>Zend_Controller_Router_Route</type>
                 <route>manufacturers.html</route>
-                <defaults module="shop" controller="catalog" action="manufacturer-all" page=""/>
-            </shop-manufacturers>            
-            <shop-manufacturer>
+                <defaults module="lab" controller="catalog" action="manufacturer-all" page=""/>
+            </lab-manufacturers>            
+            <lab-manufacturer>
                 <type>Zend_Controller_Router_Route</type>
                 <route>manufacturer/:id</route>
-                <defaults module="shop" controller="catalog" action="manufacturer" />
-            </shop-manufacturer>            
+                <defaults module="lab" controller="catalog" action="manufacturer" />
+            </lab-manufacturer>            
 
-            <shop-articles>
+            <lab-articles>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>articles(/([a-zA-Z0-9\-_\.]+))?</route>
-                <defaults module="shop" controller="article" action="index" seo_id=""/>
+                <defaults module="lab" controller="article" action="index" seo_id=""/>
                 <map seo_id="2" />
                 <reverse>articles/%s</reverse>
-            </shop-articles>
-            <shop-article>
+            </lab-articles>
+            <lab-article>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>article/([a-zA-Z0-9\-_\.]+)</route>
-                <defaults module="shop" controller="article" action="detailed"/>
+                <defaults module="lab" controller="article" action="detailed"/>
                 <map seo_id="1" />
                 <reverse>article/%s</reverse>
-            </shop-article>
+            </lab-article>
 
-            <shop-auth>
+            <lab-auth>
                 <type>Zend_Controller_Router_Route</type>
                 <route>auth</route>
-                <defaults module="shop" controller="auth" />
+                <defaults module="lab" controller="auth" />
                 <chains>
                     <login>
                         <type>Zend_Controller_Router_Route</type>
@@ -170,12 +170,12 @@
                         <defaults action="forgot-password"/>
                     </forgot_password>
                 </chains>
-            </shop-auth>
+            </lab-auth>
 
-            <shop-user>
+            <lab-user>
                 <type>Zend_Controller_Router_Route</type>
                 <route>user</route>
-                <defaults module="shop" controller="user" />
+                <defaults module="lab" controller="user" />
                 <chains>
                     <register>
                         <type>Zend_Controller_Router_Route</type>
@@ -188,12 +188,12 @@
                         <defaults action="change-language"/>
                     </change-language>
                 </chains>
-            </shop-user>
+            </lab-user>
 
-		    <shop-cart>
+		    <lab-cart>
 		        <type>Zend_Controller_Router_Route</type>
 		        <route>cart</route>
-		        <defaults module="shop" controller="cart" />
+		        <defaults module="lab" controller="cart" />
 		        <chains>
 		            <index>
 		                <type>Zend_Controller_Router_Route</type>
@@ -227,12 +227,12 @@
                          <defaults action="recalculate" />
                     </recalculate>
 		        </chains>
-		    </shop-cart>
+		    </lab-cart>
 
-            <shop-order>
+            <lab-order>
                 <type>Zend_Controller_Router_Route</type>
                 <route>order</route>
-                <defaults module="shop" controller="order" />
+                <defaults module="lab" controller="order" />
                 <chains>
                     <preorder>
                          <type>Zend_Controller_Router_Route</type>
@@ -310,31 +310,31 @@
                          <defaults action="print" />
                     </print>
                 </chains>
-            </shop-order>
+            </lab-order>
 
-            <shop-my_orders>
+            <lab-my_orders>
                 <type>Zend_Controller_Router_Route</type>
                 <route>my-orders/*</route>
-                <defaults module="shop" controller="order" action="my-orders" />
-            </shop-my_orders>
-            <shop-my_order>
+                <defaults module="lab" controller="order" action="my-orders" />
+            </lab-my_orders>
+            <lab-my_order>
                 <type>Zend_Controller_Router_Route</type>
                 <route>my-order-view/*</route>
-                <defaults module="shop" controller="order" action="my-order-view" />
-            </shop-my_order>
+                <defaults module="lab" controller="order" action="my-order-view" />
+            </lab-my_order>
 
-            <shop-news-full>
+            <lab-news-full>
                 <type>Zend_Controller_Router_Route</type>
                 <route>news/:page</route>
-                <defaults module="shop" controller="news" action="news-full" />
-            </shop-news-full>
+                <defaults module="lab" controller="news" action="news-full" />
+            </lab-news-full>
 
-         	<shop-news-topic>
+         	<lab-news-topic>
                 <type>App_Controller_Router_Route_Regex</type>
                 <route>news-topic-(\d+)</route>
-                <defaults module="shop" controller="news" action="topic" />
+                <defaults module="lab" controller="news" action="topic" />
                 <map topic_id="1" />
                 <reverse>news-topic-%s</reverse>
-         	</shop-news-topic>
+         	</lab-news-topic>
 
 </routes>
