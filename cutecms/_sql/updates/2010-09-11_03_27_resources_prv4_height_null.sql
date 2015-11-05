@@ -1,1 +1,0 @@
-ALTER TABLE `resource` CHANGE `rc_prv4_height` `rc_prv4_height` SMALLINT( 6 ) NULL 

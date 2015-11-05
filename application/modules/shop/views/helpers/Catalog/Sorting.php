@@ -17,7 +17,7 @@ class Shop_View_Helper_Catalog_Sorting extends Zend_View_Helper_Abstract
             $newDirection = 'ASC';
         }
         $class = 'catalog-sorting-'.$modeName;
-        $href = $this->view->stdUrl(array('mode'=>$modeName, 'direction'=>$newDirection), 'set-sorting-mode', 'catalog', 'shop');
+        $href = $this->view->stdUrl(array('mode'=>$modeName, 'direction'=>$newDirection), 'set-sorting-mode', 'catalog', 'lab');
         if ($text) {            
             if ($isCurrent) {
                 $aClass = $class.' checked';

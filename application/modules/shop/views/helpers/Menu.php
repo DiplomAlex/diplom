@@ -185,39 +185,11 @@ class Shop_View_Helper_Menu extends Zend_View_Helper_Abstract
         $pages = array(
             array(
                 'label' => $this->view->translate('Главная'),
-                'route' => 'shop-index',
+                'route' => 'lab-index',
 				'params' => array(
 					'seo_id' => 'glav'
 				)
             ),
-            array(
-                'label' => $this->view->translate('О компании'),
-                'route' => 'shop-page',
-                'params' => array(
-					'seo_id' => 'about'
-				)
-            ),
-            array(
-                'label' => $this->view->translate('Контакты'),
-                'route' => 'shop-page',
-                'params' => array(
-					'seo_id' => 'kontakts'
-				)
-            ),            
-            array(
-                'label' => $this->view->translate('Доставка'),
-                'route' => 'shop-page',
-                'params' => array(
-					'seo_id' => 'dostavka'
-				)
-            ),
-            array(
-                'label' => $this->view->translate('Оптовым клиентам'),
-                'route' => 'shop-page',
-                'params' => array(
-					'seo_id' => 'opt_clients'
-				)
-            )
         );  
         return $pages;
     }
@@ -243,7 +215,7 @@ class Shop_View_Helper_Menu extends Zend_View_Helper_Abstract
         $pages = array(
             array(
                 'label' => $this->view->translate('Главная'),
-                'route' => 'shop-index',
+                'route' => 'lab-index',
             ),        
         );
         return $pages;

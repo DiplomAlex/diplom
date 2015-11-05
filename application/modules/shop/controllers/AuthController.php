@@ -60,7 +60,7 @@ class Shop_AuthController extends Zend_Controller_Action
 				$this->view->ER = TRUE;
 			}
 			if($this->view->ER != TRUE){
-				$this->_forward('index', 'index', 'shop');  
+				$this->_forward('index', 'index', 'lab');
 			}
 		}
 	}
@@ -84,8 +84,8 @@ class Shop_AuthController extends Zend_Controller_Action
                 'disableLayout' => FALSE,
                 'redirectAfterLogin' => TRUE,
             	'redirectAfterLogout' => TRUE,            
-                'afterLoginRedirectUrl' => $this->getHelper('Url')->url(array(), 'shop-index'),
-            	'afterLogoutRedirectUrl' => $this->getHelper('Url')->url(array(), 'shop-index'),
+                'afterLoginRedirectUrl' => $this->getHelper('Url')->url(array(), 'lab-index'),
+            	'afterLogoutRedirectUrl' => $this->getHelper('Url')->url(array(), 'lab-index'),
                 'injector' => $this->getHelper('Injector')->getInjector(),
 			);
         }

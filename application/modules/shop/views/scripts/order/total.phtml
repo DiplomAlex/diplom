@@ -1,9 +1,0 @@
-
-<? $i = 0 ?>
-<? foreach ($this->data as $row) { ?>
-    <? ++$i ?>
-    <tr><td colspan="6">
-    <?=($row['title']?$row['title'].' :':'')?>&nbsp;
-    <span><?=$this->order_Summ($row['summ'], $this->order->currency)?></span>
-    </td></tr>
-<? } ?>

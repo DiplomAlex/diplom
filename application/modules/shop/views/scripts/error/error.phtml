@@ -16,7 +16,7 @@
 		
 		<div class="breadcrumbs">
 			<div class="center">
-				<a href="<?=$this->url(array('reset'=>true), 'shop-index')?>">Главная<span></span></a>
+				<a href="<?=$this->url(array('reset'=>true), 'lab-index')?>">Главная<span></span></a>
 				<span class="current">Страница 404</span>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 				<p>Страница, которую вы запросили, не существует. 
 				Пожалуйста, перейдите на главную страницу или воспользуйтесь поиском.</p>
 		  <?php
-		  if (('development' == APPLICATION_ENV) OR (PHP_SAPI == 'cli')) { ?>
+		  if ('development' == APPLICATION_ENV) { ?>
 
 			<h3>Exception information:</h3>
 			<p>

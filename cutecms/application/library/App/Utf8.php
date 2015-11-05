@@ -190,13 +190,6 @@ final class App_Utf8 {
         $_POST   = self::clean($_POST);
         $_COOKIE = self::clean($_COOKIE);
         $_SERVER = self::clean($_SERVER);
-        
-        if (PHP_SAPI == 'cli')
-        {
-            // Convert command line arguments
-            $_SERVER['argv'] = self::clean($_SERVER['argv']);
-        }
-
     }
     
     

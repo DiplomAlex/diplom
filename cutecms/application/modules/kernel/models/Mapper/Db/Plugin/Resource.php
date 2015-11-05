@@ -302,7 +302,6 @@ class Model_Mapper_Db_Plugin_Resource extends Model_Mapper_Db_Plugin_Abstract
      */
     public function onAfterSaveComplex(Model_Object_Interface $obj, array $values, $isNew = FALSE)
     {
-        if (PHP_SAPI == 'cli') return;
         $this->saveUploadedResource($obj, $values, $isNew);
     }
     

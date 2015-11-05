@@ -35,7 +35,7 @@ class Shop_MyCabinetController extends Zend_Controller_Action
 			$this->view->orders = $orders;
 			$status = Model_Service::factory('checkout/order')->getStatusesList();
 		}else{
-			$this->_forward('index', 'index', 'shop');
+			$this->_forward('index', 'index', 'lab');
 		}
     }
     
@@ -70,11 +70,11 @@ class Shop_MyCabinetController extends Zend_Controller_Action
 					$user = Model_Service::factory('user')->registerNewUser($ar);
 					$this->view->sucsessUpdete = TRUE;
 					Model_Service::factory('user')->renewCurrent();
-					$this->_forward('index', 'MyCabinet', 'shop');
+					$this->_forward('index', 'MyCabinet', 'lab');
 				}
 			}
 		}else{
-			$this->_forward('index', 'index', 'shop');
+			$this->_forward('index', 'index', 'lab');
 		}
     }
     
@@ -96,11 +96,11 @@ class Shop_MyCabinetController extends Zend_Controller_Action
 				$ar['login'] = $values['email_address'];
 				$user = Model_Service::factory('user')->registerNewUser($ar);
 				$this->view->sucsessUpdete = TRUE;
-				$this->_forward('index', 'MyCabinet', 'shop');
+				$this->_forward('index', 'MyCabinet', 'lab');
 			}
 		}
 		}else{
-			$this->_forward('index', 'index', 'shop');
+			$this->_forward('index', 'index', 'lab');
 		}
     }
     
@@ -123,7 +123,7 @@ class Shop_MyCabinetController extends Zend_Controller_Action
 						   $ar['password'] = $values['password_new'];
 						   $user = Model_Service::factory('user')->registerNewUser($ar);
 						   $this->view->sucsessUpdetePass = TRUE;
-						   $this->_forward('index', 'MyCabinet', 'shop'); 
+						   $this->_forward('index', 'MyCabinet', 'lab');
 						}else{
 						$this->view->erorUpPasswordNew = TRUE;
 						}
@@ -133,7 +133,7 @@ class Shop_MyCabinetController extends Zend_Controller_Action
 				}
 			}
 		}else{
-			$this->_forward('index', 'index', 'shop');
+			$this->_forward('index', 'index', 'lab');
 		}
     }
 }

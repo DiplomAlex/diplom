@@ -15,9 +15,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             App_Profiler::enable();
         }
         App_Profiler::start('Bootstrap::init');
-        if (PHP_SAPI == 'cli') {
-            $this->unregisterPluginResource('Session');
-        }
         parent::__construct($application);
     }
 
@@ -79,10 +76,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             error_reporting(E_ALL);
             ini_set('display_errors', '1');
             ini_set('display_startup_errors', '1');
-        }
-        if (PHP_SAPI == 'cli') {
-            /** disable cookies */
-            ini_set('session.use_cookies', FALSE);
         }
 
     }
@@ -210,17 +203,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('Config');
         $this->bootstrap('FrontController');
         $this->bootstrap('Db');
-        if (PHP_SAPI == 'cli') {
-            /** set request to front controller */
-            Zend_Controller_Front::getInstance()->setRequest(
-                new Zend_Controller_Request_Http(
-                        'http://'.Model_Service::factory('site')->getCurrentHost() . APPLICATION_BASE . '/'. $_SERVER['argv'][1]
-                    )
-            );
-
-            /** set response to front controller */
-            Zend_Controller_Front::getInstance()->setResponse(new Zend_Controller_Response_Cli);
-        }
     }
 
     protected function _initCache()

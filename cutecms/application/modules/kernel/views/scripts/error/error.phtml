@@ -9,7 +9,7 @@
   <h2><?php echo $this->message ?></h2>
 
   <?php
-  if (('development' == APPLICATION_ENV) OR (PHP_SAPI == 'cli')) { ?>
+  if ('development' == APPLICATION_ENV) { ?>
 
   <h3>Exception information:</h3>
   <p>

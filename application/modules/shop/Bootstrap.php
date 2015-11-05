@@ -8,7 +8,7 @@ class Shop_Bootstrap extends Zend_Application_Module_Bootstrap
     {
         $module = strtolower($this->getModuleName());
         $service = Model_Service::factory('config');
-        $filename = FRONT_APPLICATION_PATH.'/modules/shop/configs/config.ini';
+        $filename = FRONT_APPLICATION_PATH.'/modules/lab/configs/config.ini';
         if ( ! file_exists($filename)) {
             $filename = $service->getConfigFilename('kernel/config');
         }
@@ -84,7 +84,7 @@ class Shop_Bootstrap extends Zend_Application_Module_Bootstrap
         if (@$_GET['debug']!='verbose') {
             $this->bootstrap('FrontController');
             Zend_Controller_Front::getInstance()->registerPlugin(new Zend_Controller_Plugin_ErrorHandler(array(
-                'module' => 'shop', 'controller' => 'error', 'action' => 'error',
+                'module' => 'lab', 'controller' => 'error', 'action' => 'error',
             )));
         }
     }

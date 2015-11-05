@@ -36,16 +36,14 @@ class Observer_Controller extends App_Event_Observer
 
         /* set html title, meta tags and encoding*/
         $this->_initHtmlMeta($controller);
-        
-        if (PHP_SAPI != 'cli') {        
-            $this->_initAcl($controller, $throwExceptionInsteadOfRedirect);
-            
-            /* reset return url if controller changed */
-            $this->_initReturnUrl($controller);        
-    
-            /* init db profiler as FirePHP for ajax requests */        
-            $this->_initDebug($controller);
-        }
+
+        $this->_initAcl($controller, $throwExceptionInsteadOfRedirect);
+
+        /* reset return url if controller changed */
+        $this->_initReturnUrl($controller);
+
+        /* init db profiler as FirePHP for ajax requests */
+        $this->_initDebug($controller);
     }
     
     protected function _initViewPaths(Zend_View_Interface $view)
@@ -55,25 +53,18 @@ class Observer_Controller extends App_Event_Observer
     protected function _initLayout(Zend_View_Interface $view, $layout)
     {
         if ( ! $layout) {
-            if (PHP_SAPI == 'cli') {
-                $layout = 'cli';
-            }
-            else {
-                $layout = 'layout';
-            }
+            $layout = 'layout';
         }
         $view->layout()->setLayout($layout);        
     }
     
     protected function _initPluginCache(Zend_Controller_Action $controller)
     {
-        if (PHP_SAPI !== 'cli') {
-            $classFileIncCache = FRONT_APPLICATION_PATH . '/var/cache/pluginLoaderCache_'.$controller->getRequest()->getModuleName().'.php';
-            if (file_exists($classFileIncCache)) {
-                include_once $classFileIncCache;
-            }
-            Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
+        $classFileIncCache = FRONT_APPLICATION_PATH . '/var/cache/pluginLoaderCache_'.$controller->getRequest()->getModuleName().'.php';
+        if (file_exists($classFileIncCache)) {
+            include_once $classFileIncCache;
         }
+        Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
     }
     
     protected function _initHtmlMeta(Zend_Controller_Action $controller)

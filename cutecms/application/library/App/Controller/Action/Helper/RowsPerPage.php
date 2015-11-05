@@ -35,10 +35,7 @@ class App_Controller_Action_Helper_RowsPerPage extends Zend_Controller_Action_He
     public function getValue()
     {
         $key = $this->_getKey();
-        if (PHP_SAPI == 'cli') {
-            $value = $this->_getFromConfig();
-        }
-        else if (isset($this->_session()->values[$key])) {
+        if (isset($this->_session()->values[$key])) {
             $value = $this->_session()->values[$key];
         }
         else {

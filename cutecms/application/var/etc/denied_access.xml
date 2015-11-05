@@ -1,13 +1,5 @@
 <?xml version="1.0"?>
 <config>
 	<deny>
-		<!-- Галя Хнычкина -->
-		<userLogin>user46810</userLogin>
-
-		<!-- ООО "ВЕНДОРС -->
-		<userLogin>user47483</userLogin>
-
-		<!-- Общество с ограниченной ответственностью "Вега -->
-		<userLogin>user47740</userLogin>
 	</deny>
 </config>

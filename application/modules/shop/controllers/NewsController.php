@@ -45,7 +45,7 @@ class Shop_NewsController extends Zend_Controller_Action
         else {
             $this->view->menu()->addMenuBreadcrumbsPage(array(
                 'label' => $this->view->translate('РќРѕРІРѕСЃС‚Рё'),
-                'route' => 'shop-news',
+                'route' => 'lab-news',
             ));
         }
     }

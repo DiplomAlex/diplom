@@ -3,7 +3,7 @@
         <?= $this->menu->html?>        
         <div class="line"></div>
         <span class="copyright">© SA&amp;GA. 2013</span>
-        <a class="site_map" href="<?=$this->url(array('reset'=>true), 'shop-sitemap')?>">КАРТА САЙТА</a>
+        <a class="site_map" href="<?=$this->url(array('reset'=>true), 'lab-sitemap')?>">КАРТА САЙТА</a>
         <form id="newsletter">
             <span class="error"></span>
             <span class="success"><span>вы успешно подписаны на новости</span></span>
@@ -33,7 +33,7 @@
                     $('#newsletter .error').hide();
                     $('#newsletter input').removeClass('active');
                     $.ajax({
-                        url: "<?=$this->url(array(), 'shop-ajax-add-subscribers')?>",
+                        url: "<?=$this->url(array(), 'lab-ajax-add-subscribers')?>",
                         type: "POST",
                         data: {email: $('#newsletter input').val()},
                         dataType: "json",

@@ -67,15 +67,6 @@
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <shop-search-attr>
                 <type>Zend_Controller_Router_Route</type>
                 <route>search-attr/*</route>

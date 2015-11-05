@@ -1,19 +1,6 @@
 <?xml version="1.0"?>
 <routes>
 
-    <comment type="Zend_Controller_Router_Route">
-        <route>comment</route>
-        <chains>
-            <post>
-                <type>Zend_Controller_Router_Route</type>
-                <route>add</route>
-                <defaults module="kernel" controller="comment" action="add" />
-            </post>
-        </chains>
-    </comment>
-    
-    
-
 <!-- main site -->
     <main-index>
         <type>Zend_Controller_Router_Route</type>
@@ -57,33 +44,6 @@
 
 
 <!-- kernel module -->
-
-    <news>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>news/?(\d*)</route>
-        <defaults module="kernel" controller="news" action="index" page=""/>
-        <map page="1" />
-        <reverse>news/%s</reverse>
-    </news>
-
-    <news_detailed>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>news/([a-zA-Z0-9\-_]+).html</route>
-        <defaults module="kernel" controller="news" action="detailed" />
-        <map seo_id="1" />
-        <reverse>news/%s.html</reverse>
-    </news_detailed>
-
-
-    <page>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>page/([a-zA-Z0-9\-\_]+)</route>
-        <defaults module="kernel" controller="page" action="detailed" seo_id=""/>
-        <map seo_id="1" />
-        <reverse>page/%s</reverse>
-    </page>
-
-
     <profile>
         <type>App_Controller_Router_Route_Regex</type>
         <route>user/([a-zA-Z0-9\-\_]+)</route>
@@ -91,42 +51,5 @@
         <map login="1" />
         <reverse>user/%s</reverse>
     </profile>
-
-
-<!-- catalog module routes -->
-    <catalog_index>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>catalog.html</route>
-        <defaults module="catalog" controller="category" action="index" />
-        <!--map seo_id="1" /-->
-        <reverse>catalog.html</reverse>
-    </catalog_index>
-
-    <category>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>c(\d*)\-([a-zA-Z0-9\-_]+)</route>
-        <defaults module="catalog" controller="category" action="index" page="" />
-        <map seo_id="2" page="1"/>
-        <reverse>c%s-%s</reverse>
-    </category>
-
-    <item>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>i\-([a-zA-Z0-9\-_]+)\.html</route>
-        <defaults module="catalog" controller="item" action="index" />
-        <map seo_id="1" />
-        <reverse>i-%s.html</reverse>
-    </item>
-
-<!-- checkout module -->
-    <!--shopping_cart>
-        <type>App_Controller_Router_Route_Regex</type>
-        <route>cart</route>
-        <defaults module="checkout" controller="cart" action="index" />
-        <reverse>cart</reverse>
-    </shopping_cart-->
-
-
-
 
 </routes>

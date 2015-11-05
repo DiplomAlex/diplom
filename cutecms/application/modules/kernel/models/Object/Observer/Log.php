@@ -13,9 +13,8 @@ class Model_Object_Observer_Log extends App_Event_Observer
     {
         $data = $this->getEvent()->getData();
         $object = $data[0];
-        if (PHP_SAPI != 'cli') {
-            $user = Zend_Auth::getInstance()->getIdentity();
-        }
+        $user = Zend_Auth::getInstance()->getIdentity();
+
         if ($object->id) {
             if ($object->hasElement('date_changed')) {
                 $object->date_changed = date('Y-m-d H:i:s');

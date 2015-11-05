@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-		<catalog/>
-		<tickets/>
-		<social/>
     </modules>
     <events>
 
@@ -45,14 +42,6 @@
             </observers>
         </AdminController__init>
 
-
-
-
-
-
-
-
-
 		<Model_Object__trigger__onBeforeSave>
 			<observers>
 				<log>
@@ -61,8 +50,6 @@
 				</log>
 			</observers>
 		</Model_Object__trigger__onBeforeSave>
-
-
 
         <Model_Object_Site__trigger__onBeforeDelete>
             <observers>
@@ -73,14 +60,6 @@
             </observers>
         </Model_Object_Site__trigger__onBeforeDelete>
 
-        <!--Model_Object_Site__trigger__onBeforeSave>
-            <observers>
-                <acl>
-                    <class>Model_Object_Observer_Acl</class>
-                    <method>onBeforeSave</method>
-                </acl>
-            </observers>
-        </Model_Object_Site__trigger__onBeforeSave-->
 
         <Model_Object_User__trigger__onBeforeSave>
             <observers>
@@ -90,83 +69,6 @@
                 </acl>
             </observers>
         </Model_Object_User__trigger__onBeforeSave>
-
-
-		<Model_Object_News__trigger__onBeforeSave>
-			<observers>
-				<seoId>
-					<class>Model_Object_Observer_SeoId</class>
-					<method>onBeforeSave</method>
-				</seoId>
-			</observers>
-		</Model_Object_News__trigger__onBeforeSave>
-
-        <Model_Object_News__trigger__onAfterSaveComplex>
-            <observers>
-                <notifier>
-                    <class>Observer_Notifier</class>
-                    <method>onAfterSaveNews</method>
-                </notifier>
-            </observers>
-        </Model_Object_News__trigger__onAfterSaveComplex>
-
-
-		<Model_Object_Page__trigger__onBeforeSave>
-			<observers>
-				<seoId>
-					<class>Model_Object_Observer_SeoId</class>
-					<method>onBeforeSave</method>
-				</seoId>
-			</observers>
-		</Model_Object_Page__trigger__onBeforeSave>
-
-
-        <Model_Object_Article__trigger__onBeforeSave>
-            <observers>
-                <seoId>
-                    <class>Model_Object_Observer_SeoId</class>
-                    <method>onBeforeSave</method>
-                </seoId>
-            </observers>
-        </Model_Object_Article__trigger__onBeforeSave>
-
-
-        <Model_Object_Article__trigger__onBeforeDelete>
-            <observers>
-                <seoId>
-                    <class>Model_Object_Observer_Article</class>
-                    <method>onBeforeDelete</method>
-                </seoId>
-            </observers>
-        </Model_Object_Article__trigger__onBeforeDelete>
-
-
-        <Model_Object_ArticleTopic__trigger__onBeforeSave>
-            <observers>
-                <seoId>
-                    <class>Model_Object_Observer_SeoId</class>
-                    <method>onBeforeSave</method>
-                </seoId>
-            </observers>
-        </Model_Object_ArticleTopic__trigger__onBeforeSave>
-
-
-
-
-
-
-
-<!-- CATALOG module EVENTS -->
-        <Catalog_View_Helper_CatalogText__draw>
-        	<observers>
-        		<view_helper>
-        			<module>catalog</module>
-        			<class>Catalog_View_Helper_Observer</class>
-        			<method>catalogText</method>
-        		</view_helper>
-        	</observers>
-        </Catalog_View_Helper_CatalogText__draw>
-
 
 <!-- tickets module object events -->
 	    <Model_Object_User__onAfterLogin>
@@ -178,20 +80,6 @@
 	            </log>
 	        </observers>
 	    </Model_Object_User__onAfterLogin>
-
-
-
-<!-- social module service events -->
-        <Social_Model_Service_Mail__getNewMailsCount>
-        	<observers>
-        		<view_helper>
-        			<module>social</module>
-        			<class>Social_Model_Service_Observer_Mail</class>
-        			<method>onGetNewMailsCount</method>
-        		</view_helper>
-        	</observers>
-        </Social_Model_Service_Mail__getNewMailsCount>
-
 
     </events>
 </config>

@@ -53,7 +53,7 @@ class Shop_OrderController extends Zend_Controller_Action
 			}else {
 				$this->view->menu()->addMenuBreadcrumbsPage(array(
 					'label' => $this->view->translate('Корзина'),
-					'route' => 'shop-order-start',
+					'route' => 'lab-order-start',
 				));
 			}
         }else{
@@ -143,7 +143,7 @@ class Shop_OrderController extends Zend_Controller_Action
     {
         $this->view->menu()->addMenuBreadcrumbsPage(array(
             'label' => $this->view->translate('Ваши заказы'),
-            'route' => 'shop-my_orders',
+            'route' => 'lab-my_orders',
         ));        
         $this->_forward('my-orders', 'order', 'checkout', $this->_getForwardParams());
     }
@@ -152,7 +152,7 @@ class Shop_OrderController extends Zend_Controller_Action
     {
         $this->view->menu()->addMenuBreadcrumbsPage(array(
             'label' => $this->view->translate('История заказов'),
-            'route' => 'shop-my_orders',
+            'route' => 'lab-my_orders',
         ));        
         $this->_forward('my-order-view', 'order', 'checkout', $this->_getForwardParams());
     }

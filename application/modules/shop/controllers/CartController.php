@@ -19,7 +19,7 @@ class Shop_CartController extends Zend_Controller_Action
         $this->_forward(
             'delete', 'cart', 'checkout', array_merge(
             $this->getRequest()->getParams(), array(
-            'redirectUrl' => $this->view->url(array(), 'shop-cart-index'))
+            'redirectUrl' => $this->view->url(array(), 'lab-cart-index'))
         ));
     }
 
@@ -28,7 +28,7 @@ class Shop_CartController extends Zend_Controller_Action
         $this->_forward(
             'clean', 'cart', 'checkout', array_merge(
             $this->getRequest()->getParams(), array(
-            'redirectUrl' => $this->view->url(array(), 'shop-cart-index'))
+            'redirectUrl' => $this->view->url(array(), 'lab-cart-index'))
         ));
     }
 
@@ -51,7 +51,7 @@ class Shop_CartController extends Zend_Controller_Action
         $this->_forward(
             'add-to-cart', 'cart', 'checkout', array_merge(
             $this->getRequest()->getParams(), array(
-            'redirectUrl' => $this->view->url(array(), 'shop-cart-index'))
+            'redirectUrl' => $this->view->url(array(), 'lab-cart-index'))
         ));
     }
 }

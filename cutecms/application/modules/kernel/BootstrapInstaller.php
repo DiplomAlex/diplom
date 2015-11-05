@@ -13,9 +13,6 @@ class BootstrapInstaller extends Zend_Application_Bootstrap_Bootstrap
     {
         App_Profiler::enable();
         App_Profiler::start('Bootstrap::init');
-        if (PHP_SAPI == 'cli') {
-            $this->unregisterPluginResource('Session');
-        }
         parent::__construct($application);
     }
 
@@ -67,10 +64,6 @@ class BootstrapInstaller extends Zend_Application_Bootstrap_Bootstrap
         ini_set('memory_limit', '64M');
         ini_set('upload_max_filesize', '10M');
 
-        if (PHP_SAPI == 'cli') {
-            /** disable cookies */
-            ini_set('session.use_cookies', false);
-        }
 
     }
 
