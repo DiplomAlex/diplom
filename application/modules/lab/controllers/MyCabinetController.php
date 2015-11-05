@@ -31,9 +31,7 @@ class Lab_MyCabinetController extends Zend_Controller_Action
         $Auth = Model_Service::factory('user')->isAuthorized();
 		$Current = Model_Service::factory('user')->getCurrent();
 		if ($Auth){
-			$orders = Model_Service::factory('checkout/order')->paginatorGetAllByUser( NULL,'','');
-			$this->view->orders = $orders;
-			$status = Model_Service::factory('checkout/order')->getStatusesList();
+
 		}else{
 			$this->_forward('index', 'index', 'lab');
 		}

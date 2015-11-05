@@ -45,15 +45,11 @@
   
   <?=$this->headScript()?>
 </head>
-<!--div id="loader"><div id="loader-in"><div id="spinner" style="font-size: 30px;">Загрузка...</div></div></div-->
 <body class="body">
     <div id="main">
         <div id="header">
             <a href="<?=$this->stdUrl(array('reset'=>true), 'index', 'admin')?>"></a>	
         </div>
-        <!--div id="search">
-            <input type="text" placeholder="<?=$this->translate('Поиск...')?>"/><button type="submit" id="search-button" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
-        </div-->
         <?=$this->adminBox_Account()?>
         <?=$this->adminMenu('left')?>	
         <div id="content">

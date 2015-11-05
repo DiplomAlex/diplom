@@ -359,16 +359,8 @@ class Model_Service_User extends Model_Service_Abstract
 
     public function isAllowedByIp(Model_Object_Interface $user, $ip = NULL)
     {
-        if ( ! (int) Zend_Registry::get('config')->security->checkWhiteIp) {
-            $result = TRUE;
-        }
-        else if (( ! $this->isCoworker($user)) OR (substr($user->login, 0, 5) == 'debug')) {
-            $result = TRUE;
-        }
-        else {
-            $result = Model_Service::factory('white-ip')->isInList($ip);
-        }
-        return $result;
+
+        return true;
     }
 
     public function isAllowedByLogin(Model_Object_Interface $user)

@@ -28,47 +28,6 @@ class Lab_UserController extends Zend_Controller_Action
 
     public function registerAction()
     {
-    	// $this->view->headTitle('Регистрация');
-        // $config = Zend_Registry::get('config');
-		// $form = $this->getInjector()->getObject('Form_Register');
-		// $this->view->form = $form;
-		// $values = $this->getRequest()->getParams();
-
-		// if ($this->getRequest()->isPost()) {
-		   // if ($form->isValid($values)){
-				// $ar['name'] = $values['firstname'].' '.$values['fathersname'].' '.$values['lastname'];
-				// $ar['firstname'] = $values['firstname'];
-				// $ar['fathersname'] = $values['fathersname'];
-				// $ar['lastname'] = $values['lastname'];
-				// $ar['email'] = $values['email_address'];
-				// $ar['address'] = $values['city'];
-				// $ar['tel'] = $values['telephone'];
-				// $ar['where_know'] = $values['reffered_from'];
-				// $ar['password'] = $values['password'];
-				// $ar['login'] = $values['email_address'];
-
-				// $user = Model_Service::factory('user')->registerNewUser($ar);
-
-				// $this->view->userName = $ar['name'];
-				// $this->view->userLogin = $ar['login'];
-				// $this->view->userPassword = $ar['password'];
-				// $this->view->siteName = $config->www->siteName;
-				// $this->view->siteUrl = $this->view->stdUrl(array('reset'=>TRUE));
-
-				// App_Mail::factory()
-					// ->addTo($ar['email'], $ar['name'])
-					// ->setFrom($config->email->support, $config->email->supportName)
-					// ->setSubject ($this->view->render('user/register/email-subj.phtml'))
-					// ->setBodyText($this->view->render('user/register/email-text.phtml'))
-					// ->setBodyHtml($this->view->render('user/register/email-html.phtml'))
-					// ->send();
-
-				// $this->view->success = TRUE;
-			// }else {
-				// $this->view->success = FALSE;
-			// }
-		// }
-
             if ($this->getRequest()->isPost()) {
                 /** @var $userService Model_Service_User */
                 $userService = Model_Service::factory('user');
@@ -135,49 +94,4 @@ class Lab_UserController extends Zend_Controller_Action
         $this->_forward('change-language', 'user', 'kernel', $this->getRequest()->getParams());
     }
 
-    public function changeCurrencyAction()
-    {
-        $this->_forward('change-currency', 'user', 'kernel', $this->getRequest()->getParams());
-    }
-
-    public function subscribeAction()
-    {
-        $user = Model_Service::factory('user');
-        $news_topic = Model_Service::factory('news-topic');
-        $this->view->user = $user->getCurrent();
-
-        if ($user->isAuthorized()) {
-            $userId = $user->getCurrent()->id;
-            $result = $news_topic->switchSubscriptionState(5, $userId);
-        } else {
-            $result = $news_topic->subscribeUnsubscribeEmail($this->getRequest()->getParam('email'));
-        }
-        if ($result){
-            $this->view->text = 'Вы успешно подписались на нашу рассылку';
-        } else {
-            $this->view->text = 'Вы отписались от нашей рассылки';
-        }
-    }
-
-    public function contactAction()
-    {
-        $params = $this->getRequest()->getParams();
-        $siteName = Zend_Registry::get('Lab_config')->www->siteName;
-        $adminEmail = Zend_Registry::get('Lab_config')->email->support;
-
-        $mail_body_for_admin = 'Пользователь '.$params['first_name'] . $params['last_name'] . " прислал Вам сообщение с сайта." . $siteName . "\n".
-                        "\nКонтактный Email пользователя: " . $params['email'].
-                        "\nСообщение: " . $params['message_text'];
-        $mail = new App_Mail;
-                    		$mail->setBodyText($mail_body_for_admin);
-                    		$mail->setFrom($params['email'], $siteName);
-                    		$mail->addTo($adminEmail);/*$params['email']*/
-                    		$mail->setSubject($params['theme']);
-                    		$mail->send();
-    }
-
-    public function unsubscribeAction()
-    {
-        Model_Service::factory('news-topic')->unsubscribeUsersByEmail($this->getRequest()->getParam('email'));
-    }
 }

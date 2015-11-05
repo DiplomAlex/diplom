@@ -233,12 +233,11 @@ class AdminUserController extends Zend_Controller_Action
     {
         $service = Model_Service::factory('user');
         $user = $service->getComplex($this->_getParam('id'));
-        $count_orders = count(Model_Service::factory('checkout/order')->getAllByClient($user->id));
 
         $form = $this->getInjector()->getObject('Form_AdminUserDelete');
         $form->setMethod('POST');
         if ($this->getRequest()->isPost()) {
-            if ($form->getAnswer()=='yes' && $count_orders == 0) {
+            if ($form->getAnswer()=='yes') {
                 try {
                     $service->delete($user);
                     $this->getHelper('flashMessenger')->addMessage($this->view->translate('User "%1$s" deleted', $user->login));
@@ -254,7 +253,6 @@ class AdminUserController extends Zend_Controller_Action
         }
         else {
             $this->view->user = $user;
-            $this->view->count_orders = $count_orders;
             $this->view->form = $form;
         }
     }

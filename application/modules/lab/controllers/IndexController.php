@@ -10,7 +10,7 @@ class Lab_IndexController extends Zend_Controller_Action
         if ($this->getRequest()->isXmlHttpRequest()) {
             $this->view->layout()->disableLayout();
         }
-		$this->view->headTitle('Магазин Ювелирного дома SA&GA. Каталог ювелирных украшений с ценами');
+		$this->view->headTitle('Diplom');
     }
 
     public function indexAction()

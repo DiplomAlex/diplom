@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <config>
     <modules>
+        <lab/>
     </modules>
     <events>
 

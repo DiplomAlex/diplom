@@ -55,17 +55,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         return $autoloader;
     }
-    
-    /*
-    protected function _initControllers()
-    {
-        $controllersPath = '/modules/kernel/controllers/';
-        Zend_Controller_Action_HelperBroker::addPath(
-            APPLICATION_PATH . $controllersPath . 'Helper',
-            'Controller_Action_Helper'
-        );
-    }
-    */
+
 
     protected function _initSettings()
     {
