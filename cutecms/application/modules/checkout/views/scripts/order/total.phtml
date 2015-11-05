@@ -1,8 +1,0 @@
-
-<? foreach ($this->data as $row) { ?>
-    <div class="footer-row">
-    	<div class="total"><?=$this->order_Summ($row['summ'], $this->order->currency)?></div>
-    	<div class="text"><?=($row['title']?$row['title'].' :':'')?></div>
-    	<div class="cleaner"></div>
-    </div>
-<? } ?>
