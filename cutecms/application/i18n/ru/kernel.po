@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: kernel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-06 14:38+0200\n"
-"PO-Revision-Date: 2015-02-26 14:15+0200\n"
+"PO-Revision-Date: 2015-11-07 21:49+0200\n"
 "Last-Translator: \n"
-"Language-Team:  <ru@li.org>\n"
+"Language-Team: ru@li.org\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.6\n"
 "Language: ru\n"
 
 msgid "No rows were selected for mass action"
@@ -200,8 +200,7 @@ msgstr "Все"
 #: views/scripts/admin-index/mass/select.phtml:11
 #: views/scripts/index/mass/select.phtml:11
 msgid "Do you confirm this action for all selected items"
-msgstr ""
-"Вы действительно хотите выполнить это действие для всех выбранных строк"
+msgstr "Вы действительно хотите выполнить это действие для всех выбранных строк"
 
 #: views/scripts/admin-index/mass/select.phtml:19
 #: views/scripts/index/mass/select.phtml:19
@@ -627,16 +626,10 @@ msgid "Text"
 msgstr "Текст"
 
 msgid "client"
-msgstr "Клиент"
+msgstr "Студент"
 
 msgid "manager"
-msgstr "Менеджер"
-
-msgid "stockman"
-msgstr "Кладовщик"
-
-msgid "keeper"
-msgstr "Кладовщик"
+msgstr "Преподаватель"
 
 msgid "editor"
 msgstr "Редактор"
