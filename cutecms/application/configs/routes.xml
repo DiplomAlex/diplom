@@ -30,7 +30,7 @@
     <admin_index>
         <type>App_Controller_Router_Route_Regex</type>
         <route>admin$</route>
-        <defaults module="kernel" controller="admin-index" action="index" page=""/>
+        <defaults module="kernel" controller="admin-index" action="index"/>
         <reverse>admin</reverse>
     </admin_index>
 

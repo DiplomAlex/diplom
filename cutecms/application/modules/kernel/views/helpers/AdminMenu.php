@@ -329,6 +329,7 @@ class View_Helper_AdminMenu extends Zend_View_Helper_Abstract
         return array(
             $level1['dashboard'],
             $level1['user'],
+            $level1['change_profile'],
         );
     }
 
@@ -340,6 +341,27 @@ class View_Helper_AdminMenu extends Zend_View_Helper_Abstract
     }
 
     protected function _getMenuStructure_editor($level1)
+    {
+        return array(
+        );
+    }
+
+    protected function _getMenuStructure_dealer($level1)
+    {
+        $struct = array(
+        );
+        return $struct;
+    }
+
+    protected function _getMenuStructure_manager($level1)
+    {
+        return array(
+            $level1['user'],
+            $level1['change_profile'],
+        );
+    }
+
+    protected function _getMenuStructure_stockman($level1)
     {
         return array(
         );

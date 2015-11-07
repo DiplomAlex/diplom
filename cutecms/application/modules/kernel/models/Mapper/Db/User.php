@@ -49,10 +49,6 @@ class Model_Mapper_Db_User extends Model_Mapper_Db_Abstract implements Model_Map
      */
     protected function _onFetchComplex(Zend_Db_Select $select)
     {
-
-        /**
-         * @todo calling from mapper to service should be replaced
-         */
         $lang = Model_Service::factory('language')->getCurrent();
 
         $select -> joinLeft(
@@ -71,14 +67,6 @@ class Model_Mapper_Db_User extends Model_Mapper_Db_Abstract implements Model_Map
                             'user_role_name' => 'role_desc_name',
                         )
                    )
-                /*-> joinLeft(
-                        array('binded'=>$this->getTable()
-                                             ->select()
-                                             ->from('user', array('user_binding', 'cnt_binded'=>'COUNT(user_id)'))
-                                             ->group('user_binding')),
-                        'binded.user_binding = user.user_binding',
-                        array('user_binded_count'=>'binded.cnt_binded')
-                   )*/
                 ;
 
         return $select;
@@ -92,19 +80,6 @@ class Model_Mapper_Db_User extends Model_Mapper_Db_Abstract implements Model_Map
      */
     protected function _onBuildComplexObject(Model_Object_Interface $object, array $values = NULL, $addedPrefix = TRUE)
     {
-        /*
-        $prefixRole = 'user_role';
-        if ($addedPrefix === FALSE) {
-            $prefixRole =  FALSE;
-        }
-        else if ($addedPrefix === TRUE) {
-            $prefixRole =  $prefixRole;
-        }
-        else if (is_string($addedPrefix)) {
-            $prefixRole =  $addedPrefix . '_' . $prefixRole;
-        }
-        $object->Role = $this->getMapper('Role')->makeSimpleObject($values, $prefixRole);
-        */
         $object->role_acl_role = $values['user_role_acl_role'];
         return $object;
     }
@@ -174,7 +149,7 @@ class Model_Mapper_Db_User extends Model_Mapper_Db_Abstract implements Model_Map
                                  ->where('user_login = ?', $login)
                                  ;
         $rows = $select->query()->fetchAll();
-		//print_r($rows);exit;
+
         if ( ! $rows) {
             $this->_throwException('user with login="'.$login.'" not found!');
         }
@@ -345,35 +320,6 @@ class Model_Mapper_Db_User extends Model_Mapper_Db_Abstract implements Model_Map
         }
         $select->reset('order')->order('user.user_name ASC');
         return $this->makeComplexCollection($select->query()->fetchAll());
-    }
-
-    /**
-     * Получить массив пользователей
-     *
-     * @param $startTime
-     * @return array
-     */
-    public function fetchAllExport($startTime)
-    {
-        return $this->getTable()->select()->from(
-            $this->getTable(), array(
-                'id'            => 'user_id',
-                'guid'          => 'user_guid',
-                'date_added'    => 'user_date_added',
-                'name'          => 'user_name',
-                'email'         => 'user_email',
-                'tel'           => 'user_tel',
-                'bonus_account' => 'user_bonus_account',
-                'comment'       => 'user_comment',
-                'dob'           => 'user_dob',
-                'address'       => 'user_address',
-            )
-        )
-            ->where('user.user_export = ?', 1)
-            ->where('user.user_status = ?', 1)
-            ->where('user.user_role_id = ?', Model_Service::factory('role')->findByAclRole('client')->id)
-            ->where('user.user_date_changed < ? OR isnull(user.user_date_changed)', date('Y-m-d H:i:s', $startTime))
-            ->query()->fetchAll();
     }
 
     /**

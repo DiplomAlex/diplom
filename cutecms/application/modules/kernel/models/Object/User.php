@@ -23,13 +23,11 @@ class Model_Object_User extends Model_Object_Abstract
             'tel', 'address',
             'where_know',
             'firstname', 'fathersname', 'lastname',
-            'bonus_account',
             'comment',
             'guid',
             'date_added',
             'date_changed',
             'changer_id',
-            'export',
         ));
     }
 

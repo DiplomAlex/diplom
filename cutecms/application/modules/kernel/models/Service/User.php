@@ -44,9 +44,6 @@ class Model_Service_User extends Model_Service_Abstract
             if (($force === FALSE) AND ($user->password != $this->cryptPassword($password))) {
                 $this->_throwException('wrong login '.$login);
             }
-            if ( ! $this->isAllowedByIp($user)) {
-                $this->_throwException('wrong ip');
-            }
             if ( ! $this->isAllowedByLogin($user)) {
                 $this->_throwException('wrong login');
             }
@@ -54,6 +51,7 @@ class Model_Service_User extends Model_Service_Abstract
             App_Event::factory('Model_Object_User__onAfterLogin', array($user))->dispatch();
         }
         catch (Model_Exception $e) {
+            var_dump($e->getMessage()); die;
             $this->unauthorize();
             $this->_throwException($e->getMessage());
         }
@@ -356,13 +354,6 @@ class Model_Service_User extends Model_Service_Abstract
         return $paginator;
     }
 
-
-    public function isAllowedByIp(Model_Object_Interface $user, $ip = NULL)
-    {
-
-        return true;
-    }
-
     public function isAllowedByLogin(Model_Object_Interface $user)
     {
         $config = Model_Service::factory('config')->read('var/denied_access.xml', 'deny');
@@ -429,66 +420,6 @@ class Model_Service_User extends Model_Service_Abstract
     }
 
     /**
-     * Получить массив пользователей
-     *
-     * @return array
-     */
-    public function getAllUsersExport()
-    {
-        $startTime = time();
-        $data = $this->getMapper()->fetchAllExport($startTime);
-
-        foreach ($data as $key => $user) {
-            if (!$user['guid']) {
-                $guid = App_Uuid::get();
-                $this->getMapper()->poolUpdate('user', array('user_guid' => $guid), array('user_id = ?' => $user['id']));
-                $data[$key]['guid'] = $guid;
-            }
-
-            $data[$key]['bonus_account'] = number_format($user['bonus_account'], 2, ',', ' ');
-
-            unset($data[$key]['id']);
-        }
-
-        $this->getMapper()->poolUpdate('user');
-
-        $this->getMapper()->clearExport($startTime);
-
-        return $data;
-    }
-
-    /**
-     * Добавить/обновить запись пользователей
-     *
-     * @param SimpleXMLElement $users
-     * @return int
-     */
-    public function setUsers(SimpleXMLElement $users)
-    {
-        $guids = $this->getMapper()->fetchDistinctField('guid');
-
-        foreach ($users->user as $user) {
-            $user = $this->_prepareToSetUserValues($user);
-
-            if (in_array($user['user_guid'], $guids)) {
-                $user['user_changer_id'] = null;
-                $this->getMapper()->poolUpdate('user', $user, array('user_guid = ?' => $user['user_guid']));
-            } else {
-                $user['user_role_id'] = Model_Service::factory('role')->findByAclRole('client')->id;
-                $user['user_status'] = '1';
-                $user['user_guid'] = $user['user_guid'];
-
-                $this->getMapper()->poolInsert('user', $user);
-            }
-        }
-
-        $this->getMapper()->poolUpdate('user');
-        $this->getMapper()->poolInsert('user');
-
-        return $this->getMapper()->getPoolUpdateCounter() + $this->getMapper()->getPoolInsertCounter();
-    }
-
-    /**
      * Get user by guid
      *
      * @param $guid
@@ -498,33 +429,6 @@ class Model_Service_User extends Model_Service_Abstract
     public function getUserByGuid($guid)
     {
         return $this->getMapper()->fetchUserByGuid($guid);
-    }
-
-    /**
-     * Подготовить значения для сохранения
-     *
-     * @param SimpleXMLElement $user
-     * @return array
-     */
-    private function _prepareToSetUserValues(SimpleXMLElement $user)
-    {
-        $prefix = $this->getMapper()->getTable()->getColumnPrefix() . '_';
-
-        $user = (array)$user;
-        $user['export'] = '0';
-        $user['date_changed'] = date('Y-m-d H:i:s');
-
-        $user['bonus_account'] = App_Utf8::strip_non_ascii($user['bonus_account']);
-        $user['bonus_account'] = str_replace(' ', '', $user['bonus_account']);
-        $user['bonus_account'] = str_replace(',', '.', $user['bonus_account']);
-        $user['bonus_account'] = $user['bonus_account'] != 0 ? $user['bonus_account']: null;
-
-        foreach ($user as $key => $value) {
-            $user[$prefix . $key] = $value ? trim($value) : $value;
-            unset($user[$key]);
-        }
-
-        return $user;
     }
 
 }

@@ -33,6 +33,11 @@ class View_Helper_Menu extends Zend_View_Helper_Abstract
         return $this->{'_'.$name}();
     }
 
+    protected function _breadcrumbs()
+    {
+        return '';
+    }
+
     protected function _top()
     {
         App_Profiler::start('View_Helper_Menu::_top');
