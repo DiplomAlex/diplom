@@ -1,13 +1,6 @@
 <?php
-include_once 'Z:\home\diplom\www\cutecms\application/modules/kernel/controllers/Helper/AdminMultisite.php';
-include_once 'Z:\home\diplom\www\cutecms\application/modules/kernel/views/helpers/AdminBox\SiteSelect.php';
-include_once 'Z:\home\diplom\www\cutecms\application/modules/kernel/views/helpers/Site\List.php';
-include_once 'Zend/View/Helper/Translate.php';
 include_once 'Zend/View/Helper/HeadTitle.php';
 include_once 'Zend/View/Helper/HeadMeta.php';
-include_once 'Zend/Controller/Action/Helper/Redirector.php';
-include_once 'Z:\home\diplom\www\cutecms\application/modules/kernel/views/helpers/StdUrl.php';
-include_once 'Zend/View/Helper/Url.php';
 include_once 'Z:\home\diplom\www\cutecms\application/library/App/Controller/Action/Helper/ReturnUrl.php';
 include_once 'Zend/Form/Element/Hidden.php';
 include_once 'Zend/Form/Decorator/ViewHelper.php';
@@ -22,5 +15,8 @@ include_once 'Zend/View/Helper/Doctype.php';
 include_once 'Zend/View/Helper/FormPassword.php';
 include_once 'Zend/View/Helper/FormSubmit.php';
 include_once 'Zend/View/Helper/FormHidden.php';
+include_once 'Zend/View/Helper/Translate.php';
 include_once 'Z:\home\diplom\www\cutecms\application/modules/kernel/views/helpers/Skin.php';
 include_once 'Zend/View/Helper/ServerUrl.php';
+include_once 'Z:\home\diplom\www\cutecms\application/modules/kernel/views/helpers/StdUrl.php';
+include_once 'Zend/View/Helper/Url.php';

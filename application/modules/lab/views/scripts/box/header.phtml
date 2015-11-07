@@ -1,4 +1,39 @@
 <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('ul.menu > li > a').mouseenter(function(){
+            var ul = $(this).parent().find('ul');
+            if (ul.length) {
+                $(this).addClass('hover');
+            }
+        })
+        $('ul.menu li').mouseleave(function(){
+            $(this).parent().find('a').removeClass('hover');
+        })
+        $('li.category').mouseenter(function(){
+            $('li.category > div').css({'display':'none'});
+            $('> div', this).css({'display':'block'});
+            /*$(this).addClass('hover');*/
+        });
+        centerImage();
+    });
+    $(window).resize(function(){
+        centerImage();
+    });
+    function centerImage() {
+        dwidth = $(document).width();
+        image = $('#imgmap');
+        imgwidth = image.width();
+        otstup = (dwidth - imgwidth)/2;
+        image.css('left', otstup);
+    }
+
+    $(function() {
+        var obj = $('ul.menu > li > a[href="<?= $_SERVER['REQUEST_URI']; ?>"]');
+        var obj_sub = $('ul.menu li ul li a[href="<?= $_SERVER['REQUEST_URI']; ?>"]');
+        obj.addClass('active');
+        obj_sub.parent().parent().parent().find(' > a').addClass('active');
+    });
     $(function() {
 		var obj = $('ul.menu > li > a[href="<?= $_SERVER['REQUEST_URI']; ?>"]');
         var obj_sub = $('ul.menu li ul li a[href="<?= $_SERVER['REQUEST_URI']; ?>"]');
@@ -11,9 +46,22 @@
     <a class="logo" href="<?=$this->url(array('reset'=>true), 'lab-index')?>"></a>
 
     <div class="cleaner"></div>
-    <ul class="menu">
-
-    </ul>
+<!--    <ul class="menu">-->
+<!--        <li>-->
+<!--            <a href="javascript:void(0)">Menu</a>-->
+<!--            <ul>-->
+<!--                <li class="category">-->
+<!--                    <a href="javascript:void(0)">Menu 1</a>-->
+<!--                    <div class="podcategory" id="category_1" style="display: none;">-->
+<!--                        <ul>-->
+<!--                            <li><a href="javascript:void(0)"> Menu 1.1</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </li>-->
+<!--        <li><a href="">Menu href</a></li>-->
+<!--    </ul>-->
     <?= $this->box_Search();?>
 </div>
 <div class="cleaner"></div>
