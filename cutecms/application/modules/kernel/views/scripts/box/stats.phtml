@@ -17,7 +17,7 @@
         </td>
         <td align="center" valign="middle">
         <? if ($this->msgQty) { ?>
-            <span class="label"><a href="<?=$this->stdUrl(NULL, 'my-manager', 'user', 'tickets')?>"><?=$this->translate('У Вас новых сообщений %1$s', $this->msgQty)?></span>
+            <span class="label"><a href="<?=$this->stdUrl(NULL, 'my-manager', 'user', 'kernel')?>"><?=$this->translate('У Вас новых сообщений %1$s', $this->msgQty)?></span>
         <? } else { ?>
             <span class="label"><?=$this->translate('У Вас нет новых сообщений')?></span>
         <? } ?>

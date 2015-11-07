@@ -8,8 +8,6 @@
   <h2>На странице ошибка</h2>
   <h2><?php echo $this->message ?></h2>
 
-  <?php
-  if ('development' == APPLICATION_ENV) { ?>
 
   <h3>Exception information:</h3>
   <p>
@@ -23,7 +21,6 @@
   <h3>Request Parameters:</h3>
   <pre><?php echo var_export($this->request->getParams(), true) ?>
   </pre>
-  <?php } ?>
   
   <? App_Debug::dumpToFirebug($this->exception->getMessage())?>
   <? App_Debug::dumpToFirebug($this->exception->getTraceAsString())?>

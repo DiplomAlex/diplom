@@ -20,7 +20,7 @@
     <main-user_register>
         <type>Zend_Controller_Router_Route</type>
         <route>register</route>
-        <defaults module="tickets" controller="user" action="register" />
+        <defaults module="kernel" controller="user" action="register" />
     </main-user_register>
 
 

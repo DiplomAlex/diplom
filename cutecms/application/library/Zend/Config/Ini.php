@@ -199,6 +199,7 @@ class Zend_Config_Ini extends Zend_Config
      */
     protected function _loadIniFile($filename)
     {
+//        var_dump($filename);
         $loaded = $this->_parseIniFile($filename);
         $iniArray = array();
         foreach ($loaded as $key => $data)

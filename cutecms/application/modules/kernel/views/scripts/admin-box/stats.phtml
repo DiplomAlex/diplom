@@ -1,0 +1,48 @@
+
+<div class="top_stats_diargram">
+
+<? if ($this->showClientStats) { ?>
+    <table width="100%" cellpadding="0" cellspacing="0" style="verical-align: middle">
+    <tr>
+        <td align="center" valign="middle">
+        <span class="label"><?=$this->translate('Сегодня')?> <?=$this->dateTranslated()?>, <?=$this->formatTime()?></span>
+        </td>
+        <td width="1%" align="center" valign="middle">
+        <span><img src="<?=$this->skin()->url()?>images/divider.gif"></span>
+        </td>
+        <td width="1%" align="center" valign="middle">
+        <span><img src="<?=$this->skin()->url()?>images/divider.gif"></span>
+        </td>
+        <td align="center" valign="middle">
+
+    </tr>
+    </table>
+
+<? } else if ($this->loggedIn) { ?>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="verical-align: middle">
+    <tr>
+        <td align="center" valign="middle">
+            <span class="label"><?=$this->translate('Сегодня')?> <?=$this->dateTranslated()?>, <?=$this->formatTime()?></span>
+        </td>
+        <td width="1%" align="center" valign="middle">
+            <span><img src="<?=$this->skin()->url()?>images/divider.gif"></span>
+        </td>
+        <td align="center" valign="middle">
+            <span class="label"><?=$this->direction?></span>
+        </td>
+        <td width="1%" align="center" valign="middle">
+            <span><img src="<?=$this->skin()->url()?>images/divider.gif"></span>
+        </td>
+         <td width="1%" align="center" valign="middle">
+             <span><img src="<?=$this->skin()->url()?>images/divider.gif"></span>
+         </td>
+    </tr>
+    </table>
+
+<? } else { ?>
+    <img src="<?=$this->skin()->url()?>images/top_stats_diargram.gif" alt="" width="598" height="43" class="diargram" />
+    <span class="label"><?=$this->translate('Система находится в тестовом режиме')?></span>
+<? } ?>
+    <img src="<?=$this->skin()->url()?>images/top_stats_diargram_arr.gif" alt="" width="12" height="12" class="arr" />
+</div>

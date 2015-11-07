@@ -16,7 +16,7 @@
         <? } else { ?>
             <a href="<?=$this->url(array('login'=>$this->user['login']), 'user_profile')?>"><strong><?=$this->user['name']?></strong></a>
         <? } ?>
-        <span><a href="<?=$this->stdUrl(array('id'=>$this->user['id']), 'edit', 'admin-user', 'tickets')?>" class="users"><?=$this->translate('Меню пользователя')?></a></span>
+        <span><a href="<?=$this->stdUrl(array('id'=>$this->user['id']), 'edit', 'admin-user', 'kernel')?>" class="users"><?=$this->translate('Меню пользователя')?></a></span>
         <span><a href="<?=$this->stdUrl(NULL, 'index', 'help', 'kernel')?>" class="help"><?=$this->translate('Помощь')?></a></span>
         <span><a href="<?=$this->url(array('seo_id'=>'contact'), 'page')?>" class="contacts"><?=$this->translate('Наши контакты')?></a></span>
         <span><a href="<?=$this->stdUrl(array('reset'=>TRUE), 'logout', 'auth', 'kernel')?>" class="logout"><?=$this->translate('Выход')?></a></span>
