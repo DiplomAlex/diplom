@@ -33,7 +33,7 @@ class Lab_Form_Login extends App_Form
         ));
 
         $this->addElement('submit', 'send', array(
-        	'label' => '�����',
+        	'label' => 'Войти',
         ));
         
 

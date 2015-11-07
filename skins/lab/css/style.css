@@ -78,11 +78,12 @@ li {
     background: #2b2b2c;
 }
 .header a.logo {
-    background: url("../img/jh_blk.png")no-repeat scroll 0 0 transparent;/*vitmark 30.10.2014 url("../img/sprite.png") no-repeat scroll 0 0 transparent;*/
-    float: left;
-    height: 49px;
-    margin: 13px 0 0 0px;
-    width: 124px;/*124px;*/
+    background: url("../img/jh_blk.png")no-repeat scroll 0 0 transparent;
+    height: 75px;
+    margin: 5px auto;
+    width: 225px;
+    background-size: contain;
+    display: block;
 }
 .header a.social_network {
     float: right;

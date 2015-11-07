@@ -24,6 +24,7 @@ class Lab_MyCabinetController extends Zend_Controller_Action
         App_Event::factory('Lab_Controller__init', array($this))->dispatch();
 		$this->view->flag_right_colum = 2;
 		$this->view->headTitle('Личный кабинет');
+//		$this->_helper->layout->setLayout('layout-index');
 	}
     
     public function indexAction()
