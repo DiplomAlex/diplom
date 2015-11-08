@@ -1,26 +1,37 @@
-<div class="mcol">
-	<div class="title_h3">
-		<h3>Ваши персональные данные</h3>
-	</div>
-	<?if($this->sucsessUpdete == TRUE){?>
-	<div class="message">
-		<h2>Ваши данные обновлены!</h2>
-	</div>
-	<?}?>
-	<?if($this->sucsessUpdetePass == TRUE){?>
-	<div class="message">
-		<h2>Ваш пароль изменён!</h2>
-	</div>
-	<?}?>					
-							
-	<div class="cabinet_left">
-		<h2>Добро пожаловать!</h2>
-		<p>Сейчас Вы можете полностью управлять своими персональными данными.</p>	
-	</div>
-	
-	<div class="cabinet_right">
-		<h2>Персональная информация</h2>	
-		<p><a href="<?=$this->url(array(), 'lab-my_cabinet-persons')?>">Посмотреть или изменить Ваши персональные данные</a></p>
-		<p><a href="<?=$this->url(array(), 'lab-my_cabinet-changepassword')?>">Изменить пароль</a></p>
-	</div>
+<div class="breadcrumbs">
+    <div class="center">
+        <a href="<?=$this->url(array('reset'=>true), 'lab-index')?>">Главная<span></span></a>
+    </div>
+</div>
+<div class="content home center">
+    <div class="mcol">
+        <div class="title_h3">
+            <h3>Ваши персональные данные</h3>
+        </div>
+        <? if ($this->sucsessUpdete == TRUE) { ?>
+            <div class="message">
+                <h2>Ваши данные обновлены!</h2>
+            </div>
+        <? } ?>
+        <? if ($this->sucsessUpdetePass == TRUE) { ?>
+            <div class="message">
+                <h2>Ваш пароль изменён!</h2>
+            </div>
+        <? } ?>
+
+        <div class="cabinet_left">
+            <h2>Добро пожаловать!</h2>
+
+            <p>Сейчас Вы можете полностью управлять своими персональными данными.</p>
+        </div>
+
+        <div class="cabinet_right">
+            <h2>Персональная информация</h2>
+
+            <p><a href="<?= $this->url(array(), 'lab-my_cabinet-persons') ?>">Посмотреть или изменить Ваши персональные
+                    данные</a></p>
+
+            <p><a href="<?= $this->url(array(), 'lab-my_cabinet-changepassword') ?>">Изменить пароль</a></p>
+        </div>
+    </div>
 </div>

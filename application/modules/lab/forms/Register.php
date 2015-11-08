@@ -85,18 +85,6 @@ class Lab_Form_Register extends App_Form
             'required' => TRUE
         ));
 		
-		$this->addElement('text', 'reffered_from', array(
-            'label' => 'От куда вы о нас узнали',
-            'attribs' => array(
-                'maxlength' => 50,
-                'size' => 90
-            ),
-            'validators' => array(
-                array('StringLength', FALSE, array(3,50)),
-            ),
-            'required' => FALSE
-        ));
-		
         $this->addElement('password', 'password', array(
             'label' => 'Введите пароль',
             'attribs' => array(
@@ -122,9 +110,9 @@ class Lab_Form_Register extends App_Form
         ));
         
         $this->addElement('submit', 'send', array(
-            'label' => $this->getTranslator()->_('Register'),
+            'label' => $this->getTranslator()->_('Зарегистрироваться'),
             'attribs' => array(
-                    'width' => '200px',
+                    'width' => '250px',
             ),
         ));        
                 

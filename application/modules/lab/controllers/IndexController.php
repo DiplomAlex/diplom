@@ -16,6 +16,9 @@ class Lab_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->_helper->layout->setLayout('layout-index');
+
+        $this->view->isAuthorized = Model_Service::factory('user')->isAuthorized();
+        $this->view->user = Model_Service::factory('user')->getCurrent();
     }
 
 

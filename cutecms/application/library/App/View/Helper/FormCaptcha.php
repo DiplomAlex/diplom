@@ -38,7 +38,7 @@ class App_View_Helper_FormCaptcha extends Zend_View_Helper_FormElement {
                 . '<input type="hidden" id="'.$uniqId.'_captcha_id" name="'.$name.'[id]"
                         value="'.$captcha->getId().'">'
         	. '&nbsp;&nbsp;&nbsp;'
-                . '<a class="reload_captcha" href="#" ajax-href="'.$this->view->stdUrl(NULL, 'captcha-reload', 'auth', 'kernel').'" id="'.$uniqId.'_captcha_reload"><img src="'.$this->view->skin()->url().'img/reload.png" title="'.$reloadText.'" alt="'.$reloadText.'" /></a>'
+                . '<a class="reload_captcha" href="#" ajax-href="'.$this->view->stdUrl(NULL, 'captcha-reload', 'auth', 'kernel').'" id="'.$uniqId.'_captcha_reload">'.$reloadText.'</a>'
                 . '
                     <script type="text/javascript">
                         $(document).ready(function(){

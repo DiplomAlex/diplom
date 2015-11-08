@@ -51,7 +51,6 @@ h2 {
     font-size: 20px;
 }
 a {
-    text-decoration: none;
     color: #414141;
 }
 li {
@@ -171,7 +170,6 @@ ul.menu li a.active {
     color: #ae8e55;
 }
 ul.menu li a.hover{
-    background: none repeat scroll 0 0 #EFEFEF;
     margin: 0 -21px 0 -21px;
     padding: 0 21px 17px 21px;
 }
@@ -179,7 +177,7 @@ ul.menu li:hover ul {
     display: block;
 }
 ul.menu li ul {
-    background: none repeat scroll 0 0 #F4F4F4;
+    background: none repeat scroll 0 0 #313131;
     display: none;
     left: -21px;
     padding: 8px 0 11px;
@@ -190,23 +188,25 @@ ul.menu li ul {
 	border: 1px solid #DDD;
 }
 ul.menu li ul li{
-    background: none repeat scroll 0 0 #F4F4F4;
+    background: none repeat scroll 0 0 #313131;
     display: block;
     float: left;
     margin: 0;
     padding: 4px 17px 5px 22px;
-    width: 155px; /*vitmark 10.10.2014*/
+    width: 155px;
 }
 ul.menu li ul li a{
-    color: black;
-    font-family: 'Roboto', sans-serif;/*'Arial';*/
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
 }
 ul.menu li ul li a:hover{
-    color: black;
+    color: #ae8e55;
 }
-ul.menu li ul li:hover{
-    background: none repeat scroll 0 0 #ffffff;
+.category-name {
+    text-transform: none;
+    font-size: 20px;
+    padding: 25px 34px 20px;
 }
 .header .language {
     float: right;
@@ -1094,7 +1094,7 @@ form#contact_form {
     margin: 32px 0;
     width: 480px;
 }
-input[type="text"] {
+input[type="text"], input[type="password"] {
     background: none repeat scroll 0 0 #FFFFFF;
     border: medium none;
     height: 36px;
@@ -1112,8 +1112,7 @@ form#contact_form textarea {
     padding: 5px;
 }
 form div {
-    float: left;
-    margin: 0 0 28px;
+    margin: 0 0 6px;
     position: relative;    
 }
 form label {
@@ -1127,7 +1126,6 @@ form label {
 }
 form input, form textarea{
     color: #313131;
-    float: left;
     font-family: 'Roboto', sans-serif;/*"Arial";*/
     font-size: 13px;
     outline: none;
@@ -1141,7 +1139,7 @@ input[type="submit"] {
     margin: 1px 0 0 97px;
     padding:0;
     height: 38px;
-    width: 138px;
+    width: 160px;
     cursor: pointer;
 }
 input.cancel {

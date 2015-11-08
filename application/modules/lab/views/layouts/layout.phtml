@@ -4,12 +4,6 @@
 		<?=$this->headMeta()?>
 		<?=$this->headTitle()?>
 		<?=$this->headLink()?>
-        <?if(strlen($this->headdescription)>0){?>
-            <meta name="description" content="<?=$this->headdescription?>" />
-        <?}?>
-        <?if(strlen($this->headkeywords)>0){?>
-    		<meta name="keywords" content="<?=$this->headkeywords?>" />
-        <?}?>
         <link type="text/css" rel="stylesheet" href="<?=$this->skin()->url()?>css/style.css" />
         <script type="text/javascript" src="<?=$this->skin()->url()?>js/jquery-1.6.4.min.js"></script>
     </head>

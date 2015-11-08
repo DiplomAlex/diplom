@@ -24,18 +24,11 @@ class Lab_MyCabinetController extends Zend_Controller_Action
         App_Event::factory('Lab_Controller__init', array($this))->dispatch();
 		$this->view->flag_right_colum = 2;
 		$this->view->headTitle('Личный кабинет');
-//		$this->_helper->layout->setLayout('layout-index');
 	}
     
     public function indexAction()
     {
-        $Auth = Model_Service::factory('user')->isAuthorized();
-		$Current = Model_Service::factory('user')->getCurrent();
-		if ($Auth){
 
-		}else{
-			$this->_forward('index', 'index', 'lab');
-		}
     }
     
     public function personsAction()
@@ -69,11 +62,11 @@ class Lab_MyCabinetController extends Zend_Controller_Action
 					$user = Model_Service::factory('user')->registerNewUser($ar);
 					$this->view->sucsessUpdete = TRUE;
 					Model_Service::factory('user')->renewCurrent();
-					$this->_forward('index', 'MyCabinet', 'lab');
+                    $this->getHelper('Redirector')->gotoUrlAndExit($this->view->url(array(), 'lab-my_cabinet'));
 				}
 			}
 		}else{
-			$this->_forward('index', 'index', 'lab');
+            $this->getHelper('Redirector')->gotoUrlAndExit($this->view->stdUrl(array(), 'index', 'index'));
 		}
     }
     
@@ -95,11 +88,11 @@ class Lab_MyCabinetController extends Zend_Controller_Action
 				$ar['login'] = $values['email_address'];
 				$user = Model_Service::factory('user')->registerNewUser($ar);
 				$this->view->sucsessUpdete = TRUE;
-				$this->_forward('index', 'MyCabinet', 'lab');
+               $this->getHelper('Redirector')->gotoUrlAndExit($this->view->url(array(), 'lab-my_cabinet'));
 			}
 		}
 		}else{
-			$this->_forward('index', 'index', 'lab');
+            $this->getHelper('Redirector')->gotoUrlAndExit($this->view->stdUrl(array(), 'index', 'index'));
 		}
     }
     
@@ -122,7 +115,7 @@ class Lab_MyCabinetController extends Zend_Controller_Action
 						   $ar['password'] = $values['password_new'];
 						   $user = Model_Service::factory('user')->registerNewUser($ar);
 						   $this->view->sucsessUpdetePass = TRUE;
-						   $this->_forward('index', 'MyCabinet', 'lab');
+						   $this->_forward('index', 'MyCabinet');
 						}else{
 						$this->view->erorUpPasswordNew = TRUE;
 						}
@@ -132,7 +125,7 @@ class Lab_MyCabinetController extends Zend_Controller_Action
 				}
 			}
 		}else{
-			$this->_forward('index', 'index', 'lab');
+            $this->getHelper('Redirector')->gotoUrlAndExit($this->view->stdUrl(array(), 'index', 'index'));
 		}
     }
 }

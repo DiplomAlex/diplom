@@ -44,24 +44,33 @@
 <div class="center">
     <div class="line"></div>
     <a class="logo" href="<?=$this->url(array('reset'=>true), 'lab-index')?>"></a>
+    <? if ($this->isAuthorized) { ?>
+        <h3 style="float: right; margin-top: -80px;">Здравствуйте,
+            <a href="<?= $this->url(array(), 'lab-my_cabinet') ?>"><?= $this->user->name ?></h3>
+    <? } ?>
 
     <div class="cleaner"></div>
-<!--    <ul class="menu">-->
-<!--        <li>-->
-<!--            <a href="javascript:void(0)">Menu</a>-->
-<!--            <ul>-->
-<!--                <li class="category">-->
-<!--                    <a href="javascript:void(0)">Menu 1</a>-->
-<!--                    <div class="podcategory" id="category_1" style="display: none;">-->
-<!--                        <ul>-->
-<!--                            <li><a href="javascript:void(0)"> Menu 1.1</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </li>-->
-<!--        <li><a href="">Menu href</a></li>-->
-<!--    </ul>-->
+    <ul class="menu">
+        <? if ($this->isAuthorized) { ?>
+            <li>
+                <a href="javascript:void(0)">ЛАБОРАТОРНЫЕ РАБОТЫ</a>
+                <ul>
+                    <li class="category">
+                        <a href="javascript:void(0)">ARDUINO</a>
+                        <div class="podcategory" id="category_1" style="display: none;">
+                            <ul>
+                                <li><a href="javascript:void(0)">Лабораторная работа 1</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="<?= $this->url(array(), 'lab-my_cabinet') ?>">ЛИЧНИЫЙ КАБИНЕТ</a></li>
+            <li><a href="<?=$this->stdUrl(array('reset'=>true), 'logout','auth')?>">ВЫЙТИ</a></li>
+        <? } else { ?>
+            <li><a href="<?=$this->stdUrl(array('reset'=>true), 'login','auth')?>">ВОЙТИ</a></li>
+        <? } ?>
+    </ul>
     <?= $this->box_Search();?>
 </div>
 <div class="cleaner"></div>

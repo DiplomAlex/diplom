@@ -51,7 +51,6 @@ class Model_Service_User extends Model_Service_Abstract
             App_Event::factory('Model_Object_User__onAfterLogin', array($user))->dispatch();
         }
         catch (Model_Exception $e) {
-            var_dump($e->getMessage()); die;
             $this->unauthorize();
             $this->_throwException($e->getMessage());
         }

@@ -50,14 +50,6 @@ class UserController extends Zend_Controller_Action
         $this->view->user = Model_Service::factory('user')->getComplexActiveByLogin($this->_getParam('login'));
     }
     
-    public function changeCurrencyAction()
-    {
-        $newCurr = $this->_getParam('currency');
-        $redirectUrl = $this->_getParam('redirect');
-        Model_Service::factory('currency')->setCurrent($newCurr);
-        $this->getHelper('Redirector')->gotoUrlAndExit($redirectUrl);
-    }
-    
     public function changeLanguageAction()
     {
         $newLangId = $this->_getParam('lang');

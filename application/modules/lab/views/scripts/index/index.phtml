@@ -1,15 +1,20 @@
-<div class="breadcrumbs home"></div>
-<!--<div class="banners" >-->
-<!--    <div class="main_text">-->
-<!--    </div>-->
-<!--</div>-->
+<div class="breadcrumbs home">
+<!--        <div class="center">-->
+<!--            <a href="--><?// //=$this->url(array('reset'=>true), 'lab-index')?><!--">Главная<span></span></a>-->
+<!--        </div>-->
+</div>
 <div class="cleaner"></div>
 <div class="content home center">
-    <div class="hidden"><h1>title</h1></div>
     <div class="bonus-program">
-    <h2><span style="font-size: 24px;">some about</span><br />
-    </h2>
-    <p></p>
+        <h2><span style="font-size: 24px;">Добро пожаловать</span><br/></h2>
+        <p style="text-align: center">
+        <? if ($this->isAuthorized) { ?>
+           Теперь вам доступны лабораторные работы в верхнем меню
+        <? } else { ?>
+            Для того, чтобы использовать систему виртуальных лабораторных работ необходимо пройти
+                авторизацию
+        <? } ?>
+
     </div>
     <div class="cleaner"></div>
 </div>
