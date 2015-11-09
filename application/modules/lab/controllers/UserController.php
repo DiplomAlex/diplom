@@ -22,13 +22,12 @@ class Lab_UserController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->flag_right_colum = 2;
         App_Event::factory('Lab_Controller__init', array($this))->dispatch();
     }
 
     public function registerAction()
     {
-         $this->view->headTitle('Регистрация');
+        $this->view->headTitle('Регистрация');
         $config = Zend_Registry::get('config');
         $form = $this->getInjector()->getObject('Form_Register');
         $this->view->form = $form;

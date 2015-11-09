@@ -80,12 +80,6 @@ class Model_Service_UserHistory extends Model_Service_Abstract
                 $changedFlag = true;
             }
 
-            if ($value['uh_user_bonus_account'] != $prevRow['uh_user_bonus_account']) {
-                $changes['Бонусный счет'] = array('from' => $value['uh_user_bonus_account'],
-                                                  'to'   => $prevRow['uh_user_bonus_account']);
-                $changedFlag = true;
-            }
-
             if ($value['uh_user_comment'] != $prevRow['uh_user_comment']) {
                 $changes['Примечание'] = array('from' => $value['uh_user_comment'],
                                                'to'   => $prevRow['uh_user_comment']);
@@ -96,7 +90,7 @@ class Model_Service_UserHistory extends Model_Service_Abstract
                 if ($prevRow['uh_user_changer_id'] != 0) {
                     $changer = $userService->getComplex($prevRow['uh_user_changer_id'])->name;
                 } else {
-                    $changer = '1C';
+                    $changer = '';
                 }
 
                 $history[] = array(

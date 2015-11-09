@@ -1,72 +1,78 @@
 <?xml version="1.0"?>
 <routes>
 
-<!-- * lab module * -->
+    <!-- * lab module * -->
 
-            <lab-index>
-                <type>Zend_Controller_Router_Route</type>
-                <route></route>
-                <defaults module="lab" controller="index" action="index" page=""/>
-            </lab-index>
+    <lab-index>
+        <type>Zend_Controller_Router_Route</type>
+        <route></route>
+        <defaults module="lab" controller="index" action="index" page=""/>
+    </lab-index>
 
-            <lab-my_cabinet>
-	            <type>Zend_Controller_Router_Route</type>
-	            <route>my-cabinet</route>
-	            <defaults module="lab" controller="my-cabinet" action="index"/>
-            </lab-my_cabinet>
-			<lab-my_cabinet-persons>
-	            <type>Zend_Controller_Router_Route</type>
-	            <route>my-cabinet-change-info</route>
-	            <defaults module="lab" controller="my-cabinet" action="persons"/>
-            </lab-my_cabinet-persons>
-			<lab-my_cabinet-persons-save>
-	            <type>Zend_Controller_Router_Route</type>
-	            <route>my-cabinet-change-info-save</route>
-	            <defaults module="lab" controller="my-cabinet" action="personssave"/>
-            </lab-my_cabinet-persons-save>
-			<lab-my_cabinet-changepassword>
-	            <type>Zend_Controller_Router_Route</type>
-	            <route>my-cabinet-changepassword</route>
-	            <defaults module="lab" controller="my-cabinet" action="changepassword"/>
-            </lab-my_cabinet-changepassword>
-            <lab-auth>
+    <lab-my_cabinet>
+        <type>Zend_Controller_Router_Route</type>
+        <route>my-cabinet</route>
+        <defaults module="lab" controller="my-cabinet" action="index"/>
+    </lab-my_cabinet>
+    <lab-my_cabinet-persons>
+        <type>Zend_Controller_Router_Route</type>
+        <route>my-cabinet-change-info</route>
+        <defaults module="lab" controller="my-cabinet" action="persons"/>
+    </lab-my_cabinet-persons>
+    <lab-my_cabinet-persons-save>
+        <type>Zend_Controller_Router_Route</type>
+        <route>my-cabinet-change-info-save</route>
+        <defaults module="lab" controller="my-cabinet" action="personssave"/>
+    </lab-my_cabinet-persons-save>
+    <lab-my_cabinet-changepassword>
+        <type>Zend_Controller_Router_Route</type>
+        <route>my-cabinet-changepassword</route>
+        <defaults module="lab" controller="my-cabinet" action="changepassword"/>
+    </lab-my_cabinet-changepassword>
+    <lab-auth>
+        <type>Zend_Controller_Router_Route</type>
+        <route>auth</route>
+        <defaults module="lab" controller="auth"/>
+        <chains>
+            <login>
                 <type>Zend_Controller_Router_Route</type>
-                <route>auth</route>
-                <defaults module="lab" controller="auth" />
-                <chains>
-                    <login>
-                        <type>Zend_Controller_Router_Route</type>
-                        <route>login/*</route>
-                        <defaults action="login"/>
-                    </login>
-                    <logout>
-                        <type>Zend_Controller_Router_Route</type>
-                        <route>logout</route>
-                        <defaults action="logout"/>
-                    </logout>
-                    <forgot_password>
-                        <type>Zend_Controller_Router_Route</type>
-                        <route>forgot</route>
-                        <defaults action="forgot-password"/>
-                    </forgot_password>
-                </chains>
-            </lab-auth>
+                <route>login/*</route>
+                <defaults action="login"/>
+            </login>
+            <logout>
+                <type>Zend_Controller_Router_Route</type>
+                <route>logout</route>
+                <defaults action="logout"/>
+            </logout>
+            <forgot_password>
+                <type>Zend_Controller_Router_Route</type>
+                <route>forgot</route>
+                <defaults action="forgot-password"/>
+            </forgot_password>
+        </chains>
+    </lab-auth>
 
-            <lab-user>
+    <lab-user>
+        <type>Zend_Controller_Router_Route</type>
+        <route>user</route>
+        <defaults module="lab" controller="user"/>
+        <chains>
+            <register>
                 <type>Zend_Controller_Router_Route</type>
-                <route>user</route>
-                <defaults module="lab" controller="user" />
-                <chains>
-                    <register>
-                        <type>Zend_Controller_Router_Route</type>
-                        <route>register</route>
-                        <defaults action="register"/>
-                    </register>
-                    <change-language>
-                        <type>Zend_Controller_Router_Route</type>
-                        <route>change-language/*</route>
-                        <defaults action="change-language"/>
-                    </change-language>
-                </chains>
-            </lab-user>
+                <route>register</route>
+                <defaults action="register"/>
+            </register>
+            <change-language>
+                <type>Zend_Controller_Router_Route</type>
+                <route>change-language/*</route>
+                <defaults action="change-language"/>
+            </change-language>
+        </chains>
+    </lab-user>
+
+    <lab-arduino-lab1>
+        <type>Zend_Controller_Router_Route</type>
+        <route>arduino-lab1</route>
+        <defaults module="lab" controller="labs_arduino" action="lab1"/>
+    </lab-arduino-lab1>
 </routes>

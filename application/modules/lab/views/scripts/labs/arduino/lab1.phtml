@@ -1,0 +1,81 @@
+<div class="breadcrumbs">
+    <div class="center">
+        <a href="<?= $this->url(array('reset' => true), 'lab-index') ?>">Главная<span></span></a>
+    </div>
+    <div class="center">
+        <a href="javascript:void(0)">Лабораторная работа 1<span></span></a>
+    </div>
+</div>
+<div class="content home center">
+    <h3 style="text-align: center;">Напишите скетч для загрузки или загрузите файл</h3>
+
+    <form style="left: 25%;position: relative;width: 55%;">
+        <div style="margin-bottom: 20px;">
+            <input id="sketch" type="file" name="sketch"/>
+            <input type="submit" id="upload"  value="Загрузить"/>
+        </div>
+        <div>
+        <h3 style="text-align: center;">ИЛИ</h3>
+        </div>
+        <div style="margin-bottom: 20px; display: inline-block;">
+            <label>Sketch:</label>
+            <textarea id="text_sketch" style="height: 250px;width: 81%;margin-bottom: 10px;" ></textarea>
+            <input type="submit" id="upload_text" value="Сохранить" style="float: right;"/>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#upload').click(function (e) {
+            e.preventDefault();
+            $('.alert').remove();
+            var file_data = $('#sketch').prop('files')[0];
+
+            if (file_data && (file_data.name.match('\.ino') || file_data.name.match('\.pde') || file_data.name.match('\.cpp'))) {
+                var form_data = new FormData();
+                form_data.append('file', file_data);
+                $.ajax({
+                    url: "<?= $this->stdUrl(array(), 'ajax-upload-sketch', 'labs_arduino', 'lab') ?>?files",
+                    type: "POST",
+                    data: form_data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.success) {
+                            window.location.href = "<?= $this->stdUrl(array(), 'run-sketch', 'labs_arduino', 'lab') ?>id/" + msg.id;
+                        } else {
+                            $('#sketch').before('<p class="alert" style="color: red;">'+msg.error+'</p>');
+                        }
+                    }
+                });
+            } else {
+                $('#sketch').before('<p class="alert" style="color: red;">Формат файла должен быть .ino или .pde или .cpp</p>');
+            }
+        });
+        $('#upload_text').click(function (e) {
+            e.preventDefault();
+            $('.alert').remove();
+            var textarea = $('#text_sketch').val();
+
+            if (textarea != '') {
+                $.ajax({
+                    url: "<?= $this->stdUrl(array(), 'ajax-add-text-sketch', 'labs_arduino', 'lab') ?>",
+                    type: "POST",
+                    data: {sketch: textarea},
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.success) {
+                            window.location.href = "<?= $this->stdUrl(array(), 'run-sketch', 'labs_arduino', 'lab') ?>id/" + msg.id;
+                        } else {
+                            $('#text_sketch').prev().before('<p class="alert" style="color: red;">'+msg.error+'</p>');
+                        }
+                    }
+                });
+            } else {
+                $('#text_sketch').prev().before('<p class="alert" style="color: red;">Поле не может быть пустым</p>');
+            }
+        });
+    });
+</script>
