@@ -23,14 +23,17 @@
             <?= mb_convert_encoding($this->console, "utf-8", "windows-1251"); ?>
         </textarea>
     </div>
-    <div style="margin-top: 20px">
+    <div id="div_video" style="text-align: center;width: 57%;float: left;margin-right: 20px;">
+        <video id="video" src="http://localhost:8080/desktop.ogg" autoplay="autoplay" style="width: 525px" />
+    </div>
+    <div style="margin-top: 20px;width: 40%;overflow: hidden;height: 300px;">
         <h3>I/O:</h3>
 
         <form>
             <input type="text" id="command"/>
-            <input type="submit" id="command_submit" value="Послать">
+            <input type="submit" id="command_submit" value="Послать" style="margin-top: 10px;">
             <div class="cleaner"></div>
-            <textarea style="margin: 0px; width: 385px; height: 110px;" id="command_out"></textarea>
+            <textarea style="margin: 0px; width: 378px; height: 157px;" id="command_out"></textarea>
         </form>
     </div>
 </div>
@@ -51,6 +54,7 @@
                     success: function (msg) {
                         $('#command_submit').val('Послать');
                         if (msg.success) {
+                            $('#command').val('');
                             $('#command_out').val($('#command_out').val() + msg.str);
                         } else {
                             $('#command').before('<p class="alert" style="color: red;">'+msg.error+'</p>');
@@ -61,5 +65,15 @@
                 $('#command').before('<p class="alert" style="color: red;">Поле не может быть пустым</p>');
             }
         })
-    })
+    });
+    window.onbeforeunload = function (e) {
+        $.ajax({
+            url: "<?= $this->stdUrl(array('reset' => true), 'ajax-close-serial', 'labs_arduino', 'lab') ?>",
+            type: "POST",
+            dataType: "json",
+            success: function () {
+                return '';
+            }
+        });
+    }
 </script>

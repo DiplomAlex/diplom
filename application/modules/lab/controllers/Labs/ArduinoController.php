@@ -90,6 +90,8 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
             if (file_put_contents($file . 'Lab1.cpp', $data->sketch)) {
                 $this->view->console = $this->syscall('make -C ' . $file . ' upload');
                 $this->syscall('make -C ' . $file . ' clean');
+//                $this->syscall('C:\vlc\vlc.exe -I dummy screen:// :screen-fps=16.000000 :screen-caching=100 :sout=#transcode{vcodec=theo,vb=800,scale=1,width=600,height=480,acodec=mp3}:http{mux=ogg,dst=127.0.0.1:8080/desktop.ogg} :no-sout-rtp-sap :no-sout-standard-sap :ttl=1 :sout-keep');
+                ser_open("COM3", 115200, 8, "None", "1", "None");
                 $this->view->data = $data;
             }
         } else {
@@ -111,15 +113,22 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
 
     public function ajaxSendToSerialAction()
     {
-        ser_open("COM3", 115200, 8, "None", "1", "None");
-        if (ser_isopen()) {
-            ser_write($this->_getParam('write'));
-            $str = ser_read();
-            ser_flush(true, true);
-            ser_close();
-            $this->_helper->json(array('success' => true, 'str' => $str));
-        } else {
-            $this->_helper->json(array('success' => false, 'error' => 'Port not open'));
+        if (!ser_isopen()) {
+            ser_open("COM3", 115200, 8, "None", "1", "None");
         }
+
+        ser_write($this->_getParam('write'));
+        sleep(2);
+        $str = ser_read();
+        ser_flush(true, true);
+        $this->_helper->json(array('success' => true, 'str' => str_replace("192\r\n", '', $str)));
+    }
+
+    public function ajaxCloseSerialAction()
+    {
+        if (ser_isopen()) {
+            ser_close();
+        }
+        return;
     }
 }
