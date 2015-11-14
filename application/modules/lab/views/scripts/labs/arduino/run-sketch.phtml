@@ -11,29 +11,37 @@
 </div>
 <div class="content home center">
     <h2 style="text-align: center;">Запуск скетча</h2>
+    <input type="hidden" id="sketch_id" data-id="<?= $this->data->id ?>">
 
     <div>
         <h3 style="width: 305px;float: left;">Скетч:</h3>
 
         <h3 style="width: 630px;">Ответ компилятора:</h3>
-        <textarea disabled="disabled"
+        <textarea id="sketch"
                   style="margin: 10px;width: 270px;height: 275px;"><?= $this->data->sketch ?></textarea>
 
-        <textarea disabled="disabled" style="margin: 10px; width: 630px; height: 275px;">
+        <textarea disabled="disabled" id="command_line" style="margin: 10px; width: 630px; height: 275px;">
             <?= mb_convert_encoding($this->console, "utf-8", "windows-1251"); ?>
         </textarea>
     </div>
+    <div class="cleaner"></div>
+    <div style="text-align: center">
+        <form>
+            <input type="submit" id="reload" value="Перезаписать" style="margin: 10px 0;">
+        </form>
+    </div>
+    <div class="cleaner"></div>
     <div id="div_video" style="text-align: center;width: 57%;float: left;margin-right: 20px;">
         <video id="video" src="http://localhost:8080/desktop.ogg" autoplay="autoplay" style="width: 525px" />
     </div>
-    <div style="margin-top: 20px;width: 40%;overflow: hidden;height: 300px;">
-        <h3>I/O:</h3>
+    <div style="width: 40%;overflow: hidden;margin-bottom: 20px;">
+        <h3>Input/Output:</h3>
 
         <form>
             <input type="text" id="command"/>
             <input type="submit" id="command_submit" value="Послать" style="margin-top: 10px;">
             <div class="cleaner"></div>
-            <textarea style="margin: 0px; width: 378px; height: 157px;" id="command_out"></textarea>
+            <textarea style="margin: 0px; width: 378px; height: 130px;" id="command_out"></textarea>
         </form>
     </div>
 </div>
@@ -43,13 +51,13 @@
             e.preventDefault();
             $('.alert').remove();
             var command = $('#command').val();
-            $('#command_submit').val('Loading...');
 
             if (command != '') {
+                $('#command_submit').val('Loading...');
                 $.ajax({
                     url: "<?= $this->stdUrl(array('reset' => true), 'ajax-send-to-serial', 'labs_arduino', 'lab') ?>",
                     type: "POST",
-                    data: {write: command},
+                    data: {write: command, id: $('#sketch_id').data('id')},
                     dataType: "json",
                     success: function (msg) {
                         $('#command_submit').val('Послать');
@@ -63,6 +71,33 @@
                 });
             } else {
                 $('#command').before('<p class="alert" style="color: red;">Поле не может быть пустым</p>');
+            }
+        });
+        $('#reload').click(function(e){
+            e.preventDefault();
+            $('.alert').remove();
+            var sketch = $('#sketch').val();
+
+            if (sketch != '') {
+                $('#reload').val('Loading...');
+                $.ajax({
+                    url: "<?= $this->stdUrl(array('reset' => true), 'ajax-reload', 'labs_arduino', 'lab') ?>",
+                    type: "POST",
+                    data: {sketch: sketch},
+                    dataType: "json",
+                    success: function (msg) {
+                        $('#reload').val('Перезаписать');
+                        if (msg.success) {
+                            $('#sketch').val(msg.sketch);
+                            $('#command_line').val(msg.console);
+                            $('#sketch_id').data('id', msg.id);
+                        } else {
+                            $('#sketch').before('<p class="alert" style="color: red;">'+msg.error+'</p>');
+                        }
+                    }
+                });
+            } else {
+                $('#sketch').before('<p class="alert" style="color: red;">Поле не может быть пустым</p>');
             }
         })
     });

@@ -152,19 +152,6 @@ class Form_AdminUserEdit extends App_Form
             )
         ));
 
-        $this->addElement('text', 'bonus_account', array(
-            'label'      => $this->getTranslator()->_('Бонусный счет'),
-            'attribs'    => array(
-                'maxlength' => 200,
-                'size'      => 90
-            ),
-            'validators' => array(
-                array('StringLength', false, array(0, 10))
-            ),
-            'filters'    => array('StringTrim'),
-            'required'   => false
-        ));
-
         $this->addElement('textarea', 'comment', array(
             'label'      => $this->getTranslator()->_('Примечание'),
             'attribs'    => array(

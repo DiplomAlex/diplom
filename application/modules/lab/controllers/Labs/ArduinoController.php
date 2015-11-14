@@ -91,9 +91,16 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
                 $this->view->console = $this->syscall('make -C ' . $file . ' upload');
                 $this->syscall('make -C ' . $file . ' clean');
 //                $this->syscall('C:\vlc\vlc.exe -I dummy screen:// :screen-fps=16.000000 :screen-caching=100 :sout=#transcode{vcodec=theo,vb=800,scale=1,width=600,height=480,acodec=mp3}:http{mux=ogg,dst=127.0.0.1:8080/desktop.ogg} :no-sout-rtp-sap :no-sout-standard-sap :ttl=1 :sout-keep');
+
+                Model_Service::factory('arduino')->saveFromValues(array(
+                    'id' => $data->id,
+                    'console' => $this->view->console,
+                ));
                 ser_open("COM3", 115200, 8, "None", "1", "None");
-                $this->view->data = $data;
+            } else {
+                $this->view->console = 'Ошибка открытия файла для записи';
             }
+            $this->view->data = $data;
         } else {
             $this->getHelper('Redirector')->gotoUrlAndExit($this->view->url(array(), 'lab-arduino-lab1'));
         }
@@ -117,11 +124,23 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
             ser_open("COM3", 115200, 8, "None", "1", "None");
         }
 
-        ser_write($this->_getParam('write'));
-        sleep(2);
-        $str = ser_read();
-        ser_flush(true, true);
-        $this->_helper->json(array('success' => true, 'str' => str_replace("192\r\n", '', $str)));
+        if (ser_isopen()) {
+            $write = $this->_getParam('write');
+            $id = $this->_getParam('id');
+            ser_write($write);
+            sleep(2);
+            $str = ser_read();
+            ser_flush(true, true);
+
+            Model_Service::factory('arduinoIO')->saveFromValues(array(
+                'sketch_id' => $id,
+                'in' => $write,
+                'out' => str_replace("192\r\n", '', $str),
+            ));
+            $this->_helper->json(array('success' => true, 'str' => str_replace("192\r\n", '', $str)));
+        } else {
+            $this->_helper->json(array('success' => false, 'error' => 'Ошибка открытия порта'));
+        }
     }
 
     public function ajaxCloseSerialAction()
@@ -130,5 +149,35 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
             ser_close();
         }
         return;
+    }
+
+    public function ajaxReloadAction()
+    {
+        $user = Model_Service::factory('user')->getCurrent();
+
+        $sketch = $this->_getParam('sketch');
+        if (strpos($sketch, '#include <arduino.h>') === false) {
+            $sketch = "#include <arduino.h>
+                        " . $sketch;
+        }
+        $file = str_replace('\\', '/', APPLICATION_PUBLIC) . '/uploads/arduino/';
+
+        if (file_put_contents($file . 'Lab1.cpp', $sketch)) {
+            $console = $this->syscall('make -C ' . $file . ' upload');
+            $this->syscall('make -C ' . $file . ' clean');
+
+            $data = Model_Service::factory('arduino')->saveFromValues(array(
+                'adder_id' => $user->id,
+                'date_added' => date('Y-m-d H:i:s'),
+                'sketch' => $sketch,
+                'console' => $console,
+            ), true);
+
+            $this->_helper->json(array('success' => true, 'console' => $console, 'sketch' => $sketch, 'id' => $data->id));
+        } else {
+            $this->_helper->json(array('success' => false, 'error' => 'Ошибка записи файла'));
+        }
+
+
     }
 }
