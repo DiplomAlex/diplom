@@ -7,24 +7,37 @@
     </div>
 </div>
 <div class="content home center">
-    <h3 style="text-align: center;">Напишите скетч для загрузки или загрузите файл</h3>
+    <div id="page_upload">
+        <h3 style="text-align: center;">Напишите скетч для загрузки или загрузите файл</h3>
 
-    <form style="left: 25%;position: relative;width: 55%;">
-        <div style="margin-bottom: 20px;">
-            <input id="sketch" type="file" name="sketch"/>
-            <input type="submit" id="upload"  value="Загрузить"/>
-        </div>
-        <div>
-        <h3 style="text-align: center;">ИЛИ</h3>
-        </div>
-        <div style="margin-bottom: 20px; display: inline-block;">
-            <label>Sketch:</label>
-            <textarea id="text_sketch" style="height: 250px;width: 81%;margin-bottom: 10px;" ></textarea>
-            <input type="submit" id="upload_text" value="Сохранить" style="float: right;"/>
-        </div>
-    </form>
+        <form style="left: 25%;position: relative;width: 55%;">
+            <div style="margin-bottom: 20px;">
+                <input id="sketch" type="file" name="sketch"/>
+                <input type="submit" id="upload" value="Загрузить"/>
+            </div>
+            <div>
+                <h3 style="text-align: center;">ИЛИ</h3>
+            </div>
+            <div style="margin-bottom: 20px; display: inline-block;">
+                <label>Sketch:</label>
+                <textarea id="text_sketch" style="height: 250px;width: 81%;margin-bottom: 10px;"></textarea>
+                <input type="submit" id="upload_text" value="Сохранить" style="float: right;"/>
+            </div>
+        </form>
+    </div>
+    <div id="page_timer" style="display: none;">
+        <h3 style="text-align: center;">Ваша работа с оборудованием начнеться приблизительно через:</h3>
+        <h1 id="timeout" style="text-align: center; margin: 10px"></h1>
+        <p style="text-align: center; width: 400px; margin: 0 auto">
+            Время приблизительное и будет изменяться по мере продвижения очереди.
+            Если вы уйдете с этой страницы вас автоматически удалят из очереди.
+            Когда наступит ваша очередь вы автоматически перейдете на страницу работы с оборудованием.
+        </p>
+    </div>
 </div>
+<input type="hidden" id="sketch_id">
 <script>
+    var redirect = false;
     $(document).ready(function () {
         $('#upload').click(function (e) {
             e.preventDefault();
@@ -44,7 +57,7 @@
                     dataType: "json",
                     success: function (msg) {
                         if (msg.success) {
-                            window.location.href = "<?= $this->stdUrl(array(), 'run-sketch', 'labs_arduino', 'lab') ?>id/" + msg.id;
+                            setTimer(msg.id, msg.time);
                         } else {
                             $('#sketch').before('<p class="alert" style="color: red;">'+msg.error+'</p>');
                         }
@@ -67,7 +80,7 @@
                     dataType: "json",
                     success: function (msg) {
                         if (msg.success) {
-                            window.location.href = "<?= $this->stdUrl(array(), 'run-sketch', 'labs_arduino', 'lab') ?>id/" + msg.id;
+                            setTimer(msg.id, msg.time);
                         } else {
                             $('#text_sketch').prev().before('<p class="alert" style="color: red;">'+msg.error+'</p>');
                         }
@@ -78,4 +91,67 @@
             }
         });
     });
+    window.onbeforeunload = function (e) {
+        var id = $('#sketch_id').val();
+
+        if (id != undefined && !redirect) {
+            $.ajax({
+                url: "<?= $this->stdUrl(array('reset' => true), 'ajax-free-line', 'labs_arduino', 'lab') ?>",
+                type: "POST",
+                data: {id: id},
+                dataType: "json",
+                success: function () {
+                    return '';
+                }
+            });
+        }
+    };
+    function setTimer(id, time)
+    {
+        $('#sketch_id').val(id);
+        $('#page_upload').remove();
+        $('#page_timer').show();
+
+        var myCounter = new Countdown({
+            seconds: time,  // number of seconds to count down
+            onUpdateStatus: function(sec){
+                if (!(sec % 15) && sec != 0) {
+                    $.ajax({
+                        url: "<?= $this->stdUrl(array('reset' => true), 'ajax-get-time', 'labs_arduino', 'lab') ?>",
+                        type: "POST",
+                        data: {id: id},
+                        dataType: "json",
+                        success: function (msg) {
+                            myCounter.correct(msg.time_correct);
+                        }
+                    });
+                }
+
+                var hours = parseInt(sec / 3600 ) % 24;
+                var minutes = parseInt( sec / 60 ) % 60;
+                var seconds = sec % 60;
+
+                var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+                $('#timeout').html(result);
+            }, // callback for each second
+            onCounterEnd: function(){
+                myCounter.stop();
+                $.ajax({
+                    url: "<?= $this->stdUrl(array('reset' => true), 'ajax-check-line-top', 'labs_arduino', 'lab') ?>",
+                    type: "POST",
+                    data: {id: id},
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.success) {
+                            redirect = true;
+                            window.location.href = "<?= $this->stdUrl(array(), 'run-sketch', 'labs_arduino', 'lab') ?>id/" + id;
+                        } else {
+                            myCounter.correct(30);
+                        }
+                    }
+                });
+            } // final action
+        });
+        myCounter.start();
+    }
 </script>

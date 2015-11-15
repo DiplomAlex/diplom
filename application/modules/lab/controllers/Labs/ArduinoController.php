@@ -21,7 +21,6 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
     {
         $user = Model_Service::factory('user')->getCurrent();
 
-        $data = array();
         if (isset($_GET['files'])) {
             $error = false;
 
@@ -37,6 +36,8 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
                         'date_added' => date('Y-m-d H:i:s'),
                         'sketch' => $sketch,
                     ), true);
+
+                    $time = Model_Service::factory('arduino-line')->saveAndGetTime($result->id);
                 }
             } catch (Exception $e) {
                 $error = true;
@@ -45,7 +46,7 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
             if ($error) {
                 $data = array('success' => false, 'error' => $e->getMessage());
             } else {
-                $data = array('success' => true, 'id' => $result->id);
+                $data = array('success' => true, 'id' => $result->id, 'time' => $time);
             }
         } else {
             $data = array('success' => false, 'error' => 'No files');
@@ -70,7 +71,9 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
                 'sketch' => $sketch,
             ), true);
 
-            $data = array('success' => true, 'id' => $result->id);
+            $time = Model_Service::factory('arduino-line')->saveAndGetTime($result->id);
+
+            $data = array('success' => true, 'id' => $result->id, 'time' => $time);
         } catch(Exception $e) {
             $data = array('success' => false, 'error' => $e->getMessage());
         }
@@ -82,27 +85,50 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
     {
         set_time_limit (0);
         $id = $this->_getParam('id');
+        $currentInLine= true;
+        $line = Model_Service::factory('arduino-line')->getAll();
 
-        if (isset($id)) {
+        if (!isset($id)){
+            $this->getHelper('Redirector')->gotoUrlAndExit($this->view->url(array(), 'lab-arduino-lab1'));
+        }
+
+        if ($line->count()){
+            $currentInLine = ($line->current()->sketch_id == $id);
+            Model_Service::factory('arduino-line')->saveFromValues(array(
+                'id' => $line->current()->id,
+                'date_start' => date('Y-m-d H:i:s'),
+            ));
+        } else {
+            Model_Service::factory('arduino-line')->saveFromValues(array(
+                'sketch_id' => $id,
+                'date_added' => date('Y-m-d H:i:s'),
+                'date_start' => date('Y-m-d H:i:s'),
+            ));
+        }
+
+        if ($currentInLine) {
             $data = Model_Service::factory('arduino')->getComplex($id);
-            $file = str_replace('\\', '/', APPLICATION_PUBLIC) . '/uploads/arduino/';
 
-            if (file_put_contents($file . 'Lab1.cpp', $data->sketch)) {
-                $this->view->console = $this->syscall('make -C ' . $file . ' upload');
-                $this->syscall('make -C ' . $file . ' clean');
+            if (!$data->console) {
+                $file = str_replace('\\', '/', APPLICATION_PUBLIC) . '/uploads/arduino/';
+
+                if (file_put_contents($file . 'Lab1.cpp', $data->sketch)) {
+                    $this->view->console = $this->syscall('make -C ' . $file . ' upload');
+                    $this->syscall('make -C ' . $file . ' clean');
 //                $this->syscall('C:\vlc\vlc.exe -I dummy screen:// :screen-fps=16.000000 :screen-caching=100 :sout=#transcode{vcodec=theo,vb=800,scale=1,width=600,height=480,acodec=mp3}:http{mux=ogg,dst=127.0.0.1:8080/desktop.ogg} :no-sout-rtp-sap :no-sout-standard-sap :ttl=1 :sout-keep');
 
-                Model_Service::factory('arduino')->saveFromValues(array(
-                    'id' => $data->id,
-                    'console' => $this->view->console,
-                ));
-                ser_open("COM3", 115200, 8, "None", "1", "None");
+                    Model_Service::factory('arduino')->saveFromValues(array(
+                        'id' => $data->id,
+                        'console' => $this->view->console,
+                    ));
+                    ser_open("COM3", 115200, 8, "None", "1", "None");
+                } else {
+                    $this->view->console = 'Ошибка открытия файла для записи';
+                }
+                $this->view->data = $data;
             } else {
-                $this->view->console = 'Ошибка открытия файла для записи';
+                $this->getHelper('Redirector')->gotoUrlAndExit($this->view->url(array(), 'lab-arduino-lab1'));
             }
-            $this->view->data = $data;
-        } else {
-            $this->getHelper('Redirector')->gotoUrlAndExit($this->view->url(array(), 'lab-arduino-lab1'));
         }
     }
 
@@ -148,7 +174,8 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
         if (ser_isopen()) {
             ser_close();
         }
-        return;
+
+        Model_Service::factory('arduino-line')->deleteBySketchId($this->_getParam('id', 0));
     }
 
     public function ajaxReloadAction()
@@ -177,7 +204,28 @@ class Lab_Labs_ArduinoController extends Zend_Controller_Action
         } else {
             $this->_helper->json(array('success' => false, 'error' => 'Ошибка записи файла'));
         }
+    }
 
+    public function ajaxFreeLineAction()
+    {
+        Model_Service::factory('arduino-line')->deleteBySketchId($this->_getParam('id', 1));
+    }
 
+    public function ajaxCheckLineTopAction()
+    {
+        $rows = Model_Service::factory('arduino-line')->getAll();
+
+        if ($rows->count()) {
+            $this->_helper->json(array('success' => ($rows->current()->sketch_id == $this->_getParam('id'))));
+        } else {
+            $this->_helper->json(array('success' => true));
+        }
+    }
+
+    public function ajaxGetTimeAction()
+    {
+        $time = Model_Service::factory('arduino-line')->getTimeWithoutCurrent($this->_getParam('id'));
+
+        $this->_helper->json(array('time_correct' => $time));
     }
 }

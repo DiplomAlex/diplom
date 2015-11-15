@@ -12,7 +12,13 @@
 <div class="content home center">
     <h2 style="text-align: center;">Запуск скетча</h2>
     <input type="hidden" id="sketch_id" data-id="<?= $this->data->id ?>">
-
+    <p style="text-align: center; width: 400px; margin: 0 auto">
+        До конца выполнения лабораторной работы осталось*:
+    </p>
+    <h1 id="timeout" style="text-align: center; margin: 10px"></h1>
+    <p style="text-align: center; width: 400px; margin: 0 auto">
+        (*) Перезагрузив страницу вы не сможете восстановить работу
+    </p>
     <div>
         <h3 style="width: 305px;float: left;">Скетч:</h3>
 
@@ -53,14 +59,14 @@
             var command = $('#command').val();
 
             if (command != '') {
-                $('#command_submit').val('Loading...');
+                $('#command_submit').attr('disabled', 'disabled').val('Loading...');
                 $.ajax({
                     url: "<?= $this->stdUrl(array('reset' => true), 'ajax-send-to-serial', 'labs_arduino', 'lab') ?>",
                     type: "POST",
                     data: {write: command, id: $('#sketch_id').data('id')},
                     dataType: "json",
                     success: function (msg) {
-                        $('#command_submit').val('Послать');
+                        $('#command_submit').attr('disabled', false).val('Послать');
                         if (msg.success) {
                             $('#command').val('');
                             $('#command_out').val($('#command_out').val() + msg.str);
@@ -79,14 +85,14 @@
             var sketch = $('#sketch').val();
 
             if (sketch != '') {
-                $('#reload').val('Loading...');
+                $('#reload').attr('disabled', 'disabled').val('Loading...');
                 $.ajax({
                     url: "<?= $this->stdUrl(array('reset' => true), 'ajax-reload', 'labs_arduino', 'lab') ?>",
                     type: "POST",
                     data: {sketch: sketch},
                     dataType: "json",
                     success: function (msg) {
-                        $('#reload').val('Перезаписать');
+                        $('#reload').attr('disabled', false).val('Перезаписать');
                         if (msg.success) {
                             $('#sketch').val(msg.sketch);
                             $('#command_line').val(msg.console);
@@ -100,11 +106,42 @@
                 $('#sketch').before('<p class="alert" style="color: red;">Поле не может быть пустым</p>');
             }
         })
+
+        var myCounter = new Countdown({
+            seconds: <?= 60 * Model_Object_ArduinoLine::MINUTES_FOR_USER ?>,  // number of seconds to count down
+            onUpdateStatus: function(sec){
+                var hours = parseInt(sec / 3600 ) % 24;
+                var minutes = parseInt( sec / 60 ) % 60;
+                var seconds = sec % 60;
+
+                var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+                $('#timeout').html(result);
+            }, // callback for each second
+            onCounterEnd: function(){
+                $('#div_video').remove();
+                $('#command_submit').remove();
+                $('#reload').remove();
+                $('#command').remove();
+
+                myCounter.stop();
+                $.ajax({
+                    url: "<?= $this->stdUrl(array('reset' => true), 'ajax-close-serial', 'labs_arduino', 'lab') ?>",
+                    type: "POST",
+                    data: {id: $('#sketch_id').data('id')},
+                    dataType: "json",
+                    success: function () {
+                        return '';
+                    }
+                });
+            } // final action
+        });
+        myCounter.start();
     });
     window.onbeforeunload = function (e) {
         $.ajax({
             url: "<?= $this->stdUrl(array('reset' => true), 'ajax-close-serial', 'labs_arduino', 'lab') ?>",
             type: "POST",
+            data: {id: $('#sketch_id').data('id')},
             dataType: "json",
             success: function () {
                 return '';
