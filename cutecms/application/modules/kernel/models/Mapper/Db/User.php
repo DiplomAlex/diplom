@@ -369,4 +369,13 @@ class Model_Mapper_Db_User extends Model_Mapper_Db_Abstract implements Model_Map
     {
         return $this->getTable()->update(array('user_guid' => $guid), array('user_id = ?' => $uid));
     }
+
+    public function paginatorFetchUsersOfLabs($rowsPerPage, $page)
+    {
+        $query = $this->fetchComplex(array(), false)
+            ->join(array('arduino'), 'user_id = a_adder_id', array())
+        ->group('user_id');
+
+        return $this->paginator($query, $rowsPerPage, $page, Model_Object_Interface::STYLE_COMPLEX);
+    }
 }

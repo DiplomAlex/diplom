@@ -1,0 +1,40 @@
+<div class="breadcrumbs">
+    <div class="center">
+        <a href="<?= $this->url(array('reset' => true), 'lab-index') ?>">Главная<span></span></a>
+    </div>
+</div>
+<div class="content home center">
+    <div class="mcol">
+        <div class="title_h3" style="text-align: center">
+            <h1>Лабораторная работа №1</h1>
+        </div>
+        <div>
+            <h3 style="width: 305px;float: left;">Скетч:</h3>
+
+            <h3 style="width: 630px;">Ответ компилятора:</h3>
+        <textarea id="sketch"
+                  style="margin: 10px;width: 270px;height: 275px;"><?= $this->lab->sketch ?></textarea>
+
+        <textarea disabled="disabled" id="command_line" style="margin: 10px; width: 630px; height: 275px;">
+            <?= mb_convert_encoding($this->lab->console, "utf-8", "windows-1251"); ?>
+        </textarea>
+        </div>
+        <? if ($this->inOut->count()) { ?>
+            <div style="margin-bottom: 20px;">
+                <h3>Input/Output:</h3>
+                <table style="width: 100%; border-spacing: 0; border: 1px solid;">
+                    <tr style="text-align: center">
+                        <td style="width: 50%; border: 1px solid; padding: 5px;">Input</td>
+                        <td style="width: 50%; border: 1px solid; padding: 5px;">Output</td>
+                    </tr>
+                    <? foreach ($this->inOut as $row) { ?>
+                        <tr>
+                            <td style="border: 1px solid;padding: 5px;"><?= $row->in ?></td>
+                            <td style="border: 1px solid;padding: 5px;"><?= $row->out ?></td>
+                        </tr>
+                    <? } ?>
+                </table>
+            </div>
+        <? } ?>
+    </div>
+</div>

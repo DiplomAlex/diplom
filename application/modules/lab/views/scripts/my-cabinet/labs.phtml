@@ -1,0 +1,32 @@
+<div class="breadcrumbs">
+    <div class="center">
+        <a href="<?= $this->url(array('reset' => true), 'lab-index') ?>">Главная<span></span></a>
+    </div>
+</div>
+<div class="content home center">
+    <div class="mcol">
+        <div class="title_h3" style="text-align: center">
+            <h3>Лабораторные работы №1</h3>
+        </div>
+        <table class="labs">
+            <tr style="font-weight: bolder; text-align: center">
+                <td style="width: 10%;">Дата</td>
+                <td style="width: 45%;">Скетч</td>
+                <td>Действия</td>
+            </tr>
+            <? foreach ($this->labs as $lab) { ?>
+                <tr>
+                    <td><?= $lab->date_added ?></td>
+                    <td><?= nl2br(htmlspecialchars($lab->sketch)) ?></td>
+                    <td class="actions2" style="width: 12%">
+                        <a class="act_edit" href="<?= $this->url(array('id' => $lab->id), 'lab-my_cabinet-lab') ?>">
+                            <?= $this->translate('Просмотреть') ?>
+                        </a>
+                    </td>
+                </tr>
+            <? } ?>
+        </table>
+
+        <?= $this->paginationControl($this->labs) ?>
+    </div>
+</div>

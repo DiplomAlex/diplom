@@ -430,4 +430,16 @@ class Model_Service_User extends Model_Service_Abstract
         return $this->getMapper()->fetchUserByGuid($guid);
     }
 
+    public function paginatorGetUsersOfLabs($rowsPerPage, $page)
+    {
+        if ($rowsPerPage === NULL) {
+            $rowsPerPage = Zend_Registry::get('config')->default->paginator->rowsPerPage;
+        }
+        if ($page === NULL) {
+            $page = Zend_Controller_Front::getInstance()->getRequest()->getParam('page');
+        }
+
+        return $this->getMapper()->paginatorFetchUsersOfLabs($rowsPerPage, $page);
+    }
+
 }

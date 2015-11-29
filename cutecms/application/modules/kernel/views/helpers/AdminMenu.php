@@ -272,6 +272,24 @@ class View_Helper_AdminMenu extends Zend_View_Helper_Abstract
                         ),
                     ),
 
+                    'labs' => array(
+                        'label' => $this->view->translate('Лабораторные работы Arduino'),
+                        'route' => 'default',
+                        'module' => 'kernel',
+                        'controller' => 'admin-labs',
+                        'action' => 'index',
+                        'hideTop' => TRUE,
+                        'pages' => array(
+                            array(
+                                'label' => $this->view->translate('Лабораторная работа №1'),
+                                'route' => 'default',
+                                'module' => 'kernel',
+                                'controller' => 'admin-labs',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
+
                     'SPACER' => array(
                         'label' => '-',
                         'module' => 'kernel',
@@ -330,12 +348,14 @@ class View_Helper_AdminMenu extends Zend_View_Helper_Abstract
             $level1['dashboard'],
             $level1['user'],
             $level1['change_profile'],
+            $level1['labs'],
         );
     }
 
     protected function _getMenuStructure_client($level1)
     {
         $struct = array(
+            $level1['labs'],
         );
         return $struct;
     }
@@ -358,6 +378,7 @@ class View_Helper_AdminMenu extends Zend_View_Helper_Abstract
         return array(
             $level1['user'],
             $level1['change_profile'],
+            $level1['labs'],
         );
     }
 

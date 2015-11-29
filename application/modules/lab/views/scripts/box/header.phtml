@@ -65,7 +65,19 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="<?= $this->url(array(), 'lab-my_cabinet') ?>">ЛИЧНИЫЙ КАБИНЕТ</a></li>
+            <li>
+                <a href="<?= $this->url(array(), 'lab-my_cabinet') ?>">ЛИЧНИЫЙ КАБИНЕТ</a>
+                    <ul>
+                        <li class="category">
+                            <a href="javascript:void(0)">ЛАБОРАТОРНЫЕ РАБОТЫ ARDUINO</a>
+                            <div class="podcategory" id="category_1" style="display: none;">
+                                <ul>
+                                    <li><a href="<?= $this->url(array(), 'lab-my_cabinet-labs') ?>">Лабораторная работа 1</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+            </li>
             <li><a href="<?=$this->stdUrl(array('reset'=>true), 'logout','auth')?>">ВЫЙТИ</a></li>
         <? } else { ?>
             <li><a href="<?=$this->stdUrl(array('reset'=>true), 'login','auth')?>">ВОЙТИ</a></li>

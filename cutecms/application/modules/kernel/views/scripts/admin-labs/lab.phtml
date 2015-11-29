@@ -1,0 +1,55 @@
+<? $this->pageTitle($this->translate('Лабораторные работы Arduino')); ?>
+
+<div class="widget-box table">
+    <div class="widget-title">
+        <h5><?= $this->translate('Лабораторна работа №1 студента') . ' "' . $this->user->name . '"' ?></h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table>
+            <tr>
+                <td style="font-weight: bolder">Дата:</td>
+                <td>
+                    <?= $this->lab->date_added ?>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder">Скетч:</td>
+                <td>
+                    <textarea id="sketch" disabled="disabled" style="width: 270px;height: 275px;">
+                        <?= $this->lab->sketch ?>
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder">Ответ компилятора:</td>
+                <td>
+                    <textarea disabled="disabled" id="command_line" style="width: 630px; height: 275px;">
+                    <?= mb_convert_encoding($this->lab->console, "utf-8", "windows-1251"); ?>
+                    </textarea>
+                </td>
+            </tr>
+
+            <? if ($this->inOut->count()) { ?>
+                <tr>
+                    <td style="font-weight: bolder">Input/Output:</td>
+                    <td>
+                        <div>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 50%; border: 1px solid;">Input</td>
+                                    <td style="width: 50%; border: 1px solid;">Output</td>
+                                </tr>
+                                <? foreach ($this->inOut as $row) { ?>
+                                    <tr>
+                                        <td style="border: 1px solid;"><?= $row->in ?></td>
+                                        <td style="border: 1px solid;"><?= $row->out ?></td>
+                                    </tr>
+                                <? } ?>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            <? } ?>
+        </table>
+    </div>
+</div>

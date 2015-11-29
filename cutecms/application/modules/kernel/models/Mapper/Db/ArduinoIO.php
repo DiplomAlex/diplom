@@ -9,4 +9,8 @@ class Model_Mapper_Db_ArduinoIO extends Model_Mapper_Db_Abstract
         'Model_Object_Interface' => 'Model_Object_ArduinoIO',
     );
 
+    public function fetchByLab($id)
+    {
+        return $this->fetchComplex(array('aio_sketch_id = ? ' => $id));
+    }
 }

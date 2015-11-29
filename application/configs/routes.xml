@@ -14,6 +14,18 @@
         <route>my-cabinet</route>
         <defaults module="lab" controller="my-cabinet" action="index"/>
     </lab-my_cabinet>
+    <lab-my_cabinet-labs>
+        <type>Zend_Controller_Router_Route</type>
+        <route>my-cabinet/labs/*</route>
+        <defaults module="lab" controller="my-cabinet" action="labs"/>
+    </lab-my_cabinet-labs>
+    <lab-my_cabinet-lab>
+        <type>App_Controller_Router_Route_Regex</type>
+        <route>my-cabinet/lab/([0-9\-\_]+)</route>
+        <defaults module="lab" controller="my-cabinet" action="lab" id=""/>
+        <map id="1" />
+        <reverse>my-cabinet/lab/%d</reverse>
+    </lab-my_cabinet-lab>
     <lab-my_cabinet-persons>
         <type>Zend_Controller_Router_Route</type>
         <route>my-cabinet-change-info</route>

@@ -128,4 +128,21 @@ class Lab_MyCabinetController extends Zend_Controller_Action
             $this->getHelper('Redirector')->gotoUrlAndExit($this->view->stdUrl(array(), 'index', 'index'));
 		}
     }
+
+	public function labsAction()
+    {
+        $user = Model_Service::factory('user')->getCurrent();
+
+        $this->view->labs = Model_Service::factory('arduino')->paginatorGetByUser(
+            $user->id,
+            $this->getHelper('RowsPerPage')->saveValue()->getValue(),
+            $this->_getParam('page')
+        );
+    }
+
+    public function labAction()
+    {
+        $this->view->lab = Model_Service::factory('arduino')->get($this->_getParam('id'));
+        $this->view->inOut = Model_Service::factory('arduinoIO')->getByLab($this->_getParam('id'));
+    }
 }

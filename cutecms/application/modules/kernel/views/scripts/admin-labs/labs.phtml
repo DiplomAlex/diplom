@@ -1,0 +1,29 @@
+<? $this->pageTitle($this->translate('Лабораторные работы Arduino')); ?>
+
+<div class="widget-box table">
+    <div class="widget-title">
+        <h5><?= $this->translate('Лабораторные работы №1 студента') . ' "' . $this->user->name . '"' ?></h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table cellspacing="0" class="table table-bordered table-striped table-hover table-no-external-border">
+            <tr>
+                <th><?=$this->translate('Date')?></th>
+                <th><?=$this->translate('Sketch')?></th>
+                <th class="actions2" width="12%"><?=$this->translate('Actions')?></th>
+            </tr>
+            <? foreach ($this->labs as $row) { ?>
+                <tr>
+                    <td><?=$row->date_added ?></td>
+                    <td><?= nl2br(htmlspecialchars($row->sketch)) ?></td>
+                    <td class="actions2" style="width: 12%">
+                        <a class="act_edit" href="<?=$this->stdUrl(array('id'=>$row['id'], 'user_id' => $this->user->id), 'lab')?>">
+                            <?=$this->translate('Проверить')?>
+                        </a>
+                    </td>
+                </tr>
+            <? } ?>
+        </table>
+
+    </div>
+    <?=$this->paginationControl($this->labs)?>
+</div>

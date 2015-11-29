@@ -6,4 +6,9 @@ class Model_Service_ArduinoIO extends Model_Service_Abstract
         'Model_Object_Interface' => 'Model_Object_ArduinoIO',
         'Model_Mapper_Interface' => 'Model_Mapper_Db_ArduinoIO',
     );
+
+    public function getByLab($id)
+    {
+        return $this->getMapper()->fetchByLab($id);
+    }
 }

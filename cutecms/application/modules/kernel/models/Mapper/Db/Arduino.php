@@ -9,4 +9,10 @@ class Model_Mapper_Db_Arduino extends Model_Mapper_Db_Abstract
         'Model_Object_Interface' => 'Model_Object_Arduino',
     );
 
+    public function paginatorFetchByUsers($user, $rowsPerPage, $page)
+    {
+        $query = $this->fetchComplex(array('a_adder_id = ?' => $user), false);
+
+        return $this->paginator($query, $rowsPerPage, $page, Model_Object_Interface::STYLE_COMPLEX);
+    }
 }
